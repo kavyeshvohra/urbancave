@@ -1,27 +1,44 @@
 import React from 'react'
 import '../styles/login.css'
+import { FaUserCircle } from 'react-icons/fa';
+import { AiFillLock } from 'react-icons/ai';
 const login = () => {
+    function inputChange (e) {
+        if(e.target.value !== "")
+        {
+            e.target.classList.add('text');
+        }
+        else
+        {
+            e.target.classList.remove('text');
+        }
+    }
     return (
         <>
             <div className = "loginContainer">
                 <div className = "loginForm">
                     <h1>
-                        Welcome Back
+                        Sign In
                     </h1>
-                    <form method = "POST">
-                        <input type = "text" id = "name" name = "username" placeholder = "Username"/><br/><br/>
-                        <input type = "password" id = "pass" name = "password" placeholder = "Password"/><br/><br/>
+                    <form>
+                        <div className = "formGroup">
+                            <FaUserCircle className = "icons"/>
+                            <input className = "details-form" type = "text" id = "name" name = "username" onChange={inputChange}/>
+                            <span className = "focus-text" data-placeholder = "Email"></span>
+                        </div>
+                        <div className = "formGroup">
+                            <AiFillLock className = "icons" />
+                            <input className = "details-form" type = "password" id = "pass" name = "password" onChange={inputChange}/>
+                            <span className = "focus-text" data-placeholder = "Password"></span>
+                        </div>
+                        <div className = "formGroupButton">
+                            <button type = "submit" name = "submit">Login</button>
+                        </div>
+                        <div className = "formGroupTwo">
+                            <a href = "/">Forgot password?</a>
+                            <a href = "/">Sign Up!</a>
+                        </div>                    
                     </form>
-                        <a href = "/">Forgot password?</a> Get help signing in.
-                        <hr />
-                        <button type = "submit" name = "submit">Login</button>
-                        <br/>
-                        <br/>
-                        <a href = "/">Don't have an Account?</a> Register Here!
-                </div>
-                <div className = "showCase">
-                    <div className = "showCaseContainer">
-                    </div>
                 </div>
             </div>
         </>

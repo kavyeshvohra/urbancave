@@ -1,7 +1,6 @@
 import React from 'react'
 import '../styles/login.css'
 import { FaUserCircle } from 'react-icons/fa';
-import { useState } from 'react';
 import { AiFillLock, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 const login = () => {
     function inputChange (e) {
@@ -18,7 +17,7 @@ const login = () => {
     {
         let hiddenText = document.getElementById("pass");
         let iconClass = document.getElementsByClassName("icons-eye-off")[0];
-        if(hiddenText.type === "password")
+        if(hiddenText.type == "password")
         {
             hiddenText.type = "text";
             iconClass.style.display = "none";
@@ -48,15 +47,15 @@ const login = () => {
                             <input className = "details-form" type = "password" id = "pass" name = "password" onChange={inputChange} tabIndex = "2"/>
                             <span className = "focus-text" data-placeholder = "Password"></span>
                             <AiFillLock className = "icons" />
-                            <AiFillEyeInvisible className = "icons-eye-off" onFocus = {changePass} tabIndex = "3"/>
-                            <AiFillEye className = "icons-eye-on" onFocus = {changePass}/>
+                            <AiFillEyeInvisible className = "icons-eye-off" onClick = {changePass} onFocus = {changePass}tabIndex = "3"/>
+                            <AiFillEye className = "icons-eye-on" onFocus = {changePass} onClick = {changePass}/>
                         </div>
                         <div className = "formGroupButton">
                             <button type = "submit" name = "submit" tabIndex = "4">Login</button>
                         </div>
                         <div className = "formGroupTwo">
                             <a href = "/">Forgot password?</a>
-                            <a href = "/">Sign Up!</a>
+                            <a href = "/register">Sign Up!</a>
                         </div>                    
                     </form>
                 </div>

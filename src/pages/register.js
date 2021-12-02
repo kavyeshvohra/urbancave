@@ -1,6 +1,6 @@
-import {React} from 'react'
+import React, {useState} from 'react'
 import Select from 'react-select'
-import {Heading4,Heading1, RegisterCont, RegisterForm, FormGroup, InputWrapper, Detailsform, ButtonWrapper, FocusHtml, Detailsformdate, SelectGroup, TextSpan, Checkbox, CheckGroup} from '../styles/register-styles';
+import {Heading4,Heading1, RegisterCont, RegisterForm, FormGroup, InputWrapper, Detailsform, ButtonWrapper, FocusHtml, Detailsformdate, SelectGroup, TextSpan, Checkbox, CheckGroup, ButtonSubmit} from '../styles/register-styles';
 const register = () => {
     function inputChange (e) {
         if(e.target.value !== "")
@@ -22,8 +22,11 @@ const register = () => {
         { value: '3BHK', label: '3BHK'},
         { value: '4BHK', label: '4BHK'},
         { value: 'Other', label: 'More than 4BHK'},
-
     ]
+    // const onClickHandler = () => {
+    //     const data = new FormData()
+    //     data.append('file', this.state.selectFile)
+    // }
     return (
         <>
             <RegisterCont>
@@ -35,19 +38,19 @@ const register = () => {
                     <form>
                         <InputWrapper>
                         <FormGroup>
-                            <Detailsform type = "text" id = "fname" name = "fname" onChange={inputChange} requried tabIndex = "1" />
+                            <Detailsform type = "text" id = "fname" name = "fname" onChange={inputChange} requried />
                             <FocusHtml data-placeholder = "First Name"/>
                         </FormGroup>
                         <FormGroup>
-                            <Detailsform type = "text" id = "lname" name = "lname" onChange={inputChange} tabIndex = "2" required/>
+                            <Detailsform type = "text" id = "lname" name = "lname" onChange={inputChange} required/>
                             <FocusHtml data-placeholder = "Last Name"/>
                         </FormGroup>
                         <FormGroup>
-                            <Detailsformdate type="date" name="dateofbirth" onChange={inputChange} required />
+                            <Detailsformdate type="date" id="datepicker" name="dateofbirth" onChange={inputChange} required />
                             <FocusHtml data-placeholder = "Date Of Birth"/>
                         </FormGroup>
                         <FormGroup>
-                            <Detailsform type = "email" name = "email" onChange={inputChange} tabIndex = "2" required/>
+                            <Detailsform type = "email" name = "email" onChange={inputChange} required/>
                             <FocusHtml data-placeholder = "Email"/>
                         </FormGroup>
                         <FormGroup>
@@ -78,11 +81,12 @@ const register = () => {
                             <TextSpan>House Type</TextSpan>
                         </SelectGroup>
                         <SelectGroup>
-                            <Detailsform type="file" name="file" onChange={this.onChangeHandler}/>
+                            <Detailsform type="file" name="file" />
+                            <TextSpan>Upload Profile Image</TextSpan>
                         </SelectGroup>
                         </InputWrapper>
                         <ButtonWrapper>
-                          <button type = "submit" name = "submit" tabIndex = "4">Login</button>
+                          <ButtonSubmit name = "submit">Register</ButtonSubmit>
                         </ButtonWrapper>                 
                     </form>
                 </RegisterForm>

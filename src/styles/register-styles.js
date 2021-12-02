@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 export const Heading4 = styled.h4`
 text-align: center;
-margin-bottom: 2.8em;
+margin-bottom: 1.8em;
 `;
 export const Heading1 = styled.h1`
   padding-bottom: 10%;
   color: #0c2938;
   font-size: 50px;
   text-align: center;
-  margin-bottom: -1.4rem;
+  margin-bottom: -2.4rem;
 `;
 export const RegisterCont = styled.div`
   display: flex;
@@ -22,11 +22,11 @@ export const RegisterCont = styled.div`
 
 export const RegisterForm = styled.div`
   border: 1px solid #fff;
-  padding: 4rem 5.6rem;
+  padding: 2rem 4.6rem;
   background-color: #fff;
   border-radius: 15px;
   width: 50em;
-  height: 35em;
+  height: 45em;
   display: flex;
   flex-direction: column;
   box-shadow: -1px 1px 11px #00000014;
@@ -37,7 +37,7 @@ export const SelectGroup = styled.div`
   position: relative;
   transition: 0.3s all ease;
   padding-bottom: 0.125em;
-  margin-bottom: 2.5em;
+  margin-bottom: 1.5em;
   margin-top: 1.2em;
 `;
 export const CheckGroup = styled.div`
@@ -50,7 +50,33 @@ export const CheckGroup = styled.div`
   display: flex;
 `;
 export const ButtonWrapper = styled.div`
+  margin-top: -30px;
+  margin-bottom: -15px;
+  text-align: center;
+`;
+export const ButtonSubmit = styled.button`
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 15px 0 15px 0;
+  align-self: center;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 15px;
+  background-color: #0c2938;
+  color: #fff;
+  font-weight: bold;
+  font-family: montserrat, sans-serif;
+  box-shadow: -1px 1px 11px #00000014;
+  transition: 0.3s all ease-in-out;
 
+&:hover,
+&:focus {
+  background-color: #fff;
+  color: #000;
+  font-weight: bold;
+  background-image: linear-gradient(14deg, #d7d7d7, #dddddd);
+}
 `;
 export const FormGroup = styled.div`
   margin-bottom: 2.5em;
@@ -108,7 +134,6 @@ export const Checkbox = styled.input`
   padding:0;
   align-items:left;
 `;
-
 export const TextSpan = styled.span`
   position: absolute;
   display: block;

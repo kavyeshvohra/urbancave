@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Heading4 = styled.h4`
 text-align: center;
-margin-bottom: 1.8em;
+margin-bottom: 2.2em;
 `;
 export const Heading1 = styled.h1`
   padding-bottom: 10%;
@@ -19,21 +19,25 @@ export const RegisterCont = styled.div`
   height: 100vh;
   overflow: hidden;
 `;
-
+export const RadioLabel = styled.label`
+  display: flex !important;
+  align-content: space-around;
+  flex-wrap: wrap;
+`
 export const RegisterForm = styled.div`
   border: 1px solid #fff;
   padding: 2rem 4.6rem;
   background-color: #fff;
   border-radius: 15px;
-  width: 50em;
-  height: 45em;
+  width: 65em;
+  height: 40em;
   display: flex;
   flex-direction: column;
   box-shadow: -1px 1px 11px #00000014;
   overflow: auto;
 `;
 export const SelectGroup = styled.div`
-  width: 41%;
+  width: 30%;
   position: relative;
   transition: 0.3s all ease;
   padding-bottom: 0.125em;
@@ -41,7 +45,7 @@ export const SelectGroup = styled.div`
   margin-top: 1.2em;
 `;
 export const CheckGroup = styled.div`
-  width: 41%;
+  width: 30%;
   position: relative;
   transition: 0.3s all ease;
   padding-bottom: 0.125em;
@@ -50,12 +54,12 @@ export const CheckGroup = styled.div`
   display: flex;
 `;
 export const ButtonWrapper = styled.div`
-  margin-top: -30px;
+  margin-top: -1.5%;
   margin-bottom: -15px;
   text-align: center;
 `;
 export const ButtonSubmit = styled.button`
-  width: 90%;
+  width: 30%;
   margin: 0 auto;
   margin-top: 15px;
   padding: 15px 0 15px 0;
@@ -81,7 +85,7 @@ export const ButtonSubmit = styled.button`
 export const FormGroup = styled.div`
   margin-bottom: 2.5em;
   border-bottom: 2px solid #000;
-  width: 41%;
+  width: 30%;
   position: relative;
   transition: 0.3s all ease;
   padding-bottom: 0.125em;

@@ -232,15 +232,17 @@ const Register = () => {
         reInput.onblur = function(){
             document.getElementById('messageCheck').style.display = "none";
         }
-        if(input==reInput)
-        {
-            check.children[1].style.display = "inline-block";
-            check.children[0].style.display = "none";
-        }
-        else
-        {
-            check.children[0].style.display = "inline-block";
-            check.children[1].style.display = "none";
+        reInput.onkeyup = function(){
+            if(reInput.value.match(input.value))
+            {
+                check.children[1].style.display = "inline-block";
+                check.children[0].style.display = "none";
+            }
+            else
+            {
+                check.children[0].style.display = "inline-block";
+                check.children[1].style.display = "none";
+            }
         }
     }
     function validation(e){

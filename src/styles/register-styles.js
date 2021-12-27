@@ -9,7 +9,7 @@ export const Heading1 = styled.h1`
   color: #0c2938;
   font-size: 50px;
   text-align: center;
-  margin-bottom: -2.4rem;
+  margin-bottom: -3.4rem;
 `;
 export const RegisterCont = styled.div`
   display: flex;
@@ -18,6 +18,7 @@ export const RegisterCont = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  margin-top: -0.2em;
 `;
 export const RadioLabel = styled.label`
   display: flex !important;
@@ -30,11 +31,10 @@ export const RegisterForm = styled.div`
   background-color: #fff;
   border-radius: 15px;
   width: 65em;
-  height: 40em;
+  height: 44em;
   display: flex;
   flex-direction: column;
   box-shadow: -1px 1px 11px #00000014;
-  overflow: auto;
 `;
 export const SelectGroup = styled.div`
   width: 30%;
@@ -95,7 +95,8 @@ export const InputWrapper = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
+    column-gap: 2.5em;
     flex-wrap: wrap;
 `;
 
@@ -188,4 +189,23 @@ export const FocusHtml = styled.span`
 
   color: red;
   }
+`;
+export const ErrorMessage = styled.div`
+  margin-top: -2.5em;
+  display: none;
+  width: 30%;
+  background: #eee;
+  padding: 10px;
+  border-radius: 2%;
+  margin-bottom: 1.2em;
+`
+export const ErrorMessage1 = styled.div`
+  display: none;
+  width: 30%;
+  background: #eee;
+  padding: 10px;
+  border-radius: 2%;
+  height: 10%;
+  position: relative;
+  top: -2.5em;
 `;

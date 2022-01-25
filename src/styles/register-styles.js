@@ -4,6 +4,9 @@ export const Heading4 = styled.h4`
 text-align: center;
 margin-bottom: 2.2em;
 `;
+export const EmHeading4 = styled.h4`
+  margin-bottom: 2.2.em;
+`
 export const Heading1 = styled.h1`
   padding-bottom: 10%;
   color: #0c2938;
@@ -58,6 +61,11 @@ export const ButtonWrapper = styled.div`
   margin-bottom: -15px;
   text-align: center;
 `;
+export const ButtonWrapper1 = styled.div`
+  margin-top: -4.5%;
+  margin-bottom: -15px;
+  text-align: center;
+`;
 export const ButtonSubmit = styled.button`
   width: 30%;
   margin: 0 auto;
@@ -90,7 +98,6 @@ export const FormGroup = styled.div`
   transition: 0.3s all ease;
   padding-bottom: 0.125em;
 `;
-
 export const InputWrapper = styled.div`
     display: flex;
     flex-direction: row;
@@ -99,7 +106,39 @@ export const InputWrapper = styled.div`
     column-gap: 2.5em;
     flex-wrap: wrap;
 `;
+export const FormGroup1 = styled.div`
+  margin-top: 1em;
+  border-bottom: 2px solid #000;
+  width: 100%;
+  position: relative;
+  transition: 0.3s all ease;
+  padding-bottom: 0.125em;
+`;
+export const InputWrapper1 = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
 
+export const RegisterCont1 = styled.div`
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+`;
+
+export const RegisterForm1 = styled.div`
+    background-color: #fff;
+    border: 1px solid #fff;
+    padding: 2rem 4.6rem;
+    border-radius: 15px;
+    width: 50em;
+    height: 26em;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -1px 1px 11px #00000014;
+`;
 export const Detailsform = styled.input`
   padding: 8px;
   display: flex;
@@ -146,6 +185,11 @@ export const TextSpan = styled.span`
   height: 100%;
   top: -1.7em;
   color: #999999;
+`;
+export const TextSpan1 = styled.span`
+  display:inline-block;
+  margin-top: 1.2em;
+  cursor: pointer;
 `;
 export const FocusHtml = styled.span`
   position: absolute;
@@ -208,4 +252,11 @@ export const ErrorMessage1 = styled.div`
   height: 10%;
   position: relative;
   top: -2.5em;
+`;
+export const ExistAccount = styled.div`
+  font-size: 16px;
+  display:flex;
+  align-items:center;
+  margin-top: 2.5rem;
+  justify-content: center;
 `;

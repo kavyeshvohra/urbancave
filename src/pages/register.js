@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import Select from 'react-select'
-import Axios from 'axios'
+import Select from 'react-select';
+import { Link } from 'react-router-dom'
 
-import {VscError,VscCheck} from "react-icons/vsc";
-import {AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { VscError, VscCheck } from "react-icons/vsc";
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
-import { Heading4, Heading1, RegisterCont, RegisterForm, FormGroup, InputWrapper, Detailsform, ButtonWrapper, FocusHtml, Detailsformdate, SelectGroup, TextSpan, Checkbox, CheckGroup, ButtonSubmit, RadioLabel, ErrorMessage, ErrorMessage1} from '../styles/register-styles';
+import { Heading4, Heading1, RegisterCont, RegisterForm, FormGroup, InputWrapper, Detailsform, ButtonWrapper, FocusHtml, Detailsformdate, SelectGroup, TextSpan, Checkbox, CheckGroup, ButtonSubmit, RadioLabel, ErrorMessage, ErrorMessage1, RegisterCont1, ButtonWrapper1, TextSpan1, InputWrapper1, FormGroup1, RegisterForm1, ExistAccount } from '../styles/register-styles';
 
 const Register = () => {
     // const url = ""
@@ -14,7 +14,10 @@ const Register = () => {
     //     lname: "",
     //     dob: ""
     // })
-    //const [step, changeStep] = useState("step1");
+    const [step, changeStep] = useState("step1");
+    const societyRegisterStep = () => {
+        changeStep("step2");
+    }
     const errorIcon = {
         display: 'inline-block',
         fill: 'red'
@@ -43,31 +46,44 @@ const Register = () => {
         { value: '4BHK', label: '4BHK' },
         { value: 'Other', label: 'More than 4BHK' },
     ]
-    // useEffect(() => {
-    //     if (step == "step1") {
-    //         console.log("step1");
-    //     }
-    //     else if (step == "step2") {
-    //         console.log("step2");
-    //     }
-    // });
 
-    const [passInputType,passInput] = useState("password");
+    const [passInputType, passInput] = useState("password");
     const [confirmpassInputType, changeconfInputType] = useState("password");
-    // const [eyeIcon,changeEye] = useState("icons-eye-off");
-    // const handleChangeInput=()=>{
-    //     console.log("HI");
-    //     if(inputType==="password"){
-    //         changeInputType("text");
-    //         //changeEye("icons-eye-on");
-    //     }
-    //     else{
-    //         changeInputType("password");
-    //         //changeEye("icons-eye-off");
-    //     }
-    // }
-    return (
-
+    if (step === "step1") {
+        return (
+            <>
+                <RegisterCont1>
+                    <RegisterForm1>
+                        <Heading1>Sign Up</Heading1>
+                        <InputWrapper1>
+                            <FormGroup1>
+                                <Detailsform type="email" id="usrEmail" name="regEmail" />
+                                <FocusHtml data-placeholder='Email' />
+                            </FormGroup1>
+                        </InputWrapper1>
+                        <div id="descMessageContainer" >
+                            <p style={{ fontSize: "11.5px", marginTop: "0.53em" }}>(Please enter the email to complete your registration. <b>Note</b>: The email must be verified by the Society Admin.)</p>
+                        </div>
+                        <InputWrapper style={{ marginTop: '2em' }} id="signup_verify_email_textfield">
+                            <FormGroup>
+                                <Detailsform type="text" id="otpField" name="verif-code" />
+                                <FocusHtml data-placeholder='OTP' />
+                            </FormGroup>
+                            <TextSpan1 id="resend_otp_verify">Resend OTP</TextSpan1>
+                        </InputWrapper>
+                        <ButtonWrapper1>
+                            <ButtonSubmit name="submit" onClick={societyRegisterStep}>Request OTP</ButtonSubmit>
+                        </ButtonWrapper1>
+                        <ExistAccount>
+                            Already a Member? &nbsp;<Link to="/login" style={{ color: '#7462FC' }}> Sign In</Link>
+                        </ExistAccount>
+                    </RegisterForm1>
+                </RegisterCont1>
+            </>
+        );
+    }
+    else {
+        return (
             <>
                 <RegisterCont>
                     <RegisterForm>
@@ -82,136 +98,104 @@ const Register = () => {
                                     <FocusHtml data-placeholder="First Name" />
                                 </FormGroup>
                                 <FormGroup>
-                                        <Detailsform type="text" id="lname" name="lname" onChange={inputChange} required />
-                                        <FocusHtml data-placeholder="Last Name" />
+                                    <Detailsform type="text" id="lname" name="lname" onChange={inputChange} required />
+                                    <FocusHtml data-placeholder="Last Name" />
                                 </FormGroup>
                                 <FormGroup>
-                                        <Detailsformdate type="date" id="datepicker" name="dateofbirth" onChange={inputChange} required />
-                                        <FocusHtml data-placeholder="Date Of Birth" />
+                                    <Detailsformdate type="date" id="datepicker" name="dateofbirth" onChange={inputChange} required />
+                                    <FocusHtml data-placeholder="Date Of Birth" />
                                 </FormGroup>
                                 <FormGroup>
-                                        <Detailsform type="email" name="email" onChange={inputChange} required />
-                                        <FocusHtml data-placeholder="Email" />
+                                    <Detailsform type="email" name="email" disabled onChange={inputChange} required />
+                                    <FocusHtml data-placeholder="Email" />
                                 </FormGroup>
                                 <FormGroup>
-                                        <Detailsform type="text" name="phonenum" maxLength="10" onChange={inputChange} required />
-                                        <FocusHtml data-placeholder="Phone Number" />
+                                    <Detailsform type="text" name="phonenum" maxLength="10" onChange={inputChange} required />
+                                    <FocusHtml data-placeholder="Phone Number" />
                                 </FormGroup>
                                 <FormGroup>
-                                        <Detailsform type="text" name="altphonenum" maxLength="10" onChange={inputChange} />
-                                        <FocusHtml data-placeholder="Alternate Phone Number" />
+                                    <Detailsform type="text" name="altphonenum" maxLength="10" onChange={inputChange} />
+                                    <FocusHtml data-placeholder="Alternate Phone Number" />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Detailsform type={passInputType} id="pwd" name="password" minLength = "8" required onChange={validation}/>
+                                    <Detailsform type={passInputType} id="pwd" name="password" minLength="8" required onChange={validation} />
                                     <FocusHtml data-placeholder="Password" />
-                                   {passInputType == 'password' ? (<AiFillEyeInvisible id = "pwd-off-eye" className ="icons-eye-off" onClick={()=>passInput('text')} />):(<AiFillEye id="" style={eyeOn}  onClick={()=>passInput('password')}/>   )} 
-                                                                
+                                    {passInputType == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" className="icons-eye-off" onClick={() => passInput('text')} />) : (<AiFillEye id="" style={eyeOn} onClick={() => passInput('password')} />)}
+
                                 </FormGroup>
                                 <FormGroup>
-                                    <Detailsform id="confpwd" type={confirmpassInputType} name="conf-password" minLength= "8" required onChange={confirmPassChange}/>
-                                    <FocusHtml data-placeholder='Confirm Password'/>
-                                    {confirmpassInputType == 'password' ? (<AiFillEyeInvisible id = "pwd-off-eye" className ="icons-eye-off" onClick={()=>changeconfInputType('text')} />):(<AiFillEye id="" style={eyeOn}  onClick={()=>changeconfInputType('password')}/>   )}
+                                    <Detailsform id="confpwd" type={confirmpassInputType} name="conf-password" minLength="8" required onChange={confirmPassChange} />
+                                    <FocusHtml data-placeholder='Confirm Password' />
+                                    {confirmpassInputType == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" className="icons-eye-off" onClick={() => changeconfInputType('text')} />) : (<AiFillEye id="" style={eyeOn} onClick={() => changeconfInputType('password')} />)}
                                 </FormGroup>
                                 <CheckGroup>
-                                        <Checkbox type="radio" id="ansMale" name="genderState" value="Male" required/>
-                                        <RadioLabel htmlFor="ansMale">Male</RadioLabel>
-                                        <Checkbox type="radio" id="ansFemale" name="genderState" value="female" />
-                                        <RadioLabel htmlFor="ansFemale">Female</RadioLabel>
-                                        <Checkbox type="radio" id="ansOther" name="genderState" value="other" />
-                                        <RadioLabel htmlFor="ansOther">Other</RadioLabel>
-                                        <TextSpan>Gender</TextSpan>
+                                    <Checkbox type="radio" id="ansMale" name="genderState" value="Male" required />
+                                    <RadioLabel htmlFor="ansMale">Male</RadioLabel>
+                                    <Checkbox type="radio" id="ansFemale" name="genderState" value="female" />
+                                    <RadioLabel htmlFor="ansFemale">Female</RadioLabel>
+                                    <Checkbox type="radio" id="ansOther" name="genderState" value="other" />
+                                    <RadioLabel htmlFor="ansOther">Other</RadioLabel>
+                                    <TextSpan>Gender</TextSpan>
                                 </CheckGroup>
                                 <ErrorMessage id="message">
-                                        <h4 style={{marginBottom: "5px"}}>Passwords must contain:</h4>
-                                        <p id="letter" className="invalid"><VscError className='errorIcon' style={errorIcon}/><VscCheck className='validIcon' style={validIcon}/> A <b>lowercase</b> letter</p>
-                                        <p id="capital" className="invalid"><VscError className='errorIcon' style={errorIcon}/><VscCheck className='validIcon' style={validIcon}/> A <b>capital (uppercase)</b> letter</p>
-                                        <p id="number" className="invalid"><VscError className='errorIcon' style={errorIcon}/><VscCheck className='validIcon' style={validIcon}/> A <b>number</b></p>
-                                        <p id="special" className="invalid"><VscError className='errorIcon' style={errorIcon}/><VscCheck className='validIcon' style={validIcon}/> A <b>special character</b></p>
-                                        <p id="length" className="invalid"><VscError className='errorIcon' style={errorIcon}/><VscCheck className='validIcon' style={validIcon}/> Minimum <b>8 characters</b></p> 
+                                    <h4 style={{ marginBottom: "5px" }}>Passwords must contain:</h4>
+                                    <p id="letter" className="invalid"><VscError className='errorIcon' style={errorIcon} /><VscCheck className='validIcon' style={validIcon} /> A <b>lowercase</b> letter</p>
+                                    <p id="capital" className="invalid"><VscError className='errorIcon' style={errorIcon} /><VscCheck className='validIcon' style={validIcon} /> A <b>capital (uppercase)</b> letter</p>
+                                    <p id="number" className="invalid"><VscError className='errorIcon' style={errorIcon} /><VscCheck className='validIcon' style={validIcon} /> A <b>number</b></p>
+                                    <p id="special" className="invalid"><VscError className='errorIcon' style={errorIcon} /><VscCheck className='validIcon' style={validIcon} /> A <b>special character</b></p>
+                                    <p id="length" className="invalid"><VscError className='errorIcon' style={errorIcon} /><VscCheck className='validIcon' style={validIcon} /> Minimum <b>8 characters</b></p>
                                 </ErrorMessage>
                                 <FormGroup>
-                                        <Detailsform type="text" name="housename" onChange={inputChange} />
-                                        <FocusHtml data-placeholder="House Name" />
+                                    <Detailsform type="text" name="housename" onChange={inputChange} />
+                                    <FocusHtml data-placeholder="House Name" />
                                 </FormGroup>
                                 <ErrorMessage1 id="messageCheck">
-                                        <p id="passCheck" className="invalid"><VscError className='errorIcon' style={errorIcon}/><VscCheck className='validIcon' style={validIcon}/> Password's Match</p>
+                                    <p id="passCheck" className="invalid"><VscError className='errorIcon' style={errorIcon} /><VscCheck className='validIcon' style={validIcon} /> Password's Match</p>
                                 </ErrorMessage1>
                                 <SelectGroup>
-                                        <Select options={houseoptions}/>
-                                        <TextSpan>House Type</TextSpan>
+                                    <Select options={houseoptions} />
+                                    <TextSpan>House Type</TextSpan>
                                 </SelectGroup>
                                 <SelectGroup>
-                                        <Select options={options} />
-                                        <TextSpan>User Type</TextSpan>
+                                    <Select options={options} />
+                                    <TextSpan>User Type</TextSpan>
                                 </SelectGroup>
                                 <CheckGroup>
-                                        <Checkbox type="radio" id="ansYes" name="rentState" value="yes" />
-                                        <RadioLabel htmlFor="ansYes">Yes</RadioLabel>
-                                        <Checkbox type="radio" id="ansNo" name="rentState" value="no" />
-                                        <RadioLabel htmlFor="ansYes">No</RadioLabel>
-                                        <TextSpan>Rented Appartment?</TextSpan>
+                                    <Checkbox type="radio" id="ansYes" name="rentState" value="yes" />
+                                    <RadioLabel htmlFor="ansYes">Yes</RadioLabel>
+                                    <Checkbox type="radio" id="ansNo" name="rentState" value="no" />
+                                    <RadioLabel htmlFor="ansYes">No</RadioLabel>
+                                    <TextSpan>Rented Appartment?</TextSpan>
                                 </CheckGroup>
                                 <SelectGroup>
-                                        <Detailsform type="file" name="file" />
-                                        <TextSpan>Upload Profile Image</TextSpan>
+                                    <Detailsform type="file" name="file" />
+                                    <TextSpan>Upload Profile Image</TextSpan>
                                 </SelectGroup>
-                                </InputWrapper>
-                                <ButtonWrapper>
-                                    <ButtonSubmit name="submit">Register</ButtonSubmit>
-                                </ButtonWrapper>
-                            </form>
-                        </RegisterForm>
-                    </RegisterCont>
-                </>
-            );
-
-        // else if (step == "step1") {
-        //     return (
-        //         <>
-        //             <div className="loginContainer">
-        //                 <div className="loginForm">
-        //                     <h1>
-        //                         Sign In
-        //                     </h1>
-        //                     <div className="formGroup">
-        //                         <FaUserCircle className="icons" />
-        //                         <input className="details-form" type="text" id="name" name="username" onChange={inputChange} tabIndex="1" />
-        //                         <span className="focus-text" data-placeholder="Email"></span>
-        //                     </div>
-        //                     <div className="formGroup">
-        //                         <input className="details-form" type="password" id="pass" name="password" onChange={inputChange} tabIndex="2" />
-        //                         <span className="focus-text" data-placeholder="Password"></span>
-        //                         <AiFillLock className="icons" />
-        //                         <AiFillEyeInvisible className="icons-eye-off" onClick={changePass} onFocus={changePass} tabIndex="3" />
-        //                         <AiFillEye className="icons-eye-on" onFocus={changePass} onClick={changePass} />
-        //                     </div>
-        //                     <div className="formGroupButton">
-        //                         <button name="submit" tabIndex="4">Login</button>
-        //                     </div>
-        //                     <div className="formGroupTwo">
-        //                         <a href="/">Forgot password?</a>
-        //                         <a href="/register">Sign Up!</a>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         </>
-        //     );
-        // }
-        // else
-        // {
-        //     let hiddenText = document.getElementById('confpwd');
-        //     let iconClass = document.getElementsByClassName("icons-eye-off")[0];
-        //     if (hiddenText.type == "password") {
-        //         hiddenText.type = "text";
-        //         iconClass.style.display = "none";
-        //         document.getElementsByClassName("icons-eye-on")[0].style.display = "unset";
-        //     }
-        //     else {
-        //         hiddenText.type = "password";
-        //         iconClass.style.display = "unset";
-        //         document.getElementsByClassName("icons-eye-on")[0].style.display = "none";
-        //     }
-        // }
+                            </InputWrapper>
+                            <ButtonWrapper>
+                                <ButtonSubmit name="submit" >Register</ButtonSubmit>
+                            </ButtonWrapper>
+                        </form>
+                    </RegisterForm>
+                </RegisterCont>
+            </>
+        );
+    }
+    // else
+    // {
+    //     let hiddenText = document.getElementById('confpwd');
+    //     let iconClass = document.getElementsByClassName("icons-eye-off")[0];
+    //     if (hiddenText.type == "password") {
+    //         hiddenText.type = "text";
+    //         iconClass.style.display = "none";
+    //         document.getElementsByClassName("icons-eye-on")[0].style.display = "unset";
+    //     }
+    //     else {
+    //         hiddenText.type = "password";
+    //         iconClass.style.display = "unset";
+    //         document.getElementsByClassName("icons-eye-on")[0].style.display = "none";
+    //     }
+    // }
 
     function inputChange(e) {
         if (e.target.value !== "") {
@@ -221,31 +205,29 @@ const Register = () => {
             e.target.classList.remove('text');
         }
     }
-    function confirmPassChange(e){
+    function confirmPassChange(e) {
         inputChange(e);
         let input = document.getElementById('pwd');
         let reInput = document.getElementById('confpwd');
         const check = document.getElementById('passCheck');
-        reInput.onkeydown = function(){
-            document.getElementById('messageCheck').style.display= "block";
+        reInput.onkeydown = function () {
+            document.getElementById('messageCheck').style.display = "block";
         }
-        reInput.onblur = function(){
+        reInput.onblur = function () {
             document.getElementById('messageCheck').style.display = "none";
         }
-        reInput.onkeyup = function(){
-            if(reInput.value.match(input.value))
-            {
+        reInput.onkeyup = function () {
+            if (reInput.value.match(input.value)) {
                 check.children[1].style.display = "inline-block";
                 check.children[0].style.display = "none";
             }
-            else
-            {
+            else {
                 check.children[0].style.display = "inline-block";
                 check.children[1].style.display = "none";
             }
         }
     }
-    function validation(e){
+    function validation(e) {
         inputChange(e);
         let input = document.getElementById('pwd');
         const letter = document.getElementById('letter');
@@ -253,74 +235,68 @@ const Register = () => {
         const length = document.getElementById('length');
         const number = document.getElementById('number');
         const special = document.getElementById('special')
-        
-        input.onkeydown = function(){
-            document.getElementById('message').style.display= "block";
+
+        input.onkeydown = function () {
+            document.getElementById('message').style.display = "block";
         }
-        input.onblur = function(){
+        input.onblur = function () {
             document.getElementById('message').style.display = "none";
         }
-        input.onkeyup = function(){
+        input.onkeyup = function () {
             let lowerCase = /[a-z]/g;
-            if(input.value.match(lowerCase)){
+            if (input.value.match(lowerCase)) {
                 letter.children[1].style.display = "inline-block";
-                letter.children[0].style.display ="none";
+                letter.children[0].style.display = "none";
             }
-            else
-            {
+            else {
                 letter.children[0].style.display = "inline-block";
-                letter.children[1].style.display="none";
+                letter.children[1].style.display = "none";
             }
 
             let upperCase = /[A-Z]/g;
-            if(input.value.match(upperCase)){
+            if (input.value.match(upperCase)) {
                 capital.children[1].style.display = "inline-block";
                 capital.children[0].style.display = "none";
             }
-            else
-            {
+            else {
                 capital.children[0].style.display = "inline-block";
                 capital.children[1].style.display = "none";
             }
 
             let numbers = /[0-9]/g;
-            if(input.value.match(numbers)){
+            if (input.value.match(numbers)) {
                 number.children[1].style.display = "inline-block";
                 number.children[0].style.display = "none";
             }
-            else{
+            else {
                 number.children[0].style.display = "inline-block";
                 number.children[1].style.display = "none";
             }
 
             let spchars = /[!-)]/g;
-            if(input.value.match(spchars)){
+            if (input.value.match(spchars)) {
                 special.children[1].style.display = "inline-block";
                 special.children[0].style.display = "none";
             }
-            else{
+            else {
                 special.children[0].style.display = "inline-block";
                 special.children[1].style.display = "none";
             }
-            if(input.value.length >= 8)
-            {
+            if (input.value.length >= 8) {
                 length.children[1].style.display = "inline-block";
                 length.children[0].style.display = "none";
-            } 
-            else
-            {
+            }
+            else {
                 length.children[0].style.display = "inline-block";
                 length.children[1].style.display = "none";
             }
         }
-         
+
     }
 
     // const onClickHandler = () => {
     //     const data = new FormData()
     //     data.append('file', this.state.selectFile)
     // }
-
 }
-
 export default Register;

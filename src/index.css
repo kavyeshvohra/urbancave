@@ -4,6 +4,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f7fbfc;
+  overflow: hidden;
+  scrollbar-width: 10px;
 }
 /* width */
 ::-webkit-scrollbar {
@@ -12,20 +14,22 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #FAF0F0; 
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
-  border-radius: 20%;
+  background: #707A8A;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+::-webkit-scrollbar-thumb:hover {    
+  background: #FAB6B6; 
 }
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
+a{
+  text-decoration: none !important;
+}

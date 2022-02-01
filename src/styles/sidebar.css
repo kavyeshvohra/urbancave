@@ -1,0 +1,40 @@
+#urbancave_logo
+{
+    width: 13em;
+    margin-top: -1.75em;
+}
+/* .optionIcon
+{
+    margin-right: 0.4em;
+    transition: 0.5s ease-in-out;
+} */
+.custommenuicon
+{
+    margin-right: 0.7em;
+    height: 18.8px;
+    width: 18.8px;
+}
+#galleryicon > path
+{
+    stroke: #114599;
+}
+
+
+.clickedStyle
+{
+    color: #FAB6B6 !important;
+}
+.clickedStyle::before
+{
+    content: ' ';
+    position: absolute;
+    left: 0;
+    border-radius: 0% 45% 45% 0%;
+    width: 2.5em;
+    /* visibility: hidden; */
+    height: 3rem;
+    background-color: #FAF0F0;
+    z-index: -1;
+    opacity: 1 !important;
+    transition: all 0.3s;
+}

@@ -1,0 +1,36 @@
+
+.navContainer{
+    margin:1.3em 2em;
+    width:96%;
+    height:6vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5em;
+}
+
+.logo{
+    width:15em;
+    object-fit:contain;
+}
+
+.navItems{
+    display: flex;
+    flex-direction: row;
+    column-gap: 2em;
+}
+
+.logoutIcon{
+    width:1.8em;
+    object-fit: contain;
+}
+
+.profileIcon{
+    width:1.8em;
+    object-fit: contain;
+}
+
+.logourIcon:hover svg, .profileIcon svg{
+    fill:#FAF0F0;
+}

@@ -1,66 +1,57 @@
-import React from 'react'
-import '../styles/login.css'
+import React, { useState } from 'react'
+import * as LStyle from '../styles/login-style'
+import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { AiFillLock, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-const login = () => {
-    function inputChange (e) {
-        if(e.target.value !== "")
-        {
+
+const Login = () => {
+
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+    function inputChange(e) {
+        if (e.target.value !== "") {
             e.target.classList.add('text');
         }
-        else
-        {
+        else {
             e.target.classList.remove('text');
         }
     }
-    const changePass = () =>
-    {
-        let hiddenText = document.getElementById("pass");
-        let iconClass = document.getElementsByClassName("icons-eye-off")[0];
-        if(hiddenText.type == "password")
-        {
-            hiddenText.type = "text";
-            iconClass.style.display = "none";
-            document.getElementsByClassName("icons-eye-on")[0].style.display = "unset";
-        }
-        else
-        {
-            hiddenText.type = "password";
-            iconClass.style.display = "unset";
-            document.getElementsByClassName("icons-eye-on")[0].style.display = "none";
-        }
+
+    const changePass = () => {
+        setIsPasswordVisible(!isPasswordVisible)
     }
     return (
         <>
-            <div className = "loginContainer">
-                <div className = "loginForm">
-                    <h1>
+            <LStyle.LoginContainer bgimg={'../Images/login-background.png'}>
+                <LStyle.LoginForm>
+                    <LStyle.Heading1>
                         Sign In
-                    </h1>
-                    <form>
-                        <div className = "formGroup">
-                            <FaUserCircle className = "icons"/>
-                            <input className = "details-form" type = "text" id = "name" name = "username" onChange={inputChange} tabIndex = "1" />
-                            <span className = "focus-text" data-placeholder = "Email"></span>
-                        </div>
-                        <div className = "formGroup">
-                            <input className = "details-form" type = "password" id = "pass" name = "password" onChange={inputChange} tabIndex = "2"/>
-                            <span className = "focus-text" data-placeholder = "Password"></span>
-                            <AiFillLock className = "icons" />
-                            <AiFillEyeInvisible className = "icons-eye-off" onClick = {changePass} onFocus = {changePass}tabIndex = "3"/>
-                            <AiFillEye className = "icons-eye-on" onFocus = {changePass} onClick = {changePass}/>
-                        </div>
-                        <div className = "formGroupButton">
-                            <button type = "submit" name = "submit" tabIndex = "4">Login</button>
-                        </div>
-                        <div className = "formGroupTwo">
-                            <a href = "/">Forgot password?</a>
-                            <a href = "/register">Sign Up!</a>
-                        </div>                    
-                    </form>
-                </div>
-            </div>
+                    </LStyle.Heading1>
+                    <LStyle.Form>
+                        <LStyle.FormGroup>
+                            <FaUserCircle className='login-field-icons' />
+                            <LStyle.DetailsForm type="text" id="name" name="username" onChange={inputChange} tabIndex="1" />
+                            <LStyle.FocusText data-placeholder="Email" />
+                        </LStyle.FormGroup>
+                        <LStyle.FormGroup>
+                            <LStyle.DetailsForm type={isPasswordVisible ? "text" : "password"} id="pass" name="password" onChange={inputChange} tabIndex="2" />
+                            <LStyle.FocusText data-placeholder="Password" />
+                            <AiFillLock className="login-field-icons" />
+                            {isPasswordVisible ? (<AiFillEye onClick={changePass} className='login-eye' />) : <AiFillEyeInvisible onClick={changePass} className='login-eye' />}
+                            {/* <AiFillEyeInvisible tabIndex="3" />
+                            <AiFillEye className="login-field-eye-on" onFocus={changePass} onClick={changePass} /> */}
+                        </LStyle.FormGroup>
+                        <LStyle.FormGroupButton>
+                            <LStyle.Button type="submit" name="submit" tabIndex="4">Login</LStyle.Button>
+                        </LStyle.FormGroupButton>
+                        <LStyle.FormGroupTwo>
+                            <Link to="/">Forgot password?</Link>
+                            <Link to="/register">Sign Up!</Link>
+                        </LStyle.FormGroupTwo>
+                    </LStyle.Form>
+                </LStyle.LoginForm>
+            </LStyle.LoginContainer>
         </>
     )
 }
-export default login
+export default Login

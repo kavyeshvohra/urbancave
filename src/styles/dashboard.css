@@ -1,0 +1,61 @@
+.landingPageFeatureDashboard{
+    background-color: #BBE5FA;
+    margin: 5vh 4rem 4rem 4rem;
+    border:none;
+    border-radius:1rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+    padding:2.5rem;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.transact_landing_Dashboard
+{
+    background-color: #BBE5FA;
+    margin: 5vh 30rem 0rem 4rem;
+    border: none;
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.4rem;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.landingPageFeatureImageDashboard{
+    width: 15em;
+    float: right;
+}
+
+.landingPageFeature2ImageDashboard
+{
+    width: 2em;
+}
+
+.landingPageFeatureInfoDashboard{
+    width:25em;
+    text-align: left !important;
+}
+
+.item1
+{
+    background-color: transparent;
+}
+
+.active
+{
+    color:#212529;
+    padding: 0em;
+}
+
+.iconStyleIcons
+{
+    margin-right: 1em;
+    font-size: 1.34em;
+    cursor: pointer;
+}

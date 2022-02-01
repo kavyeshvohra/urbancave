@@ -36,7 +36,7 @@ export const FormGroup = styled.div`
   position: relative;
   transition: 0.3s all ease;
   padding-bottom: 0.125em;
-  & .login-eye
+  &.login-eye
   {
     position: absolute;
     top: 50%;

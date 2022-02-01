@@ -1,5 +1,5 @@
 import Images from "../../images";
-import '../../Styles/createNoticeModal.css';
+import '../../styles/createNoticeModal.css';
 
 const CreateNoticeModal=()=>{
     return(

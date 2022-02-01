@@ -1,23 +1,22 @@
-import '../styles/home.css';
+//import '../styles/home.css';
 import Images from '../images';
-import { useEffect , useState } from 'react';
+import * as HomeStyle from '../styles/home-style'
+import { useEffect, useState } from 'react';
 
-const Home=()=>{
+const Home = () => {
 
-        
+
     window.addEventListener("scroll", () => {
-        if(window.scrollY>80){
+        if (window.scrollY > 80) {
             document.getElementById("navbar").classList.add("active");
-            document.getElementById("navbar").classList.remove("landingPageNavbar");
 
-            let verticalBars=document.getElementsByClassName("landingPageVr");
+            let verticalBars = document.getElementsByClassName("landingPageVr");
             // verticalBars.map((bar)=>{
             //     bar.style.backgroundColor='#fff';
             // });
 
         }
-        else if(window.scrollY<80){
-            document.getElementById("navbar").classList.add("landingPageNavbar");
+        else if (window.scrollY < 80) {
             document.getElementById("navbar").classList.remove("active");
             let verticalBars = document.getElementsByClassName("landingPageVr");
             console.log(verticalBars[0]);
@@ -27,52 +26,52 @@ const Home=()=>{
         }
     });
 
-    
 
-    let [current,setCurrent] = useState(0);
-    const [photo, setPhoto] = useState([Images.man1, Images.visitor,Images.man1, Images.visitor]);
+
+    let [current, setCurrent] = useState(0);
+    const [photo, setPhoto] = useState([Images.man1, Images.visitor, Images.man1, Images.visitor]);
     const [data, setData] = useState([
         "Lorem ipsum dolor, sit amet consectetur adipisicing" +
-            "elit. Dolor quo, veritatis sequi quam in esse sapiente" +
-            "nam sed ipsam vero, ut eos. Temporibus corporis esse," +
-            "unde vitae laboriosam modi",
+        "elit. Dolor quo, veritatis sequi quam in esse sapiente" +
+        "nam sed ipsam vero, ut eos. Temporibus corporis esse," +
+        "unde vitae laboriosam modi",
         " Amet libero morbi venenatis ut est. Iaculis leo ultricies" +
-            "nunc id ante adipiscing. Vel metus odio at faucibus ac." +
-            "Neque id placerat et id ut. Scelerisque eu mi ullamcorper" +
-            "sit urna. Est volutpat dignissim nec.",
-            "hii",
-            "hello hii",
+        "nunc id ante adipiscing. Vel metus odio at faucibus ac." +
+        "Neque id placerat et id ut. Scelerisque eu mi ullamcorper" +
+        "sit urna. Est volutpat dignissim nec.",
+        "hii",
+        "hello hii",
     ]);
 
-    
+
     //setInterval(changeTestimonials,3000);
     //setTimeout(changeTestimonials,2000);
 
-    useEffect(()=>{
+    useEffect(() => {
         //changeTestimonials();
     });
 
-        
-    const changeTestimonials=async ()=>{
-        
-        
+
+    const changeTestimonials = async () => {
+
+
 
         if (current === photo.length) {
             setCurrent(0);
         } else {
             setCurrent(current++);
         }
-        setTimeout(changeTestimonials,1000);
+        setTimeout(changeTestimonials, 1000);
     };
-    
-    
+
+
     //setInterval(changeTestimonials,5000);
 
     return (
         <>
             <NavBar />
-            <section className="landingPageIntro">
-                <div className="landingPageIntroSlogan">
+            <HomeStyle.LandingPageIntro>
+                <HomeStyle.LandingPageIntroSlogan>
                     <h1>Easy way to manage your society. </h1>
                     <span>
                         Lorem ipsum dolor, sit amet consectetur adipisicing
@@ -80,11 +79,11 @@ const Home=()=>{
                         nam sed ipsam vero, ut eos. Temporibus corporis esse,
                         unde vitae laboriosam modi
                     </span>
-                </div>
+                </HomeStyle.LandingPageIntroSlogan>
                 <div>
-                    <img className="landingPageHouse1" src={Images.house1} />
+                    <HomeStyle.LandingPageHouse1 src={Images.house1} />
                 </div>
-            </section>
+            </HomeStyle.LandingPageIntro>
             <Feature1
                 info=" Amet libero morbi venenatis ut est. Iaculis leo ultricies
                     nunc id ante adipiscing. Vel metus odio at faucibus ac.
@@ -110,14 +109,13 @@ const Home=()=>{
                     Est volutpat dignissim nec."
                 image={Images.payment}
             />
-            <section className="landingPageRegister">
+            <HomeStyle.LandingPageRegister>
                 <div>
-                    <img
-                        className="landingPageRegisterImage"
+                    <HomeStyle.LandingPageRegisterImage
                         src={Images.register}
                     />
                 </div>
-                <div className="landingPageFeatureInfo">
+                <HomeStyle.LandingPageFeatureInfo>
                     <h1>
                         Is your Society / Community Digitally Connected and
                         Safe?
@@ -129,12 +127,12 @@ const Home=()=>{
                         quos explicabo maxime, doloribus magni sapiente officia
                         porro?
                     </p>
-                    <div className="landingPageRegisterButton">
+                    <HomeStyle.LandingPageRegisterButton>
                         <button>+ &nbsp;&nbsp;&nbsp; Register Society</button>
-                    </div>
-                </div>
-            </section>
-            <section className="landingPageTestimonials">
+                    </HomeStyle.LandingPageRegisterButton>
+                </HomeStyle.LandingPageFeatureInfo>
+            </HomeStyle.LandingPageRegister>
+            <HomeStyle.LandingPageTestimonials>
                 <Testimonials img={photo[current]} info={data[current]} />
                 <div className="landingTestimonialNavigation">
                     <img
@@ -170,12 +168,12 @@ const Home=()=>{
                         }}
                     />
                 </div>
-            </section>
-            <section className="landingPageFooter">
-                <div>
-                    <span className="landingPageFooterInfoHighlight">© All rights reserved.</span>Made by Urbancave
-                </div>
-            </section>
+            </HomeStyle.LandingPageTestimonials>
+            <HomeStyle.LandingPageFooter>
+                <HomeStyle.LandingPageFooterCont>
+                    <HomeStyle.LandingPageFooterInfoHighlight>© All rights reserved.</HomeStyle.LandingPageFooterInfoHighlight>Made by Urbancave
+                </HomeStyle.LandingPageFooterCont>
+            </HomeStyle.LandingPageFooter>
         </>
     );
 }
@@ -183,29 +181,29 @@ const Home=()=>{
 //Components
 
 //Navbar
-const NavBar=()=>{
+const NavBar = () => {
     return (
-        <header id="navbar" className="landingPageNavbar">
-            <div className="LandingPageBrand">
-                <div className="landingPageLogo">Logo</div>
-                <div className="landingPageVr"></div>
-                <div className="landingPageCompanyName">Urban Cave</div>
-            </div>
-            <div className="landingPageVr"></div>
+        <HomeStyle.LandingPageNavbar id="navbar">
+            <HomeStyle.LandingPageBrand>
+                <HomeStyle.LandingPageLogo>Logo</HomeStyle.LandingPageLogo>
+                <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
+                <HomeStyle.LandingPageCompanyName>Urban Cave</HomeStyle.LandingPageCompanyName>
+            </HomeStyle.LandingPageBrand>
+            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>Home</div>
-            <div className="landingPageVr"></div>
+            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>About Us</div>
-            <div className="landingPageVr"></div>
+            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>Service</div>
-            <div className="landingPageVr"></div>
+            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>Why Urbancave?</div>
-            <div className="landingPageVr"></div>
+            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>Contact Us</div>
-            <div className="landingPageVr"></div>
+            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>Sign In</div>
-            <div className="landingPageVr"></div>
+            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>Register society</div>
-        </header>
+        </HomeStyle.LandingPageNavbar>
     );
 }
 
@@ -213,14 +211,14 @@ const NavBar=()=>{
 //Feature 1
 const Feature1 = (props) => {
     return (
-        <section className="landingPageFeature">
+        <HomeStyle.LandingPageFeature>
             <div>
-                <img className="landingPageFeatureImage" src={props.image} />
+                <HomeStyle.LandingPageFeatureImage src={props.image} />
             </div>
-            <div className="landingPageFeatureInfo">
+            <HomeStyle.LandingPageFeatureInfo>
                 <h3>{props.info}</h3>
-            </div>
-        </section>
+            </HomeStyle.LandingPageFeatureInfo>
+        </HomeStyle.LandingPageFeature>
     );
 };
 
@@ -228,27 +226,27 @@ const Feature1 = (props) => {
 //feature 2
 const Feature2 = (props) => {
     return (
-        <section className="landingPageFeature">
-            <div className="landingPageFeatureInfo">
+        <HomeStyle.LandingPageFeature>
+            <HomeStyle.LandingPageFeatureInfo>
                 <h3>{props.info}</h3>
-            </div>
+            </HomeStyle.LandingPageFeatureInfo>
             <div>
-                <img className="landingPageFeatureImage" src={props.image} />
+                <HomeStyle.LandingPageFeatureImage src={props.image} />
             </div>
-        </section>
+        </HomeStyle.LandingPageFeature>
     );
 };
 
 
 //Testimonals
-const Testimonials=(props)=>{
+const Testimonials = (props) => {
     return (
         <>
-            <div className="testimonialHeading">Testimonials</div>
-            <div className="testimonialInfoContainer">
-                <img className="testimonialImage" src={props.img} />
-                <div className="testimonialInfo">{props.info}</div>
-            </div>
+            <HomeStyle.TestimonialHeading>Testimonials</HomeStyle.TestimonialHeading>
+            <HomeStyle.TestimonialInfoContainer>
+                <HomeStyle.TestimonialImage src={props.img} />
+                <HomeStyle.TestimonialInfo>{props.info}</HomeStyle.TestimonialInfo>
+            </HomeStyle.TestimonialInfoContainer>
         </>
     );
 }

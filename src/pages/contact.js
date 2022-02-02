@@ -1,4 +1,5 @@
-import '../styles/contact.css';
+// import '../styles/contact.css';
+import * as ContactStyle from '../styles/contact-style'
 import Images from '../images';
 
 const Contact=()=>{
@@ -33,42 +34,41 @@ const Contact=()=>{
     }
 
     return (
-        <div className="contactBody">
-            <div className="contactContainer">
-                <div className="contactHeading">Contact Us</div>
-                <div className="contactForm">
-                    <input className="contactFormName" placeholder="Name" />
-                    <input className="contactFormEmail" placeholder="Email" />
-                    <textarea className="contactFormMessage" placeholder="Message" />
-                </div>
-                <button className="contactButton" >Send Message</button>
-            </div>
-            <div className="verticalHr"></div>
-            <div className="contactExtraContainer">
-                <div className="contactExtraModal">
-                    <div className="contactExtraModalDetails">
-                        <div className="contactExtraModalHeading">
+        <ContactStyle.ContactBody>
+            <ContactStyle.ContactContainer>
+                <ContactStyle.ContactHeading>Contact Us</ContactStyle.ContactHeading>
+                <ContactStyle.ContactForm>
+                    <ContactStyle.ContactFormName placeholder="Name" />
+                    <ContactStyle.ContactFormName placeholder="Email" />
+                    <ContactStyle.ContactFormMessage placeholder="Message" />
+                </ContactStyle.ContactForm>
+                <ContactStyle.ContactButton>Send Message</ContactStyle.ContactButton>
+            </ContactStyle.ContactContainer>
+            <ContactStyle.VerticalHr></ContactStyle.VerticalHr>
+            <ContactStyle.ContactExtraContainer>
+                <ContactStyle.ContactExtraModal>
+                    <ContactStyle.ContactExtraModalDetails>
+                        <ContactStyle.ContactExtraModalHeading>
                             Lorem Epsum
-                        </div>
-                        <div className="contactExtraModalText">
+                        </ContactStyle.ContactExtraModalHeading>
+                        <ContactStyle.ContactExtraModalText>
                             Lorem Ipsum is simply dummy text of the printing and
                             typesetting industry.
-                        </div>
-                        <button className="contactExtraModalButton">
+                        </ContactStyle.ContactExtraModalText>
+                        <ContactStyle.ContactExtraModalButton>
                             Register Here
-                        </button>
-                    </div>
-                    <img
+                        </ContactStyle.ContactExtraModalButton>
+                    </ContactStyle.ContactExtraModalDetails>
+                    <ContactStyle.ContactExtraModalImage
                         src={Images.house2}
-                        className="contactExtraModalImage"
-                    ></img>
-                </div>
-                <div className="ContactExtraText">
+                    />
+                </ContactStyle.ContactExtraModal>
+                <ContactStyle.ContactExtraText>
                     URBANCAVE.... <br/>
                     Cheesy slogan One more Cheesy slogan
-                </div>
-            </div>
-        </div>
+                </ContactStyle.ContactExtraText>
+            </ContactStyle.ContactExtraContainer>
+        </ContactStyle.ContactBody>
     );
 }
 

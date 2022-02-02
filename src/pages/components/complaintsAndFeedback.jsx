@@ -1,6 +1,7 @@
 import Complaint from "./complaint";
 import ContentHeader from "./contentheader";
-import '../../styles/complaints.css';
+// import '../../styles/complaints.css';
+import * as Complaints from '../../styles/complaints'
 
 const ComplaintsAndFeedback=()=>{
     return (
@@ -8,8 +9,8 @@ const ComplaintsAndFeedback=()=>{
             <ContentHeader
                 text="Complaints and Feedback"
             />
-            <div className="contentMatter">
-                <div className="complaintSubjectContainer">
+            <Complaints.ContentMatter>
+                <Complaints.ComplaintSubjectContainer>
                     <select className="complaintSubject">
                         <option value="">--Complaint subject--</option>
                         <option value="">Maintenance Payment</option>
@@ -19,7 +20,7 @@ const ComplaintsAndFeedback=()=>{
                         <option value="">Society Admin</option>
                         <option value="">None of the above</option>
                     </select>
-                </div>
+                </Complaints.ComplaintSubjectContainer>
                 <div className="complaintInfo">
                     <div className="complaintInfoHeading">
                         Complaint discription
@@ -34,7 +35,7 @@ const ComplaintsAndFeedback=()=>{
                         Register Complaint
                     </button>
                 </div>
-            </div>
+            </Complaints.ContentMatter>
 
             <hr width="95%" size="2" border="none" color="#BBE5FA" />
             <div className="complaintHistoryContainer">

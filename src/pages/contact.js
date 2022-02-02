@@ -1,4 +1,3 @@
-// import '../styles/contact.css';
 import * as ContactStyle from '../styles/contact-style'
 import Images from '../images';
 

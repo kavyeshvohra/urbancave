@@ -1,4 +1,4 @@
-import styled from 'style-omponents'
+import styled from 'styled-components'
 // export const CnfHeading = styled.div`
 //     margin: 0.5rem 0rem 1rem 0rem;
 //     fon-ize: 2rem;
@@ -126,6 +126,14 @@ export const ComplaintTicketContainer = styled.div`
     row-gap: 1em;
     justify-content: space-evenly;
 `
+export const ComplaintTicketControls = styled.div`
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem;
+    color:#3e444e;
+    font-weight: 500;
+    transition-duration: 200ms;
+`
 
 export const ComplaintTicketContent = styled.div`
     display: flex;
@@ -142,6 +150,10 @@ export const ComplaintTicketContent = styled.div`
     &:hover
     {
         background-color: #FAF0F0;
+    }
+    &:hover + ${ComplaintTicketControls}
+    {
+        color: #FAB6B6;
     }
 `
 
@@ -171,14 +183,7 @@ export const ComplaintTicketStatus = styled.div`
     font-weight: 500;
 `
 
-export const ComplaintTicketControls = styled.div`
-    display: flex;
-    flex-direction: row;
-    column-gap: 1rem;
-    color:#3e444e;
-    font-weight: 500;
-    transition-duration: 200ms;
-`
+
 
 // export const ComplaintTicketControlImage = styled.image`
 //     width: 0.6rem;

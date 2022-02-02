@@ -10,8 +10,8 @@ const ComplaintsAndFeedback=()=>{
                 text="Complaints and Feedback"
             />
             <Complaints.ContentMatter>
-                <Complaints.ComplaintSubjectContainer>
-                    <select className="complaintSubject">
+                <div>
+                    <Complaints.ComplaintSubject>
                         <option value="">--Complaint subject--</option>
                         <option value="">Maintenance Payment</option>
                         <option value="">Donations</option>
@@ -19,38 +19,37 @@ const ComplaintsAndFeedback=()=>{
                         <option value="">Society Member</option>
                         <option value="">Society Admin</option>
                         <option value="">None of the above</option>
-                    </select>
-                </Complaints.ComplaintSubjectContainer>
-                <div className="complaintInfo">
-                    <div className="complaintInfoHeading">
-                        Complaint discription
-                    </div>
-                    <textarea
-                        className="complaintInfoDetails"
-                        placeholder="Type here..."
-                    ></textarea>
+                    </Complaints.ComplaintSubject>
                 </div>
+                <Complaints.ComplaintInfo>
+                    <Complaints.ComplaintInfoHeading>
+                        Complaint discription
+                    </Complaints.ComplaintInfoHeading>
+                    <Complaints.ComplaintInfoDetails
+                        placeholder="Type here..."
+                    ></Complaints.ComplaintInfoDetails>
+                </Complaints.ComplaintInfo>
                 <div>
-                    <button className="complaintRegisterButton">
+                    <Complaints.ComplaintRegisterButton>
                         Register Complaint
-                    </button>
+                    </Complaints.ComplaintRegisterButton>
                 </div>
             </Complaints.ContentMatter>
 
             <hr width="95%" size="2" border="none" color="#BBE5FA" />
-            <div className="complaintHistoryContainer">
-                <div className="complaintHistoryHeaderContainer">
-                    <div className="complaintHistoryHeader">
+            <Complaints.ComplaintHistoryContainer>
+                <Complaints.ComplaintHistoryHeaderContainer>
+                    <Complaints.ComplaintHistoryHeader>
                         Complaint History
-                    </div>
-                    <select className="complaintHistoryCategory">
+                    </Complaints.ComplaintHistoryHeader>
+                    <Complaints.ComplaintHistoryCategory>
                         <option>All</option>
                         <option>Resolved</option>
                         <option>Processing</option>
                         <option>Deleted</option>
-                    </select>
-                </div>
-                <div className="complaintTicketContainer">
+                    </Complaints.ComplaintHistoryCategory>
+                </Complaints.ComplaintHistoryHeaderContainer>
+                <Complaints.ComplaintTicketContainer>
                     <Complaint />
                     <Complaint />
                     <Complaint />
@@ -85,8 +84,8 @@ const ComplaintsAndFeedback=()=>{
                     <Complaint />
                     <Complaint />
                     <Complaint />
-                </div>
-            </div>
+                </Complaints.ComplaintTicketContainer>
+            </Complaints.ComplaintHistoryContainer>
         </>
     );
 }

@@ -9,7 +9,7 @@ const Gallery=(props)=>{
     const [ galleryModal , setGalleryModal ] =  useState(0); 
     return(
         <>
-            { galleryModal == 1 ? ( <CreateGalleryModal changeGallery={ setGalleryModal }/> ) : (<></>) }
+            { galleryModal ? ( <CreateGalleryModal changeGallery={ setGalleryModal }/> ) : (<></>) }
             <div className="galleryHeader">
                 <div className="galleryCaption">Gallery</div>
                 <div className="galleryButtons">

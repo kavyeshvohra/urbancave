@@ -1,0 +1,66 @@
+.mainContainer{
+    /* width:100vw;
+    height:100vh; */
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.13rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainContent{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+
+.contentContainer{
+    display: flex;
+    flex-direction: column;
+    width:80.7vw;
+    height:84.5vh;
+    overflow-y:scroll;
+    margin-bottom: 1em;
+    scrollbar-width:initial;
+}
+
+.contentContainer::-webkit-scrollbar-track {
+    background: #FAF0F0; 
+  }
+   
+  /* Handle */
+  .contentContainer::-webkit-scrollbar-thumb {
+    background: #707A8A;
+  }
+  
+  /* Handle on hover */
+  .contentContainer::-webkit-scrollbar-thumb:hover {
+    background: #FAB6B6; 
+  }
+
+.logo{
+    width:15em;
+    object-fit:contain;
+}
+
+.navItems{
+    display: flex;
+    flex-direction: row;
+    column-gap: 2em;
+}
+
+.logoutIcon{
+    width:1.8em;
+    object-fit: contain;
+}
+
+.profileIcon{
+    width:1.8em;
+    object-fit: contain;
+}
+
+.logourIcon:hover svg, .profileIcon svg{
+    fill:#FAF0F0;
+}
+

@@ -16,8 +16,8 @@ export const LandingPageNavbar = styled.header`
         top:0px;
         z-index: 1;
         padding:1.25rem;
-        color:#ffffff;
-        background-color:#0C2938 ;
+        color:rgba(12,41,56);
+        background-color: rgb(250,240,240);
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
@@ -27,14 +27,25 @@ export const LandingPageNavbar = styled.header`
         transition-duration: 0.5s;
     }
 `
-export const LandingPageBrand = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items:center;
-    column-gap: 1rem;
+export const Logo = styled.img`
+    cursor: pointer;
+    width: 200px;
+`
+export const NavbarList = styled.ul`
+    list-style-type: none;
+    margin: 0;
+
 `
 
+export const NavbarItem = styled.li`
+    display: inline-block;
+    padding: 0px 20px;
+    cursor: pointer;
+    transition: 0.3s all ease 0s;
+    &:hover{
+        color: rgba(62,68,78,0.7);
+    }
+`
 
 export const LandingPageIntro = styled.section`
     display: flex;
@@ -51,7 +62,27 @@ export const LandingPageIntroSlogan = styled.div`
         font-size: 2.8rem;
     }
 `
+export const ButtonLink = styled.a`
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+`
+export const Button = styled.button`
+    padding: 10px 25px;
+    background-color: #3e444e;
+    border: none;
+    color: #fff;
+    transition: all 0.3s ease 0s;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 700;
 
+    &:hover
+    {
+        background-color: rgba(62,68,78, 0.3);
+        color: #595757;
+    }
+`
 export const LandingPageHouse1 = styled.img`
     width:50rem;
     object-fit: contain;
@@ -178,8 +209,6 @@ export const LandingPageFooterInfoHighlight = styled.span`
     color:#53BAED;
 `
 
-export const LandingPageLogo = styled.div`
-`
 export const LandingPageFooterCont = styled.div`
     margin: 0 auto;
 `

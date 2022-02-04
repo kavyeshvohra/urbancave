@@ -180,16 +180,17 @@ const Home = () => {
 const NavBar = () => {
     return (
         <HomeStyle.LandingPageNavbar id="navbar">
-            <HomeStyle.LandingPageBrand>
-                <HomeStyle.LandingPageLogo><img src={Images.urbancaveLogo} width="150px" /></HomeStyle.LandingPageLogo>
-            </HomeStyle.LandingPageBrand>
-            <div>Home</div>
-            <div>About Us</div>
-            <div>Service</div>
-            <div>Why Urbancave?</div>
-            <div>Contact Us</div>
-            <div>Sign In</div>
-            <div>Register society</div>
+            <HomeStyle.Logo src={Images.urbancaveLogo} width="150px"/>
+            <nav>
+            <HomeStyle.NavbarList>
+                <HomeStyle.NavbarItem>Home</HomeStyle.NavbarItem>
+                <HomeStyle.NavbarItem>About Us</HomeStyle.NavbarItem>
+                <HomeStyle.NavbarItem>Services</HomeStyle.NavbarItem>
+                <HomeStyle.NavbarItem>Why Urbancave?</HomeStyle.NavbarItem>
+                <HomeStyle.NavbarItem>Contact Us</HomeStyle.NavbarItem>
+            </HomeStyle.NavbarList>
+            </nav>
+            <HomeStyle.ButtonLink href='/login'><HomeStyle.Button>Login / Register</HomeStyle.Button></HomeStyle.ButtonLink>
         </HomeStyle.LandingPageNavbar>
     );
 }

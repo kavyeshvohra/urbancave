@@ -5,7 +5,6 @@ import {FaUserCircle, FaRupeeSign} from 'react-icons/fa'
 import {AiOutlinePoweroff} from 'react-icons/ai'
 import {BsCalculator} from 'react-icons/bs'
 import Carousel from "react-bootstrap/Carousel"
-import 'bootstrap/dist/css/bootstrap.css'
 import ChartPie, {ChartBar, ChartDoughnut} from './chart'
 
 const Dashboard = () => {

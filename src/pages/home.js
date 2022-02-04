@@ -2,7 +2,7 @@
 import Images from '../images';
 import * as HomeStyle from '../styles/home-style'
 import { useState } from 'react';
-
+import Carousel from "react-bootstrap/Carousel"
 
 const Home = () => {
     const [logoImage, changeLogo] = useState(Images.urbancaveLogo);
@@ -24,50 +24,9 @@ const Home = () => {
         }
     });
 
-
-
-    let [current, setCurrent] = useState(0);
-    const [photo, setPhoto] = useState([Images.man1, Images.visitor, Images.man1, Images.visitor]);
-    const [data, setData] = useState([
-        "Lorem ipsum dolor, sit amet consectetur adipisicing" +
-        "elit. Dolor quo, veritatis sequi quam in esse sapiente" +
-        "nam sed ipsam vero, ut eos. Temporibus corporis esse," +
-        "unde vitae laboriosam modi",
-        " Amet libero morbi venenatis ut est. Iaculis leo ultricies" +
-        "nunc id ante adipiscing. Vel metus odio at faucibus ac." +
-        "Neque id placerat et id ut. Scelerisque eu mi ullamcorper" +
-        "sit urna. Est volutpat dignissim nec.",
-        "hii",
-        "hello hii",
-    ]);
-
-
-    //setInterval(changeTestimonials,3000);
-    //setTimeout(changeTestimonials,2000);
-
-    // useEffect(() => {
-    //     //changeTestimonials();
-    // });
-
-
-    const changeTestimonials = async () => {
-
-
-
-        if (current === photo.length) {
-            setCurrent(0);
-        } else {
-            setCurrent(current++);
-        }
-        setTimeout(changeTestimonials, 1000);
-    };
-
-
-    //setInterval(changeTestimonials,5000);
-
     return (
         <>
-            <NavBar logo={logoImage}/>
+            <NavBar logo={logoImage} />
             <HomeStyle.LandingPageIntro>
                 <HomeStyle.LandingPageIntroSlogan>
                     <h1>Easy way to manage your society. </h1>
@@ -82,41 +41,52 @@ const Home = () => {
                     <HomeStyle.LandingPageHouse1 src={Images.house1} />
                 </div>
             </HomeStyle.LandingPageIntro>
-            <Feature1
-                info=" Amet libero morbi venenatis ut est. Iaculis leo ultricies
-                    nunc id ante adipiscing. Vel metus odio at faucibus ac.
-                    Neque id placerat et id ut. Scelerisque eu mi ullamcorper
-                    sit urna. Est volutpat dignissim nec."
-                image={Images.camera}
-            />
-            <Feature2
-                info="Amet libero morbi venenatis ut est. Iaculis leo ultricies nunc id ante adipiscing. 
-                    io at faucibus ac. Neque id placerat et id ut. Scelerisque eu mi ullamcorper sit urna. 
-                    Est volutpat dignissim nec."
-                image={Images.visitor}
-            />
-            <Feature1
-                info="Amet libero morbi venenatis ut est. Iaculis leo ultricies nunc id ante adipiscing. 
-                    io at faucibus ac. Neque id placerat et id ut. Scelerisque eu mi ullamcorper sit urna. 
-                    Est volutpat dignissim nec."
-                image={Images.security}
-            />
-            <Feature2
-                info="Amet libero morbi venenatis ut est. Iaculis leo ultricies nunc id ante adipiscing. 
-                    io at faucibus ac. Neque id placerat et id ut. Scelerisque eu mi ullamcorper sit urna. 
-                    Est volutpat dignissim nec."
-                image={Images.payment}
-            />
+            <HomeStyle.Feature>
+                <HomeStyle.HeadingContainer>
+                    <HomeStyle.FeatureHeading>
+                        <h1>Features</h1>
+                    </HomeStyle.FeatureHeading>
+                    <HomeStyle.FeatureDesc>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    </HomeStyle.FeatureDesc>
+                </HomeStyle.HeadingContainer>
+                <HomeStyle.Container>
+                    <HomeStyle.FeatureCont>
+                        <Feature1
+                            heading="Society Management"
+                            info=" Ensure that every person, package or vehicle entering the community is authorised by a resident. Effective security measures can be convenient, too!"
+                            image={Images.FeatureImg1}
+                        />
+                        <Feature1
+                            heading="Report Generation"
+                            info="Ensure that every person, package or vehicle entering the community is authorised by a resident. Effective security measures can be convenient, too!"
+                            image={Images.DashAnalytics}
+                        />
+                    </HomeStyle.FeatureCont>
+                    <HomeStyle.FeatureCont>
+                        <Feature1
+                            heading="Visitor Management"
+                        info="Ensure that every person, package or vehicle entering the community is authorised by a resident. Effective security measures can be convenient, too!"
+                            image={Images.People}
+                        />
+                        <Feature1
+                            heading="All-In-One Tool"
+                            info="Ensure that every person, package or vehicle entering the community is authorised by a resident. Effective security measures can be convenient, too!"
+                            image={Images.Management}
+                        />
+                    </HomeStyle.FeatureCont>
+                </HomeStyle.Container>
+            </HomeStyle.Feature>
+
             <HomeStyle.LandingPageRegister>
-                <div>
+                <HomeStyle.LandingPageImageCont>
                     <HomeStyle.LandingPageRegisterImage
                         src={Images.register}
                     />
-                </div>
-                <HomeStyle.LandingPageFeatureInfo>
+                </HomeStyle.LandingPageImageCont>
+                <HomeStyle.LandingPageFeatureInfo2>
                     <h1>
-                        Is your Society / Community Digitally Connected and
-                        Safe?
+                        Switch To A Digital Environment
                     </h1>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -125,51 +95,33 @@ const Home = () => {
                         quos explicabo maxime, doloribus magni sapiente officia
                         porro?
                     </p>
-                    <HomeStyle.LandingPageRegisterButton>
-                        <button>+ &nbsp;&nbsp;&nbsp; Register Society</button>
-                    </HomeStyle.LandingPageRegisterButton>
-                </HomeStyle.LandingPageFeatureInfo>
+                    <HomeStyle.LandingPageRegisterButtonContainer>
+                    <HomeStyle.ButtonLink href='/register'><HomeStyle.LandingPageRegisterButton>Register Society</HomeStyle.LandingPageRegisterButton></HomeStyle.ButtonLink>
+                    </HomeStyle.LandingPageRegisterButtonContainer>
+                </HomeStyle.LandingPageFeatureInfo2>
             </HomeStyle.LandingPageRegister>
             <HomeStyle.LandingPageTestimonials>
-                <Testimonials img={photo[current]} info={data[current]} />
-                <div className="landingTestimonialNavigation">
-                    <img
-                        src={Images.less}
-                        onMouseOver={(event) => {
-                            event.target.src = Images.lightless;
-                        }}
-                        onMouseOut={(event) => {
-                            event.target.src = Images.less;
-                        }}
-                        onClick={() => {
-                            if (current === 0) {
-                                setCurrent(photo.length - 1);
-                            } else {
-                                setCurrent(--current);
-                            }
-                        }}
-                    />
-                    <img
-                        src={Images.more}
-                        onMouseOver={(event) => {
-                            event.target.src = Images.lightmore;
-                        }}
-                        onMouseOut={(event) => {
-                            event.target.src = Images.more;
-                        }}
-                        onClick={() => {
-                            if (current === photo.length - 1) {
-                                setCurrent((current = 0));
-                            } else {
-                                setCurrent(++current);
-                            }
-                        }}
-                    />
-                </div>
+                <h1>Testimonials</h1>
+                    <Carousel controls={false} indicators={false}>
+                        <Carousel.Item interval={3000} className="item1">
+                            <Testimonial image={Images.Testimonial_Image1} name="Harry Styles" text="Urbancave best of class must for any society! Awesome Tools" society="Araksh Appartment"></Testimonial>
+                        </Carousel.Item>
+                        <Carousel.Item interval={3000} className='item1'>
+                            <Testimonial name="Megha Thakkar" text="Urbancave best of class must for any society! Awesome Tools" society="Rhea Appartment" image={Images.Testimonial_Image2}></Testimonial>
+                        </Carousel.Item>
+                        <Carousel.Item interval={3000} className='item1'>
+                            <Testimonial name="Nadini Seth" text="Urbancave best of class must for any society! Awesome Tools" society="Rhea Appartment" image={Images.Testimonial_Image3}></Testimonial>
+                        </Carousel.Item>
+                        <Carousel.Item interval={3000} className='item1'>
+                            <Testimonial name="Ram Shah" text="Urbancave best of class must for any society! Awesome Tools" society="Rhea Appartment" image={Images.Testimonial_Image2}></Testimonial>
+                        </Carousel.Item>
+                        </Carousel>
             </HomeStyle.LandingPageTestimonials>
             <HomeStyle.LandingPageFooter>
                 <HomeStyle.LandingPageFooterCont>
-                    <HomeStyle.LandingPageFooterInfoHighlight>© All rights reserved.</HomeStyle.LandingPageFooterInfoHighlight>Made by Urbancave
+                    <footer>
+                        <p><HomeStyle.LandingPageFooterInfoHighlight>© All rights reserved.</HomeStyle.LandingPageFooterInfoHighlight> Made by Urbancave</p>
+                    </footer>
                 </HomeStyle.LandingPageFooterCont>
             </HomeStyle.LandingPageFooter>
         </>
@@ -182,15 +134,15 @@ const Home = () => {
 const NavBar = (props) => {
     return (
         <HomeStyle.LandingPageNavbar id="navbar">
-            <HomeStyle.Logo src={props.logo} width="150px"/>
+            <HomeStyle.Logo src={props.logo} />
             <nav>
-            <HomeStyle.NavbarList>
-                <HomeStyle.NavbarItem>Home</HomeStyle.NavbarItem>
-                <HomeStyle.NavbarItem>About Us</HomeStyle.NavbarItem>
-                <HomeStyle.NavbarItem>Services</HomeStyle.NavbarItem>
-                <HomeStyle.NavbarItem>Why Urbancave?</HomeStyle.NavbarItem>
-                <HomeStyle.NavbarItem>Contact Us</HomeStyle.NavbarItem>
-            </HomeStyle.NavbarList>
+                <HomeStyle.NavbarList>
+                    <HomeStyle.NavbarItem>Home</HomeStyle.NavbarItem>
+                    <HomeStyle.NavbarItem>About Us</HomeStyle.NavbarItem>
+                    <HomeStyle.NavbarItem>Services</HomeStyle.NavbarItem>
+                    <HomeStyle.NavbarItem>Why Urbancave?</HomeStyle.NavbarItem>
+                    <HomeStyle.NavbarItem>Contact Us</HomeStyle.NavbarItem>
+                </HomeStyle.NavbarList>
             </nav>
             <HomeStyle.ButtonLink href='/login'><HomeStyle.Button>Login / Register</HomeStyle.Button></HomeStyle.ButtonLink>
         </HomeStyle.LandingPageNavbar>
@@ -202,45 +154,34 @@ const NavBar = (props) => {
 const Feature1 = (props) => {
     return (
         <HomeStyle.LandingPageFeature>
-            <div>
+            <div className='featureImage'>
                 <HomeStyle.LandingPageFeatureImage src={props.image} />
             </div>
             <HomeStyle.LandingPageFeatureInfo>
-                <h3>{props.info}</h3>
+                <h4>{props.heading}</h4>
+                <p>{props.info}</p>
             </HomeStyle.LandingPageFeatureInfo>
         </HomeStyle.LandingPageFeature>
     );
 };
 
 
-//feature 2
-const Feature2 = (props) => {
-    return (
-        <HomeStyle.LandingPageFeature>
-            <HomeStyle.LandingPageFeatureInfo>
-                <h3>{props.info}</h3>
-            </HomeStyle.LandingPageFeatureInfo>
-            <div>
-                <HomeStyle.LandingPageFeatureImage src={props.image} />
-            </div>
-        </HomeStyle.LandingPageFeature>
-    );
-};
-
-
-//Testimonals
-const Testimonials = (props) => {
-    return (
-        <>
-            <HomeStyle.TestimonialHeading>Testimonials</HomeStyle.TestimonialHeading>
-            <HomeStyle.TestimonialInfoContainer>
-                <HomeStyle.TestimonialImage src={props.img} />
-                <HomeStyle.TestimonialInfo>{props.info}</HomeStyle.TestimonialInfo>
-            </HomeStyle.TestimonialInfoContainer>
-        </>
-    );
+//Testimonials
+const Testimonial = (props) => {
+    return(
+        <HomeStyle.TestimonialInfoContainer>
+            <HomeStyle.TestimonialImageContainer style={{backgroundImage: `url(${props.image})`, backgroundSize: 'cover'}}>
+                {/* <HomeStyle.TestimonialImage src={props.image}/> */}
+            </HomeStyle.TestimonialImageContainer>
+            <HomeStyle.TestimonialInfo>
+                <HomeStyle.TestimonialHeading>{props.name}</HomeStyle.TestimonialHeading>
+                <HomeStyle.TestimonialPara>{props.text}</HomeStyle.TestimonialPara>
+                <HomeStyle.SocietyName>
+                    <h6>~{props.society}</h6>
+                </HomeStyle.SocietyName>
+            </HomeStyle.TestimonialInfo>
+        </HomeStyle.TestimonialInfoContainer>
+    )
 }
-
-//functions
 
 export default Home;

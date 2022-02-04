@@ -13,7 +13,7 @@ import lightmore from './Images/lightmore.png';
 import compResolved from './Images/compResolved.png';
 import smallMore from './Images/smallMore.png';
 import pie from './Images/pie.png';
-
+import UrbancaveLogoActive from './Images/Urban_Cave_Active.svg'
 import {ReactComponent as dashboardIcon} from './Images/dashboard.svg';
 import overviewIcon from './Images/overviewIcon.png';
 import paymentIcon from './Images/paymentIcon.png';
@@ -96,6 +96,7 @@ const Images = {
     logoutIcon,
     logoutHover,
     societyIcon,
+    UrbancaveLogoActive,
 }
 
 export default Images;

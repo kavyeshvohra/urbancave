@@ -1,14 +1,15 @@
 //import '../styles/home.css';
 import Images from '../images';
 import * as HomeStyle from '../styles/home-style'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
 
 const Home = () => {
-
-
+    const [logoImage, changeLogo] = useState(Images.urbancaveLogo);
     window.addEventListener("scroll", () => {
         if (window.scrollY > 80) {
             document.getElementById("navbar").classList.add("active");
+            changeLogo(Images.UrbancaveLogoActive);
             // verticalBars.map((bar)=>{
             //     bar.style.backgroundColor='#fff';
             // });
@@ -16,6 +17,7 @@ const Home = () => {
         }
         else if (window.scrollY < 80) {
             document.getElementById("navbar").classList.remove("active");
+            changeLogo(Images.urbancaveLogo);
             // verticalBars.map((bar) => {
             //     bar.style.backgroundColor = "#0C2938";
             // });
@@ -43,9 +45,9 @@ const Home = () => {
     //setInterval(changeTestimonials,3000);
     //setTimeout(changeTestimonials,2000);
 
-    useEffect(() => {
-        //changeTestimonials();
-    });
+    // useEffect(() => {
+    //     //changeTestimonials();
+    // });
 
 
     const changeTestimonials = async () => {
@@ -65,7 +67,7 @@ const Home = () => {
 
     return (
         <>
-            <NavBar />
+            <NavBar logo={logoImage}/>
             <HomeStyle.LandingPageIntro>
                 <HomeStyle.LandingPageIntroSlogan>
                     <h1>Easy way to manage your society. </h1>
@@ -177,10 +179,10 @@ const Home = () => {
 //Components
 
 //Navbar
-const NavBar = () => {
+const NavBar = (props) => {
     return (
         <HomeStyle.LandingPageNavbar id="navbar">
-            <HomeStyle.Logo src={Images.urbancaveLogo} width="150px"/>
+            <HomeStyle.Logo src={props.logo} width="150px"/>
             <nav>
             <HomeStyle.NavbarList>
                 <HomeStyle.NavbarItem>Home</HomeStyle.NavbarItem>

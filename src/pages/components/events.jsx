@@ -1,5 +1,5 @@
 import '../../styles/fileAndFolder.css';
-import '../../styles/gallery.css';
+import '../../styles/gallery';
 import File from '../components/file';
 import { useParams } from 'react-router-dom';
 

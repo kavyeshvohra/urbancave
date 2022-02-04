@@ -1,5 +1,5 @@
 import '../../styles/fileAndFolder.css';
-import '../../styles/gallery.css';
+import '../../styles/gallery.js';
 import Folder from './folder';
 import File from './file';
 

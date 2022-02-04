@@ -9,8 +9,6 @@ const Home = () => {
     window.addEventListener("scroll", () => {
         if (window.scrollY > 80) {
             document.getElementById("navbar").classList.add("active");
-
-            let verticalBars = document.getElementsByClassName("landingPageVr");
             // verticalBars.map((bar)=>{
             //     bar.style.backgroundColor='#fff';
             // });
@@ -18,8 +16,6 @@ const Home = () => {
         }
         else if (window.scrollY < 80) {
             document.getElementById("navbar").classList.remove("active");
-            let verticalBars = document.getElementsByClassName("landingPageVr");
-            console.log(verticalBars[0]);
             // verticalBars.map((bar) => {
             //     bar.style.backgroundColor = "#0C2938";
             // });
@@ -185,23 +181,14 @@ const NavBar = () => {
     return (
         <HomeStyle.LandingPageNavbar id="navbar">
             <HomeStyle.LandingPageBrand>
-                <HomeStyle.LandingPageLogo>Logo</HomeStyle.LandingPageLogo>
-                <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
-                <HomeStyle.LandingPageCompanyName>Urban Cave</HomeStyle.LandingPageCompanyName>
+                <HomeStyle.LandingPageLogo><img src={Images.urbancaveLogo} width="150px" /></HomeStyle.LandingPageLogo>
             </HomeStyle.LandingPageBrand>
-            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>Home</div>
-            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>About Us</div>
-            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>Service</div>
-            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>Why Urbancave?</div>
-            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>Contact Us</div>
-            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>Sign In</div>
-            <HomeStyle.LandingPageVr></HomeStyle.LandingPageVr>
             <div>Register society</div>
         </HomeStyle.LandingPageNavbar>
     );

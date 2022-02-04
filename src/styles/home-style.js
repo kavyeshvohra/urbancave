@@ -34,16 +34,7 @@ export const LandingPageBrand = styled.div`
     align-items:center;
     column-gap: 1rem;
 `
-export const LandingPageVr = styled.div`
-    width:0.1rem;
-    height:2rem;
-    background-color: #0c2938;
-`
 
-export const LandingPageCompanyName = styled.div`
-    font-size:2rem;
-    padding-left: 1rem;
-`
 
 export const LandingPageIntro = styled.section`
     display: flex;

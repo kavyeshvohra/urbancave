@@ -1,6 +1,6 @@
 import '../../styles/sidebar.css';
 import * as sidebar from '../../styles/sidebar-style.js'
-import Logo from '../../Images/Urbancave_Logo.svg'
+// import Logo from '../../Images/Urbancave_Logo.svg'
 import {IoDocumentTextOutline, IoDocumentText} from 'react-icons/io5'
 import * as BsIcon from 'react-icons/bs'
 import { useState } from 'react';

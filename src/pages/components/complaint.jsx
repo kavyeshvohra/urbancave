@@ -1,19 +1,19 @@
 // import Images from "../../images";
-import '../../styles/complaints.css';
+import * as Complaints from '../../styles/complaints'
 
 const Complaint=()=>{
     return (
-        <div className="complaintTicketContent">
-            <div className="complaintTicketHeading">Complaint 1</div>
-            <div className="complaintTicketStatusContainer">
+        <Complaints.ComplaintTicketContent>
+            <Complaints.ComplaintTicketHeading>Complaint 1</Complaints.ComplaintTicketHeading>
+            <Complaints.ComplaintTicketStatusContainer>
                 {/* <img className="complaintTicketStatusImage" src={Images.compResolved} /> */}
-                <div className="complaintTicketStatus">Resolved</div>
-            </div>
-            <div className="complaintTicketControls">
-                <div className="complaintTicketControlsStatus">View More</div>
+                <Complaints.ComplaintTicketStatus>Resolved</Complaints.ComplaintTicketStatus>
+            </Complaints.ComplaintTicketStatusContainer>
+            <Complaints.ComplaintTicketControls>
+                <div className>View More</div>
                 {/* <img className="complaintTicketControlImage" src={Images.smallMore}/> */}
-            </div>
-        </div>
+            </Complaints.ComplaintTicketControls>
+        </Complaints.ComplaintTicketContent>
     );
 }
 

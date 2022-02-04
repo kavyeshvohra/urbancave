@@ -1,5 +1,5 @@
 import '../../styles/fileAndFolder.css';
-import '../../styles/gallery.css';
+import * as GalleryStyle from '../../styles/gallery'
 import Folder from './folder';
 import File from './file';
 import { useState } from 'react';
@@ -10,12 +10,12 @@ const Gallery=(props)=>{
     return(
         <>
             { galleryModal ? ( <CreateGalleryModal changeGallery={ setGalleryModal }/> ) : (<></>) }
-            <div className="galleryHeader">
-                <div className="galleryCaption">Gallery</div>
-                <div className="galleryButtons">
-                    <button onClick={()=>setGalleryModal(1)} className="galleryButtonControls">Create New Gallery</button>
-                </div>
-            </div>
+            <GalleryStyle.GalleryHeader>
+                <GalleryStyle.GalleryCaption>Gallery</GalleryStyle.GalleryCaption>
+                <GalleryStyle.GalleryButtons>
+                    <GalleryStyle.GalleryButtonControls onClick={()=>setGalleryModal(1)}>Create New Gallery</GalleryStyle.GalleryButtonControls>
+                </GalleryStyle.GalleryButtons>
+            </GalleryStyle.GalleryHeader>
             <div className="fileFolderContainer">
                 <Folder folderName="Diwali" type="folder" />
                 <Folder folderName="Holi" type="folder"/>

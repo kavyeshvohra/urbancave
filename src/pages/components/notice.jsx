@@ -1,6 +1,6 @@
 import Images from '../../images';
 import '../../styles/notice.css';
-import useState from 'react';
+import { useState } from 'react';
 import CreateNoticeModal from './createNoticeModal';
 
 const Notice = ()=>{

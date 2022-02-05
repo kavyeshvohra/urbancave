@@ -12,6 +12,7 @@ import Contact from './pages/contact';
 import Login from './pages/login.js'
 import Register from './pages/register.js';
 import UserAccount from './pages/components/useraccount';
+import Visitor from './pages/components/visitors';
 
 function App() {
   return (
@@ -45,7 +46,7 @@ function App() {
             
             <Route path="profile" element={<UserAccount/>}/>
             
-            <Route path="visitors" element={<h1>visitors</h1>}/>
+            <Route path="visitors" element={<Visitor/>}/>
 
             <Route path="tenants" element={ <Tenants/> }/>
             

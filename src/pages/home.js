@@ -2,9 +2,22 @@
 import Images from '../images';
 import * as HomeStyle from '../styles/home-style'
 import { useState } from 'react';
-import Carousel from "react-bootstrap/Carousel"
+// import Carousel from "react-bootstrap/Carousel"
+import Slider from 'react-slick'
+
+const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 10000,
+    autoplaySpeed: 2000,
+    cssEase: "linear"
+};
 
 const Home = () => {
+
     const [logoImage, changeLogo] = useState(Images.urbancaveLogo);
     window.addEventListener("scroll", () => {
         if (window.scrollY > 80) {
@@ -102,20 +115,30 @@ const Home = () => {
             </HomeStyle.LandingPageRegister>
             <HomeStyle.LandingPageTestimonials>
                 <h1>Testimonials</h1>
-                    <Carousel controls={false} indicators={false}>
-                        <Carousel.Item interval={3000} className="item1">
+                    <HomeStyle.SliderCont>
+                    <Slider {...settings} >
+                        {/* <Carousel.Item interval={3000} className="item1"> */}
+                        <div>
                             <Testimonial image={Images.Testimonial_Image1} name="Harry Styles" text="Urbancave best of class must for any society! Awesome Tools" society="Araksh Appartment"></Testimonial>
-                        </Carousel.Item>
-                        <Carousel.Item interval={3000} className='item1'>
+                        {/* </Carousel.Item> */}
+                        </div>
+                        <div>
+                        {/* <Carousel.Item interval={3000} className='item1'> */}
                             <Testimonial name="Megha Thakkar" text="Urbancave best of class must for any society! Awesome Tools" society="Rhea Appartment" image={Images.Testimonial_Image2}></Testimonial>
-                        </Carousel.Item>
-                        <Carousel.Item interval={3000} className='item1'>
+                        {/* </Carousel.Item> */}
+                        </div>
+                        <div>
+                        {/* <Carousel.Item interval={3000} className='item1'> */}
                             <Testimonial name="Nadini Seth" text="Urbancave best of class must for any society! Awesome Tools" society="Rhea Appartment" image={Images.Testimonial_Image3}></Testimonial>
-                        </Carousel.Item>
-                        <Carousel.Item interval={3000} className='item1'>
+                        {/* </Carousel.Item> */}
+                        </div>
+                        <div>
+                        {/* <Carousel.Item interval={3000} className='item1'> */}
                             <Testimonial name="Ram Shah" text="Urbancave best of class must for any society! Awesome Tools" society="Rhea Appartment" image={Images.Testimonial_Image2}></Testimonial>
-                        </Carousel.Item>
-                        </Carousel>
+                        {/* </Carousel.Item> */}
+                        </div>
+                    </Slider>
+                    </HomeStyle.SliderCont>
             </HomeStyle.LandingPageTestimonials>
             <HomeStyle.LandingPageFooter>
                 <HomeStyle.LandingPageFooterCont>

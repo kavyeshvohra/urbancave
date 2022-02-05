@@ -35,7 +35,9 @@ export const NavbarList = styled.ul`
     margin: 0;
 
 `
-
+export const SliderCont = styled.div`
+    width: 70em;
+`
 export const NavbarItem = styled.li`
     display: inline-block;
     padding: 0px 20px;
@@ -234,13 +236,14 @@ export const TestimonialHeading = styled.div`
 export const TestimonialInfoContainer = styled.div`
     display:flex;
     flex-direction: row;
+    margin-left: 2em;
     //margin-top: -10rem;
 `
 export const TestimonialImageContainer = styled.div`
     border-radius: 50%;
     overflow: hidden;
     width: 100px;
-    position: relative;
+    position: absolute;
     height: 100px;
 `
 // export const TestimonialImage = styled.img`
@@ -257,11 +260,11 @@ export const TestimonialPara = styled.p`
     padding-top: 1em;
 `
 export const TestimonialInfo = styled.div`
-    width:30rem;
+    width:auto;
     background-color:#FAF0F0;
     color:#0C2938;
     font-weight: 500;
-    margin-left:-3.5rem;
+    margin-left:2.5rem;
     padding:2rem;
     border:none;
     border-radius:1rem;

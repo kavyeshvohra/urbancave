@@ -17,6 +17,29 @@ const settings = {
 };
 
 const Home = () => {
+    const customStyles = {
+        option: (provided, state) => ({
+          ...provided,
+          borderBottom: '1px solid pink',
+          color: state.isSelected ? '#FAB6B6' : '#000',
+          padding: 10,
+          backgroundColor: '#FAF0F0',
+          "&:hover":
+          {
+              backgroundColor: '#fff',
+          }
+        }),
+        control: () => ({
+          // none of react-select's styles are passed to <Control />
+          width: 300,
+        }),
+        // singleValue: (provided, state) => {
+        //   const opacity = state.isDisabled ? 0.5 : 1;
+        //   const transition = 'opacity 300ms';
+      
+        //   return { ...provided, opacity, transition };
+        // }
+      }
 
     const roleoptions = [
         { value: 'Committee Member', label: 'Committee Member' },

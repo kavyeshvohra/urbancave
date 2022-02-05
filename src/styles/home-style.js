@@ -252,10 +252,15 @@ export const TestimonialInfoContainer = styled.div`
 export const FormContainer = styled.div`
   padding: 5rem 5.6rem;
   border-radius: 15px;
-  width: 70em;
+  max-width: 100em;
   margin-left: 4.98em;
   position: relative;
   top: 10.5em;
+
+  @media  (max-width: 1700px)
+  {
+    width: 70em;
+  }
 `
 export const ContactForm = styled.section`
     background-image: url(${WaveBg});
@@ -266,6 +271,7 @@ export const ContactForm = styled.section`
     height: inherit;
     //margin-bottom: 10em;
     position: relative;
+    width: auto;
 `
 export const ContactHeading = styled.h3`
     position: absolute;

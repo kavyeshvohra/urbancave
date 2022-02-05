@@ -1,15 +1,18 @@
 import '../../styles/fileAndFolder.css';
-import '../../styles/gallery.js';
+import '../../styles/gallery.css';
 import Folder from './folder';
-import File from './file';
+import { useState } from 'react';
+import CreateGalleryModal from './createGalleryModal';
 
 const Gallery=(props)=>{
+    const [ galleryModal , setGalleryModal ] =  useState(0); 
     return(
         <>
+            { galleryModal ? ( <CreateGalleryModal changeGallery={ setGalleryModal }/> ) : (<></>) }
             <div className="galleryHeader">
                 <div className="galleryCaption">Gallery</div>
                 <div className="galleryButtons">
-                    <button className="galleryButtonControls">Create New Gallery</button>
+                    <button onClick={()=>setGalleryModal(1)} className="galleryButtonControls">Create New Gallery</button>
                 </div>
             </div>
             <div className="fileFolderContainer">

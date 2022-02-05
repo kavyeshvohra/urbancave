@@ -3,6 +3,10 @@ import '../../styles/useraccount.css';
 import Images from "../../images";
 import '../../styles/gallery.css';
 
+import * as HomeStyle from '../../styles/home-style' ;
+import * as RegisterStyle from '../../styles/register-styles' ;
+
+
 
 
 const UserAccount=(props)=>{
@@ -19,7 +23,7 @@ const UserAccount=(props)=>{
         </div>
         
         <div className="accountInfoContainer">
-            <div className="credContainer">
+            {/* <div className="credContainer">
                 <div className="inputContainer">
                     <div className="inputLabel">    Username:</div>
                     <input type="text" className="accountText"/>
@@ -54,10 +58,44 @@ const UserAccount=(props)=>{
                     <div className="inputLabel">    Phone number * :</div>
                     <input type="text" className="accountText"/>
                 </div>
-            </div>
-            <div className="inputContainer">
-                <div className="inputLabel">Email:</div>
-                <input type="Email" className="accountText"/>
+            </div> */}
+            <div>
+                <HomeStyle.ContactFormGroup>
+                    <HomeStyle.InputField type="text" onChange=""/>
+                    <HomeStyle.FocusText data-placeholder="Username"/>
+                </HomeStyle.ContactFormGroup>
+                <HomeStyle.ContactFormGroup>
+                    <HomeStyle.InputField type="text" onChange=""/>
+                    <HomeStyle.FocusText data-placeholder="Password"/>
+                </HomeStyle.ContactFormGroup>
+                <HomeStyle.ContactFormGroup>
+                    <HomeStyle.InputField type="text" onChange=""/>
+                    <HomeStyle.FocusText data-placeholder="First Name"/>
+                </HomeStyle.ContactFormGroup>
+                <HomeStyle.ContactFormGroup>
+                    <HomeStyle.InputField type="text" onChange=""/>
+                    <HomeStyle.FocusText data-placeholder="Last Name"/>
+                </HomeStyle.ContactFormGroup>
+                <HomeStyle.ContactFormGroup>
+                    <HomeStyle.InputField type="date" placeholder="" onChange=""/>
+                    <HomeStyle.FocusText data-placeholder="Date of Birth"/>
+                </HomeStyle.ContactFormGroup>
+                <HomeStyle.ContactFormGroup>
+                    <HomeStyle.InputField type="text" onChange=""/>
+                    <HomeStyle.FocusText data-placeholder="Phone Number (+91)"/>
+                </HomeStyle.ContactFormGroup>
+                <HomeStyle.ContactFormGroup>
+                    <HomeStyle.InputField type="tel" onChange=""/>
+                    <HomeStyle.FocusText data-placeholder='Phone Number (+91)*'/>
+                </HomeStyle.ContactFormGroup>
+                <HomeStyle.ContactFormGroup>
+                    <HomeStyle.InputField type="email" onChange=""  />
+                    <HomeStyle.FocusText data-placeholder="Email"/>
+                </HomeStyle.ContactFormGroup>
+                <HomeStyle.ContactFormGroup>
+                    <HomeStyle.InputField type="text" onChange="" readonly />
+                    <HomeStyle.FocusText data-placeholder="Society Name"/>
+                </HomeStyle.ContactFormGroup>
             </div>
         </div>
 

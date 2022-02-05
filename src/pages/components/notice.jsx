@@ -4,14 +4,14 @@ import { useState } from 'react';
 import CreateNoticeModal from './createNoticeModal';
 
 const Notice = ()=>{
-    const [createNotice,setCreateNotice] = useState(0);
+    const [ createNotice , setCreateNotice ] = useState(0);
     return(
         <>
-             {createNotice != 0 ? ( <CreateNoticeModal propr={setCreateNotice} /> ) : (<></>) }
+            {createNotice != 0 ? ( <CreateNoticeModal changeCreateNotice={setCreateNotice} /> ) : (<></>) }
             <div className="galleryButtons">
                 
             <div className="galleryCaption">Notices</div>
-                <button className="galleryButtonControls">Create New Notice</button>
+                <button className="galleryButtonControls" onClick={()=>setCreateNotice(1)}>Create New Notice</button>
             </div>
             <div className="noticeContainer">
             <table className="noticeTable">

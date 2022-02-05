@@ -38,8 +38,8 @@
 .fileFolderContainer{
     display: grid;
     grid-template-columns:auto auto auto auto;
-    row-gap: 2em;
-    column-gap:0.5em;
+    row-gap: 1em;
+    column-gap:1em;
     margin:2em;
 }
 

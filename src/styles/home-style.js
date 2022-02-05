@@ -224,6 +224,11 @@ export const LandingPageTestimonials = styled.section`
     row-gap: 3rem;
     padding-bottom: 10rem;
 
+    & > h1
+    {
+        cursor: auto;
+    }
+
 `
 export const TestimonialHeading = styled.div`
     width:auto;
@@ -232,6 +237,7 @@ export const TestimonialHeading = styled.div`
     font-size: 1.4rem;
     font-weight: 600;
     color:#0C2938;
+    margin-left: 0.7em;
 `
 export const TestimonialInfoContainer = styled.div`
     display:flex;

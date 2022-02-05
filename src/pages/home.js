@@ -12,7 +12,7 @@ const settings = {
     slidesToScroll: 1,
     autoplay: true,
     speed: 10000,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 0,
     cssEase: "linear"
 };
 
@@ -119,22 +119,22 @@ const Home = () => {
                     <Slider {...settings} >
                         {/* <Carousel.Item interval={3000} className="item1"> */}
                         <div>
-                            <Testimonial image={Images.Testimonial_Image1} name="Harry Styles" text="Urbancave best of class must for any society! Awesome Tools" society="Araksh Appartment"></Testimonial>
+                            <Testimonial image={Images.Testimonial_Image1} name="Harry Styles" text="Urbancave best of class must for any society! Awesome Tools" society="Araksh Appartments"></Testimonial>
                         {/* </Carousel.Item> */}
                         </div>
                         <div>
                         {/* <Carousel.Item interval={3000} className='item1'> */}
-                            <Testimonial name="Megha Thakkar" text="Urbancave best of class must for any society! Awesome Tools" society="Rhea Appartment" image={Images.Testimonial_Image2}></Testimonial>
+                            <Testimonial name="Megha Thakkar" text="Urbancave best of class must for any society! Awesome Tools" society="Rhea Appartments" image={Images.Testimonial_Image2}></Testimonial>
                         {/* </Carousel.Item> */}
                         </div>
                         <div>
                         {/* <Carousel.Item interval={3000} className='item1'> */}
-                            <Testimonial name="Nadini Seth" text="Urbancave best of class must for any society! Awesome Tools" society="Rhea Appartment" image={Images.Testimonial_Image3}></Testimonial>
+                            <Testimonial name="Nadini Seth" text="Urbancave best of class must for any society! Awesome Tools" society="Swati Appartments" image={Images.Testimonial_Image3}></Testimonial>
                         {/* </Carousel.Item> */}
                         </div>
                         <div>
                         {/* <Carousel.Item interval={3000} className='item1'> */}
-                            <Testimonial name="Ram Shah" text="Urbancave best of class must for any society! Awesome Tools" society="Rhea Appartment" image={Images.Testimonial_Image2}></Testimonial>
+                            <Testimonial name="Vetika Thakor" text="Urbancave best of class must for any society! Awesome Tools" society="Goyal Appartments" image={Images.Testimonial_Image2}></Testimonial>
                         {/* </Carousel.Item> */}
                         </div>
                     </Slider>

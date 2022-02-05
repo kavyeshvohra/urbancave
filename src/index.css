@@ -32,3 +32,17 @@ body {
 a{
   text-decoration: none !important;
 }
+
+
+.dimScreen{
+  position:fixed;
+  top:0px;
+  left:0px;
+  background-color: rgba(0, 0, 0, 0.409);
+  width:100vw;
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

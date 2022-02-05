@@ -13,6 +13,7 @@ import Login from './pages/login.js'
 import Register from './pages/register.js';
 import UserAccount from './pages/components/useraccount';
 import Visitor from './pages/components/visitors';
+import Payments from './pages/components/payments';
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
             
             <Route path="members" element={<h1>Members</h1>}/>
           
-            <Route path="payments" element={<h1>Payments</h1>}/>
+            <Route path="payments" element={ <Payments/> }/>
           
             <Route path="complaints" element={ <ComplaintsAndFeedback/> }/>
                       

@@ -1,11 +1,11 @@
 .createNoticeModalContainer{
     display: flex;
     flex-direction: column;
-    width:23rem;
+    width:25rem;
     row-gap: 0.5rem;
-    background-color: #Fff;
+    background-color: #FFFEFE;
     margin:5rem;
-    border:solid 3px #BBE5FA;
+    border:solid 3px #FAB6B6B6;
     border-radius: 10px;
     padding:2rem 2.5rem;
     transform: scale(0.8);
@@ -13,11 +13,10 @@
 
 .createNoticeModalInput{
     outline: none;
-    border:solid 2px#BBE5FA;
+    border:solid 2px#FEB6B6;
     width:20rem;
     height:2rem;
     border-radius: 5px;
-    font-family: 'ABeeZee';
     color:#0C2938;
     font-size: 1rem;
     padding:0rem 1rem;
@@ -25,16 +24,20 @@
 
 .createNoticeModalInput1{
     outline: none;
-    border:solid 2px#BBE5FA;
+    border:solid 2px #FEB6B6;
     height:1.9rem;
     width:20rem;
     height:15rem;
     border-radius: 5px;
     resize: none;
-    font-family: 'ABeeZee';
     color:#0C2938;
     font-size: 1rem;
     padding:1rem;
+}
+
+.createNoticeModalImg{
+    width:2.5em;
+    object-fit: contain;
 }
 
 .createNoticeModalFileContainer{
@@ -46,7 +49,7 @@
 }
 
 .createNoticeModalFile{
-    border:2px solid #BBE5FA;
+    border:2px solid #FEB6B6;
     border-radius: 5px;
     width:100%;
     display: flex;
@@ -64,6 +67,7 @@
 .createNoticeUploadText{
     margin:1rem;
     width:15rem;
+    color:#707A8A;
 }
 
 .createNoticeModalButtons{
@@ -76,11 +80,16 @@
 
 .createNoticeModalPost{
     outline: none;
-    border:solid #BBE5FA 2px;
+    border:solid #FEB6B6 2px;
     font-size: 1.3rem;
-    background-color: #F7FBFC;
-    font-family: 'ABeeZee';
-    color:#0C2938;
+    background-color: #FEFEFE;
+    color:#707A8A;
     padding:0.3rem 0.5rem;
     border-radius: 8px;
+}
+
+.createNoticeModalPost:hover{
+    border-color: #FAB6B6;
+    background-color: #FAF0F0;
+    color : #FEB6B6;
 }

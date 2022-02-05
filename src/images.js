@@ -2,7 +2,6 @@ import house1 from './Images/house1.png';
 import house2 from './Images/house2.png';
 import camera from './Images/camera.png'
 import payment from './Images/payment.png';
-import visitor from './Images/visitor.png';
 import security from './Images/security.png';
 import register from './Images/register.jpg';
 import Testimonial_Image1 from './Images/man1.png';
@@ -19,7 +18,6 @@ import UrbancaveLogoActive from './Images/Urban_Cave_Active.svg'
 import {ReactComponent as dashboardIcon} from './Images/dashboard.svg';
 import overviewIcon from './Images/overviewIcon.png';
 import paymentIcon from './Images/paymentIcon.png';
-import visitorIcon from './Images/visitorIcon.png';
 import complaintIcon from './Images/complaintIcon.png';
 import settingIcon from './Images/settingsIcon.png';
 import accountIcon from './Images/accountIcon.png';
@@ -32,13 +30,11 @@ import userIcon from './Images/userIcon.png';
 
 import overviewIconWhite from './Images/overviewIconWhite.png';
 import paymentIconWhite from './Images/paymentIconWhite.png';
-import visitorIconWhite from './Images/visitorIconWhite.png';
 import complaintIconWhite from './Images/complaintIconWhite.png';
 import settingIconWhite from './Images/settingsIconWhite.png';
 
 import DashAnalytics from './Images/dashboard_analytics.jpg';
 import People from './Images/connected_people.jpg';
-import xmas from './Images/xmas.png';
 import diwali from './Images/diwali.png';
 import halloween from './Images/halloween.png';
 import closeIcon from './Images/closeIcon.png';
@@ -61,7 +57,6 @@ const Images = {
     house2,
     camera,
     payment,
-    visitor,
     security,
     register,
     Testimonial_Image1,
@@ -75,7 +70,6 @@ const Images = {
     dashboardIcon,
     overviewIcon,
     paymentIcon,
-    visitorIcon,
     complaintIcon,
     searchIcon,
     settingIcon,
@@ -83,11 +77,9 @@ const Images = {
     locationIcon,
     overviewIconWhite,
     paymentIconWhite,
-    visitorIconWhite,
     complaintIconWhite,
     settingIconWhite,
     diwali,
-    xmas,
     halloween,
     userIcon,
     closeIcon,

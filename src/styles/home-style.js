@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import WaveBg from '../Images/wave.svg'
+
 export const LandingPageNavbar = styled.header`
     padding: 1.25rem;
     color: #0C2938;
@@ -222,7 +224,7 @@ export const LandingPageTestimonials = styled.section`
     flex-direction: column;
     align-items: center;
     row-gap: 3rem;
-    padding-bottom: 10rem;
+    padding-bottom: 0rem;
 
     & > h1
     {
@@ -243,7 +245,120 @@ export const TestimonialInfoContainer = styled.div`
     display:flex;
     flex-direction: row;
     margin-left: 2em;
+    width: auto;
+    cursor: auto;
     //margin-top: -10rem;
+`
+export const FormContainer = styled.div`
+  padding: 5rem 5.6rem;
+  border-radius: 15px;
+  width: 70em;
+  margin-left: 4.98em;
+  position: relative;
+  top: 10.5em;
+`
+export const ContactForm = styled.section`
+    background-image: url(${WaveBg});
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center bottom;
+    padding-bottom: 10rem;
+    height: inherit;
+    //margin-bottom: 10em;
+    position: relative;
+`
+export const ContactHeading = styled.h3`
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-20%, -80%);
+    text-align: center;
+    padding-top: 2em;
+    font-weight: 600;
+`
+export const ContactFormGroup = styled.div`
+  margin-bottom: 2.5em;
+  border-bottom: 2px solid #000;
+  max-width: 50%;
+  flex: 0 0 45%;
+  position: relative;
+  transition: 0.3s all ease;
+  padding-bottom: 0.125em;
+  margin-right: 15px;
+`
+export const FocusText = styled.span`
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  pointer-events: none;
+  transition: 0.3s all ease;
+  
+  &::before
+  {
+    display: inline-block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+
+    color: red;
+  }
+
+  &::after
+  {
+    font-size: 15px;
+    color: #3e444e;
+    line-height: 1.2;
+
+    content: attr(data-placeholder);
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 16px;
+    left: 0px;
+    /* padding-left: 5px; */
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    }
+`
+export const Wrapper = styled.div`
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    max-width: 85%;
+    flex-wrap: wrap;
+    transform: translate(10%, 25%);
+`
+export const InputField = styled.input`
+  display: block;
+  width: 92%;
+  height: 45px;
+  background: transparent;
+  padding: 0 5px;
+  transition: 0.3s all ease;
+  /* margin: 0 30px auto; */
+  font-size: 1rem;
+  border:none;
+  outline:none;
+
+  &:focus + ${FocusText},
+  &.text + ${FocusText}
+  {
+    transform: translate(0em, -2.2rem) scale(1);
+  }
 `
 export const TestimonialImageContainer = styled.div`
     border-radius: 50%;
@@ -288,19 +403,58 @@ export const SocietyName = styled.div`
     }
 `
 export const LandingPageFooter = styled.section`
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-content: center;
-    margin-bottom: 1rem;
-    margin-top: -4rem;
+    align-content: center; */
+    padding-top: 4em;
+    padding-bottom: 2em;
+    margin: 0rem 0rem 0rem 0rem;
+    background-color: #595757;
+    width: auto;
 `
 
 export const LandingPageFooterInfoHighlight = styled.span`
-    color:#FAB6B6;
+    color:#FFF;
+    font-weight: 700;
 `
 
 export const LandingPageFooterCont = styled.div`
-    margin: 0 auto;
+text-align: center;
+`
+
+export const ContactFormSubmit = styled.div`
+  text-align: center;
+  pointer-events: all;
+  flex: 55%;
+`
+
+export const ContactButton = styled.button`
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding: 10px 0 10px 0;
+  align-self: center;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 15px;
+  background-color: #3e444e;
+  color: #faf0f0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: montserrat, sans-serif;
+  box-shadow: -1px 1px 11px #00000014;
+  transition: 0.3s all ease-in-out;
+    
+  &:hover, &:focus
+  {
+    /* background-color: #9FB1BCFF; */
+    color: #595757;
+    font-weight: bold;
+    background-image: linear-gradient(240deg, #fcd2d2, #dddddd);
+  }
 `
 // export const LandingTestimonialNavigation = styled.div`
 

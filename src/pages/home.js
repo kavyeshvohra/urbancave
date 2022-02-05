@@ -2,9 +2,9 @@
 import Images from '../images';
 import * as HomeStyle from '../styles/home-style'
 import { useState } from 'react';
-// import Carousel from "react-bootstrap/Carousel"
 import Slider from 'react-slick'
-
+import Select from 'react-select'
+import { SelectGroup, TextSpan } from '../styles/register-styles';
 const settings = {
     dots: false,
     infinite: true,
@@ -18,6 +18,22 @@ const settings = {
 
 const Home = () => {
 
+    const roleoptions = [
+        { value: 'Committee Member', label: 'Committee Member' },
+        { value: 'Resident', label: 'Resident' },
+        { value: 'Security Agency', label: 'Security Agency' },
+        { value: 'Builder', label: 'Builder' },
+        { value: 'Others', label: 'Others' },
+    ]
+
+    function inputChange(e) {
+        if (e.target.value !== "") {
+            e.target.classList.add('text');
+        }
+        else {
+            e.target.classList.remove('text');
+        }
+    }
     const [logoImage, changeLogo] = useState(Images.urbancaveLogo);
     window.addEventListener("scroll", () => {
         if (window.scrollY > 80) {
@@ -140,10 +156,40 @@ const Home = () => {
                     </Slider>
                     </HomeStyle.SliderCont>
             </HomeStyle.LandingPageTestimonials>
+            <HomeStyle.ContactForm>
+                <HomeStyle.FormContainer>
+                <HomeStyle.ContactHeading>Get In Touch With Us!</HomeStyle.ContactHeading>
+                <HomeStyle.Wrapper>
+                    <HomeStyle.ContactFormGroup>
+                        <HomeStyle.InputField type="text" onChange={inputChange}/>
+                        <HomeStyle.FocusText data-placeholder="Name"/>
+                    </HomeStyle.ContactFormGroup>
+                    <SelectGroup style={{width: "47%"}} onChange={inputChange}>
+                        <TextSpan style={{color: "#3e444e"}}>Your Role</TextSpan>
+                        <Select options={roleoptions}></Select>
+                    </SelectGroup>
+                    <HomeStyle.ContactFormGroup>
+                        <HomeStyle.InputField type="email" onChange={inputChange}/>
+                        <HomeStyle.FocusText data-placeholder='Email'/>
+                    </HomeStyle.ContactFormGroup>
+                    <HomeStyle.ContactFormGroup>
+                        <HomeStyle.InputField type="tel" onChange={inputChange}/>
+                        <HomeStyle.FocusText data-placeholder='Phone Number (+91)'/>
+                    </HomeStyle.ContactFormGroup>
+                    <HomeStyle.ContactFormGroup>
+                        <HomeStyle.InputField type="text" onChange={inputChange}/>
+                        <HomeStyle.FocusText data-placeholder='Locality / Area'/>
+                    </HomeStyle.ContactFormGroup>
+                    <HomeStyle.ContactFormSubmit>
+                        <HomeStyle.ContactButton>Submit</HomeStyle.ContactButton>
+                    </HomeStyle.ContactFormSubmit>
+                </HomeStyle.Wrapper>
+                </HomeStyle.FormContainer>
+            </HomeStyle.ContactForm>
             <HomeStyle.LandingPageFooter>
                 <HomeStyle.LandingPageFooterCont>
                     <footer>
-                        <p><HomeStyle.LandingPageFooterInfoHighlight>© All rights reserved.</HomeStyle.LandingPageFooterInfoHighlight> Made by Urbancave</p>
+                        <p style={{color: "#FAB6B6", fontWeight: "700"}}><HomeStyle.LandingPageFooterInfoHighlight>© All rights reserved.</HomeStyle.LandingPageFooterInfoHighlight> Made by Urbancave</p>
                     </footer>
                 </HomeStyle.LandingPageFooterCont>
             </HomeStyle.LandingPageFooter>

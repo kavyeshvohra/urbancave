@@ -1,17 +1,21 @@
 import Complaint from "./complaint";
 import ContentHeader from "./contentheader";
-// import '../../styles/complaints.css';
-import * as Complaints from '../../styles/complaints'
+import '../../styles/complaints.css';
+import CreateComplaintModal from "./createComplaintModal";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const ComplaintsAndFeedback=()=>{
+    const [ compRegister , setCompRegister ] = useState(0);
     return (
+
        <>
-            <ContentHeader
-                text="Complaints and Feedback"
-            />
-            <Complaints.ContentMatter>
-                <div>
-                    <Complaints.ComplaintSubject>
+            
+            { compRegister == 1 ? (<CreateComplaintModal changeCompRegister={setCompRegister}/>) : (<></>)}
+            
+            {/* <div className="contentMatter">
+                <div className="complaintSubjectContainer">
+                    <select className="complaintSubject">
                         <option value="">--Complaint subject--</option>
                         <option value="">Maintenance Payment</option>
                         <option value="">Donations</option>
@@ -19,37 +23,37 @@ const ComplaintsAndFeedback=()=>{
                         <option value="">Society Member</option>
                         <option value="">Society Admin</option>
                         <option value="">None of the above</option>
-                    </Complaints.ComplaintSubject>
+                    </select>
                 </div>
-                <Complaints.ComplaintInfo>
-                    <Complaints.ComplaintInfoHeading>
+                <div className="complaintInfo">
+                    <div className="complaintInfoHeading">
                         Complaint discription
-                    </Complaints.ComplaintInfoHeading>
-                    <Complaints.ComplaintInfoDetails
+                    </div>
+                    <textarea
+                        className="complaintInfoDetails"
                         placeholder="Type here..."
-                    ></Complaints.ComplaintInfoDetails>
-                </Complaints.ComplaintInfo>
-                <div>
-                    <Complaints.ComplaintRegisterButton>
-                        Register Complaint
-                    </Complaints.ComplaintRegisterButton>
+                    ></textarea>
                 </div>
-            </Complaints.ContentMatter>
-
-            <hr width="95%" size="2" border="none" color="#BBE5FA" />
-            <Complaints.ComplaintHistoryContainer>
-                <Complaints.ComplaintHistoryHeaderContainer>
-                    <Complaints.ComplaintHistoryHeader>
-                        Complaint History
-                    </Complaints.ComplaintHistoryHeader>
-                    <Complaints.ComplaintHistoryCategory>
-                        <option>All</option>
-                        <option>Resolved</option>
-                        <option>Processing</option>
-                        <option>Deleted</option>
-                    </Complaints.ComplaintHistoryCategory>
-                </Complaints.ComplaintHistoryHeaderContainer>
-                <Complaints.ComplaintTicketContainer>
+                <div>
+                    <button className="complaintRegisterButton">
+                        Register Complaint
+                    </button>
+                </div>
+            </div> */}
+            <div className="complaintHistoryContainer">
+                <div className="complaintHistoryHeaderContainer">
+                    <ContentHeader text="Complaints and Feedback"/>
+                    <div className="complaintControls">
+                    <button className="galleryButtonControls" onClick={()=>setCompRegister(1)}>Register Complaint</button>
+                        <select className="complaintHistoryCategory">
+                            <option>All</option>
+                            <option>Resolved</option>
+                            <option>Processing</option>
+                            <option>Deleted</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="complaintTicketContainer">
                     <Complaint />
                     <Complaint />
                     <Complaint />
@@ -84,8 +88,8 @@ const ComplaintsAndFeedback=()=>{
                     <Complaint />
                     <Complaint />
                     <Complaint />
-                </Complaints.ComplaintTicketContainer>
-            </Complaints.ComplaintHistoryContainer>
+                </div>
+            </div>
         </>
     );
 }

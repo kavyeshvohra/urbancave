@@ -2,7 +2,6 @@ import Complaint from "./complaint";
 import ContentHeader from "./contentheader";
 import '../../styles/complaints.css';
 import CreateComplaintModal from "./createComplaintModal";
-import { useEffect } from "react";
 import { useState } from "react";
 
 const ComplaintsAndFeedback=()=>{

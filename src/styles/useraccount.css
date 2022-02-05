@@ -1,0 +1,83 @@
+.accountPageContainer{
+    display: flex;
+    flex-direction: column;
+}
+.inputLabel{
+    color:#707A8A;
+}
+
+.accountPageContainer{
+    padding-top:2rem;
+}
+
+.accountPageProfileContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+}
+
+.accountPageProfileContainer img{
+    width: 7rem;
+    object-fit: contain;
+}
+
+.accountPageProfilePhotoCaption{
+    color: rgba(12,41,56,0.75);
+    font-size: large;
+    font-weight: 600;
+}
+
+.inputContainer{
+    display:flex;
+    flex-direction: column;
+}
+
+.accountInfoContainer{
+    display:flex;
+    flex-direction: column;
+    row-gap: 2em;
+    padding:2em;
+    margin-left:1em;
+}
+
+.accountText{
+    width:20em;
+    color:#707A8A;
+    border:0.1em #707A8A solid;
+    border-radius:5px;
+    outline:none;
+}
+
+.inputContainer:hover .accountText{
+    border-color:#FEB6B6;
+}
+
+.inputContainer:hover .inputLabel{
+    color:#FEB6B6;
+}
+
+
+
+.credContainer{
+    display:flex;
+    flex-direction: row;
+    column-gap: 3em;
+}
+
+.accountPagechangeButton{
+    display: flex;
+    flex-direction: row;
+    column-gap: 5rem;
+    margin-left:3rem;
+}
+
+/*
+
+inputs
+
+ */
+.userAccountInput{
+    outline:none;
+    border:#FEB6B6;
+}

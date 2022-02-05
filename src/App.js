@@ -11,6 +11,7 @@ import Societies from './pages/components/societies';
 import Contact from './pages/contact';
 import Login from './pages/login.js'
 import Register from './pages/register.js';
+import UserAccount from './pages/components/useraccount';
 
 function App() {
   return (
@@ -42,7 +43,7 @@ function App() {
             <Route path="gallery" element={<Gallery/>} />
             <Route path="gallery/:event" element={<Event/>} />
             
-            <Route path="profile" element={<h1>Profile</h1>}/>
+            <Route path="profile" element={<UserAccount/>}/>
             
             <Route path="visitors" element={<h1>visitors</h1>}/>
 

@@ -410,6 +410,7 @@ export const LandingPageFooter = styled.section`
     padding-bottom: 2em;
     margin: 0rem 0rem 0rem 0rem;
     background-color: #595757;
+    width: auto;
 `
 
 export const LandingPageFooterInfoHighlight = styled.span`

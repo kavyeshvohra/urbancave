@@ -12,7 +12,7 @@ const CreateGalleryModal = (props)=>{
                 <div className="CreateGalleryModalBody">
                     <div className="CreateGalleryModalLabel">Gallery Name</div>
                     <input className="CreateGalleryModalInput"/>
-                    <button className="CreateGalleryModalButton">Create New Gallery</button>
+                    <button className="CreateGalleryModalButton">Create</button>
                 </div>
             </div>
         </div>

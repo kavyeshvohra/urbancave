@@ -1,7 +1,7 @@
-import Images from '../../images';
 import '../../styles/notice.css';
 import { useState } from 'react';
 import CreateNoticeModal from './createNoticeModal';
+import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
 
 const Notice = ()=>{
     const [ createNotice , setCreateNotice ] = useState(0);
@@ -62,6 +62,7 @@ const Notice = ()=>{
 }
 
 const Row=(props)=>{
+    const [hover,setHover] = useState(0);
     return(
         <>
             <tr className="notHeading">
@@ -80,9 +81,18 @@ const Row=(props)=>{
                 </td>
                 <td>
                     <div className="noticeActions">
-                        <img src={Images.showIcon}/>
-                        <img src={Images.dustbinIcon}/>
-                        <img src={Images.dustbinIcon}/>
+                        <AiFillEye size="2em" color={hover=="eye"?"#FEB6B6":"#707A8A"}
+                            onMouseOver={()=>setHover("eye")}
+                            onMouseLeave={()=>setHover(0)}
+                        />
+                        <MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
+                            onMouseOver={()=>setHover("edit")}
+                            onMouseLeave={()=>setHover(0)}
+                        />
+                        <FaTrash size="1.6em" color={hover=="bin"?"#FEB6B6":"#707A8A"}
+                            onMouseOver={()=>setHover("bin")}
+                            onMouseLeave={()=>setHover(0)}
+                        />
                     </div>
                 </td>
             </tr>

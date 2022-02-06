@@ -113,31 +113,31 @@ export const LoginContainer = styled.div`
       background-image: none;
   } */
 `
-export const Icons = styled.svg`
-  position: absolute;
-  top: 50%;
-  left: 0;
-  font-size: 1.35rem;
-  transform: translateY(-50%);
-`
-export const IconsOff = styled.svg`
-  position: absolute;
-  top: 50%;
-  left: 90%;
-  cursor: pointer;
-  pointer-events: all;
-  font-size: 1.35rem;
-  transform: translateY(-50%);
-`
-export const IconsOn = styled.svg`
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 90%;
-  cursor: pointer;
-  font-size: 1.35rem;
-  transform: translateY(-50%);
-`
+// export const Icons = styled.svg`
+//   position: absolute;
+//   top: 50%;
+//   left: 0;
+//   font-size: 1.35rem;
+//   transform: translateY(-50%);
+// `
+// export const IconsOff = styled.svg`
+//   position: absolute;
+//   top: 50%;
+//   left: 90%;
+//   cursor: pointer;
+//   pointer-events: all;
+//   font-size: 1.35rem;
+//   transform: translateY(-50%);
+// `
+// export const IconsOn = styled.svg`
+//   display: none;
+//   position: absolute;
+//   top: 50%;
+//   left: 90%;
+//   cursor: pointer;
+//   font-size: 1.35rem;
+//   transform: translateY(-50%);
+// `
 export const DetailsForm = styled.input`
   display: block;
   width: 92%;
@@ -145,7 +145,7 @@ export const DetailsForm = styled.input`
   background: transparent;
   padding: 0 5px;
   transition: 0.3s all ease;
-  margin: 0 30px auto;
+  margin: 0 10px auto;
   font-size: 1rem;
   border:none;
   outline:none;

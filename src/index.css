@@ -30,9 +30,8 @@ body {
     monospace;
 } */
 a{
-  text-decoration: none !important;
+  text-decoration: none;
 }
-
 
 .dimScreen{
   position:fixed;

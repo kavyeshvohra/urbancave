@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Heading4 = styled.h4`
 text-align: center;
-margin-bottom: 2.2em;
+margin-bottom: 1em;
+padding-bottom: 2em;
 `;
 export const EmHeading4 = styled.h4`
   margin-bottom: 2.2.em;
@@ -12,7 +13,8 @@ export const Heading1 = styled.h1`
   color: #0c2938;
   font-size: 50px;
   text-align: center;
-  margin-bottom: -3.4rem;
+  font-weight: 700;
+  margin-bottom: -4.4rem;
 `;
 export const RegisterCont = styled.div`
   display: flex;
@@ -22,6 +24,7 @@ export const RegisterCont = styled.div`
   height: 100vh;
   overflow: hidden;
   margin-top: -0.2em;
+  background-color: #faf0f0;
 `;
 export const RadioLabel = styled.label`
   display: flex !important;
@@ -30,7 +33,7 @@ export const RadioLabel = styled.label`
 `
 export const RegisterForm = styled.div`
   border: 1px solid #fff;
-  padding: 2rem 4.6rem;
+  padding: 2rem 4.6rem 4rem 4.6rem;
   background-color: #fff;
   border-radius: 15px;
   width: 65em;
@@ -39,6 +42,18 @@ export const RegisterForm = styled.div`
   flex-direction: column;
   box-shadow: -1px 1px 11px #00000014;
 `;
+
+export const Span = styled.span`
+    color: #FAB0B0;
+    font-weight: 500;
+    text-decoration: underline;
+    &:hover
+    {
+      color: #595757;
+      text-decoration-color: #595757;
+    }
+`
+
 export const SelectGroup = styled.div`
   width: 30%;
   position: relative;
@@ -75,20 +90,23 @@ export const ButtonSubmit = styled.button`
   display: inline-block;
   cursor: pointer;
   border-radius: 15px;
-  background-color: #0c2938;
-  color: #fff;
+  background-color: #3e444e;
+  color: #faf0f0;
+  outline:none;
+  text-decoration: none;
   font-weight: bold;
   font-family: montserrat, sans-serif;
   box-shadow: -1px 1px 11px #00000014;
   transition: 0.3s all ease-in-out;
+  border: none;
 
-&:hover,
-&:focus {
-  background-color: #fff;
-  color: #000;
-  font-weight: bold;
-  background-image: linear-gradient(14deg, #d7d7d7, #dddddd);
-}
+  &:hover, &:focus
+  {
+    /* background-color: #9FB1BCFF; */
+    color: #595757;
+    font-weight: bold;
+    background-image: linear-gradient(240deg, #fcd2d2, #dddddd);
+  }
 `;
 export const FormGroup = styled.div`
   margin-bottom: 2.5em;
@@ -97,6 +115,8 @@ export const FormGroup = styled.div`
   position: relative;
   transition: 0.3s all ease;
   padding-bottom: 0.125em;
+  display: flex;
+  align-items: center;
 `;
 export const InputWrapper = styled.div`
     display: flex;
@@ -105,6 +125,7 @@ export const InputWrapper = styled.div`
     justify-content: flex-start;
     column-gap: 2.5em;
     flex-wrap: wrap;
+    margin-top: -2em;
 `;
 export const FormGroup1 = styled.div`
   margin-top: 1em;
@@ -126,6 +147,8 @@ export const RegisterCont1 = styled.div`
     justify-content: center;
     height: 100vh;
     width: 100vw;
+    background-color: #faf0f0;
+
 `;
 
 export const RegisterForm1 = styled.div`
@@ -134,7 +157,7 @@ export const RegisterForm1 = styled.div`
     padding: 2rem 4.6rem;
     border-radius: 15px;
     width: 50em;
-    height: 26em;
+    height: auto;
     display: flex;
     flex-direction: column;
     box-shadow: -1px 1px 11px #00000014;
@@ -190,6 +213,14 @@ export const TextSpan1 = styled.span`
   display:inline-block;
   margin-top: 1.2em;
   cursor: pointer;
+  font-weight: 600;
+
+  &:hover
+  {
+    color: #595757;
+    text-decoration: underline;
+    text-decoration-color: #595757;
+  }
 `;
 export const FocusHtml = styled.span`
   position: absolute;
@@ -242,6 +273,16 @@ export const ErrorMessage = styled.div`
   padding: 10px;
   border-radius: 2%;
   margin-bottom: 1.2em;
+  position: absolute;
+  z-index: 9999999999;
+`
+export const ErrorMessageCont = styled.div`
+  position: relative;
+  width: inherit;
+  height: inherit;
+`
+export const ErrorMessageCont1 = styled.div`
+  position: relative; 
 `
 export const ErrorMessage1 = styled.div`
   display: none;
@@ -250,8 +291,11 @@ export const ErrorMessage1 = styled.div`
   padding: 10px;
   border-radius: 2%;
   height: 10%;
-  position: relative;
+  position: absolute;
   top: -2.5em;
+  padding-bottom: 2.2em;
+  z-index: 999999999999;
+  transform: translateX(115%);
 `;
 export const ExistAccount = styled.div`
   font-size: 16px;

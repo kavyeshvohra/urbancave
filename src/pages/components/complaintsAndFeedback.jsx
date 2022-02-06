@@ -41,9 +41,9 @@ const ComplaintsAndFeedback=()=>{
             </div> */}
             <div className="complaintHistoryContainer">
                 <div className="complaintHistoryHeaderContainer">
-                    <ContentHeader text="Complaints and Feedback"/>
+                    <div className="galleryCaption">Complaints and Feedback</div>
                     <div className="complaintControls">
-                    <button className="galleryButtonControls" onClick={()=>setCompRegister(1)}>Register Complaint</button>
+                    <button className="galleryButtonControls" Style={"height:3em;"} onClick={()=>setCompRegister(1)}>Register Complaint</button>
                         <select className="complaintHistoryCategory">
                             <option>All</option>
                             <option>Resolved</option>

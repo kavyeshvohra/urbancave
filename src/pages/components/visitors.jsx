@@ -1,4 +1,3 @@
-import Images from '../../images';
 import CreateVisitorCode from '../components/createVisitorCode';
 import { useState } from 'react';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';

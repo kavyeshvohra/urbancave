@@ -17,11 +17,11 @@ th,td{
     padding-bottom: 1rem;
     color:#3e444e;
 }
-
+/* 
 .notHeading:hover > td > div{
     color:#FAB6B6;
     font-weight: 600;
-}
+} */
 .noticeTable{
     table-layout: auto;
     border-collapse: collapse;

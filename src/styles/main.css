@@ -17,25 +17,12 @@
     display: flex;
     flex-direction: column;
     width:80.7vw;
-    height:84.5vh;
+    height:85vh;
     overflow-y:scroll;
     margin-bottom: 1em;
     scrollbar-width:initial;
 }
 
-.contentContainer::-webkit-scrollbar-track {
-    background: #FAF0F0; 
-  }
-   
-  /* Handle */
-  .contentContainer::-webkit-scrollbar-thumb {
-    background: #707A8A;
-  }
-  
-  /* Handle on hover */
-  .contentContainer::-webkit-scrollbar-thumb:hover {
-    background: #FAB6B6; 
-  }
 
 .logo{
     width:15em;

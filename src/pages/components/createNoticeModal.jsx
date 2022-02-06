@@ -1,6 +1,7 @@
 import Images from "../../images";
 import '../../styles/createNoticeModal.css';
 import '../../styles/createGalleryModal.css';
+import {AiOutlineFile,AiOutlineCloseCircle} from 'react-icons/all';
 
 const CreateNoticeModal=(props)=>{
     return(
@@ -8,7 +9,7 @@ const CreateNoticeModal=(props)=>{
             <div className="createNoticeModalContainer">
                 <div className="CreateGalleryModalHeader">
                     <div className="CreateGalleryModalCaption">Create Notice</div>
-                    <img onClick={()=>props.changeCreateNotice(0)} src={Images.closeIcon} className="createNoticeModalImg"/>
+                    <AiOutlineCloseCircle onClick={()=>props.changeCreateNotice(0)} size="2.2em" color="#FEB6B6"/>
                 </div>
                 <div className="CreateGalleryModalBody">
                     <div className="CreateGalleryModalLabel">Notice Caption</div>
@@ -19,9 +20,9 @@ const CreateNoticeModal=(props)=>{
                 <div className="createNoticeModalFileContainer">
                     <div className="CreateGalleryModalLabel">Upload Pdf</div>
                     <div className="createNoticeModalFile">
-                        <img src={Images.uploadIcon} className="createNoticeUploadIcon"/>
+                        <AiOutlineFile size="2.2em" color="#FEB6B6"/>
                         <div className="createNoticeUploadText">
-                            Darg and drop your image/s here
+                            Darg and drop your pdf here
                             or click on ‘Browse’.
                         </div>
                     </div>

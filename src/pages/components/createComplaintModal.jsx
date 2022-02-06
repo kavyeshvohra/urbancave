@@ -1,5 +1,6 @@
 import Images from '../../images';
 import '../../styles/complaints.css';
+import {AiOutlineCloseCircle} from 'react-icons/all';
 
 const CreateComplaintModal = (props)=>{
 
@@ -8,7 +9,7 @@ const CreateComplaintModal = (props)=>{
             <div className="contentMatter">
                 <div className="CreateGalleryModalHeader">
                     <div className="CreateGalleryModalCaption">Create Notice</div>
-                    <img onClick={props.changeCompRegister} src={Images.closeIcon} className="createNoticeModalImg"/>
+                    <AiOutlineCloseCircle onClick={props.changeCompRegister} size="2.2em" color="#FEB6B6"/>
                 </div>
                 <div className="complaintSubjectContainer">
                     <select className="complaintSubject">

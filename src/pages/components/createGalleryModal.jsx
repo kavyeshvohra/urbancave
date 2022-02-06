@@ -1,5 +1,5 @@
-import Images from '../../images';
 import '../../styles/createGalleryModal.css';
+import {AiOutlineCloseCircle} from 'react-icons/all';
 
 const CreateGalleryModal = (props)=>{
     return(
@@ -7,7 +7,7 @@ const CreateGalleryModal = (props)=>{
             <div className="CreateGalleryModalContainer">
                 <div className="CreateGalleryModalHeader">
                     <div className="CreateGalleryModalCaption">Create Gallery</div>
-                    <img onClick={()=>props.changeGallery(0) }src={Images.closeIcon} className="CreateGalleryModalImg"/>
+                    <AiOutlineCloseCircle onClick={()=>props.changeGallery(0)}  size="2.2em" color="#FEB6B6"/>
                 </div>
                 <div className="CreateGalleryModalBody">
                     <div className="CreateGalleryModalLabel">Gallery Name</div>

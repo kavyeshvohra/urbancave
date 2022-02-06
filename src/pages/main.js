@@ -1,9 +1,11 @@
 import Images from "../images";
 import SideBar from "./components/sidebar";
+import {AiOutlineLogin,VscAccount} from 'react-icons/all';
 
 import { Outlet } from 'react-router';
 import '../styles/main.css';
 import '../styles/navbar.css';
+import { useState } from "react";
 
 const Main = ()=> {
 
@@ -31,6 +33,8 @@ const Main = ()=> {
   //   console.log(0);
   // };
 
+    const [hover,setHover] = useState(0);
+
     return (
       <div className="mainContainer">
         <div className="navContainer">
@@ -38,15 +42,14 @@ const Main = ()=> {
           <img src={Images.urbancaveLogo} className="logo"/>
           
           <div className="navItems">
-            <img src={Images.logoutIcon} className="logoutIcon" 
-            onMouseOver={(e)=>{
-              e.target.src=Images.logoutHover
-            }}
-            onMouseLeave={(e)=>{
-              e.target.src=Images.logoutIcon
-            }}
+            <VscAccount size="2em" color={hover=="logout"?"#FEB6B6":"707A8A"}
+              onMouseOver={()=>setHover("logout")}
+              onMouseLeave={()=>setHover(0)}
             />
-            <img src={Images.logoutIcon} className="profileIcon" />
+            <AiOutlineLogin size="2.1em" color={hover=="profile"?"#FEB6B6":"707A8A"}
+              onMouseOver={()=>setHover("profile")}
+              onMouseLeave={()=>setHover(0)}
+            />
           </div>
         </div>
 

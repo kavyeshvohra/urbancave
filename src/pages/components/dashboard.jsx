@@ -1,8 +1,7 @@
 import React from 'react'
 import '../../styles/dashboard.css'
 import * as DashStyles from '../../styles/dashboard-Style';
-import {FaUserCircle, FaRupeeSign} from 'react-icons/fa'
-import {AiOutlinePoweroff} from 'react-icons/ai'
+import { FaRupeeSign} from 'react-icons/fa'
 import {BsCalculator} from 'react-icons/bs'
 import Carousel from "react-bootstrap/Carousel"
 import ChartPie, {ChartBar, ChartDoughnut} from './chart'

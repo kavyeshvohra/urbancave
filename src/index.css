@@ -5,6 +5,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #FEFEFE;
   scrollbar-width: 10px;
+  /* overflow: hidden; */
 }
 /* width */
 ::-webkit-scrollbar {

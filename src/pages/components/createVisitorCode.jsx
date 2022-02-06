@@ -1,5 +1,6 @@
 import Images from "../../images";
 import '../../styles/visitorModal.css';
+import {AiOutlineCloseCircle} from 'react-icons/all';
 
 const CreateVisitorCode=(props)=>{
 
@@ -9,10 +10,10 @@ const CreateVisitorCode=(props)=>{
         <div className="CreateGalleryModalContainer">
             <div className="CreateGalleryModalHeader">
                 <div className="CreateGalleryModalCaption">Add new  visitor</div>
-                <img onClick={()=>props.changeGallery(0) }src={Images.closeIcon} className="CreateGalleryModalImg"/>
+                <AiOutlineCloseCircle onClick={()=>props.changeGallery(0)} size="2.2em" color="#FEB6B6" />
             </div>
             <div className="CreateGalleryModalBody">
-                <input className="CreateGalleryModalInput"/>
+                <input className="CreateGalleryModalInput" readOnly/>
                 <div className="visitorControlContainer">
                     <button className="CreateGalleryModalButton">Generate New Code</button>
                     <button className="CreateGalleryModalButton">Copy</button>

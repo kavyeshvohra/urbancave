@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Select from 'react-select';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
+import { useNavigate } from "react-router-dom";
 
 import { VscError, VscCheck } from "react-icons/vsc";
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
@@ -8,13 +10,14 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import * as RStyle from '../styles/register-styles';
 
 const Register = () => {
+    let navigate = useNavigate();
     // const url = ""
     // const[data,setData] = useState({
     //     fname: "",
     //     lname: "",
     //     dob: ""
     // })
-    const [step, changeStep] = useState("step1");
+    const [step, changeStep] = useState("step2");
     const societyRegisterStep = () => {
         changeStep("step2");
     }
@@ -66,13 +69,17 @@ const Register = () => {
         alignText:"center",
     }
 
+    //states for select components
+    const [houseType,setHouseType] = useState({});
+    const [userType,setUserType] = useState({});
+
     //validation function
     const validateEmailOpt=()=>{
         const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
         const email = document.getElementById("email").value;
         const otp = document.getElementById("otp").value;
 
-        document.getElementById("errorDiv").innerHTML="";
+        document.getElementById("1").innerHTML="";
         let count = 0;
 
         if( !email.match(emailReg) ){
@@ -90,6 +97,142 @@ const Register = () => {
         }
 
     }
+
+    //validation for 2nd step:
+    
+    
+    const validateRegistration=()=>{
+        let error="";
+        let count=0;
+        const fname=document.getElementById("fname").value;
+        const lname=document.getElementById("lname").value;
+        const dob=document.getElementById("dob").value;
+        const email=document.getElementById("emailNext").value;
+        const phone=document.getElementById("phone1").value;
+        const phoneA=document.getElementById("phone2").value;
+        const pass=document.getElementById("password").value;
+        const confPass=document.getElementById("confpassword").value;
+        const houseName=document.getElementById("houseName").value;
+
+        //const houseType=document.getElementById("houseType");
+        //const userType=document.getElementById("userType");
+        const file=document.getElementById("profileImage").files[0];
+
+        //regular expression for password
+        const passwordReg = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+        //first name validation
+
+        const isNumber = /\d/;
+        if ( isNumber.test(fname) || fname.length < 3){
+            error+="<div>Please enter valid first name!</div>";
+            count+=1;
+        }
+
+        //last name validation
+        if ( isNumber.test(lname) || lname.length < 3 ){
+            error+="<div>Please enter valid last name!</div>";
+            count+=1;
+        }
+
+        //date of birth validation
+        if( dob < new Date().toLocaleDateString() ){
+            console.log("error");
+            error+="<div>Please enter valid Date of birth!</div>";
+            count+=1;
+        }
+
+        //gender
+        if ( document.getElementById("genMale").checked ){
+            const gender="male";
+        }
+        else if( document.getElementById("genFemale").checked ){
+            const gender="female";
+        }
+        else if( document.getElementById("genOther").checked ){
+            const gender="others";
+        }
+        else{
+            console.log("please select a gender!");
+            error+="<div>Please select your gender!</div>";
+            count+=1;
+        }
+
+        if( !userType.value ){
+            console.log("please select your user type.");
+            error+="<div>Please select your user type!</div>";
+            count+=1;
+        }
+        if( !houseType.value ){
+            console.log("please select your house type.");
+            error+="<div>Please select your house type !</div>";
+            count+=1;
+        }
+
+        //houseName
+        if ( isNumber.test(houseName) || houseName.length <2){
+            error+="<div>Please enter valid House name!</div>";
+            count+=1;
+        }
+
+
+        //phone number validation
+
+        if ( !isNumber.test(phone) && phone.length != 10 ){
+            error+="<div>Please enter valid phone number!</div>";
+            count+=1;
+        }
+        
+        if ( !isNumber.test(phoneA) && phoneA.length != 10 ){
+            error+="<div>Please enter valid alternate phone number!</div>";
+            count+=1;
+        }
+
+        //password validation
+        if(!passwordReg.test(pass)){
+            console.log("password not valid!");
+            error+="<div>Please enter valid password!</div>";
+            count+=1;
+        }
+        if(pass != confPass){
+            error+="<div>your passwords do not match!</div>";
+            count+=1;
+        }
+
+        //rent validation
+        if( document.getElementById("rented").checked ){
+            const rent=true;
+        }
+        else if( document.getElementById("notRented").checked ){
+            const rent=false;
+        }
+        else{
+            error+="<div>Rent not selected!</div>";
+            count+=1;
+        }
+
+        //file validation
+        const fileExt=/(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
+
+        if ( !file ){
+            error+="<div>Please upload a file!</div>";
+            count+=1;
+        }
+        else{ 
+            if( fileExt.exec(file.name) ){
+                error+="<div>PLease upload file with valid extenstion!</div>";
+                count+=1;
+            }
+        }
+
+        document.getElementById("errorDiv1").innerHTML=error;
+
+        if( count ==0 ){
+           navigate("/login");
+        }
+
+    }
+
 
     if (step === "step1") {
         return (
@@ -154,7 +297,7 @@ const Register = () => {
                                     <RStyle.FocusHtml data-placeholder="Date Of Birth" />
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform type="email" name="email" disabled onChange={inputChange} required value={email}/>
+                                    <RStyle.Detailsform type="email" id="emailNext" name="email" disabled onChange={inputChange} required value={email}/>
                                     <RStyle.FocusHtml data-placeholder="Email" />
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
@@ -166,21 +309,21 @@ const Register = () => {
                                     <RStyle.FocusHtml data-placeholder="Alternate Phone Number" />
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform type={passInputType} id="password" name="password" minLength="8" required />
+                                    <RStyle.Detailsform type={passInputType} id="password" name="password" minLength="8" required  onChange={inputChange} />
                                     <RStyle.FocusHtml data-placeholder="Password" />
                                     {passInputType == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" style={iconStyle} className="icons-eye-off" onClick={() => passInput('text')} />) : (<AiFillEye id="" style={iconStyle} onClick={() => passInput('password')} />)}
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform id="confpassword" type={confirmpassInputType} name="conf-password" minLength="8" required onChange={confirmPassChange} />
+                                    <RStyle.Detailsform id="confpassword" type={confirmpassInputType} name="conf-password" minLength="8" required onChange={inputChange} />
                                     <RStyle.FocusHtml data-placeholder='Confirm Password' />
                                     {confirmpassInputType == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" className="icons-eye-off" style={iconStyle} onClick={() => changeconfInputType('text')} />) : (<AiFillEye id="" style={iconStyle} onClick={() => changeconfInputType('password')} />)}
                                 </RStyle.FormGroup>
                                 <RStyle.CheckGroup>
-                                    <RStyle.Checkbox type="radio" id="ansMale" name="genderState" value="Male" required />
+                                    <RStyle.Checkbox type="radio" id="genMale" name="genderState" value="Male" required />
                                     <RStyle.RadioLabel htmlFor="ansMale">Male</RStyle.RadioLabel>
-                                    <RStyle.Checkbox type="radio" id="ansFemale" name="genderState" value="female" />
+                                    <RStyle.Checkbox type="radio" id="genFemale" name="genderState" value="female" />
                                     <RStyle.RadioLabel htmlFor="ansFemale">Female</RStyle.RadioLabel>
-                                    <RStyle.Checkbox type="radio" id="ansOther" name="genderState" value="other" />
+                                    <RStyle.Checkbox type="radio" id="genOther" name="genderState" value="other" />
                                     <RStyle.RadioLabel htmlFor="ansOther">Other</RStyle.RadioLabel>
                                     <RStyle.TextSpan>Gender</RStyle.TextSpan>
                                 </RStyle.CheckGroup>
@@ -196,36 +339,41 @@ const Register = () => {
                                 </RStyle.ErrorMessageCont>
                                 <RStyle.ErrorMessageCont>
                                 <RStyle.ErrorMessage1 id="messageCheck">
-                                    <p id="passCheck" className="invalid"><VscError className='errorIcon' style={errorIcon} /><VscCheck className='validIcon' style={validIcon} /> Password's Match</p>
+                                    <p id="passCheck" className="invalid">
+                                        <VscError className='errorIcon' style={errorIcon} />
+                                        <VscCheck className='validIcon' style={validIcon} /> Password's Match
+                                    </p>
                                 </RStyle.ErrorMessage1>
                                 </RStyle.ErrorMessageCont>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform type="text" name="housename" onChange={inputChange} />
+                                    <RStyle.Detailsform type="text" name="housename" id="houseName"onChange={inputChange} />
                                     <RStyle.FocusHtml data-placeholder="House Name" />
                                 </RStyle.FormGroup>
                                 <RStyle.SelectGroup>
-                                    <Select options={houseoptions} />
+                                    <Select options={houseoptions} onChange={setHouseType} />
                                     <RStyle.TextSpan>House Type</RStyle.TextSpan>
                                 </RStyle.SelectGroup>
                                 
                                 <RStyle.SelectGroup>
-                                    <Select options={options} />
+                                    <Select options={options} onChange={setUserType} />
                                     <RStyle.TextSpan>User Type</RStyle.TextSpan>
                                 </RStyle.SelectGroup>
                                 <RStyle.CheckGroup>
-                                    <RStyle.Checkbox type="radio" id="ansYes" name="rentState" value="yes" />
+                                    <RStyle.Checkbox type="radio" id="rented" name="rentState" value="yes" />
                                     <RStyle.RadioLabel htmlFor="ansYes">Yes</RStyle.RadioLabel>
-                                    <RStyle.Checkbox type="radio" id="ansNo" name="rentState" value="no" />
+                                    <RStyle.Checkbox type="radio" id="notRented" name="rentState" value="no" />
                                     <RStyle.RadioLabel htmlFor="ansYes">No</RStyle.RadioLabel>
                                     <RStyle.TextSpan>Rented Appartment?</RStyle.TextSpan>
                                 </RStyle.CheckGroup>
                                 <RStyle.SelectGroup>
-                                    <RStyle.Detailsform type="file" name="file" />
+                                    <RStyle.Detailsform type="file" id="profileImage" name="file" accept="image/*" />
                                     <RStyle.TextSpan>Upload Profile Image</RStyle.TextSpan>
                                 </RStyle.SelectGroup>
+                                <div style={errStyle} id="errorDiv1">
+                                </div>
                             </RStyle.InputWrapper>
                             <RStyle.ButtonWrapper>
-                                <RStyle.ButtonSubmit name="submit" >Register</RStyle.ButtonSubmit>
+                                <RStyle.ButtonSubmit name="submit" type="submit" value="register"onClick={()=>validateRegistration()}/>
                             </RStyle.ButtonWrapper>
                     </RStyle.RegisterForm>
                 </RStyle.RegisterCont>
@@ -248,26 +396,6 @@ const Register = () => {
     //     }
     // }
 
-
-    //validation for 2nd step:
-    
-    
-    const validateRegistration=()=>{
-        const fname=document.getElementById("fname").value;
-        const lname=document.getElementById("lname").value;
-        const dob=document.getElementById("dob").value;
-        const email=email;
-        const phone=document.getElementById("phone1").value;
-        const phoneA=document.getElementById("phone2").value;
-        const pass=document.getElementById("password").value;
-        const confPass=document.getElementById("confpassword").value;
-        const gender="";
-        const houseName="";
-        const houseType="";
-        const userType="";
-        const rent="";
-        const file="";
-    }
 
     function inputChange(e) {
         if (e.target.value !== "") {

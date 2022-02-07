@@ -67,7 +67,7 @@ const UserAccount=(props)=>{
                     <input type="text" className="accountText"/>
                 </div>
             </div> */}
-            <div>
+            <div className="accountFormContainer">
                 <HomeStyle.ContactFormGroup>
                     <HomeStyle.InputField type="email" onChange={inputChange} readOnly />
                     <HomeStyle.FocusText data-placeholder="Email"/>

@@ -41,6 +41,7 @@ export const RegisterForm = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: -1px 1px 11px #00000014;
+  overflow-y: scroll;
 `;
 
 export const Span = styled.span`
@@ -81,7 +82,7 @@ export const ButtonWrapper1 = styled.div`
   margin-bottom: -15px;
   text-align: center;
 `;
-export const ButtonSubmit = styled.button`
+export const ButtonSubmit = styled.input`
   width: 30%;
   margin: 0 auto;
   margin-top: 15px;
@@ -118,7 +119,7 @@ export const FormGroup = styled.div`
   display: flex;
   align-items: center;
 `;
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.form`
     display: flex;
     flex-direction: row;
     width: 100%;

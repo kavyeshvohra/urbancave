@@ -36,9 +36,11 @@
 .accountInfoContainer{
     display:flex;
     flex-direction: column;
+    width:98%;
     row-gap: 2em;
     padding:2em;
     margin-left:1em;
+    align-items: center;
 }
 
 .accountText{

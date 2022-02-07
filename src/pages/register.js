@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const Register = () => {
     //     lname: "",
     //     dob: ""
     // })
-    const [step, changeStep] = useState("step1");
+    const [step, changeStep] = useState("step2");
     const societyRegisterStep = () => {
         changeStep("step2");
     }
@@ -98,9 +98,9 @@ const Register = () => {
 
     }
 
-    //validation for 2nd step:
-    
-    
+
+
+    //validation for 2nd step:    
     const validateRegistration=()=>{
         let error="";
         let count=0;
@@ -255,6 +255,13 @@ const Register = () => {
             }
         }
     }
+
+    useEffect(()=>{
+        if(document.getElementById("errorDiv1").innerHTML != ""){
+            console.log(0);
+        }
+    });
+
     if (step === "step1") {
         return (
             <>
@@ -394,7 +401,7 @@ const Register = () => {
                                 </div>
                             </RStyle.InputWrapper>
                             <RStyle.ButtonWrapper>
-                                <RStyle.ButtonSubmit name="submit" type="submit" value="register"onClick={()=>validateRegistration()}/>
+                                <RStyle.ButtonSubmit name="submit" type="submit" value="register"onClick={()=>validateRegistration()}>Register</RStyle.ButtonSubmit>
                             </RStyle.ButtonWrapper>
                     </RStyle.RegisterForm>
                 </RStyle.RegisterCont>

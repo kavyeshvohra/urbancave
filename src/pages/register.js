@@ -108,7 +108,7 @@ const Register = () => {
                         </div>
                         <RStyle.InputWrapper style={{ marginTop: '2em' }} id="signup_verify_email_textfield">
                             <RStyle.FormGroup>
-                                <RStyle.Detailsform type="number" id="otp" name="verif-code" onChange={inputChange} required />
+                                <RStyle.Detailsform type="number" id="otp" name="verif-code" max="5" onChange={inputChange} required onKeyPress="" />
                                 <RStyle.FocusHtml data-placeholder='OTP' />
                             </RStyle.FormGroup>
                             <RStyle.TextSpan1 id="resend_otp_verify">Resend OTP</RStyle.TextSpan1>
@@ -158,20 +158,20 @@ const Register = () => {
                                     <RStyle.FocusHtml data-placeholder="Email" />
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform type="phone" name="phonenum" id="phone" maxLength="10" onChange={inputChange} required />
+                                    <RStyle.Detailsform type="phone" name="phonenum" id="phone1" maxLength="10" onChange={inputChange} required />
                                     <RStyle.FocusHtml data-placeholder="Phone Number" />
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform type="phone" name="altphonenum" maxLength="10" onChange={inputChange} />
+                                    <RStyle.Detailsform type="phone" name="altphonenum" id="phone2" maxLength="10" onChange={inputChange} />
                                     <RStyle.FocusHtml data-placeholder="Alternate Phone Number" />
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform type={passInputType} id="pwd" name="password" minLength="8" required />
+                                    <RStyle.Detailsform type={passInputType} id="password" name="password" minLength="8" required />
                                     <RStyle.FocusHtml data-placeholder="Password" />
                                     {passInputType == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" style={iconStyle} className="icons-eye-off" onClick={() => passInput('text')} />) : (<AiFillEye id="" style={iconStyle} onClick={() => passInput('password')} />)}
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform id="confpwd" type={confirmpassInputType} name="conf-password" minLength="8" required onChange={confirmPassChange} />
+                                    <RStyle.Detailsform id="confpassword" type={confirmpassInputType} name="conf-password" minLength="8" required onChange={confirmPassChange} />
                                     <RStyle.FocusHtml data-placeholder='Confirm Password' />
                                     {confirmpassInputType == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" className="icons-eye-off" style={iconStyle} onClick={() => changeconfInputType('text')} />) : (<AiFillEye id="" style={iconStyle} onClick={() => changeconfInputType('password')} />)}
                                 </RStyle.FormGroup>
@@ -253,14 +253,14 @@ const Register = () => {
     
     
     const validateRegistration=()=>{
-        const fname=document.getElementById("fname");
-        const lname=document.getElementById("lname");
-        const dob=document.getElementById("dob");
+        const fname=document.getElementById("fname").value;
+        const lname=document.getElementById("lname").value;
+        const dob=document.getElementById("dob").value;
         const email=email;
-        const phone="";
-        const phoneA="";
-        const pass="";
-        const confPass="";
+        const phone=document.getElementById("phone1").value;
+        const phoneA=document.getElementById("phone2").value;
+        const pass=document.getElementById("password").value;
+        const confPass=document.getElementById("confpassword").value;
         const gender="";
         const houseName="";
         const houseType="";

@@ -10,7 +10,7 @@ const Notice = ()=>{
             {createNotice != 0 ? ( <CreateNoticeModal changeCreateNotice={setCreateNotice} /> ) : (<></>) }
             <div className="galleryButtons">
                 
-            <div className="galleryCaption">Notices</div>
+                <div className="galleryCaption">Notices</div>
                 <button className="galleryButtonControls" onClick={()=>setCreateNotice(1)}>Create New Notice</button>
             </div>
             <div className="noticeContainer">

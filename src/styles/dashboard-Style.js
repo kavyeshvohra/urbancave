@@ -46,7 +46,36 @@ export const HeadingContainer = styled.div`
     align-items: center;
     flex-wrap: nowrap;
     justify-content: space-between;
-`   
+`
+// export const Cont = styled.div`
+
+// `
+
+export const HeadName = styled.h5`
+margin: 0;
+`
+export const DashItemWrapper = styled.div`
+    display: flex;
+    column-gap: 0.5rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    justify-content: space-evenly;
+`
+export const Area = styled.p`
+    margin: 0;
+`
+export const Table = styled.table`
+    display: table;
+`
+export const TableColumn = styled.td`
+    display: table-row;
+    /* display: flex;
+    column-gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    padding: 0;
+    justify-content: space-evenly; */
+`
 export const Item3 = styled.div`
     height: 20em;
     border: 1px dashed #ccc;
@@ -77,6 +106,10 @@ export const Item4 = styled.div`
 export const Icon = styled.span`
     font-size: 25px;
     line-height: 44px;
+    padding: 0.5em;
+`
+export const TableRow = styled.tr`
+
 `
 export const Title = styled.h3`
     font-size: 1em;
@@ -87,8 +120,10 @@ export const Title = styled.h3`
 `;
 export const DashItemContainer = styled.div`
     width: 21vw;
-    
 `;
+export const DashItemContainer1 = styled.div`
+    width: 25.5vw;
+`
 export const Feature1Container = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -96,10 +131,6 @@ export const Feature1Container = styled.div`
     justify-content: space-around;
 `;
 export const Feature2Container = styled.div`
-    display:flex;
-    flex-direction: row;
-    column-gap: 2rem;
-    justify-content: flex-start;
     margin-left:4rem;
     margin-right: 4rem;
 `
@@ -113,9 +144,10 @@ export const Feature3Container = styled.div`
     margin-bottom:4rem;
 `
 export const CarouselRow = styled.div`
-    display: flex;
-    flex-direction: column;
-    row-gap: 2rem;
+    display:flex;
+    flex-direction: row;
+    column-gap: 5rem;
+    justify-content: flex-start;
 `
 export const CarouselContainer = styled.div`
     max-width: 17.5em;

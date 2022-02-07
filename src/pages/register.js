@@ -233,7 +233,28 @@ const Register = () => {
 
     }
 
-
+    function confirmPassChange(e) {
+        inputChange(e);
+        let input = document.getElementById('pwd');
+        let reInput = document.getElementById('confpwd');
+        const check = document.getElementById('passCheck');
+        reInput.onkeydown = function () {
+            document.getElementById('messageCheck').style.display = "block";
+        }
+        reInput.onblur = function () {
+            document.getElementById('messageCheck').style.display = "none";
+        }
+        reInput.onkeyup = function () {
+            if (reInput.value.match(input.value)) {
+                check.children[1].style.display = "inline-block";
+                check.children[0].style.display = "none";
+            }
+            else {
+                check.children[0].style.display = "inline-block";
+                check.children[1].style.display = "none";
+            }
+        }
+    }
     if (step === "step1") {
         return (
             <>
@@ -314,7 +335,7 @@ const Register = () => {
                                     {passInputType == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" style={iconStyle} className="icons-eye-off" onClick={() => passInput('text')} />) : (<AiFillEye id="" style={iconStyle} onClick={() => passInput('password')} />)}
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform id="confpassword" type={confirmpassInputType} name="conf-password" minLength="8" required onChange={inputChange} />
+                                    <RStyle.Detailsform id="confpassword" type={confirmpassInputType} name="conf-password" minLength="8" required onChange={inputChange} onKeyDown={confirmPassChange}/>
                                     <RStyle.FocusHtml data-placeholder='Confirm Password' />
                                     {confirmpassInputType == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" className="icons-eye-off" style={iconStyle} onClick={() => changeconfInputType('text')} />) : (<AiFillEye id="" style={iconStyle} onClick={() => changeconfInputType('password')} />)}
                                 </RStyle.FormGroup>
@@ -408,28 +429,7 @@ const Register = () => {
 
 
 
-    function confirmPassChange(e) {
-        inputChange(e);
-        let input = document.getElementById('pwd');
-        let reInput = document.getElementById('confpwd');
-        const check = document.getElementById('passCheck');
-        reInput.onkeydown = function () {
-            document.getElementById('messageCheck').style.display = "block";
-        }
-        reInput.onblur = function () {
-            document.getElementById('messageCheck').style.display = "none";
-        }
-        reInput.onkeyup = function () {
-            if (reInput.value.match(input.value)) {
-                check.children[1].style.display = "inline-block";
-                check.children[0].style.display = "none";
-            }
-            else {
-                check.children[0].style.display = "inline-block";
-                check.children[1].style.display = "none";
-            }
-        }
-    }
+
 
     // const onClickHandler = () => {
     //     const data = new FormData()

@@ -28,23 +28,35 @@ const Dashboard = () => {
                                 </Carousel>
                             </DashStyles.CarouselContainer>
                             <DashStyles.CarouselContainer>
-                                <Carousel controls={false} indicators={false}>
+                                {/* <Carousel controls={false} indicators={false}>
+                                    <Carousel.Item interval={2300} className="item1">
+                                        <Feature2 heading="TOTAL NO. OF SOCIETIES" metrics="350k" icon={<FaRupeeSign/>}></Feature2>
+                                    </Carousel.Item>
+                                    <Carousel.Item interval={2300} className='item1'>
+                                        <Feature2 heading="" metrics="50k" icon={<BsCalculator/>}></Feature2>
+                                    </Carousel.Item>
+                                </Carousel> */}
+                                <Feature1 heading = "Active Complaints" metrics="1000"></Feature1>
+                            </DashStyles.CarouselContainer>
+                            <DashStyles.CarouselContainer>
+                                {/* <Carousel controls={false} indicators={false}>
                                     <Carousel.Item interval={2300} className="item1">
                                         <Feature2 heading="INCOME" metrics="350k" icon={<FaRupeeSign/>}></Feature2>
                                     </Carousel.Item>
                                     <Carousel.Item interval={2300} className='item1'>
                                         <Feature2 heading="EXPENSE" metrics="50k" icon={<BsCalculator/>}></Feature2>
                                     </Carousel.Item>
-                                </Carousel>
+                                </Carousel> */}
+                                <Feature5 heading = "Recent Society Registered" Sname="Siddhachal Flats"></Feature5>
                             </DashStyles.CarouselContainer>
                         </DashStyles.CarouselRow>
-                        <Feature3 heading={"Society Analytics"} type={"Pie"}/>
-                        <Feature4 heading={"Rent Stats By Month"}/>
+                        {/* <Feature3 heading={"Society Analytics"} type={"Pie"}/>
+                        <Feature4 heading={"Rent Stats By Month"}/> */}
                     </DashStyles.Feature2Container>
                         <br/><br/>
                     <DashStyles.Feature3Container>
-                        <Feature3 heading={"Gender Ratio"}/>
-                        <Feature4 heading={"Rent Stats By Month"}/>
+                        {/* <Feature3 heading={"Gender Ratio"}/>
+                        <Feature4 heading={"Rent Stats By Month"}/> */}
                         <DashStyles.CarouselRow>
                             <DashStyles.CarouselContainer>
                                 <Carousel controls={false} indicators={false}>
@@ -69,19 +81,10 @@ const Dashboard = () => {
                         </DashStyles.CarouselRow>
                     </DashStyles.Feature3Container>
                     <DashStyles.Feature3Container>
-                        <Feature3 heading={"Gender Ratio"}/>
-                        <Feature4 heading={"Rent Stats By Month"}/>
+                        {/* <Feature3 heading={"Gender Ratio"}/>
+                        <Feature4 heading={"Rent Stats By Month"}/> */}
                         <DashStyles.CarouselRow>
-                            <DashStyles.CarouselContainer>
-                                <Carousel controls={false} indicators={false}>
-                                    <Carousel.Item interval={2300} className="item1">
-                                        <Feature2 heading="INCOME" metrics="350k" icon={<FaRupeeSign/>}></Feature2>
-                                    </Carousel.Item>
-                                    <Carousel.Item interval={2300} className='item1'>
-                                        <Feature2 heading="EXPENSE" metrics="50k" icon={<BsCalculator/>}></Feature2>
-                                    </Carousel.Item>
-                                </Carousel>
-                            </DashStyles.CarouselContainer>
+
                             <DashStyles.CarouselContainer>
                                 <Carousel controls={false} indicators={false}>
                                     <Carousel.Item interval={2300} className="item1">
@@ -144,4 +147,73 @@ const Dashboard = () => {
         )
     }
 
+    const Feature5 =  (props) =>{
+        return(
+            <>
+                    <DashStyles.DashItemContainer1>
+                        <DashStyles.Item>
+                            <DashStyles.Title style={{textAlign: "center", fontSize: '1.5rem', fontWeight: "500",textDecoration: "underline"}}>{props.heading}</DashStyles.Title>
+                            <DashStyles.Table>
+                            <DashStyles.TableRow>
+                                <td>1)</td>
+                                <td><DashStyles.HeadName>{props.Sname} </DashStyles.HeadName></td>
+                                <td>|</td>
+                                <td><DashStyles.Area>Navrangpura</DashStyles.Area></td>
+                            </DashStyles.TableRow>
+                            <DashStyles.TableRow>
+                                <DashStyles.TableColumn>
+                                    <div>2)</div>
+                                    <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
+                                    <div>|</div>
+                                    <DashStyles.Area>Navrangpura</DashStyles.Area>
+                                </DashStyles.TableColumn>
+                            </DashStyles.TableRow>
+                            <DashStyles.DashItemWrapper>
+                                <div>3)</div>
+                                <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
+                                <div>|</div>
+                                <DashStyles.Area>Navrangpura</DashStyles.Area>
+                            </DashStyles.DashItemWrapper>
+                            <DashStyles.DashItemWrapper>
+                                <div>4)</div>
+                                <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
+                                <div>|</div>
+                                <DashStyles.Area>Navrangpura</DashStyles.Area>
+                            </DashStyles.DashItemWrapper>
+                            <DashStyles.DashItemWrapper>
+                                <div>5)</div>
+                                <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
+                                <div>|</div>
+                                <DashStyles.Area>Navrangpura</DashStyles.Area>
+                            </DashStyles.DashItemWrapper>
+                            <DashStyles.DashItemWrapper>
+                                <div>6)</div>
+                                <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
+                                <div>|</div>
+                                <DashStyles.Area>Navrangpura</DashStyles.Area>
+                            </DashStyles.DashItemWrapper>
+                            <DashStyles.DashItemWrapper>
+                                <div>7)</div>
+                                <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
+                                <div>|</div>
+                                <DashStyles.Area>Navrangpura</DashStyles.Area>
+                            </DashStyles.DashItemWrapper>
+                            <DashStyles.DashItemWrapper>
+                                <div>8)</div>
+                                <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
+                                <div>|</div>
+                                <DashStyles.Area>Navrangpura</DashStyles.Area>
+                            </DashStyles.DashItemWrapper>
+                            <DashStyles.DashItemWrapper>
+                                <div>9)</div>
+                                <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
+                                <div>|</div>
+                                <DashStyles.Area>Navrangpura</DashStyles.Area>
+                            </DashStyles.DashItemWrapper>
+                            </DashStyles.Table>
+                        </DashStyles.Item>
+                    </DashStyles.DashItemContainer1>
+            </>
+        )
+    }
 export default Dashboard

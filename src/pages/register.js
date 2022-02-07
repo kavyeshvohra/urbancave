@@ -79,7 +79,7 @@ const Register = () => {
         const email = document.getElementById("email").value;
         const otp = document.getElementById("otp").value;
 
-        document.getElementById("1").innerHTML="";
+        document.getElementById("errorDiv").innerHTML="";
         let count = 0;
 
         if( !email.match(emailReg) ){

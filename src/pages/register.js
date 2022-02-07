@@ -17,7 +17,7 @@ const Register = () => {
     //     lname: "",
     //     dob: ""
     // })
-    const [step, changeStep] = useState("step2");
+    const [step, changeStep] = useState("step1");
     const societyRegisterStep = () => {
         changeStep("step2");
     }

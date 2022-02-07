@@ -1,8 +1,25 @@
 import Images from '../../images';
 import '../../styles/complaints.css';
 import {AiOutlineCloseCircle} from 'react-icons/all';
+import Select from 'react-select';
 
 const CreateComplaintModal = (props)=>{
+    
+    const errStyle={
+        width:'100%',
+        marginTop:"-0.5em",
+        color:"red",
+        alignText:"center",
+    }
+
+    const options = [
+        { value: 'Maintenance Payment', label: 'Society Admin' },
+        { value: 'Donations', label: 'Donations' },
+        { value: 'Platform', label: 'Platform' },
+        { value: 'Society Member', label: 'Society Member' },
+        { value: 'Society Admin', label: 'Society Admin' },
+        { value: 'None of the above', label: 'None of the above' },
+    ]
 
     return(
         <div className="dimScreen">
@@ -21,6 +38,9 @@ const CreateComplaintModal = (props)=>{
                         <option value="">Society Admin</option>
                         <option value="">None of the above</option>
                     </select>
+                    <Select 
+                        options={options}
+                    />
                 </div>
                 <div className="complaintInfo">
                     <div className="complaintInfoHeading">
@@ -30,6 +50,8 @@ const CreateComplaintModal = (props)=>{
                         className="complaintInfoDetails"
                         placeholder="Type here..."
                     ></textarea>
+                    <div style={errStyle} id="errorDiv">
+                    </div>
                 </div>
                 <div>
                     <button className="complaintRegisterButton">

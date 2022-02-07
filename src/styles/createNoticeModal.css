@@ -12,6 +12,10 @@
     color:#707A8A;
 }
 
+.complaintSubjectContainer{
+    width:100%;
+}
+
 .createNoticeModalInput{
     outline: none;
     border:solid 2px#FEB6B6;

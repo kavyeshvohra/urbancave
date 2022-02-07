@@ -13,6 +13,10 @@ const CreateComplaintModal = (props)=>{
         alignText:"center",
     }
 
+    const sStyle={
+        overflowY:"scroll",
+    }
+
     const options = [
         { value: 'Maintenance Payment', label: 'Society Admin' },
         { value: 'Donations', label: 'Donations' },
@@ -22,7 +26,20 @@ const CreateComplaintModal = (props)=>{
         { value: 'None of the above', label: 'None of the above' },
     ]
 
-    const [complaintSub , setComplaintSub] = useState({});
+    const [complaintSub , setComplaintSub] = useState();
+
+    const validateCreateComplaint = ()=>{
+        let error="";
+        const desc = document.getElementById("complaintDesc").value;
+        if( !complaintSub ){
+            error+="<div>Please select subject for complaint!</div>";
+        }
+        if( desc.trim().length < 10 ){
+            error+="<div>Please enter valid discription for complaint!</div>"
+        }
+        document.getElementById("errorDiv").innerHTML=error;
+    }
+
 
     return(
         <div className="dimScreen">
@@ -52,16 +69,15 @@ const CreateComplaintModal = (props)=>{
                     </div>
                     <textarea
                         className="complaintInfoDetails"
+                        id="complaintDesc"
                         placeholder="Type here..."
                     ></textarea>
+                </div>
                     <div style={errStyle} id="errorDiv">
                     </div>
-                </div>
-                <div>
-                    <button className="complaintRegisterButton">
+                    <button className="complaintRegisterButton" onClick={()=>validateCreateComplaint()}>
                         Register Complaint
                     </button>
-                </div>
             </div>
         </div>
     );

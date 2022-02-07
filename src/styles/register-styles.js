@@ -287,7 +287,7 @@ export const ErrorMessageCont1 = styled.div`
   position: relative; 
 `
 export const ErrorMessage1 = styled.div`
-  display: none;
+  display: block;
   width: 30%;
   background: #eee;
   padding: 10px;

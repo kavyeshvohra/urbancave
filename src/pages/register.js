@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useLayoutEffect, useEffect } from 'react'
 import Select from 'react-select';
 import { Link } from 'react-router-dom';
 
@@ -10,6 +10,21 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import * as RStyle from '../styles/register-styles';
 
 const Register = () => {
+
+    const [errordiv, changeViewDiv] = useState(0);
+
+
+    
+    // useLayoutEffect(()=>{
+    //     const reInput = document.getElementById('confpassword');
+        
+    //     reInput.onkeydown = function () {
+    //         document.getElementById('messageCheck').style.display = "block";
+    //     }
+    //     reInput.onblur = function () {
+    //         document.getElementById('messageCheck').style.display = "none";
+    //     }
+    // })
     let navigate = useNavigate();
     // const url = ""
     // const[data,setData] = useState({
@@ -233,27 +248,23 @@ const Register = () => {
 
     }
 
+
     function confirmPassChange() {
         let input = document.getElementById('password');
         let reInput = document.getElementById('confpassword');
         const check = document.getElementById('passCheck');
-        reInput.onkeydown = function () {
-            document.getElementById('messageCheck').style.display = "block";
-        }
-        reInput.onblur = function () {
-            document.getElementById('messageCheck').style.display = "none";
-        }
-        reInput.onkeyup = function () {
-            if (reInput.value.match(input.value)) {
+            if (reInput.value === input.value) {
+                console.log(check);
                 check.children[1].style.display = "inline-block";
                 check.children[0].style.display = "none";
             }
             else {
+                console.log(check);
                 check.children[0].style.display = "inline-block";
                 check.children[1].style.display = "none";
             }
         }
-    }
+        useEffect(()=>{if(errordiv==1){confirmPassChange()}})
     if (step === "step1") {
         return (
             <>
@@ -334,7 +345,7 @@ const Register = () => {
                                     {passInputType == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" style={iconStyle} className="icons-eye-off" onClick={() => passInput('text')} />) : (<AiFillEye id="" style={iconStyle} onClick={() => passInput('password')} />)}
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform id="confpassword" type={confirmpassInputType} name="conf-password" minLength="8" required onChange={inputChange} onKeyPress={confirmPassChange}/>
+                                    <RStyle.Detailsform id="confpassword" type={confirmpassInputType} name="conf-password" minLength="8" required onChange={inputChange} onBlur={()=>{changeViewDiv(0)}} onKeyDown={()=>{changeViewDiv(1)}}/>
                                     <RStyle.FocusHtml data-placeholder='Confirm Password' />
                                     {confirmpassInputType == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" className="icons-eye-off" style={iconStyle} onClick={() => changeconfInputType('text')} />) : (<AiFillEye id="" style={iconStyle} onClick={() => changeconfInputType('password')} />)}
                                 </RStyle.FormGroup>
@@ -358,12 +369,8 @@ const Register = () => {
                                 </RStyle.ErrorMessage>
                                 </RStyle.ErrorMessageCont>
                                 <RStyle.ErrorMessageCont>
-                                <RStyle.ErrorMessage1 id="messageCheck">
-                                    <p id="passCheck" className="invalid">
-                                        <VscError className='errorIcon' style={errorIcon} />
-                                        <VscCheck className='validIcon' style={validIcon} /> Password's Match
-                                    </p>
-                                </RStyle.ErrorMessage1>
+                                   {errordiv == 1 ? (<RStyle.ErrorMessage1 id="messageCheck"><p id="passCheck" className="invalid"><VscError className='errorIcon' style={errorIcon} /><VscCheck className='validIcon' style={validIcon} /> Password's Match</p>
+                                </RStyle.ErrorMessage1>) : (<></>)} 
                                 </RStyle.ErrorMessageCont>
                                 <RStyle.FormGroup>
                                     <RStyle.Detailsform type="text" name="housename" id="houseName"onChange={inputChange} />
@@ -399,7 +406,9 @@ const Register = () => {
                 </RStyle.RegisterCont>
             </>
         );
+
     }
+
     // else
     // {
     //     let hiddenText = document.getElementById('confpwd');

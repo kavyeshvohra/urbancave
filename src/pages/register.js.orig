@@ -108,7 +108,11 @@ const Register = () => {
                         </div>
                         <RStyle.InputWrapper style={{ marginTop: '2em' }} id="signup_verify_email_textfield">
                             <RStyle.FormGroup>
+<<<<<<< HEAD
+                                <RStyle.Detailsform type="number" id="otp" name="verif-code" max="5" onChange={inputChange} required onKeyPress="" />
+=======
                                 <RStyle.Detailsform type="text" pattern="\d*"  id="otp" name="verif-code" onChange={inputChange} required maxLength={6}/>
+>>>>>>> f7e13e0668e8330c359c914661b1256d496c7eb7
                                 <RStyle.FocusHtml data-placeholder='OTP' />
                             </RStyle.FormGroup>
                             <RStyle.TextSpan1 id="resend_otp_verify">Resend OTP</RStyle.TextSpan1>

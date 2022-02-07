@@ -82,7 +82,7 @@ export const ButtonWrapper1 = styled.div`
   margin-bottom: -15px;
   text-align: center;
 `;
-export const ButtonSubmit = styled.input`
+export const ButtonSubmit = styled.button`
   width: 30%;
   margin: 0 auto;
   margin-top: 15px;

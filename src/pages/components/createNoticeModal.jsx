@@ -13,10 +13,25 @@ const CreateNoticeModal=(props)=>{
     }
 
     const validateNotice = ()=>{
+        let error="";
         const caption = document.getElementById("noticeCaption").value;
         const desc = document.getElementById("noticeDesc").value;
         const noticePdf = document.getElementById("noticePDF").files[0];
-        console.log(noticePdf);
+        if ( noticePdf ){
+            let ext=noticePdf.name.split(".");
+
+            if(ext[ext.length-1] != "pdf"){
+                error+="<div>Uploaded file is not pdf!</div>";
+            }
+        }
+        if(caption.trim().length < 5){
+            error+="<div>please enter caption of at least 5 character!</div>";
+        }
+        if(desc.trim().length < 20){
+            error+="<div>please enter discription of at least 20 character!</div>";
+        }
+
+            document.getElementById("errorDiv").innerHTML=error;
     }
 
     return(
@@ -36,9 +51,8 @@ const CreateNoticeModal=(props)=>{
                     <div className="CreateGalleryModalLabel">Upload Pdf</div>
                     <div className="createNoticeModalFile">
                         <AiOutlineFile size="2.2em" color="#FEB6B6"/>
-                        <input type="file" className="createNoticeUploadText" text="Darg and drop your pdf here
+                        <input type="file" className="createNoticeUploadText" id="noticePDF"text="Darg and drop your pdf here
                             or click on ‘Browse’."/>
-                            
                     </div>
                 </div>
                 <div style={errStyle} id="errorDiv">

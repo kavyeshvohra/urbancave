@@ -136,12 +136,8 @@ const Register = () => {
 
         //const houseType=document.getElementById("houseType");
         //const userType=document.getElementById("userType");
-<<<<<<< HEAD
-        const file=document.getElementById("profileImage");
         
-=======
         const file = document.getElementById("profileImage").files[0];
->>>>>>> 8b164207a0a746ccfc108cc3aa3b5ab911158909
 
         //regular expression for password
         const passwordReg = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;

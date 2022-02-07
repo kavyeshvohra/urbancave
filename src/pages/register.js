@@ -79,7 +79,7 @@ const Register = () => {
             document.getElementById("errorDiv").innerHTML+=`<div>Please Enter a valid email! </div>`;
             count+=1;
         }
-        if( otp.length != 4 ){
+        if( otp.length != 6 ){
             document.getElementById("errorDiv").innerHTML+=`<div>Length of OTP is not valid! </div>`;
             count+=1;
         }

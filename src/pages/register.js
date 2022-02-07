@@ -60,6 +60,7 @@ const Register = () => {
     const [otpClick,changeClick] = useState(0);
 
     const [email,changeEmail] = useState("");
+    const [scrollStyle,setScrollStyle] = useState({});
 
     //error style
     const errStyle={
@@ -67,6 +68,10 @@ const Register = () => {
         marginTop:"-0.5em",
         color:"red",
         alignText:"center",
+    }
+
+    const sStyle={
+        overflowY:"scroll",
     }
 
     //states for select components
@@ -226,6 +231,12 @@ const Register = () => {
         }
 
         document.getElementById("errorDiv1").innerHTML=error;
+        if(document.getElementById("errorDiv1").innerHTML != ""){
+            setScrollStyle(sStyle);
+        }
+        else{
+            setScrollStyle({});
+        }
 
         if( count ==0 ){
            navigate("/login");
@@ -234,6 +245,13 @@ const Register = () => {
     }
 
     function confirmPassChange() {
+        
+        if(document.getElementById("errorDiv1").innerHTML != ""){
+            console.log(0);
+        }
+
+
+
         let input = document.getElementById('password');
         let reInput = document.getElementById('confpassword');
         const check = document.getElementById('passCheck');
@@ -254,12 +272,6 @@ const Register = () => {
             }
         }
     }
-
-    useEffect(()=>{
-        if(document.getElementById("errorDiv1").innerHTML != ""){
-            console.log(0);
-        }
-    });
 
     if (step === "step1") {
         return (
@@ -305,7 +317,7 @@ const Register = () => {
         return (
             <>
                 <RStyle.RegisterCont>
-                    <RStyle.RegisterForm>
+                    <RStyle.RegisterForm style={scrollStyle}>
                         <RStyle.Heading1>
                             Hello, Member!
                         </RStyle.Heading1>

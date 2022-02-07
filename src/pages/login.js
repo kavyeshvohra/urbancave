@@ -32,7 +32,7 @@ const Login = () => {
     
     const validateCreds = ()=>{
         const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
-        
+
         const passwordReg = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
         const email=document.getElementById("email").value ;
@@ -51,11 +51,12 @@ const Login = () => {
     }
 
     useLayoutEffect(()=>{
+
         document.getElementById("submit").addEventListener("click",(e)=>{
             e.preventDefault();
             document.getElementById("errorDiv").innerHTML="";
             validateCreds();
-        });        
+        });   
     });
 
     const errStyle={

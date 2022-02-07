@@ -41,7 +41,7 @@ export const RegisterForm = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: -1px 1px 11px #00000014;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 `;
 
 export const Span = styled.span`

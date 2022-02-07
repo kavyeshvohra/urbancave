@@ -10,6 +10,14 @@ import * as RegisterStyle from '../../styles/register-styles' ;
 
 
 const UserAccount=(props)=>{
+    function inputChange(e) {
+        if (e.target.value !== "") {
+            e.target.classList.add('text');
+        }
+        else {
+            e.target.classList.remove('text');
+        }
+    }
     return(
         <>
         <ContentHeader text="Account Info"/>
@@ -61,39 +69,39 @@ const UserAccount=(props)=>{
             </div> */}
             <div>
                 <HomeStyle.ContactFormGroup>
-                    <HomeStyle.InputField type="text" onChange=""/>
+                    <HomeStyle.InputField type="text" onChange={inputChange}/>
                     <HomeStyle.FocusText data-placeholder="Username"/>
                 </HomeStyle.ContactFormGroup>
                 <HomeStyle.ContactFormGroup>
-                    <HomeStyle.InputField type="text" onChange=""/>
+                    <HomeStyle.InputField type="text" onChange={inputChange}/>
                     <HomeStyle.FocusText data-placeholder="Password"/>
                 </HomeStyle.ContactFormGroup>
                 <HomeStyle.ContactFormGroup>
-                    <HomeStyle.InputField type="text" onChange=""/>
+                    <HomeStyle.InputField type="text" onChange={inputChange}/>
                     <HomeStyle.FocusText data-placeholder="First Name"/>
                 </HomeStyle.ContactFormGroup>
                 <HomeStyle.ContactFormGroup>
-                    <HomeStyle.InputField type="text" onChange=""/>
+                    <HomeStyle.InputField type="text" onChange={inputChange}/>
                     <HomeStyle.FocusText data-placeholder="Last Name"/>
                 </HomeStyle.ContactFormGroup>
                 <HomeStyle.ContactFormGroup>
-                    <HomeStyle.InputField type="date" placeholder="" onChange=""/>
+                    <HomeStyle.InputField type="date" placeholder="" onChange={inputChange}/>
                     <HomeStyle.FocusText data-placeholder="Date of Birth"/>
                 </HomeStyle.ContactFormGroup>
                 <HomeStyle.ContactFormGroup>
-                    <HomeStyle.InputField type="text" onChange=""/>
+                    <HomeStyle.InputField type="text" onChange={inputChange}/>
                     <HomeStyle.FocusText data-placeholder="Phone Number (+91)"/>
                 </HomeStyle.ContactFormGroup>
                 <HomeStyle.ContactFormGroup>
-                    <HomeStyle.InputField type="tel" onChange=""/>
+                    <HomeStyle.InputField type="tel" onChange={inputChange}/>
                     <HomeStyle.FocusText data-placeholder='Phone Number (+91)*'/>
                 </HomeStyle.ContactFormGroup>
                 <HomeStyle.ContactFormGroup>
-                    <HomeStyle.InputField type="email" onChange=""  />
+                    <HomeStyle.InputField type="email" onChange={inputChange}  />
                     <HomeStyle.FocusText data-placeholder="Email"/>
                 </HomeStyle.ContactFormGroup>
                 <HomeStyle.ContactFormGroup>
-                    <HomeStyle.InputField type="text" onChange="" readonly />
+                    <HomeStyle.InputField type="text" onChange={inputChange} readonly />
                     <HomeStyle.FocusText data-placeholder="Society Name"/>
                 </HomeStyle.ContactFormGroup>
             </div>
@@ -107,27 +115,6 @@ const UserAccount=(props)=>{
     );
 }
 
-
-const TextInput = (props) => {
-    
-    const handleControlls=()=>{
-        switch(props.type){
-            case "date": return(<input type="date" className="textInputDateField" defaultValue={props.data}/>);
-            case "text": return(<input type="text" id="firstname" className="textInputField" defaultValue={props.data}/>);
-            case "password": return(<input type="password" className="textInputField" defaultValue={props.data}/>);
-            case "email":return(<input type="email" className="textInputEmailField" defaultValue={props.data}/>);
-            case "phone":return(<input type="phone" className="textInputDateField" defaultValue={props.data}/>);
-        }
-    }
-
-    return(
-        <div className="textInputContainer">
-            <div className="textInputFieldCaption">{props.caption}</div>            
-            {handleControlls()}
-        </div>
-    );
-
-}
 
 
 export default UserAccount;

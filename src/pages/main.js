@@ -42,10 +42,10 @@ const Main = ()=> {
           <img src={Images.urbancaveLogo} className="logo"/>
           
           <div className="navItems">
-            <AiOutlineLogin size="2.1em" color={hover=="profile"?"#FEB6B6":"707A8A"}
+            <Link to="/login"><AiOutlineLogin size="2.1em" color={hover=="profile"?"#FEB6B6":"707A8A"}
               onMouseOver={()=>setHover("profile")}
               onMouseLeave={()=>setHover(0)}
-            />
+            /></Link>
             <VscAccount size="2em" color={hover=="logout"?"#FEB6B6":"707A8A"}
               onMouseOver={()=>setHover("logout")}
               onMouseLeave={()=>setHover(0)}

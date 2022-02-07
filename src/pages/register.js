@@ -54,6 +54,43 @@ const Register = () => {
 
     const [passInputType, passInput] = useState("password");
     const [confirmpassInputType, changeconfInputType] = useState("password");
+    const [otpClick,changeClick] = useState(0);
+
+    const [email,changeEmail] = useState("");
+
+    //error style
+    const errStyle={
+        width:'100%',
+        marginTop:"-0.5em",
+        color:"red",
+        alignText:"center",
+    }
+
+    //validation function
+    const validateEmailOpt=()=>{
+        const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
+        const email = document.getElementById("email").value;
+        const otp = document.getElementById("otp").value;
+
+        document.getElementById("errorDiv").innerHTML="";
+        let count = 0;
+
+        if( !email.match(emailReg) ){
+            document.getElementById("errorDiv").innerHTML+=`<div>Please Enter a valid email! </div>`;
+            count+=1;
+        }
+        if( otp.length != 4 ){
+            document.getElementById("errorDiv").innerHTML+=`<div>Length of OTP is not valid! </div>`;
+            count+=1;
+        }
+
+        if(count == 0){
+            changeEmail(email);
+           societyRegisterStep();
+        }
+
+    }
+
     if (step === "step1") {
         return (
             <>
@@ -62,7 +99,7 @@ const Register = () => {
                         <RStyle.Heading1>Sign Up</RStyle.Heading1>
                         <RStyle.InputWrapper1>
                             <RStyle.FormGroup1>
-                                <RStyle.Detailsform type="email" id="usrEmail" name="regEmail" onChange={inputChange} />
+                                <RStyle.Detailsform type="email" id="email" name="regEmail" onChange={inputChange} required/>
                                 <RStyle.FocusHtml data-placeholder='Email' />
                             </RStyle.FormGroup1>
                         </RStyle.InputWrapper1>
@@ -71,13 +108,20 @@ const Register = () => {
                         </div>
                         <RStyle.InputWrapper style={{ marginTop: '2em' }} id="signup_verify_email_textfield">
                             <RStyle.FormGroup>
-                                <RStyle.Detailsform type="text" id="otpField" name="verif-code" onChange={inputChange}/>
+                                <RStyle.Detailsform type="number" id="otp" name="verif-code" onChange={inputChange} required />
                                 <RStyle.FocusHtml data-placeholder='OTP' />
                             </RStyle.FormGroup>
                             <RStyle.TextSpan1 id="resend_otp_verify">Resend OTP</RStyle.TextSpan1>
                         </RStyle.InputWrapper>
+                        <div>
+                            {otpClick==1?"OTP sent":""}
+                        </div>
+                        <div style={errStyle} id="errorDiv">
+                        </div>
                         <RStyle.ButtonWrapper1>
-                            <RStyle.ButtonSubmit name="submit" onClick={societyRegisterStep}>Request OTP</RStyle.ButtonSubmit>
+                            <RStyle.ButtonSubmit name="submit" id="checkOTP" onClick={ otpClick==0?()=>changeClick(1):()=>validateEmailOpt() }>
+                                {otpClick==0?"Request OTP":"Submit"}
+                            </RStyle.ButtonSubmit>
                         </RStyle.ButtonWrapper1>
                         <RStyle.ExistAccount>
                             Already a Member? &nbsp;<Link to="/login"><RStyle.Span>Sign In</RStyle.Span></Link>
@@ -98,7 +142,7 @@ const Register = () => {
                         <RStyle.Heading4>Enter your details and start using our amazing services!</RStyle.Heading4>
                             <RStyle.InputWrapper>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform type="text" id="fname" required name="fname" onChange={inputChange} requried />
+                                    <RStyle.Detailsform type="text" id="fname" required name="fname" onChange={inputChange} />
                                     <RStyle.FocusHtml data-placeholder="First Name" />
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
@@ -106,23 +150,23 @@ const Register = () => {
                                     <RStyle.FocusHtml data-placeholder="Last Name" />
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsformdate type="date" id="datepicker" name="dateofbirth" onChange={inputChange} required />
+                                    <RStyle.Detailsformdate type="date" id="dob" name="dateofbirth" onChange={inputChange} required />
                                     <RStyle.FocusHtml data-placeholder="Date Of Birth" />
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform type="email" name="email" disabled onChange={inputChange} required />
+                                    <RStyle.Detailsform type="email" name="email" disabled onChange={inputChange} required value={email}/>
                                     <RStyle.FocusHtml data-placeholder="Email" />
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform type="text" name="phonenum" maxLength="10" onChange={inputChange} required />
+                                    <RStyle.Detailsform type="phone" name="phonenum" id="phone" maxLength="10" onChange={inputChange} required />
                                     <RStyle.FocusHtml data-placeholder="Phone Number" />
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform type="text" name="altphonenum" maxLength="10" onChange={inputChange} />
+                                    <RStyle.Detailsform type="phone" name="altphonenum" maxLength="10" onChange={inputChange} />
                                     <RStyle.FocusHtml data-placeholder="Alternate Phone Number" />
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
-                                    <RStyle.Detailsform type={passInputType} id="pwd" name="password" minLength="8" required onChange={validation} />
+                                    <RStyle.Detailsform type={passInputType} id="pwd" name="password" minLength="8" required />
                                     <RStyle.FocusHtml data-placeholder="Password" />
                                     {passInputType == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" style={iconStyle} className="icons-eye-off" onClick={() => passInput('text')} />) : (<AiFillEye id="" style={iconStyle} onClick={() => passInput('password')} />)}
                                 </RStyle.FormGroup>
@@ -204,6 +248,27 @@ const Register = () => {
     //     }
     // }
 
+
+    //validation for 2nd step:
+    
+    
+    const validateRegistration=()=>{
+        const fname=document.getElementById("fname");
+        const lname=document.getElementById("lname");
+        const dob=document.getElementById("dob");
+        const email=email;
+        const phone="";
+        const phoneA="";
+        const pass="";
+        const confPass="";
+        const gender="";
+        const houseName="";
+        const houseType="";
+        const userType="";
+        const rent="";
+        const file="";
+    }
+
     function inputChange(e) {
         if (e.target.value !== "") {
             e.target.classList.add('text');
@@ -212,6 +277,9 @@ const Register = () => {
             e.target.classList.remove('text');
         }
     }
+
+
+
     function confirmPassChange(e) {
         inputChange(e);
         let input = document.getElementById('pwd');
@@ -233,72 +301,6 @@ const Register = () => {
                 check.children[1].style.display = "none";
             }
         }
-    }
-    function validation(e) {
-        inputChange(e);
-        let input = document.getElementById('pwd');
-        const letter = document.getElementById('letter');
-        const capital = document.getElementById('capital');
-        const length = document.getElementById('length');
-        const number = document.getElementById('number');
-        const special = document.getElementById('special')
-
-        input.onkeydown = function () {
-            document.getElementById('message').style.display = "block";
-        }
-        input.onblur = function () {
-            document.getElementById('message').style.display = "none";
-        }
-        input.onkeyup = function () {
-            let lowerCase = /[a-z]/g;
-            if (input.value.match(lowerCase)) {
-                letter.children[1].style.display = "inline-block";
-                letter.children[0].style.display = "none";
-            }
-            else {
-                letter.children[0].style.display = "inline-block";
-                letter.children[1].style.display = "none";
-            }
-
-            let upperCase = /[A-Z]/g;
-            if (input.value.match(upperCase)) {
-                capital.children[1].style.display = "inline-block";
-                capital.children[0].style.display = "none";
-            }
-            else {
-                capital.children[0].style.display = "inline-block";
-                capital.children[1].style.display = "none";
-            }
-
-            let numbers = /[0-9]/g;
-            if (input.value.match(numbers)) {
-                number.children[1].style.display = "inline-block";
-                number.children[0].style.display = "none";
-            }
-            else {
-                number.children[0].style.display = "inline-block";
-                number.children[1].style.display = "none";
-            }
-
-            let spchars = /[!-)]/g;
-            if (input.value.match(spchars)) {
-                special.children[1].style.display = "inline-block";
-                special.children[0].style.display = "none";
-            }
-            else {
-                special.children[0].style.display = "inline-block";
-                special.children[1].style.display = "none";
-            }
-            if (input.value.length >= 8) {
-                length.children[1].style.display = "inline-block";
-                length.children[0].style.display = "none";
-            }
-            else {
-                length.children[0].style.display = "inline-block";
-                length.children[1].style.display = "none";
-            }
-        }
-
     }
 
     // const onClickHandler = () => {

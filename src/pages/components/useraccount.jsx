@@ -69,8 +69,8 @@ const UserAccount=(props)=>{
             </div> */}
             <div>
                 <HomeStyle.ContactFormGroup>
-                    <HomeStyle.InputField type="text" onChange={inputChange}/>
-                    <HomeStyle.FocusText data-placeholder="Username"/>
+                    <HomeStyle.InputField type="email" onChange={inputChange} readOnly />
+                    <HomeStyle.FocusText data-placeholder="Email"/>
                 </HomeStyle.ContactFormGroup>
                 <HomeStyle.ContactFormGroup>
                     <HomeStyle.InputField type="text" onChange={inputChange}/>
@@ -94,11 +94,7 @@ const UserAccount=(props)=>{
                 </HomeStyle.ContactFormGroup>
                 <HomeStyle.ContactFormGroup>
                     <HomeStyle.InputField type="tel" onChange={inputChange}/>
-                    <HomeStyle.FocusText data-placeholder='Phone Number (+91)*'/>
-                </HomeStyle.ContactFormGroup>
-                <HomeStyle.ContactFormGroup>
-                    <HomeStyle.InputField type="email" onChange={inputChange}  />
-                    <HomeStyle.FocusText data-placeholder="Email"/>
+                    <HomeStyle.FocusText data-placeholder='Alternate Phone Number (+91)'/>
                 </HomeStyle.ContactFormGroup>
                 <HomeStyle.ContactFormGroup>
                     <HomeStyle.InputField type="text" onChange={inputChange} readonly />

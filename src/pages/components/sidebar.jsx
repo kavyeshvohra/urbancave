@@ -135,21 +135,21 @@ const SideBar = (props) =>{
                     </Link>
 
 
-                    <Link to="/main/Tenants">
+                    {/* <Link to="/main/Tenants">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("Tenants")} 
                             onMouseLeave={()=>iconStateChange(false)} 
                             onClick={(e)=>replaceIcon(e,"visitors")}>
                             {   clickedIcon==="tenants" || changeicon==="tenants"?(<img src={VisitorF} alt="" class="custommenuicon"/>):(<img src={VisitorUF} alt="" class="custommenuicon"/>)}Tenants
                         </sidebar.MenuListItem>
-                    </Link>
+                    </Link> */}
 
-                    <Link to="/main/profile">
+                    <Link to="/main/Tenants">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("profile")} 
                             onMouseLeave={()=>iconStateChange(false)} 
                             onClick={(e)=>replaceIcon(e,"profile")}>
-                            {   clickedIcon==="profile" || changeicon==="profile"?(<img src={UserF} alt="" class="custommenuicon"/>):(<img src={UserUF} alt="" class="custommenuicon"/>)}Profile
+                            {   clickedIcon==="profile" || changeicon==="profile"?(<img src={UserF} alt="" class="custommenuicon"/>):(<img src={UserUF} alt="" class="custommenuicon"/>)}Tenants
                         </sidebar.MenuListItem>
                     </Link>
 

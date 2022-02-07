@@ -173,6 +173,7 @@ export const Detailsform = styled.input`
   &:focus + span,
   &.text + span {
   transform: translate(0em,-2.4rem) scale(1);
+
 }
 `;
 export const Detailsformdate = styled.input`

@@ -1,4 +1,6 @@
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import {useState} from 'react';
+
 import ComplaintsAndFeedback from './pages/components/complaintsAndFeedback';
 import Home from './pages/home';
 import Main from './pages/main';
@@ -16,40 +18,43 @@ import Visitor from './pages/components/visitors';
 import Payments from './pages/components/payments';
 
 function App() {
+
+  const [userType,setUserType] = useState("Admin");
+
   return (
     <>
     <Router>
       <div className = "App">
         <Routes>
-          <Route path="/" element={ <Home/> }/>
+          <Route path="/" element={ <Home userType={userType} /> }/>
           
-          <Route path="/login" element={ <Login/> }/>
+          <Route path="/login" element={ <Login userType={userType} changeUserType={setUserType}/> }/>
           
-          <Route path="/register" element={ <Register/> }/>
+          <Route path="/register" element={ <Register userType={userType} /> }/>
 
-          <Route path="/contactus" element={<Contact/>} />
-          <Route path="/main" element={<Main/>} >
+          <Route path="/contactus" element={<Contact userType={userType} />} />
+          <Route path="/main" element={<Main userType={userType} />} >
             
-            <Route path="" element={ <Dashboard/> }/>
+            <Route path="" element={ <Dashboard userType={userType} /> }/>
             
-            <Route path="societies" element={ <Societies/> }/>
+            <Route path="societies" element={ <Societies userType={userType} /> }/>
             
             <Route path="members" element={<h1>Members</h1>}/>
           
-            <Route path="payments" element={ <Payments/> }/>
+            <Route path="payments" element={ <Payments userType={userType} /> }/>
           
-            <Route path="complaints" element={ <ComplaintsAndFeedback/> }/>
+            <Route path="complaints" element={ <ComplaintsAndFeedback userType={userType} /> }/>
                       
-            <Route path="notice" element= { <Notice/> } />
+            <Route path="notice" element= { <Notice userType={userType} /> } />
             
-            <Route path="gallery" element={<Gallery/>} />
-            <Route path="gallery/:event" element={<Event/>} />
+            <Route path="gallery" element={<Gallery userType={userType} />} />
+            <Route path="gallery/:event" element={<Event userType={userType} />} />
             
-            <Route path="profile" element={<UserAccount/>}/>
+            <Route path="profile" element={<UserAccount userType={userType} />}/>
             
-            <Route path="visitors" element={<Visitor/>}/>
+            <Route path="visitors" element={<Visitor userType={userType} />}/>
 
-            <Route path="tenants" element={ <Tenants/> }/>
+            <Route path="tenants" element={ <Tenants userType={userType} /> }/>
             
             <Route path="reports" element={<h1>Reports</h1>}/>
           

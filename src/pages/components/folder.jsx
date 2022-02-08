@@ -12,7 +12,6 @@ const Folder = (props)=>{
 
 
     useEffect(()=>{
-        console.log(props.type);
         switch(props.type){
             case 'folder':setIconState(Images.folderIcon) ;break;
             case 'society':setIconState(Images.societyIcon) ;break;

@@ -4,7 +4,7 @@ import CreateComplaintModal from "./createComplaintModal";
 import { useState } from "react";
 
 const ComplaintsAndFeedback=()=>{
-    const [ compRegister , setCompRegister ] = useState(1);
+    const [ compRegister , setCompRegister ] = useState(0);
     return (
 
        <>

@@ -48,7 +48,7 @@ const CreateNoticeModal=(props)=>{
                     <textarea className="createNoticeModalInput1" id="noticeDesc"/>
                 </div>
                 <div className="createNoticeModalFileContainer">
-                    <div className="CreateGalleryModalLabel">Upload Pdf</div>
+                    <div className="CreateGalleryModalLabel">Upload Pdf (optional)</div>
                     <div className="createNoticeModalFile">
                         <AiOutlineFile size="2.2em" color="#FEB6B6"/>
                         <input type="file" className="createNoticeUploadText" id="noticePDF"text="Darg and drop your pdf here

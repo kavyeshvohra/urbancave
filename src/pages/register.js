@@ -284,7 +284,7 @@ const Register = () => {
         }
     }
     useEffect(() => { if (errordiv == 1) { confirmPassChange() } })
-}
+
 
 if (step === "step1") {
     return (
@@ -427,6 +427,8 @@ else {
             </RStyle.RegisterCont>
         </>
     );
+
+}
 
 }
 

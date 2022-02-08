@@ -4,7 +4,7 @@ import CreateNoticeModal from './createNoticeModal';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
 
 const Notice = ()=>{
-    const [ createNotice , setCreateNotice ] = useState(1);
+    const [ createNotice , setCreateNotice ] = useState(0);
     return(
         <>
             {createNotice != 0 ? ( <CreateNoticeModal changeCreateNotice={setCreateNotice} /> ) : (<></>) }

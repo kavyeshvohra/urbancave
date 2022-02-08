@@ -3,7 +3,7 @@ import '../../styles/complaints.css';
 import CreateComplaintModal from "./createComplaintModal";
 import { useState } from "react";
 
-const ComplaintsAndFeedback=()=>{
+const ComplaintsAndFeedback=(props)=>{
     const [ compRegister , setCompRegister ] = useState(0);
     return (
 
@@ -42,7 +42,11 @@ const ComplaintsAndFeedback=()=>{
                 <div className="complaintHistoryHeaderContainer">
                     <div className="galleryCaption">Complaints and Feedback</div>
                     <div className="complaintControls">
-                    <button className="galleryButtonControls" Style={"height:3em;"} onClick={()=>setCompRegister(1)}>Register Complaint</button>
+                    {
+                        props.userType!="Admin"?(<button className="galleryButtonControls" Style={"height:3em;"} onClick={()=>setCompRegister(1)}>
+                            Register Complaint
+                        </button>):(<></>)
+                    }
                         <select className="complaintHistoryCategory">
                             <option>All</option>
                             <option>Resolved</option>

@@ -71,15 +71,16 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link>
 
-                    <Link to="/main/societies">
-                        <sidebar.MenuListItem 
-                            onMouseOver={()=>iconStateChange("societies")} 
-                            onMouseLeave={()=>iconStateChange(false)} 
-                            onClick={(e)=>replaceIcon(e,"societies")}>
-                            {   clickedIcon==="societies" || changeicon==="societies"?(<img src={SocietyF} width="20px" height="24px" alt="" class="custommenuicon"/>):(<img src={SocietyUF} width="20px" height="20px" alt="" class="custommenuicon"/>)}Societies
-                        </sidebar.MenuListItem>
-                    </Link>
-
+                    {
+                        props.userType=="Admin"?(<Link to="/main/societies">
+                            <sidebar.MenuListItem 
+                                onMouseOver={()=>iconStateChange("societies")} 
+                                onMouseLeave={()=>iconStateChange(false)} 
+                                onClick={(e)=>replaceIcon(e,"societies")}>
+                                {   clickedIcon==="societies" || changeicon==="societies"?(<img src={SocietyF} width="20px" height="24px" alt="" class="custommenuicon"/>):(<img src={SocietyUF} width="20px" height="20px" alt="" class="custommenuicon"/>)}Societies
+                            </sidebar.MenuListItem>
+                        </Link>):(<></>)
+                    }
                     <Link to="/main/members">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("members")} 
@@ -153,14 +154,16 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link>
 
-                    <Link to="/main/reports">    
-                        <sidebar.MenuListItem 
-                            onMouseOver={()=>iconStateChange("reports")} 
-                            onMouseLeave={()=>iconStateChange(false)} 
-                            onClick={(e)=>replaceIcon(e,"reports")}>
-                            {   clickedIcon==="reports" || changeicon==="reports"?(<IoDocumentText/>):(<IoDocumentTextOutline/>)}Reports
-                        </sidebar.MenuListItem>
-                    </Link>
+                    {
+                        props.userType=="Admin"?(<Link to="/main/reports">    
+                            <sidebar.MenuListItem 
+                                onMouseOver={()=>iconStateChange("reports")} 
+                                onMouseLeave={()=>iconStateChange(false)} 
+                                onClick={(e)=>replaceIcon(e,"reports")}>
+                                {   clickedIcon==="reports" || changeicon==="reports"?(<IoDocumentText/>):(<IoDocumentTextOutline/>)}Reports
+                            </sidebar.MenuListItem>
+                        </Link>):(<></>)
+                    }
                 </sidebar.MenuItems>
             </div>
         </sidebar.SideBarContainer>

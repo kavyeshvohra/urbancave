@@ -19,7 +19,7 @@ import Payments from './pages/components/payments';
 
 function App() {
 
-  const [userType,setUserType] = useState("Admin");
+  const [userType,setUserType] = useState("SocietyAdmin");
 
   return (
     <>
@@ -45,11 +45,23 @@ function App() {
           
             <Route path="complaints" element={ <ComplaintsAndFeedback userType={userType} /> }/>
                       
-            <Route path="notice" element= { <Notice userType={userType} /> } />
+            <Route path="notice" element= { <Notice userType={userType} /> } />           
             
-            <Route path="gallery" element={<Gallery userType={userType} />} />
-            <Route path="gallery/:event" element={<Event userType={userType} />} />
-            
+            {
+              userType=="Admin"?(<>
+                <Route path="gallery/" element={<Societies userType={userType} />} />
+                <Route path="gallery/:society" element={<Gallery userType={userType} />} />
+                <Route path="gallery/:society/:event" element={<Event userType={userType} />} />
+                
+                </>):
+              (
+                <>
+                  <Route path="gallery/:event" element={<Event userType={userType} />} />
+                  <Route path="gallery" element={<Gallery userType={userType} />} />
+                </>
+              )
+            }
+
             <Route path="profile" element={<UserAccount userType={userType} />}/>
             
             <Route path="visitors" element={<Visitor userType={userType} />}/>

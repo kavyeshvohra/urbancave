@@ -8,7 +8,7 @@ import '../styles/navbar.css';
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Main = ()=> {
+const Main = (props)=> {
 
   // handleGetTest = async () => {
   //   const url = "http://localhost:8080/UrbanCave/index";
@@ -58,7 +58,7 @@ const Main = ()=> {
 
         <div className="mainContent">
           
-          <SideBar/>
+          <SideBar userType={props.userType}/>
 
           <div className="contentContainer">
             <Outlet/>

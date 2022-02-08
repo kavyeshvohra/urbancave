@@ -3,7 +3,7 @@ import { useState } from 'react';
 import CreateNoticeModal from './createNoticeModal';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
 
-const Notice = ()=>{
+const Notice = (props)=>{
     const [ createNotice , setCreateNotice ] = useState(0);
     return(
         <>
@@ -11,13 +11,18 @@ const Notice = ()=>{
             <div className="galleryButtons">
                 
                 <div className="galleryCaption">Notices</div>
-                <button className="galleryButtonControls" onClick={()=>setCreateNotice(1)}>Create New Notice</button>
+                {
+                    props.userType=="SocietyAdmin"?(<button className="galleryButtonControls" onClick={()=>setCreateNotice(1)}>
+                        Create New Notice
+                    </button>):(<></>)
+                }
             </div>
             <div className="noticeContainer">
             <table className="noticeTable">
                 <tr>
                     <td className="noticeCol0">SrNo</td>
                     <td className="noticeCol1">Topic</td>
+                    {props.userType=="Admin"?(<td className="noticeCol4">Society</td>):(<></>)}
                     <td className="noticeCol2">Date</td>
                     <td className="noticeCol4">Posted By</td>
                     <td className="noticeCol3">Action</td>
@@ -27,30 +32,40 @@ const Notice = ()=>{
                         caption="Health Notice" 
                         des="Health NoticeHealth NoticeHealth NoticeHealth Notice" 
                         postedby="sidhraj"
+                        society="soc ABC"
+                        userType={props.userType}
                         date="01/01/2001 01:00 PM"/>
                 <Row 
                         sr="2"
                         caption="Health Notice" 
                         des="Health NoticeHealth NoticeHealth NoticeHealth Notice" 
                         postedby="sidhraj"
+                        society="soc ABC"
+                        userType={props.userType}
                         date="01/01/2001 01:00 PM"/>
                     <Row 
                         sr="3"
                         caption="Health Notice" 
                         des="Health NoticeHealth NoticeHealth NoticeHealth Notice" 
                         postedby="sidhraj"
+                        society="soc ABC"
+                        userType={props.userType}
                         date="01/01/2001 01:00 PM"/>
                     <Row 
                         sr="4"
                         caption="Health Notice" 
                         des="Health NoticeHealth NoticeHealth NoticeHealth Notice" 
                         postedby="sidhraj"
+                        society="soc ABC"
+                        userType={props.userType}
                         date="01/01/2001 01:00 PM"/>
                     <Row 
                         sr="5"
                         caption="Health Notice" 
                         des="Health NoticeHealth NoticeHealth NoticeHealth Notice" 
                         postedby="sidhraj"
+                        society="soc ABC"
+                        userType={props.userType}
                         date="01/01/2001 01:00 PM"/>
             </table>
             <div>
@@ -73,6 +88,12 @@ const Row=(props)=>{
                     <div className="noticeCaption">{props.caption}</div>
                     <div className="noticeDes">{props.des}</div>
                 </td>
+                {
+                    props.userType=="Admin"?
+                    (<td>
+                        <div className="visitorText">{props.society}</div>
+                    </td>):(<></>)
+                }
                 <td>
                     <div className="noticeDate">{props.date}</div>
                 </td>

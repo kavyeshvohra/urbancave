@@ -1,15 +1,26 @@
 import '../../styles/fileAndFolder.css';
 import Images from '../../images';
-import { useNavigate } from 'react-router';
+import { useNavigate,useLocation } from 'react-router';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
 const Folder = (props)=>{
     const [iconState,setIconState] = useState(Image.folderIcon);
     const navigate = useNavigate();
+    const {pathname} = useLocation();
     
-    const test = ()=>{navigate(`/main/gallery/${props.folderName}`);}
-
+    const test = ()=>{
+        if(props.userName=="Admin" && pathname.split("/").length==3)
+        {
+            navigate(`/main/gallery/${props.folderName}`);
+        }
+        else if(pathname.split("/").length==4){
+            navigate(`${pathname}/${props.folderName}`)
+        }
+        else{
+            navigate(`${pathname}/${props.folderName}`)
+        }
+    }
 
     useEffect(()=>{
         switch(props.type){

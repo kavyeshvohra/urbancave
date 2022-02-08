@@ -1,20 +1,22 @@
 import { useState } from 'react';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
 
-const Payments = () => {
+const Payments = (props) => {
 
     return (
         <>
             <div className="galleryButtons">
             <div className="galleryCaption">Maintenance Transactions</div>
-                <button className="galleryButtonControls" onClick="">Pay Maintenance</button>
+                {
+                    props.userType=="SocietyAdmin"?(<button className="galleryButtonControls" onClick="">Pay Maintenance</button>):(<></>)
+                }
             </div>
             <div className="noticeContainer">
             <table className="noticeTable">
                 <tr>
                     <td>SrNo</td>
                     <td>User</td>
-                    <td>Society</td>
+                    {props.userType=="Admin"?(<td>Society</td>):(<></>)}
                     <td>Transaction ID</td>
                     <td>Amount</td>
                     <td>Time</td>
@@ -26,36 +28,40 @@ const Payments = () => {
                     user="sidhraj Mori"
                     society="soc ABC"
                     tID="xhuirahbkvjkai2349sd"
-                    amount="Mori"
-                    time="9876543210"
-                    status="01:10 AM"
+                    amount="5000"
+                    time="01:10 AM"
+                    status="success"
+                    userType={props.userType}
                 /> 
                 <Row 
                     sr="1"
                     user="sidhraj Mori"
                     society="soc ABC"
                     tID="xhuirahbkvjkai2349sd"
-                    amount="Mori"
-                    time="9876543210"
-                    status="01:10 AM"
+                    amount="5000"
+                    time="01:10 AM"
+                    status="success"
+                    userType={props.userType}
                 />
                 <Row 
                     sr="1"
                     user="sidhraj Mori"
                     society="soc ABC"
                     tID="xhuirahbkvjkai2349sd"
-                    amount="Mori"
-                    time="9876543210"
-                    status="01:10 AM"
+                    amount="5000"
+                    time="01:10 AM"
+                    status="success"
+                    userType={props.userType}
                 />
                 <Row 
                     sr="1"
                     user="sidhraj Mori"
                     society="soc ABC"
                     tID="xhuirahbkvjkai2349sd"
-                    amount="Mori"
-                    time="9876543210"
-                    status="01:10 AM"
+                    amount="5000"
+                    time="01:10 AM"
+                    status="success"
+                    userType={props.userType}
                 />
             </table>
             <div>
@@ -64,14 +70,16 @@ const Payments = () => {
         </div>
         <div className="galleryButtons">
             <div className="galleryCaption">Donations</div>
-                <button className="galleryButtonControls" onClick="">Donate</button>
+                {
+                    props.userType=="SocietyAdmin"?(<button className="galleryButtonControls" onClick="">Donate</button>):(<></>)
+                }
             </div>
             <div className="noticeContainer">
             <table className="noticeTable">
                 <tr>
                 <td>SrNo</td>
                     <td>User</td>
-                    <td>Society</td>
+                    {props.userType=="Admin"?(<td>Society</td>):(<></>)}
                     <td>Transaction ID</td>
                     <td>Amount</td>
                     <td>Time</td>
@@ -83,36 +91,40 @@ const Payments = () => {
                     user="sidhraj Mori"
                     society="soc ABC"
                     tID="xhuirahbkvjkai2349sd"
-                    amount="Mori"
-                    time="9876543210"
-                    status="01:10 AM"
+                    amount="5000"
+                    time="01:10 AM"
+                    status="success"
+                    userType={props.userType}
                 />
                 <Row 
                     sr="1"
                     user="sidhraj Mori"
                     society="soc ABC"
                     tID="xhuirahbkvjkai2349sd"
-                    amount="Mori"
-                    time="9876543210"
-                    status="01:10 AM"
+                    amount="5000"
+                    time="01:10 AM"
+                    status="success"
+                    userType={props.userType}
                 />
                 <Row 
                     sr="1"
                     user="sidhraj Mori"
                     society="soc ABC"
                     tID="xhuirahbkvjkai2349sd"
-                    amount="Mori"
-                    time="9876543210"
-                    status="01:10 AM"
+                    amount="5000"
+                    time="01:10 AM"
+                    status="success"
+                    userType={props.userType}
                 />
                 <Row 
                     sr="1"
                     user="sidhraj Mori"
                     society="soc ABC"
                     tID="xhuirahbkvjkai2349sd"
-                    amount="Mori"
-                    time="9876543210"
-                    status="01:10 AM"
+                    amount="5000"
+                    time="01:10 AM"
+                    status="success"
+                    userType={props.userType}
                 />
             </table>
             <div>
@@ -135,9 +147,11 @@ const Row=(props)=>{
                 <td>
                     <div className="visitorText">{props.user}</div>
                 </td>
-                <td>
-                    <div className="visitorText">{props.society}</div>
-                </td>
+                {
+                    props.userType=="Admin"?(<td>
+                        <div className="visitorText">{props.society}</div>
+                    </td>):(<></>)
+                }
                 <td>
                     <div className="visitorText">{props.tID}</div>
                 </td>
@@ -156,14 +170,16 @@ const Row=(props)=>{
                             onMouseOver={()=>setHover("eye")}
                             onMouseLeave={()=>setHover(0)}
                         />
-                        <MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
-                            onMouseOver={()=>setHover("edit")}
-                            onMouseLeave={()=>setHover(0)}
-                        />
-                        <FaTrash size="1.6em" color={hover=="bin"?"#FEB6B6":"#707A8A"}
-                            onMouseOver={()=>setHover("bin")}
-                            onMouseLeave={()=>setHover(0)}
-                        />
+                        {
+                            props.userType=="SocietyAdmin"?(<><MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
+                                onMouseOver={()=>setHover("edit")}
+                                onMouseLeave={()=>setHover(0)}
+                            />
+                            <FaTrash size="1.6em" color={hover=="bin"?"#FEB6B6":"#707A8A"}
+                                onMouseOver={()=>setHover("bin")}
+                                onMouseLeave={()=>setHover(0)}
+                            /></>):(<></>)
+                        }
                     </div>
                 </td>
             </tr>

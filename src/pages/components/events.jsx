@@ -50,12 +50,16 @@ const Event = (props)=>{
             <div className="galleryHeader">
                 <div className="galleryCaption">{event}</div>
                 <div className="galleryButtons">
-                    <div style={sStyle}>
-                        <input type="file" className="galleryButtonControls" id="uploadFile" text="Add new photo" onChange={()=>validateFile()}/>
-                        <div id="errorDiv" style={errStyle}></div>
-                    </div>
-                    <button className="galleryButtonControls">Download selected photo</button>
-                    <button className="galleryButtonControls">Delete selected photo</button>
+                    {
+                        props.userType!="Admin"?(<>
+                            <div style={sStyle}>
+                                <input type="file" className="galleryButtonControls" id="uploadFile" text="Add new photo" onChange={()=>validateFile()}/>
+                                <div id="errorDiv" style={errStyle}></div>
+                            </div>
+                            <button className="galleryButtonControls">Download selected photo</button>
+                            <button className="galleryButtonControls">Delete selected photo</button>
+                        </>):(<></>)
+                    }
                 </div>
             </div>
             <div className="fileFolderContainer">

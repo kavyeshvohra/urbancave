@@ -30,24 +30,41 @@ const Login = () => {
 
     
     
-    const validateCreds = ()=>{
+    const validateCreds = async ()=>{
         const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
         
         const passwordReg = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
         const email=document.getElementById("email").value ;
         const password = document.getElementById("password").value;
+        let count=0;
 
         if(!emailReg.test(email)){
             console.log("email not valid.");
             document.getElementById("errorDiv").innerHTML+=`<div>Please Enter a valid email!</div>`;
+            count+=1;
         }
         if(!passwordReg.test(password)){
             console.log("password not valid.")
             document.getElementById("errorDiv").innerHTML+=`<div>Please Enter a valid password!</div>`;
+            count+=1;
         }
-
-
+        if(count==0){
+            const data={"email":email,"password":password};
+            const url="http://192.168.1.67:8080/login";
+            const options={
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body:JSON.stringify(data)
+            }
+            const response = await fetch(url,options);
+            const res = await response.text();
+            console.log(response);
+            console.log(response.headers);
+            console.log(res);
+        }
     }
 
     useLayoutEffect(()=>{

@@ -19,7 +19,7 @@ import Payments from './pages/components/payments';
 
 function App() {
 
-  const [userType,setUserType] = useState("SocietyAdmin");
+  const [userType,setUserType] = useState("Admin");
 
   return (
     <>

@@ -7,6 +7,16 @@ import Carousel from "react-bootstrap/Carousel"
 import ChartPie, {ChartBar, ChartDoughnut} from './chart'
 
 const Dashboard = () => {
+    const sStyle={
+        display:"flex",
+        flexDirection:"column",
+        rowGap:"1em",
+    }
+    const aStyle={
+        display:"flex",
+        flexDirection:"row",
+        columnGap:"1em",
+    }
         return(
             <>
                 <DashStyles.Feature1Container>
@@ -16,18 +26,72 @@ const Dashboard = () => {
                 </DashStyles.Feature1Container>
 
                     <DashStyles.Feature2Container>
-                        <DashStyles.CarouselRow>
-                            <DashStyles.CarouselContainer>
-                                <Carousel controls={false} indicators={false}>
-                                    <Carousel.Item interval={2300} className="item1">
-                                        <Feature2 heading="INCOME" metrics="350k" icon={<FaRupeeSign/>}></Feature2>
-                                    </Carousel.Item>
-                                    <Carousel.Item interval={2300} className='item1'>
-                                        <Feature2 heading="EXPENSE" metrics="50k" icon={<BsCalculator/>}></Feature2>
-                                    </Carousel.Item>
-                                </Carousel>
-                            </DashStyles.CarouselContainer>
-                            <DashStyles.CarouselContainer>
+                        <DashStyles.Cont1>
+                            <div style={sStyle}>
+                                <div style={aStyle}>
+                                    <DashStyles.CarouselRow>
+                                        <DashStyles.CarouselContainer>
+                                            <Carousel controls={false} indicators={false}>
+                                                <Carousel.Item interval={2300} className="item1">
+                                                    <Feature2 heading="INCOME" metrics="350k" icon={<FaRupeeSign/>}></Feature2>
+                                                </Carousel.Item>
+                                                <Carousel.Item interval={2300} className='item1'>
+                                                    <Feature2 heading="EXPENSE" metrics="50k" icon={<BsCalculator/>}></Feature2>
+                                                </Carousel.Item>
+                                            </Carousel>
+                                        </DashStyles.CarouselContainer>
+                                    </DashStyles.CarouselRow>
+                                    <Feature1 heading = "Active Complaints" metrics="1000"></Feature1>
+                                </div>
+                                <div style={aStyle}>
+                                        <DashStyles.CarouselRow>
+                                            <DashStyles.CarouselContainer>
+                                                <Carousel controls={false} indicators={false}>
+                                                    <Carousel.Item interval={2300} className="item1">
+                                                        <Feature2 heading="INCOME" metrics="350k" icon={<FaRupeeSign/>}></Feature2>
+                                                    </Carousel.Item>
+                                                    <Carousel.Item interval={2300} className='item1'>
+                                                        <Feature2 heading="EXPENSE" metrics="50k" icon={<BsCalculator/>}></Feature2>
+                                                    </Carousel.Item>
+                                                </Carousel>
+                                            </DashStyles.CarouselContainer>
+                                            <DashStyles.CarouselContainer>
+                                                <Carousel controls={false} indicators={false}>
+                                                    <Carousel.Item interval={2300} className="item1">
+                                                        <Feature2 heading="INCOME" metrics="350k" icon={<FaRupeeSign/>}></Feature2>
+                                                    </Carousel.Item>
+                                                    <Carousel.Item interval={2300} className='item1'>
+                                                        <Feature2 heading="EXPENSE" metrics="50k" icon={<BsCalculator/>}></Feature2>
+                                                    </Carousel.Item>
+                                                </Carousel>
+                                            </DashStyles.CarouselContainer>
+                                    </DashStyles.CarouselRow>
+                                </div><div style={aStyle}>
+                                        <DashStyles.CarouselRow>
+                                            <DashStyles.CarouselContainer>
+                                                <Carousel controls={false} indicators={false}>
+                                                    <Carousel.Item interval={2300} className="item1">
+                                                        <Feature2 heading="INCOME" metrics="350k" icon={<FaRupeeSign/>}></Feature2>
+                                                    </Carousel.Item>
+                                                    <Carousel.Item interval={2300} className='item1'>
+                                                        <Feature2 heading="EXPENSE" metrics="50k" icon={<BsCalculator/>}></Feature2>
+                                                    </Carousel.Item>
+                                                </Carousel>
+                                            </DashStyles.CarouselContainer>
+                                            <DashStyles.CarouselContainer>
+                                                <Carousel controls={false} indicators={false}>
+                                                    <Carousel.Item interval={2300} className="item1">
+                                                        <Feature2 heading="INCOME" metrics="350k" icon={<FaRupeeSign/>}></Feature2>
+                                                    </Carousel.Item>
+                                                    <Carousel.Item interval={2300} className='item1'>
+                                                        <Feature2 heading="EXPENSE" metrics="50k" icon={<BsCalculator/>}></Feature2>
+                                                    </Carousel.Item>
+                                                </Carousel>
+                                            </DashStyles.CarouselContainer>
+                                    </DashStyles.CarouselRow>
+                                </div>
+                            </div>
+                        </DashStyles.Cont1>
                                 {/* <Carousel controls={false} indicators={false}>
                                     <Carousel.Item interval={2300} className="item1">
                                         <Feature2 heading="TOTAL NO. OF SOCIETIES" metrics="350k" icon={<FaRupeeSign/>}></Feature2>
@@ -36,9 +100,8 @@ const Dashboard = () => {
                                         <Feature2 heading="" metrics="50k" icon={<BsCalculator/>}></Feature2>
                                     </Carousel.Item>
                                 </Carousel> */}
-                                <Feature1 heading = "Active Complaints" metrics="1000"></Feature1>
-                            </DashStyles.CarouselContainer>
-                            <DashStyles.CarouselContainer>
+                            <DashStyles.Cont2>
+                            <DashStyles.DashItemContainer1>
                                 {/* <Carousel controls={false} indicators={false}>
                                     <Carousel.Item interval={2300} className="item1">
                                         <Feature2 heading="INCOME" metrics="350k" icon={<FaRupeeSign/>}></Feature2>
@@ -48,8 +111,8 @@ const Dashboard = () => {
                                     </Carousel.Item>
                                 </Carousel> */}
                                 <Feature5 heading = "Recent Society Registered" Sname="Siddhachal Flats"></Feature5>
-                            </DashStyles.CarouselContainer>
-                        </DashStyles.CarouselRow>
+                            </DashStyles.DashItemContainer1>
+                            </DashStyles.Cont2>
                         {/* <Feature3 heading={"Society Analytics"} type={"Pie"}/>
                         <Feature4 heading={"Rent Stats By Month"}/> */}
                     </DashStyles.Feature2Container>
@@ -152,65 +215,66 @@ const Dashboard = () => {
             <>
                     <DashStyles.DashItemContainer1>
                         <DashStyles.Item>
-                            <DashStyles.Title style={{textAlign: "center", fontSize: '1.5rem', fontWeight: "500",textDecoration: "underline"}}>{props.heading}</DashStyles.Title>
-                            <DashStyles.Table>
-                            <DashStyles.TableRow>
-                                <td>1)</td>
-                                <td><DashStyles.HeadName>{props.Sname} </DashStyles.HeadName></td>
-                                <td>|</td>
-                                <td><DashStyles.Area>Navrangpura</DashStyles.Area></td>
-                            </DashStyles.TableRow>
-                            <DashStyles.TableRow>
-                                <DashStyles.TableColumn>
-                                    <div>2)</div>
+                            <DashStyles.Title style={{textAlign: "center", fontSize: '1.5rem', fontWeight: "500",textDecoration: "underline", marginBottom: "1em"}}>{props.heading}</DashStyles.Title>
+                            <DashStyles.Div>
+                                <div>Sr.No</div>
+                                <div>Society Name</div>
+                                <div>Area/Locality</div>    
+                            </DashStyles.Div>    
+                                <DashStyles.DashItemWrapper>
+                                <DashStyles.SrNo>1)</DashStyles.SrNo>
+                                <DashStyles.HeadName>{props.Sname} </DashStyles.HeadName>
+                                |
+                                <DashStyles.Area>Navrangpura</DashStyles.Area>
+                            </DashStyles.DashItemWrapper>
+                            <DashStyles.DashItemWrapper>
+                                    <DashStyles.SrNo>2)</DashStyles.SrNo>
                                     <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
                                     <div>|</div>
                                     <DashStyles.Area>Navrangpura</DashStyles.Area>
-                                </DashStyles.TableColumn>
-                            </DashStyles.TableRow>
+                            </DashStyles.DashItemWrapper>
                             <DashStyles.DashItemWrapper>
-                                <div>3)</div>
+                                <DashStyles.SrNo>3)</DashStyles.SrNo>
                                 <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
                                 <div>|</div>
                                 <DashStyles.Area>Navrangpura</DashStyles.Area>
                             </DashStyles.DashItemWrapper>
                             <DashStyles.DashItemWrapper>
-                                <div>4)</div>
+                                <DashStyles.SrNo>4)</DashStyles.SrNo>
                                 <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
                                 <div>|</div>
                                 <DashStyles.Area>Navrangpura</DashStyles.Area>
                             </DashStyles.DashItemWrapper>
                             <DashStyles.DashItemWrapper>
-                                <div>5)</div>
+                                <DashStyles.SrNo>5)</DashStyles.SrNo>
                                 <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
                                 <div>|</div>
                                 <DashStyles.Area>Navrangpura</DashStyles.Area>
                             </DashStyles.DashItemWrapper>
                             <DashStyles.DashItemWrapper>
-                                <div>6)</div>
+                                <DashStyles.SrNo>6)</DashStyles.SrNo>
                                 <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
                                 <div>|</div>
                                 <DashStyles.Area>Navrangpura</DashStyles.Area>
                             </DashStyles.DashItemWrapper>
                             <DashStyles.DashItemWrapper>
-                                <div>7)</div>
+                                <DashStyles.SrNo>7)</DashStyles.SrNo>
                                 <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
                                 <div>|</div>
                                 <DashStyles.Area>Navrangpura</DashStyles.Area>
                             </DashStyles.DashItemWrapper>
                             <DashStyles.DashItemWrapper>
-                                <div>8)</div>
+                                <DashStyles.SrNo>8)</DashStyles.SrNo>
                                 <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
                                 <div>|</div>
                                 <DashStyles.Area>Navrangpura</DashStyles.Area>
                             </DashStyles.DashItemWrapper>
                             <DashStyles.DashItemWrapper>
-                                <div>9)</div>
+                                <DashStyles.SrNo>9)</DashStyles.SrNo>
                                 <DashStyles.HeadName>{props.Sname}  </DashStyles.HeadName>
                                 <div>|</div>
                                 <DashStyles.Area>Navrangpura</DashStyles.Area>
                             </DashStyles.DashItemWrapper>
-                            </DashStyles.Table>
                         </DashStyles.Item>
                     </DashStyles.DashItemContainer1>
             </>

@@ -53,6 +53,7 @@ export const HeadingContainer = styled.div`
 
 export const HeadName = styled.h5`
 margin: 0;
+font-size: 1em;
 `
 export const DashItemWrapper = styled.div`
     display: flex;
@@ -63,19 +64,9 @@ export const DashItemWrapper = styled.div`
 `
 export const Area = styled.p`
     margin: 0;
+    font-size: 1em;
 `
-export const Table = styled.table`
-    display: table;
-`
-export const TableColumn = styled.td`
-    display: table-row;
-    /* display: flex;
-    column-gap: 0.5rem;
-    margin-bottom: 0.5rem;
-    margin-top: 1rem;
-    padding: 0;
-    justify-content: space-evenly; */
-`
+
 export const Item3 = styled.div`
     height: 20em;
     border: 1px dashed #ccc;
@@ -108,9 +99,7 @@ export const Icon = styled.span`
     line-height: 44px;
     padding: 0.5em;
 `
-export const TableRow = styled.tr`
 
-`
 export const Title = styled.h3`
     font-size: 1em;
     text-align: left;
@@ -131,6 +120,8 @@ export const Feature1Container = styled.div`
     justify-content: space-around;
 `;
 export const Feature2Container = styled.div`
+    display: flex;
+    column-gap: 3em;
     margin-left:4rem;
     margin-right: 4rem;
 `
@@ -218,3 +209,18 @@ export const Icondiv = styled.div`
     height: 50px;
 
 `
+export const Div = styled.div`
+    display: flex;
+    justify-content: space-between;;
+    column-gap:1.5em;
+`
+export const SrNo = styled.div`
+    font-size: 1em;
+`
+export const Cont1 = styled.div`
+    display: flex;
+    flex-direction: row;
+    column-gap: 6em;
+`
+
+export const Cont2 = styled.div``

@@ -140,7 +140,7 @@ export const ComplaintTicketContent = styled.div`
     flex-direction: column;
     row-gap: 0.5rem;
     align-items: center;
-    width: 9rem;
+    width: 12rem;
     padding: 1rem;
     border: #FAB6B6 solid 0.14rem;
     background-color: #FFF;

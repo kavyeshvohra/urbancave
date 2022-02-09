@@ -34,25 +34,36 @@ const FamilyMemberInfoModal=(props)=>{
                         </div>
                     </div>
 
-                    <div className="dataContainer1">
-                        <div className="visitorDataContainer">
-                            <lable className="displayInfoLable">Relation:</lable>
-                            <input className="displayInfoInput" value={props.data.relation} readOnly/>
-                        </div>
-                        <div className="visitorDataContainer">
-                            <lable className="displayInfoLable">User:</lable>
-                            <input className="displayInfoInput" value={props.data.user} readOnly/>
-                        </div>
-                    </div>
-
                     {
                         props.userType=="Admin"?(<div className="dataContainer1">
-                            <div className="visitorDataContainer">
-                                <lable className="displayInfoLable">Society:</lable>
-                                <input className="displayInfoInput" value={props.data.society} readOnly/>
+                            
+                            <div className="dataContainer1">
+                                <div className="visitorDataContainer">
+                                    <lable className="displayInfoLable">Society:</lable>
+                                    <input className="displayInfoInput" value={props.data.society} readOnly/>
+                                </div>
+                                <div className="visitorDataContainer">
+                                    <lable className="displayInfoLable">User:</lable>
+                                    <input className="displayInfoInput" value={props.data.user} readOnly/>
+                                </div>
                             </div>
                         </div>):(<></>)
                     }
+
+                    {
+                        props.userType=="SocietyAdmin"?(<div className="dataContainer1">
+                            
+                            <div className="visitorDataContainer">
+                                <lable className="displayInfoLable">User:</lable>
+                                <input className="displayInfoInput" value={props.data.user} readOnly/>
+                            </div>
+                        </div>):(<></>)
+                    }
+
+                    <div className="visitorDataContainer">
+                        <lable className="displayInfoLable">Relation:</lable>
+                        <input className="displayInfoInput" value={props.data.relation} readOnly/>
+                    </div>
 
                     {
                         props.action!="show"?(<div className="visitorDataButtons">

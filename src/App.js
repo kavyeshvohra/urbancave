@@ -25,7 +25,7 @@ import FamilyMembers from './pages/components/familyMembers';
 
 function App() {
 
-  const [userType,setUserType] = useState("SocietyAdmin");
+  const [userType,setUserType] = useState("Admin");
 
   return (
     <>
@@ -48,6 +48,8 @@ function App() {
             }/>
             
             <Route path="familymembers" element={<FamilyMembers userType={userType}/>}/>
+
+            <Route path="societies" element={<Societies userType={userType}/>}/>
 
             <Route path="members" element={<Members userType={userType}/>}/>
           

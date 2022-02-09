@@ -21,10 +21,11 @@ import UserAccount from './pages/components/useraccount';
 import Visitor from './pages/components/visitors';
 import Payments from './pages/components/payments';
 import Members from './pages/components/members';
+import FamilyMembers from './pages/components/familyMembers';
 
 function App() {
 
-  const [userType,setUserType] = useState("Admin");
+  const [userType,setUserType] = useState("SocietyAdmin");
 
   return (
     <>
@@ -46,8 +47,8 @@ function App() {
                 ( <MemberDashboard userType={userType}/> )
             }/>
             
-            <Route path="societies" element={ <Societies userType={userType} /> }/>
-            
+            <Route path="familymembers" element={<FamilyMembers userType={userType}/>}/>
+
             <Route path="members" element={<Members userType={userType}/>}/>
           
             <Route path="payments" element={ <Payments userType={userType} /> }/>

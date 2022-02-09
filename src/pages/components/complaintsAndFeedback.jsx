@@ -74,6 +74,7 @@ const ComplaintsAndFeedback=(props)=>{
                         modal={setDisplayInfo}
                         changeNoticeData={setComplaintData}
                         changeAction={setAction}
+                        userType={props.userType}
                     />
                     <Complaint 
                         caption="complaint 2"
@@ -86,6 +87,7 @@ const ComplaintsAndFeedback=(props)=>{
                         modal={setDisplayInfo}
                         changeNoticeData={setComplaintData}
                         changeAction={setAction}
+                        userType={props.userType}
                     />
                     <Complaint 
                         caption="complaint 3"
@@ -98,6 +100,7 @@ const ComplaintsAndFeedback=(props)=>{
                         modal={setDisplayInfo}
                         changeNoticeData={setComplaintData}
                         changeAction={setAction}
+                        userType={props.userType}
                     />
                     <Complaint 
                         caption="complaint 4"
@@ -110,6 +113,7 @@ const ComplaintsAndFeedback=(props)=>{
                         modal={setDisplayInfo}
                         changeNoticeData={setComplaintData}
                         changeAction={setAction}
+                        userType={props.userType}
                     />
                 </div>
             </div>

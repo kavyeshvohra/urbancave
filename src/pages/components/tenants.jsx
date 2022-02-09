@@ -189,7 +189,7 @@ const Row=(props)=>{
                         />
                         {
 
-                            props.userType!="Admin"?(<MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
+                            props.userType=="SocietyAdmin"?(<MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
                                 onMouseOver={()=>setHover("edit")}
                                 onMouseLeave={()=>setHover(0)}
                                 onClick={()=>{console.log(0);props.changeAction("edit");props.changeTenantData(data);props.modal(1) }}

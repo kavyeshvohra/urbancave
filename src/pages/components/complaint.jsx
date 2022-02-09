@@ -10,6 +10,7 @@ const Complaint=(props)=>{
         description:props.discription,
         category:props.category,
         id:props.id,
+        userType:props.userType,
     }
     return (
         <Complaints.ComplaintTicketContent

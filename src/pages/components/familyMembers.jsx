@@ -206,6 +206,7 @@ const Row=(props)=>{
                             props.userType=="SocietyMember"?(<MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
                                 onMouseOver={()=>setHover("edit")}
                                 onMouseLeave={()=>setHover(0)}
+                                onClick={()=>{props.changeAction("edit");props.changeMemberData(data);props.modal(1) }}
                             />):(<></>)
                         }
                         {

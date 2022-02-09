@@ -30,10 +30,12 @@ const ComplaintInfoModal=(props)=>{
                         <textarea className="displayInfoInput2" defaultValue={props.data.description} readOnly/>
                     </div>
                     <div className="dataContainer1">
-                        <div className="visitorDataContainer">
-                            <lable className="displayInfoLable">By:</lable>
-                            <input className="displayInfoInput" defaultValue={props.data.user} readOnly/>
-                        </div>
+                        {
+                            props.userType!="SocietyMember"?(<div className="visitorDataContainer">
+                                <lable className="displayInfoLable">By:</lable>
+                                <input className="displayInfoInput" defaultValue={props.data.user} readOnly/>
+                            </div>):(<></>)
+                        }
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Date:</lable>
                             <input className="displayInfoInput" defaultValue={props.data.date} readOnly/>

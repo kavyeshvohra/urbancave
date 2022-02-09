@@ -269,7 +269,7 @@ export const FocusHtml = styled.span`
 `;
 export const ErrorMessage = styled.div`
   margin-top: -2.5em;
-  display: none;
+  display: block;
   width: 30%;
   background: #eee;
   padding: 10px;

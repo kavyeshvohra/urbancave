@@ -227,7 +227,7 @@ const NavBar = (props) => {
     return (
         <HomeStyle.LandingPageNavbar id="navbar">
             <HomeStyle.Logo src={props.logo} />
-            <nav>
+            {/* <nav>
                 <HomeStyle.NavbarList>
                     <HomeStyle.NavbarItem>Home</HomeStyle.NavbarItem>
                     <HomeStyle.NavbarItem>About Us</HomeStyle.NavbarItem>
@@ -235,7 +235,7 @@ const NavBar = (props) => {
                     <HomeStyle.NavbarItem>Why Urbancave?</HomeStyle.NavbarItem>
                     <HomeStyle.NavbarItem>Contact Us</HomeStyle.NavbarItem>
                 </HomeStyle.NavbarList>
-            </nav>
+            </nav> */}
             <HomeStyle.ButtonLink href='/login'><HomeStyle.Button>Login / Register</HomeStyle.Button></HomeStyle.ButtonLink>
         </HomeStyle.LandingPageNavbar>
     );

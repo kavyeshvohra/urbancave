@@ -6,7 +6,7 @@ export const LandingPageNavbar = styled.header`
     color: #0C2938;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     font-weight: 700;
     transition-duration: 0.5s;
@@ -21,7 +21,7 @@ export const LandingPageNavbar = styled.header`
         background-color: rgb(250,240,240);
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
         align-items:center;
         font-weight: 700;
         width:100%;

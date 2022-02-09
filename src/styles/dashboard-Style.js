@@ -27,6 +27,7 @@ export const Item2 = styled.div`
     border-radius: 5px; 
     transition: 0.2s ease-in-out;
     width: 17.5em;
+    height: 9.8em;
     //margin: 0 2em 0 2em;
     padding: 1em 0em 1em 2em;
     position:relative;
@@ -62,10 +63,62 @@ export const DashItemWrapper = styled.div`
     margin-top: 1rem;
     justify-content: space-evenly;
 `
+export const DashItemWrapper1 = styled.div`
+    display: flex;
+    justify-content: space-around;
+    gap:1.5em;
+    & > :nth-child(1)
+    {
+        flex-basis: 7%;
+    }
+    & > :nth-child(2)
+    {
+        flex-basis: 70%;
+    }
+    & > :nth-child(3),
+    & > :nth-child(4)
+    {
+        flex-basis: 30%;
+    }
+    & > :nth-child(5)
+    {
+        flex-basis: 11%;
+    }
+
+    /* & > *
+    {
+        flex: 100%;
+    } */
+`
 export const Area = styled.p`
     margin: 0;
     font-size: 1em;
 `
+// export const Table = styled.table`
+//     width: 100%;
+//     border-collapse: collapse;
+
+//     & thead
+//     {
+//         background-color: #FFB0B0 !important;
+//         border: 0.5px solid #eee;     
+//     }
+//         border: 0.5px solid #eee;
+//     & thead, tr, th
+//     {
+//         font-weight: 500;
+//         letter-spacing: 0.35px;
+//         opacity: 1;
+//         padding: 12px;
+//         vertical-align: top;
+//     }
+//     & tbody tr td
+//     {
+//         letter-spacing: 0.35px;
+//         font-weight: normal;
+//         border-bottom: 0.5px solid #eee;
+//     }
+// `
 
 export const Item3 = styled.div`
     height: 20em;
@@ -112,6 +165,17 @@ export const DashItemContainer = styled.div`
 `;
 export const DashItemContainer1 = styled.div`
     width: 25.5vw;
+`
+export const DashItemContainer2 = styled.div`
+    width: 25.5vw;
+    flex: 1;
+`
+
+export const Payment = styled.div`
+    font-size: 1em;
+`
+export const Date = styled.div`
+    font-size: 1em;
 `
 export const Feature1Container = styled.div`
     display: flex;
@@ -195,7 +259,7 @@ export const Transact_h3 = styled.h3`
 `;
 export const Desc = styled.p`
     text-align: left;
-    font-weight: 200;
+    font-weight: 300;
     margin: 0;
     margin-top: 0.5rem;
 `;
@@ -215,7 +279,7 @@ export const Div = styled.div`
     column-gap:1.5em;
 `
 export const SrNo = styled.div`
-    font-size: 1em;
+    font-size: 1em;0
 `
 export const Cont1 = styled.div`
     display: flex;

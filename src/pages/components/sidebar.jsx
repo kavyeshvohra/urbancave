@@ -71,22 +71,24 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link>
 
-                    {
-                        props.userType=="Admin"?(<Link to="/main/societies">
-                            <sidebar.MenuListItem 
-                                onMouseOver={()=>iconStateChange("societies")} 
-                                onMouseLeave={()=>iconStateChange(false)} 
-                                onClick={(e)=>replaceIcon(e,"societies")}>
-                                {   clickedIcon==="societies" || changeicon==="societies"?(<img src={SocietyF} width="20px" height="24px" alt="" class="custommenuicon"/>):(<img src={SocietyUF} width="20px" height="20px" alt="" class="custommenuicon"/>)}Societies
-                            </sidebar.MenuListItem>
-                        </Link>):(<></>)
-                    }
+                    
                     <Link to="/main/members">
+                        <sidebar.MenuListItem 
+                            onMouseOver={()=>iconStateChange("societies")} 
+                            onMouseLeave={()=>iconStateChange(false)} 
+                            onClick={(e)=>replaceIcon(e,"societies")}>
+                            {   clickedIcon==="societies" || changeicon==="societies"?(<img src={SocietyF} width="20px" height="24px" alt="" class="custommenuicon"/>):(<img src={SocietyUF} width="20px" height="20px" alt="" class="custommenuicon"/>)}
+                            Members
+                        </sidebar.MenuListItem>
+                    </Link>
+                
+                    <Link to="/main/familymembers">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("members")} 
                             onMouseLeave={()=>iconStateChange(false)} 
                             onClick={(e)=>replaceIcon(e,"members")}>
-                            {   clickedIcon==="members" || changeicon==="members"?(<img src={MembersF} alt="" class="custommenuicon"/>):(<img src={MembersUF} alt="" class="custommenuicon"/>)}Members
+                            {   clickedIcon==="members" || changeicon==="members"?(<img src={MembersF} alt="" class="custommenuicon"/>):(<img src={MembersUF} alt="" class="custommenuicon"/>)}
+                            Family Members
                         </sidebar.MenuListItem>
                     </Link>
 

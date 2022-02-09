@@ -2,18 +2,18 @@
 import '../../styles/tenants.css';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
 import { useState } from 'react';
-import MemberInfoModal from './memberInfoModal';
+import MemberInfoModal from './familyMemberInfoModal';
 
-const Members = (props)=>{
+const FamilyMembers = (props)=>{
     
     const [ displayInfo , setDisplayInfo ] = useState(0);
     const [ memberData,setMemberData] = useState();
     const [ action,setAction ] = useState();
 
     return(<>
-            { displayInfo ?( <MemberInfoModal action={action} data={memberData} closeModal={setDisplayInfo}/> ):(<></>) }
+            { displayInfo ?( <MemberInfoModal userType={props.userType} action={action} data={memberData} closeModal={setDisplayInfo}/> ):(<></>) }
             <div className="galleryButtons">
-                <div className="galleryCaption">Society Members</div>
+                <div className="galleryCaption">Family Members</div>
             </div>
             <div className="tenantsContainer">
                 <table className="tenantsTable">
@@ -21,10 +21,14 @@ const Members = (props)=>{
                         <td className="tenantsCol0">Sr</td>
                         <td className="tenantsCol1">First Name</td>
                         <td className="tenantsCol2">Last Name</td>
-                        <td className="tenantsCol2">House</td>
-                        { props.userType=="Admin"?(<td className="tenantsCol2">Society</td>):(<></>)}
-                        <td className="tenantsCol4">Phone Number</td>
-                        <td className="tenantsCol5">Email</td>
+                        <td className="tenantsCol1">Gender</td>
+                        <td className="tenantsCol1">Age</td>
+                        <td className="tenantsCol5">Relation</td>
+                        { props.userType=="Admin"?(<>
+                            <td className="tenantsCol2">Society</td>
+                            <td className="tenantsCol1">User</td>
+                            </>):(<></>)}
+                        { props.userType=="SocietyAdmin"?(<td className="tenantsCol2">User</td>):(<></>)}
                         {/* <td className="tenantsCol6">Documents</td>
                         <td className="tenantsCol7">Proof of Identification</td>
                         <td className="tenantsCol8">Rent Amount</td> */}
@@ -32,18 +36,15 @@ const Members = (props)=>{
                     </tr>
                         <Row 
                             sr="1"
-                            fname="Sidhraj"
-                            lname="Mori"
-                            dob="01/09/2001"
-                            email="sdkm7016816547@gmail.com"
-                            phone="910679097"
-                            phoneA="9876543210"
                             userType={props.userType}
                             society="soc ABC"
-                            housename="B-7"
-                            housetype="2BHK"
-                            isrented="false"
-                            isdeleted="false"
+                            fname="sidhraj"
+                            lname="mori"
+                            gender="male"
+                            age="21"
+                            relation="sibling"
+                            user="sid@gmail.com"
+                            
                                 
                             modal={setDisplayInfo}
                             changeMemberData={setMemberData}
@@ -51,37 +52,30 @@ const Members = (props)=>{
                             />
                         <Row 
                             sr="1"
-                            fname="Sidhraj"
-                            lname="Mori"
-                            dob="01/09/2001"
-                            email="sdkm7016816547@gmail.com"
-                            phone="910679097"
-                            phoneA="9876543210"
                             userType={props.userType}
                             society="soc ABC"
-                            housename="B-7"
-                            housetype="2BHK"
-                            isrented="false"
-                            isdeleted="false"
-                                
+                            fname="sidhraj"
+                            lname="mori"
+                            gender="male"
+                            age="21"
+                            relation="sibling"
+                            user="sid@gmail.com"
+                            
                             modal={setDisplayInfo}
                             changeMemberData={setMemberData}
                             changeAction={setAction}
                             />
                         <Row 
                             sr="1"
-                            fname="Sidhraj"
-                            lname="Mori"
-                            dob="01/09/2001"
-                            email="sdkm7016816547@gmail.com"
-                            phone="910679097"
-                            phoneA="9876543210"
                             userType={props.userType}
                             society="soc ABC"
-                            housename="B-7"
-                            housetype="2BHK"
-                            isrented="false"
-                            isdeleted="false"
+                            fname="sidhraj"
+                            lname="mori"
+                            gender="male"
+                            age="21"
+                            relation="sibling"
+                            user="sid@gmail.com"
+                            
                                 
                             modal={setDisplayInfo}
                             changeMemberData={setMemberData}
@@ -89,18 +83,15 @@ const Members = (props)=>{
                             />
                         <Row 
                            sr="1"
-                           fname="Sidhraj"
-                           lname="Mori"
-                           dob="01/09/2001"
-                           email="sdkm7016816547@gmail.com"
-                           phone="910679097"
-                           phoneA="9876543210"
                            userType={props.userType}
                            society="soc ABC"
-                           housename="B-7"
-                           housetype="2BHK"
-                           isrented="false"
-                           isdeleted="false"
+                           fname="sidhraj"
+                           lname="mori"
+                           gender="male"
+                           age="21"
+                           relation="sibling"
+                           user="sid@gmail.com"
+                           
                                 
                            modal={setDisplayInfo}
                            changeMemberData={setMemberData}
@@ -108,19 +99,15 @@ const Members = (props)=>{
                             />
                         <Row 
                             sr="1"
-                            fname="Sidhraj"
-                            lname="Mori"
-                            dob="01/09/2001"
-                            email="sdkm7016816547@gmail.com"
-                            phone="910679097"
-                            phoneA="9876543210"
                             userType={props.userType}
                             society="soc ABC"
-                            housename="B-7"
-                            housetype="2BHK"
-                            isrented="false"
-                            isdeleted="false"
-                                
+                            fname="sidhraj"
+                            lname="mori"
+                            gender="male"
+                            age="21"
+                            relation="sibling"
+                            user="sid@gmail.com"
+
                             modal={setDisplayInfo}
                             changeMemberData={setMemberData}
                             changeAction={setAction}
@@ -140,16 +127,11 @@ const Row=(props)=>{
     const data={
         fname:props.fname,
         lname:props.lname,
-        dob:props.dob,
-        email:props.email,
-        phone:props.phone,
-        phoneA:props.phoneA,
-        type:props.userType,
+        age:props.age,
+        gender:props.gender,
+        relation:props.relation,
         society:props.society,
-        housename:props.housename,
-        housetype:props.housetype,
-        isrented:props.isrented,
-        isdeleted:props.isdeleted,
+        user:props.user,
     }
 
     return(
@@ -166,18 +148,35 @@ const Row=(props)=>{
                 </td>
                 
                 <td>
-                    <div>{props.housename}</div>
+                    <div>{props.gender}</div>
+                </td>
+
+                <td>
+                    <div>{props.age}</div>
                 </td>
                 
                 <td>
-                    <div>{props.society}</div>
+                    <div>{props.relation}</div>
                 </td>
-                <td>
-                    <div className="tenantPhone">{props.phone}</div>
-                </td>
-                <td>
-                    <div className="tenantEmail">{props.email}</div>
-                </td>
+                {
+                    props.userType=="Admin"?
+                        (<>
+                            <td>
+                                <div>{props.society}</div>
+                            </td>
+                            <td>
+                                <div>{props.user}</div>
+                            </td>
+                        </>):(<></>)
+                }
+                {
+                    props.userType=="SocietyAdmin"?
+                    (<>
+                        <td>
+                            <div>{props.user}</div>
+                        </td>
+                    </>):(<></>)
+                }
                 {/* <td>
                     <div className="tenantDocs">{props.documents}</div>
                 </td>
@@ -215,4 +214,4 @@ const Row=(props)=>{
     );
 }
 
-export default Members;
+export default FamilyMembers;

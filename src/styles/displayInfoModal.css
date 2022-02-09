@@ -37,6 +37,14 @@
     color:#3e444e;
 }
 
+.displayInfoInput0{
+    border:0.1em solid #FEB6B6;
+    border-radius: 0.3em;
+    outline:none;
+    width:4em;
+    color:#3e444e;
+}
+
 .dataContainer2{
     display: flex;
     flex-direction: row;

@@ -1,17 +1,20 @@
 import CreateVisitorCode from '../components/createVisitorCode';
-import DisplayInfoModal from '../components/displayInfoModal';
 import { useState } from 'react';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
+import VisitorInfoModal from './visitorInfoModal';
 
 const Visitors = (props) => {
 
     const [ visitorModal , setVisitorModal ] =  useState(0); 
-    const [ displayInfo , setDisplayInfo ] = useState(1);
+    const [ displayInfo , setDisplayInfo ] = useState(0);
+
+    const [ visitorData,setVisitorData] = useState();
+    const [ action,setAction ] = useState();
 
     return (
         <>
             { visitorModal ? ( <CreateVisitorCode changeGallery={ setVisitorModal }/> ) : (<></>) }
-            { displayInfo ?( <DisplayInfoModal closeModal={setDisplayInfo}/> ):(<></>) }
+            { displayInfo ?( <VisitorInfoModal action={action} data={visitorData} closeModal={setDisplayInfo}/> ):(<></>) }
             <div className="galleryButtons">
             <div className="galleryCaption">Visitors</div>
                 {
@@ -51,6 +54,9 @@ const Visitors = (props) => {
                     house="B-7"
                     enTime="01:10 AM"
                     exTime="01:10 PM"
+                    Modal={setDisplayInfo}
+                    setVisitorData={setVisitorData}
+                    changeAction={setAction}
                 />
                 <Row 
                     sr="1"
@@ -62,6 +68,9 @@ const Visitors = (props) => {
                     phone="9876543210"
                     enTime="01:10 AM"
                     exTime="01:10 PM"
+                    Modal={setDisplayInfo}
+                    setVisitorData={setVisitorData}
+                    changeAction={setAction}
                 />
                 <Row 
                     sr="1"
@@ -73,6 +82,9 @@ const Visitors = (props) => {
                     phone="9876543210"
                     enTime="01:10 AM"
                     exTime="01:10 PM"
+                    Modal={setDisplayInfo}
+                    setVisitorData={setVisitorData}
+                    changeAction={setAction}
                 />
             </table>
             <div>
@@ -85,6 +97,15 @@ const Visitors = (props) => {
 
 const Row=(props)=>{
     const [hover,setHover] = useState(0);
+    const data={
+        fname:props.fname,
+        lname:props.lname,
+        society:props.society,
+        phone:props.phone,
+        house:props.house,
+        entry:props.enTime,
+        exit:props.exTime,
+    };
     return(
         <>
             <tr className="notHeading">
@@ -130,6 +151,7 @@ const Row=(props)=>{
                         <AiFillEye size="2em" color={hover=="eye"?"#FEB6B6":"#707A8A"}
                             onMouseOver={()=>setHover("eye")}
                             onMouseLeave={()=>setHover(0)}
+                            onClick={()=>{props.changeAction("view"); props.setVisitorData(data);props.Modal(1); }}
                         />
                         {
                             props.userType=="Admin"?(<FaTrash size="1.6em" color={hover=="bin"?"#FEB6B6":"#707A8A"}

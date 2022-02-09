@@ -1,16 +1,27 @@
 // import Images from "../../images";
 import * as Complaints from '../../styles/complaints'
 
-const Complaint=()=>{
+const Complaint=(props)=>{
+    const data={
+        caption:props.caption,
+        status:props.status,
+        user:props.user,
+        date:props.date,
+        description:props.discription,
+        category:props.category,
+        id:props.id,
+    }
     return (
-        <Complaints.ComplaintTicketContent>
-            <Complaints.ComplaintTicketHeading>Complaint 1</Complaints.ComplaintTicketHeading>
+        <Complaints.ComplaintTicketContent
+            onClick={()=>{props.changeAction("show");props.changeNoticeData(data);props.modal(1) }}
+        >
+            <Complaints.ComplaintTicketHeading>{props.caption}</Complaints.ComplaintTicketHeading>
             <Complaints.ComplaintTicketStatusContainer>
                 {/* <img className="complaintTicketStatusImage" src={Images.compResolved} /> */}
-                <Complaints.ComplaintTicketStatus>Resolved</Complaints.ComplaintTicketStatus>
+                <Complaints.ComplaintTicketStatus>{props.status}</Complaints.ComplaintTicketStatus>
             </Complaints.ComplaintTicketStatusContainer>
             <Complaints.ComplaintTicketControls>
-                <div className>View More</div>
+                <div>View More</div>
                 {/* <img className="complaintTicketControlImage" src={Images.smallMore}/> */}
             </Complaints.ComplaintTicketControls>
         </Complaints.ComplaintTicketContent>

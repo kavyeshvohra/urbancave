@@ -1,10 +1,17 @@
+import Images from '../../images.js';
 import '../../styles/tenants.css';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
+import TenantInfoModal from './tenantInfoModal.jsx';
 import { useState } from 'react';
 
 const Tenants = (props)=>{
+    
+    const [ displayInfo , setDisplayInfo ] = useState(0);
+    const [ tenantData,setTenantData] = useState();
+    const [ action,setAction ] = useState();
     return(
         <>
+            { displayInfo ?( <TenantInfoModal action={action} data={tenantData} closeModal={setDisplayInfo}/> ):(<></>) }
             <div className="galleryButtons">
                 
                 <div className="galleryCaption">Tenants</div>
@@ -28,18 +35,21 @@ const Tenants = (props)=>{
                         <td className="tenantsCol9">Actions</td>
                     </tr>
                         <Row 
-                                sr="1"
-                                fname="Sidhraj"
-                                lname="Mori"
-                                phone="910679097"
-                                email="sdkm7016816547@gmail.com"
-                                documents="No Documents"
-                                poi="No POI"
-                                rent="15000"
-                                society="soc ABC"
-                                userType={props.userType}
-                                house="B-7"
-                                />
+                            sr="1"
+                            fname="Sidhraj"
+                            lname="Mori"
+                            phone="910679097"
+                            email="sdkm7016816547@gmail.com"
+                            documents="No Documents"
+                            poi="No POI"
+                            rent="15000"
+                            society="soc ABC"
+                            userType={props.userType}
+                            house="B-7"
+                            modal={setDisplayInfo}
+                            changeTenantData={setTenantData}
+                            changeAction={setAction}
+                            />
                         <Row 
                             sr="2"
                             fname="Sidhraj"
@@ -52,6 +62,9 @@ const Tenants = (props)=>{
                             society="soc ABC"
                             userType={props.userType}
                             house="B-7"
+                            modal={setDisplayInfo}
+                            changeTenantData={setTenantData}
+                            changeAction={setAction}
                             />
                         <Row 
                             sr="3"
@@ -65,6 +78,9 @@ const Tenants = (props)=>{
                             society="soc ABC"
                             userType={props.userType}
                             house="B-7"
+                            modal={setDisplayInfo}
+                            changeTenantData={setTenantData}
+                            changeAction={setAction}
                             />
                         <Row 
                             sr="4"
@@ -78,6 +94,9 @@ const Tenants = (props)=>{
                             society="soc ABC"
                             userType={props.userType}
                             house="B-7"
+                            modal={setDisplayInfo}
+                            changeTenantData={setTenantData}
+                            changeAction={setAction}
                             />
                         <Row 
                             sr="5"
@@ -91,6 +110,9 @@ const Tenants = (props)=>{
                             society="soc ABC"
                             userType={props.userType}
                             house="B-7"
+                            modal={setDisplayInfo}
+                            changeTenantData={setTenantData}
+                            changeAction={setAction}
                             />
                 </table>
             <div>
@@ -104,6 +126,17 @@ const Tenants = (props)=>{
 const Row=(props)=>{
 
     const [hover,setHover] = useState(0);
+    const data={
+        fname:props.fname,
+        lname:props.lname,
+        house:props.house,
+        society:props.society,
+        phone:props.phone,
+        email:props.email,
+        documents:props.documents,
+        poi:props.poi,
+        rent:props.rent,
+    }
 
     return(
         <>
@@ -145,6 +178,7 @@ const Row=(props)=>{
                         <AiFillEye size="2em" color={hover=="eye"?"#FEB6B6":"#707A8A"}
                             onMouseOver={()=>setHover("eye")}
                             onMouseLeave={()=>setHover(0)}
+                            onClick={()=>{props.changeAction("show");props.changeTenantData(data);props.modal(1) }}
                         />
                         {
 

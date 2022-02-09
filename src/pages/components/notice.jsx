@@ -2,11 +2,17 @@ import '../../styles/notice.css';
 import { useState } from 'react';
 import CreateNoticeModal from './createNoticeModal';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
+import NoticeInfoModal from './noticeInfoModal';
 
 const Notice = (props)=>{
     const [ createNotice , setCreateNotice ] = useState(0);
+
+    const [ displayInfo , setDisplayInfo ] = useState(0);
+    const [ noticeData,setNoticeData] = useState();
+    const [ action,setAction ] = useState();
     return(
         <>
+            { displayInfo ?( <NoticeInfoModal action={action} data={noticeData} closeModal={setDisplayInfo}/> ):(<></>) }
             {createNotice != 0 ? ( <CreateNoticeModal changeCreateNotice={setCreateNotice} /> ) : (<></>) }
             <div className="galleryButtons">
                 
@@ -34,17 +40,29 @@ const Notice = (props)=>{
                         postedby="sidhraj"
                         society="soc ABC"
                         userType={props.userType}
+                        noticeDoc="none"
+                        modal={setDisplayInfo}
+                        changeNoticeData={setNoticeData}
+                        changeAction={setAction}
                         date="01/01/2001 01:00 PM"/>
                 <Row 
                         sr="2"
+                        modal={setDisplayInfo}
+                        changeNoticeData={setNoticeData}
+                        changeAction={setAction}
                         caption="Health Notice" 
                         des="Health NoticeHealth NoticeHealth NoticeHealth Notice" 
                         postedby="sidhraj"
                         society="soc ABC"
+                        noticeDoc="none"
                         userType={props.userType}
                         date="01/01/2001 01:00 PM"/>
                     <Row 
                         sr="3"
+                        modal={setDisplayInfo}
+                        changeNoticeData={setNoticeData}
+                        changeAction={setAction}
+                        noticeDoc="none"
                         caption="Health Notice" 
                         des="Health NoticeHealth NoticeHealth NoticeHealth Notice" 
                         postedby="sidhraj"
@@ -53,6 +71,10 @@ const Notice = (props)=>{
                         date="01/01/2001 01:00 PM"/>
                     <Row 
                         sr="4"
+                        modal={setDisplayInfo}
+                        changeNoticeData={setNoticeData}
+                        changeAction={setAction}
+                        noticeDoc="none"
                         caption="Health Notice" 
                         des="Health NoticeHealth NoticeHealth NoticeHealth Notice" 
                         postedby="sidhraj"
@@ -61,6 +83,10 @@ const Notice = (props)=>{
                         date="01/01/2001 01:00 PM"/>
                     <Row 
                         sr="5"
+                        modal={setDisplayInfo}
+                        changeNoticeData={setNoticeData}
+                        changeAction={setAction}
+                        noticeDoc="none"
                         caption="Health Notice" 
                         des="Health NoticeHealth NoticeHealth NoticeHealth Notice" 
                         postedby="sidhraj"
@@ -78,6 +104,14 @@ const Notice = (props)=>{
 
 const Row=(props)=>{
     const [hover,setHover] = useState(0);
+    const data={
+        caption:props.caption,
+        description:props.des,
+        society:props.society,
+        date:props.date,
+        postedby:props.postedby,
+        noticeDoc:props.noitceDoc,
+    }
     return(
         <>
             <tr className="notHeading">
@@ -105,6 +139,7 @@ const Row=(props)=>{
                         <AiFillEye size="2em" color={hover=="eye"?"#FEB6B6":"#707A8A"}
                             onMouseOver={()=>setHover("eye")}
                             onMouseLeave={()=>setHover(0)}
+                            onClick={()=>{props.changeAction("show");props.changeNoticeData(data);props.modal(1) }}
                         />
                         <MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
                             onMouseOver={()=>setHover("edit")}

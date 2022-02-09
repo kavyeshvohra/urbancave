@@ -2,13 +2,20 @@ import Complaint from "./complaint";
 import '../../styles/complaints.css';
 import CreateComplaintModal from "./createComplaintModal";
 import { useState } from "react";
+import ComplaintInfoModal from "./complaintInfoModal";
 
 const ComplaintsAndFeedback=(props)=>{
     const [ compRegister , setCompRegister ] = useState(0);
+
+    const [ displayInfo , setDisplayInfo ] = useState(0);
+    const [ complaintData,setComplaintData] = useState();
+    const [ action,setAction ] = useState();
+    //dummy complaint des
+    const des="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.";
     return (
 
        <>
-            
+            { displayInfo ?( <ComplaintInfoModal action={action} data={complaintData} closeModal={setDisplayInfo}/> ):(<></>) }
             { compRegister == 1 ? (<CreateComplaintModal changeCompRegister={setCompRegister}/>) : (<></>)}
             
             {/* <div className="contentMatter">
@@ -56,40 +63,54 @@ const ComplaintsAndFeedback=(props)=>{
                     </div>
                 </div>
                 <div className="complaintTicketContainer">
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint /><Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint /><Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
-                    <Complaint />
+                    <Complaint
+                        caption="complaint 1"
+                        status="Resolved"
+                        user="sidhraj"
+                        date="01/01/2022"
+                        category="Platform"
+                        id="cf0102u1001"
+                        discription={des}
+                        modal={setDisplayInfo}
+                        changeNoticeData={setComplaintData}
+                        changeAction={setAction}
+                    />
+                    <Complaint 
+                        caption="complaint 2"
+                        status="Pending"
+                        user="sidhraj"
+                        date="01/01/2022"
+                        category="Platform"
+                        id="cf0102u1001" 
+                        discription={des}
+                        modal={setDisplayInfo}
+                        changeNoticeData={setComplaintData}
+                        changeAction={setAction}
+                    />
+                    <Complaint 
+                        caption="complaint 3"
+                        status="Pending"
+                        user="sidhraj"
+                        date="01/01/2022"
+                        category="Platform"
+                        id="cf0102u1001"
+                        discription={des}
+                        modal={setDisplayInfo}
+                        changeNoticeData={setComplaintData}
+                        changeAction={setAction}
+                    />
+                    <Complaint 
+                        caption="complaint 4"
+                        status="Resolved"
+                        user="sidhraj"
+                        date="01/01/2022"
+                        category="Platform"
+                        id="cf0102u1001"
+                        discription={des}
+                        modal={setDisplayInfo}
+                        changeNoticeData={setComplaintData}
+                        changeAction={setAction}
+                    />
                 </div>
             </div>
         </>

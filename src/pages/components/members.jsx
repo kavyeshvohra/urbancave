@@ -1,16 +1,13 @@
+
 import '../../styles/tenants.css';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
 import { useState } from 'react';
 
-const Tenants = (props)=>{
-    return(
-        <>
+const Members = (props)=>{
+    return(<>
+
             <div className="galleryButtons">
-                
-                <div className="galleryCaption">Tenants</div>
-                {
-                    props.userType!="Admin"?(<button className="galleryButtonControls">Add New Tenant</button>):(<></>)
-                }
+                <div className="galleryCaption">Society Members</div>
             </div>
             <div className="tenantsContainer">
                 <table className="tenantsTable">
@@ -19,7 +16,7 @@ const Tenants = (props)=>{
                         <td className="tenantsCol1">First Name</td>
                         <td className="tenantsCol2">Last Name</td>
                         <td className="tenantsCol2">House</td>
-                        <td className="tenantsCol2">Society</td>
+                        { props.userType=="Admin"?(<td className="tenantsCol2">Society</td>):(<></>)}
                         <td className="tenantsCol4">Phone Number</td>
                         <td className="tenantsCol5">Email</td>
                         {/* <td className="tenantsCol6">Documents</td>
@@ -97,8 +94,7 @@ const Tenants = (props)=>{
                 <div>showing 1 out of 10 entries</div>
             </div>
             </div>
-        </>
-    );
+    </>);
 }
 
 const Row=(props)=>{
@@ -167,4 +163,4 @@ const Row=(props)=>{
     );
 }
 
-export default Tenants;
+export default Members;

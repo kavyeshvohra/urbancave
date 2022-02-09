@@ -16,6 +16,7 @@ import Register from './pages/register.js';
 import UserAccount from './pages/components/useraccount';
 import Visitor from './pages/components/visitors';
 import Payments from './pages/components/payments';
+import Members from './pages/components/members';
 
 function App() {
 
@@ -39,7 +40,7 @@ function App() {
             
             <Route path="societies" element={ <Societies userType={userType} /> }/>
             
-            <Route path="members" element={<h1>Members</h1>}/>
+            <Route path="members" element={<Members userType={userType}/>}/>
           
             <Route path="payments" element={ <Payments userType={userType} /> }/>
           

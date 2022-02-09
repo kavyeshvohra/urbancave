@@ -1,14 +1,17 @@
 import CreateVisitorCode from '../components/createVisitorCode';
+import DisplayInfoModal from '../components/displayInfoModal';
 import { useState } from 'react';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
 
 const Visitors = (props) => {
 
     const [ visitorModal , setVisitorModal ] =  useState(0); 
+    const [ displayInfo , setDisplayInfo ] = useState(1);
 
     return (
         <>
-             { visitorModal ? ( <CreateVisitorCode changeGallery={ setVisitorModal }/> ) : (<></>) }
+            { visitorModal ? ( <CreateVisitorCode changeGallery={ setVisitorModal }/> ) : (<></>) }
+            { displayInfo ?( <DisplayInfoModal closeModal={setDisplayInfo}/> ):(<></>) }
             <div className="galleryButtons">
             <div className="galleryCaption">Visitors</div>
                 {

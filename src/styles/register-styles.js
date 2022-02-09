@@ -177,6 +177,20 @@ export const Detailsform = styled.input`
 
 }
 `;
+export const Detailsform1 = styled.input`
+  padding: 8px;
+  display: flex;
+  height: 45px;
+  width: 100%;
+  margin: unset;
+  outline: none;
+  border: none;
+  &:focus + span,
+  &.text + span
+  {
+    transform: translate(-1.65em, -2.2rem) scale(1);
+  }
+`
 export const Detailsformdate = styled.input`
   padding: 8px;
   display: flex;

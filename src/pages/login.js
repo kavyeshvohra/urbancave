@@ -28,8 +28,6 @@ const Login = () => {
         setIsPasswordVisible(!isPasswordVisible)
     }
 
-    
-    
     const validateCreds = async ()=>{
         const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
         
@@ -81,36 +79,6 @@ const Login = () => {
         color:"red",
         alignText:"center",
     }
-    const ForgotPassword = () => {
-        const iconStyle = {
-            width: "1.5em",
-            height: "1.5em",
-        };
-        function inputChange(e) {
-            if (e.target.value !== "") {
-                e.target.classList.add('text');
-            }
-            else {
-                e.target.classList.remove('text');
-            }
-        }
-        return(
-            <>
-                <LStyle.ForgotPassContainer>
-                    <LStyle.ForgotForm>
-                        <LStyle.Heading1>Forgot Your Password?</LStyle.Heading1>
-                        <LStyle.Form>
-                        <LStyle.FormGroup>
-                                <FaUserCircle className='login-field-icons' style={iconStyle} />
-                                <LStyle.DetailsForm type="text" id="email" name="username" onChange={inputChange} tabIndex="1" />
-                                <LStyle.FocusText data-placeholder="Email" />
-                        </LStyle.FormGroup>
-                        </LStyle.Form>
-                    </LStyle.ForgotForm>
-                </LStyle.ForgotPassContainer>
-            </>
-        )
-    }
 
     return (
         <>
@@ -140,7 +108,7 @@ const Login = () => {
                             <LStyle.Button id="submit" name="submit" tabIndex="4" >Login</LStyle.Button>
                         </LStyle.FormGroupButton>
                         <LStyle.FormGroupTwo>
-                            <Link to="/" onClick={ForgotPassword}>Forgot password?</Link>
+                            <Link to="/forgotpassword">Forgot password?</Link>
                             <Link to="/register">Sign Up!</Link>
                         </LStyle.FormGroupTwo>
                     </LStyle.Form>
@@ -150,7 +118,6 @@ const Login = () => {
     )
 
 }
-
 
 
 export default Login

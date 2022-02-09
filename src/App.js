@@ -22,7 +22,7 @@ import Visitor from './pages/components/visitors';
 import Payments from './pages/components/payments';
 import Members from './pages/components/members';
 import FamilyMembers from './pages/components/familyMembers';
-
+import ForgotPass from './pages/components/forgotpassword'
 function App() {
 
   const [userType,setUserType] = useState("Admin");
@@ -37,7 +37,7 @@ function App() {
           <Route path="/login" element={ <Login userType={userType} changeUserType={setUserType}/> }/>
           
           <Route path="/register" element={ <Register userType={userType} /> }/>
-
+          <Route path="/forgotpassword" element={<ForgotPass/>}/>
           <Route path="/contactus" element={<Contact userType={userType} />} />
           <Route path="/main" element={<Main userType={userType} />} >
             
@@ -47,6 +47,7 @@ function App() {
                 ( <MemberDashboard userType={userType}/> )
             }/>
             
+
             <Route path="familymembers" element={<FamilyMembers userType={userType}/>}/>
 
             <Route path="societies" element={<Societies userType={userType}/>}/>

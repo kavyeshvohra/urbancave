@@ -13,12 +13,26 @@ export const LoginForm = styled.div`
   flex-direction: column;
   box-shadow: -1px 1px 11px #00000014;
 `
-export const ForgotForm = styled.div`
+// export const ForgotForm = styled.div`
+//   border: 1px solid #fff;
+//   padding: 4rem 5.6rem;
+//   background-color: #fff;
+//   border-radius: 15px;
+//   width: 34em;
+//   height: 35em;
+//   display: flex;
+//   margin-left: 4.98em;
+//   flex-direction: column;
+//   box-shadow: -1px 1px 11px #00000014;
+// `
+// export const ForgotPassContainer = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 100vw;
+//   height: 100vh;
+// `
 
-`
-export const ForgotPassContainer = styled.div`
-  
-`
 export const Form = styled.form`
   display: block;
   position: relative;

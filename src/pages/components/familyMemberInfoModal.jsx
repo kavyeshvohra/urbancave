@@ -1,8 +1,21 @@
 import '../../styles/displayInfoModal.css';
 import {AiOutlineCloseCircle} from 'react-icons/all';
+import { useEffect,useState } from 'react';
 
 const FamilyMemberInfoModal=(props)=>{
     console.log(props.data);
+
+    const [type,setType] = useState();
+
+    useEffect(()=>{
+        if (props.action == "show"){
+            setType(true);
+        }
+        else{
+            setType(false);
+        }
+    })
+
     return(<>
         <div className="dimScreen">
             <div className="displayInfoContent">
@@ -14,23 +27,23 @@ const FamilyMemberInfoModal=(props)=>{
                     <div className="dataContainer1">
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">First Name:</lable>
-                            <input className="displayInfoInput" value={props.data.fname} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.fname} readOnly={type}/>
                         </div>
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Last Name:</lable>
-                            <input className="displayInfoInput" value={props.data.lname} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.lname} readOnly={type}/>
                         </div>
                     </div>
 
                     <div className='dataContainer1'>
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Gender:</lable>
-                            <input className="displayInfoInput" value={props.data.gender} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.gender} readOnly={type}/>
                         </div>
                         
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Age:</lable>
-                            <input className="displayInfoInput0" value={props.data.age} readOnly/>
+                            <input className="displayInfoInput0" defaultValue={props.data.age} readOnly={type}/>
                         </div>
                     </div>
 
@@ -40,11 +53,11 @@ const FamilyMemberInfoModal=(props)=>{
                             <div className="dataContainer1">
                                 <div className="visitorDataContainer">
                                     <lable className="displayInfoLable">Society:</lable>
-                                    <input className="displayInfoInput" value={props.data.society} readOnly/>
+                                    <input className="displayInfoInput" defaultValue={props.data.society} readOnly={type}/>
                                 </div>
                                 <div className="visitorDataContainer">
                                     <lable className="displayInfoLable">User:</lable>
-                                    <input className="displayInfoInput" value={props.data.user} readOnly/>
+                                    <input className="displayInfoInput" defaultValue={props.data.user} readOnly={type}/>
                                 </div>
                             </div>
                         </div>):(<></>)
@@ -55,20 +68,20 @@ const FamilyMemberInfoModal=(props)=>{
                             
                             <div className="visitorDataContainer">
                                 <lable className="displayInfoLable">User:</lable>
-                                <input className="displayInfoInput" value={props.data.user} readOnly/>
+                                <input className="displayInfoInput" defaultValue={props.data.user} readOnly={type}/>
                             </div>
                         </div>):(<></>)
                     }
 
                     <div className="visitorDataContainer">
                         <lable className="displayInfoLable">Relation:</lable>
-                        <input className="displayInfoInput" value={props.data.relation} readOnly/>
+                        <input className="displayInfoInput" defaultValue={props.data.relation} readOnly={type}/>
                     </div>
 
                     {
                         props.action!="show"?(<div className="visitorDataButtons">
                             <button className="galleryButtonControls">Save</button>
-                            <button className="galleryButtonControls">Cancel</button>
+                            <button className="galleryButtonControls" onClick={()=>props.closeModal()}>Cancel</button>
                         </div>):(<></>)
                     }
                 </div>

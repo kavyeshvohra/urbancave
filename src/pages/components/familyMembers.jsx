@@ -3,8 +3,10 @@ import '../../styles/tenants.css';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
 import { useState } from 'react';
 import MemberInfoModal from './familyMemberInfoModal';
+import CreateFamilyMemberModal from './createFamilyMemberModal';
 
 const FamilyMembers = (props)=>{
+    const [registerFamily,setRegisterFamily] = useState();
     
     const [ displayInfo , setDisplayInfo ] = useState(0);
     const [ memberData,setMemberData] = useState();
@@ -12,8 +14,14 @@ const FamilyMembers = (props)=>{
 
     return(<>
             { displayInfo ?( <MemberInfoModal userType={props.userType} action={action} data={memberData} closeModal={setDisplayInfo}/> ):(<></>) }
+            { registerFamily ?(<CreateFamilyMemberModal changeRegisterFamily={setRegisterFamily}/>):(<></>)}
             <div className="galleryButtons">
                 <div className="galleryCaption">Family Members</div>
+                {
+                    props.userType=="SocietyAdmin"?(<button className="galleryButtonControls" onClick={()=>setRegisterFamily(1)}>
+                        Register Family Member
+                    </button>):(<></>)
+                }
             </div>
             <div className="tenantsContainer">
                 <table className="tenantsTable">
@@ -195,9 +203,10 @@ const Row=(props)=>{
                         />
                         {
 
-                            props.userType!="Admin"?(<MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
+                            props.userType=="SocietyMember"?(<MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
                                 onMouseOver={()=>setHover("edit")}
                                 onMouseLeave={()=>setHover(0)}
+                                onClick={()=>{props.changeAction("edit");props.changeMemberData(data);props.modal(1) }}
                             />):(<></>)
                         }
                         {

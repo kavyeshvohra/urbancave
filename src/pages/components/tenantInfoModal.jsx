@@ -8,7 +8,7 @@ const TenantInfoModal=(props)=>{
             <div className="displayInfoContent">
                 <div className="CreateGalleryModalHeader">
                     <div className="CreateGalleryModalCaption">Tenant Information</div>
-                    <AiOutlineCloseCircle onClick={()=>props.closeModal()} size="2.2em" color="#FEB6B6"/>
+                    <AiOutlineCloseCircle onClick={()=>props.closeModal(0)} size="2.2em" color="#FEB6B6"/>
                 </div>
                 <div className="visitorInfoContainer">
                     <div className="dataContainer1">
@@ -58,7 +58,7 @@ const TenantInfoModal=(props)=>{
                     {
                         props.action!="show"?(<div className="visitorDataButtons">
                             <button className="galleryButtonControls">Save</button>
-                            <button className="galleryButtonControls">Cancel</button>
+                            <button className="galleryButtonControls" onClick={()=>props.closeModal(0)}>Cancel</button>
                         </div>):(<></>)
                     }
                 </div>

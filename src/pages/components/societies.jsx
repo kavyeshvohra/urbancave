@@ -3,9 +3,9 @@ import soc1_img from '../../Images/soc1.jpg'
 import soc2_img from '../../Images/soc2.jpg'
 import soc3_img from '../../Images/soc3.jpg'
 import soc4_img from '../../Images/soc4.jpg'
-// import '../../styles/fileAndFolder.css';
-// import '../../styles/gallery';
-// import Folder from './folder';
+import '../../styles/fileAndFolder.css';
+import '../../styles/gallery';
+import Folder from './folder';
 
 
 const Societies = () =>{
@@ -16,7 +16,7 @@ const Societies = () =>{
     let image = 0 ;
     return(
         <>
-            <SStyle.HeadingCont>
+            {/* <SStyle.HeadingCont>
                 <SStyle.Heading>Manage Societies</SStyle.Heading>
             </SStyle.HeadingCont>
             <SStyle.Society>
@@ -31,8 +31,8 @@ const Societies = () =>{
                     </SStyle.SocietyCont>
                     )
                 })}
-            </SStyle.Society>
-             {/* <div className="galleryHeader">
+            </SStyle.Society> */}
+             <div className="galleryHeader">
                 <div className="galleryCaption">Societies</div>
             </div>
             <div className="fileFolderContainer">
@@ -41,7 +41,7 @@ const Societies = () =>{
                         return( <Folder folderName={soc} type="society"  />)
                     })
             }
-            </div> */}
+            </div>
         </>
     );
 }

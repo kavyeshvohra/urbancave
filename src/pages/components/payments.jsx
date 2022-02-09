@@ -15,14 +15,14 @@ const Payments = (props) => {
             <div className="galleryButtons">
             <div className="galleryCaption">Maintenance Transactions</div>
                 {
-                    props.userType=="SocietyAdmin"?(<button className="galleryButtonControls" onClick="">Pay Maintenance</button>):(<></>)
+                    props.userType!="Admin"?(<button className="galleryButtonControls" onClick={()=>console.log(0)}>Pay Maintenance</button>):(<></>)
                 }
             </div>
             <div className="noticeContainer">
             <table className="noticeTable">
                 <tr>
                     <td>SrNo</td>
-                    <td>User</td>
+                    {props.userType!="SocietyMember"?(<td>User</td>):(<></>)}
                     {props.userType=="Admin"?(<td>Society</td>):(<></>)}
                     <td>Transaction ID</td>
                     <td>Amount</td>
@@ -114,14 +114,14 @@ const Payments = (props) => {
         <div className="galleryButtons">
             <div className="galleryCaption">Donations</div>
                 {
-                    props.userType=="SocietyAdmin"?(<button className="galleryButtonControls" onClick="">Donate</button>):(<></>)
+                    props.userType!="Admin"?(<button className="galleryButtonControls" onClick={()=>console.log(0)}>Donate</button>):(<></>)
                 }
             </div>
             <div className="noticeContainer">
             <table className="noticeTable">
                 <tr>
                 <td>SrNo</td>
-                    <td>User</td>
+                    {props.userType!="SocietyMember"?(<td>User</td>):(<></>)}
                     {props.userType=="Admin"?(<td>Society</td>):(<></>)}
                     <td>Transaction ID</td>
                     <td>Amount</td>
@@ -234,9 +234,11 @@ const Row=(props)=>{
                 <td>
                     <div>{props.sr}</div>
                 </td>
-                <td>
-                    <div className="visitorText">{props.user}</div>
-                </td>
+                {
+                    props.userType!="SocietyMember"?(<td>
+                        <div className="visitorText">{props.user}</div>
+                    </td>):(<></>)
+                }
                 {
                     props.userType=="Admin"?(<td>
                         <div className="visitorText">{props.society}</div>

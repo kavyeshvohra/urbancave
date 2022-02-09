@@ -32,7 +32,9 @@ const Folder = (props)=>{
     return(
         <div className="folder" onClick={test} >
             <img src={iconState} className="folderIcon"/>
-            <div className="folderName">{props.folderName}</div>
+            <div className="folderName">
+                {props.folderName.split(" ")[0]}
+            </div>
         </div>
     );
 }

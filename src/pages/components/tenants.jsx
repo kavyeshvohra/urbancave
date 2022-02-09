@@ -3,8 +3,10 @@ import '../../styles/tenants.css';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
 import TenantInfoModal from './tenantInfoModal.jsx';
 import { useState } from 'react';
+import CreateTenantModal from './createTenantModal.jsx';
 
 const Tenants = (props)=>{
+    const [ tenantModal , setTenantModal ] = useState(0);
     
     const [ displayInfo , setDisplayInfo ] = useState(0);
     const [ tenantData,setTenantData] = useState();
@@ -12,11 +14,12 @@ const Tenants = (props)=>{
     return(
         <>
             { displayInfo ?( <TenantInfoModal action={action} data={tenantData} closeModal={setDisplayInfo}/> ):(<></>) }
+            { tenantModal ?(<CreateTenantModal changeTenant={setTenantModal} />):(<></>) }
             <div className="galleryButtons">
                 
                 <div className="galleryCaption">Tenants</div>
                 {
-                    props.userType!="Admin"?(<button className="galleryButtonControls">Add New Tenant</button>):(<></>)
+                    props.userType!="Admin"?(<button className="galleryButtonControls" onClick={()=>setTenantModal(1)}>Add New Tenant</button>):(<></>)
                 }
             </div>
             <div className="tenantsContainer">
@@ -26,7 +29,9 @@ const Tenants = (props)=>{
                         <td className="tenantsCol1">First Name</td>
                         <td className="tenantsCol2">Last Name</td>
                         <td className="tenantsCol2">House</td>
-                        <td className="tenantsCol2">Society</td>
+                        {
+                            props.userType=="Admin"?(<td className="tenantsCol2">Society</td>):(<></>)
+                        }
                         <td className="tenantsCol4">Phone Number</td>
                         <td className="tenantsCol5">Email</td>
                         {/* <td className="tenantsCol6">Documents</td>
@@ -155,9 +160,11 @@ const Row=(props)=>{
                     <div>{props.house}</div>
                 </td>
                 
-                <td>
-                    <div>{props.society}</div>
-                </td>
+                {
+                    props.userType=="Admin"?(<td>
+                        <div>{props.society}</div>
+                    </td>):(<></>)
+                }
                 <td>
                     <div className="tenantPhone">{props.phone}</div>
                 </td>
@@ -185,6 +192,7 @@ const Row=(props)=>{
                             props.userType!="Admin"?(<MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
                                 onMouseOver={()=>setHover("edit")}
                                 onMouseLeave={()=>setHover(0)}
+                                onClick={()=>{console.log(0);props.changeAction("edit");props.changeTenantData(data);props.modal(1) }}
                             />):(<></>)
                         }
                         {

@@ -14,66 +14,66 @@ const MemberInfoModal=(props)=>{
                     <div className="dataContainer1">
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">First Name:</lable>
-                            <input className="displayInfoInput" value={props.data.fname} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.fname} readOnly/>
                         </div>
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Last Name:</lable>
-                            <input className="displayInfoInput" value={props.data.lname} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.lname} readOnly/>
                         </div>
                     </div>
 
                     <div className='dataContainer1'>
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Email:</lable>
-                            <input className="displayInfoInput1" value={props.data.email} readOnly/>
+                            <input className="displayInfoInput1" defaultValue={props.data.email} readOnly/>
                         </div>
                         
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Is rented:</lable>
-                            <input className="displayInfoInput0" value={props.data.isrented} readOnly/>
+                            <input className="displayInfoInput0" defaultValue={props.data.isrented} readOnly/>
                         </div>
                     </div>
 
                     <div className="dataContainer1">
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Phone:</lable>
-                            <input className="displayInfoInput" value={props.data.phone} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.phone} readOnly/>
                         </div>
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Phone (Alternate):</lable>
-                            <input className="displayInfoInput" value={props.data.PhoneA} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.PhoneA} readOnly/>
                         </div>
                     </div>
 
                     <div className="dataContainer1">
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Date of Birth:</lable>
-                            <input className="displayInfoInput" value={props.data.dob} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.dob} readOnly/>
                         </div>
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">userType</lable>
-                            <input className="displayInfoInput" value={props.data.type} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.type} readOnly/>
                         </div>
                     </div>
 
                     <div className="dataContainer1">
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">House Name:</lable>
-                            <input className="displayInfoInput" value={props.data.housename} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.housename} readOnly/>
                         </div>
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">House Type:</lable>
-                            <input className="displayInfoInput" value={props.data.housetype} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.housetype} readOnly/>
                         </div>
                     </div>
                     <div className="dataContainer1">
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Society:</lable>
-                            <input className="displayInfoInput" value={props.data.society} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.society} readOnly/>
                         </div>
                         <div className="visitorDataContainer">
-                            <lable className="displayInfoLable">Is rented:</lable>
-                            <input className="displayInfoInput0" value={props.data.isdeleted} readOnly/>
+                            <lable className="displayInfoLable">Is Deleted:</lable>
+                            <input className="displayInfoInput0" defaultValue={props.data.isdeleted} readOnly/>
                         </div>
                     </div>
 

@@ -169,9 +169,11 @@ const Row=(props)=>{
                     <div>{props.housename}</div>
                 </td>
                 
-                <td>
-                    <div>{props.society}</div>
-                </td>
+                {
+                    props.userType=="Admin"?(<td>
+                        <div>{props.society}</div>
+                    </td>):(<></>)
+                }
                 <td>
                     <div className="tenantPhone">{props.phone}</div>
                 </td>
@@ -196,7 +198,7 @@ const Row=(props)=>{
                         />
                         {
 
-                            props.userType!="Admin"?(<MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
+                            props.userType=="SocietyMember"?(<MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
                                 onMouseOver={()=>setHover("edit")}
                                 onMouseLeave={()=>setHover(0)}
                             />):(<></>)

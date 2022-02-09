@@ -14,23 +14,23 @@ const FamilyMemberInfoModal=(props)=>{
                     <div className="dataContainer1">
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">First Name:</lable>
-                            <input className="displayInfoInput" value={props.data.fname} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.fname} readOnly/>
                         </div>
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Last Name:</lable>
-                            <input className="displayInfoInput" value={props.data.lname} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.lname} readOnly/>
                         </div>
                     </div>
 
                     <div className='dataContainer1'>
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Gender:</lable>
-                            <input className="displayInfoInput" value={props.data.gender} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.gender} readOnly/>
                         </div>
                         
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Age:</lable>
-                            <input className="displayInfoInput0" value={props.data.age} readOnly/>
+                            <input className="displayInfoInput0" defaultValue={props.data.age} readOnly/>
                         </div>
                     </div>
 
@@ -40,11 +40,11 @@ const FamilyMemberInfoModal=(props)=>{
                             <div className="dataContainer1">
                                 <div className="visitorDataContainer">
                                     <lable className="displayInfoLable">Society:</lable>
-                                    <input className="displayInfoInput" value={props.data.society} readOnly/>
+                                    <input className="displayInfoInput" defaultValue={props.data.society} readOnly/>
                                 </div>
                                 <div className="visitorDataContainer">
                                     <lable className="displayInfoLable">User:</lable>
-                                    <input className="displayInfoInput" value={props.data.user} readOnly/>
+                                    <input className="displayInfoInput" defaultValue={props.data.user} readOnly/>
                                 </div>
                             </div>
                         </div>):(<></>)
@@ -55,14 +55,14 @@ const FamilyMemberInfoModal=(props)=>{
                             
                             <div className="visitorDataContainer">
                                 <lable className="displayInfoLable">User:</lable>
-                                <input className="displayInfoInput" value={props.data.user} readOnly/>
+                                <input className="displayInfoInput" defaultValue={props.data.user} readOnly/>
                             </div>
                         </div>):(<></>)
                     }
 
                     <div className="visitorDataContainer">
                         <lable className="displayInfoLable">Relation:</lable>
-                        <input className="displayInfoInput" value={props.data.relation} readOnly/>
+                        <input className="displayInfoInput" defaultValue={props.data.relation} readOnly/>
                     </div>
 
                     {

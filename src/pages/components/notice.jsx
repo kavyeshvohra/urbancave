@@ -141,14 +141,19 @@ const Row=(props)=>{
                             onMouseLeave={()=>setHover(0)}
                             onClick={()=>{props.changeAction("show");props.changeNoticeData(data);props.modal(1) }}
                         />
-                        <MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
-                            onMouseOver={()=>setHover("edit")}
-                            onMouseLeave={()=>setHover(0)}
-                        />
-                        <FaTrash size="1.6em" color={hover=="bin"?"#FEB6B6":"#707A8A"}
-                            onMouseOver={()=>setHover("bin")}
-                            onMouseLeave={()=>setHover(0)}
-                        />
+                        {
+                            props.userType!="SocietyMember"?(<>
+                                <MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
+                                    onMouseOver={()=>setHover("edit")}
+                                    onMouseLeave={()=>setHover(0)}
+                                    onClick={()=>{props.changeAction("edit");props.changeNoticeData(data);props.modal(1) }}
+                                />
+                                <FaTrash size="1.6em" color={hover=="bin"?"#FEB6B6":"#707A8A"}
+                                    onMouseOver={()=>setHover("bin")}
+                                    onMouseLeave={()=>setHover(0)}
+                                />
+                            </>):(<></>)
+                        }
                     </div>
                 </td>
             </tr>

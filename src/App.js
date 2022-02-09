@@ -25,7 +25,7 @@ import FamilyMembers from './pages/components/familyMembers';
 
 function App() {
 
-  const [userType,setUserType] = useState("Admin");
+  const [userType,setUserType] = useState("SocietyAdmin");
 
   return (
     <>

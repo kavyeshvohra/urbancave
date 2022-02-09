@@ -13,37 +13,37 @@ const ComplaintInfoModal=(props)=>{
                 <div className="visitorInfoContainer">
                     <div className="visitorDataContainer">
                         <lable className="displayInfoLable">ID:</lable>
-                        <input className="displayInfoInput" value={props.data.id} readOnly/>
+                        <input className="displayInfoInput" defaultValue={props.data.id} readOnly/>
                     </div>
                     <div className="dataContainer1">
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Topic:</lable>
-                            <input className="displayInfoInput" value={props.data.caption} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.caption} readOnly/>
                         </div>
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Category:</lable>
-                            <input className="displayInfoInput" value={props.data.category} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.category} readOnly/>
                         </div>
                     </div>
                     <div className="visitorDataContainer">
                         <lable className="displayInfoLable">Description:</lable>
-                        <textarea className="displayInfoInput2" value={props.data.description} readOnly/>
+                        <textarea className="displayInfoInput2" defaultValue={props.data.description} readOnly/>
                     </div>
                     <div className="dataContainer1">
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">By:</lable>
-                            <input className="displayInfoInput" value={props.data.user} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.user} readOnly/>
                         </div>
                         <div className="visitorDataContainer">
                             <lable className="displayInfoLable">Date:</lable>
-                            <input className="displayInfoInput" value={props.data.date} readOnly/>
+                            <input className="displayInfoInput" defaultValue={props.data.date} readOnly/>
                         </div>
                     </div>
                     <div className="dataContainer1">
-                    <div className="visitorDataContainer">
+                    {/* <div className="visitorDataContainer">
                         <div className="displayInfoLable">Notice PDF:</div>
                             <button className="galleryButtonControls">Download</button>
-                        </div>
+                        </div> */}
                     </div>
                     {
                         props.action!="show"?(<div className="visitorDataButtons">

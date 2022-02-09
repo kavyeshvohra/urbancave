@@ -241,7 +241,7 @@ const Register = () => {
         }
         else {
             if (fileExt.exec(file.name)) {
-                error += "<div>PLease upload file with valid extenstion!</div>";
+                error += "<div>PLease upload file with valid extension!</div>";
                 count += 1;
             }
         }

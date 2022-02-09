@@ -13,6 +13,12 @@ export const LoginForm = styled.div`
   flex-direction: column;
   box-shadow: -1px 1px 11px #00000014;
 `
+export const ForgotForm = styled.div`
+
+`
+export const ForgotPassContainer = styled.div`
+  
+`
 export const Form = styled.form`
   display: block;
   position: relative;

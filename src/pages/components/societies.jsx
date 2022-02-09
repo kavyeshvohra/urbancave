@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import * as SStyle from '../../styles/societies'
 import soc1_img from '../../Images/soc1.jpg'
 import soc2_img from '../../Images/soc2.jpg'

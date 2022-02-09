@@ -24,7 +24,7 @@ import Members from './pages/components/members';
 
 function App() {
 
-  const [userType,setUserType] = useState("SocietyAdmin");
+  const [userType,setUserType] = useState("Admin");
 
   return (
     <>

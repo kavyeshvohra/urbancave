@@ -5,7 +5,71 @@
     background-color: #fefefe;
     border: 0.1em solid #FEB6B6;
     border-radius:0.5em;
-    padding:1em 2.5em;
-    width:60em;
-    height:20em;
+    padding:2em 2.5em 2em 2.5em;
+    width:45em;
+}
+
+.visitorDataContainer{
+    display:flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.displayInfoLable{
+    margin-right:0.5em;
+    color:#3e444e;
+    font-size: 1em;
+    text-align: end;
+    width:6em;
+}
+.displayInfoInput{
+    border:0.1em solid #FEB6B6;
+    border-radius: 0.3em;
+    outline:none;
+    color:#3e444e;
+}
+
+.displayInfoInput1{
+    border:0.1em solid #FEB6B6;
+    border-radius: 0.3em;
+    outline:none;
+    width:20em;
+    color:#3e444e;
+}
+
+.dataContainer2{
+    display: flex;
+    flex-direction: row;
+    column-gap:2.5em;
+}
+
+.visitorInfoContainer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+}
+
+.dataContainer1{
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5em;
+}
+
+.visitorDataButtons{
+    margin-top:2em;
+    display:flex;
+    flex-direction: row;
+    column-gap: 2em;
+    width:100%;
+    justify-content: center;
+}
+.displayInfoInput2{
+    border:0.1em solid #FEB6B6;
+    border-radius: 0.3em;
+    outline:none;
+    width:32em;
+    color:#3e444e;
+    height:10em;
+    resize: none;
+    overflow-y: scroll;
 }

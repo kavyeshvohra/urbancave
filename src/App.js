@@ -4,7 +4,11 @@ import {useState} from 'react';
 import ComplaintsAndFeedback from './pages/components/complaintsAndFeedback';
 import Home from './pages/home';
 import Main from './pages/main';
+
 import Dashboard from './pages/components/dashboard';
+import SocietyDashboard from './pages/components/societyDashboard';
+import MemberDashboard from './pages/components/memberDashboard';
+
 import Gallery from './pages/components/gallery';
 import Event from './pages/components/events';
 import Notice from './pages/components/notice';
@@ -20,7 +24,7 @@ import Members from './pages/components/members';
 
 function App() {
 
-  const [userType,setUserType] = useState("Admin");
+  const [userType,setUserType] = useState("SocietyAdmin");
 
   return (
     <>
@@ -36,7 +40,11 @@ function App() {
           <Route path="/contactus" element={<Contact userType={userType} />} />
           <Route path="/main" element={<Main userType={userType} />} >
             
-            <Route path="" element={ <Dashboard userType={userType} /> }/>
+            <Route path="" element={ 
+                userType=="Admin"?( <Dashboard userType={userType} /> ):
+                userType=="SocietyAdmin"?( <SocietyDashboard userType={userType}/> ):
+                ( <MemberDashboard userType={userType}/> )
+            }/>
             
             <Route path="societies" element={ <Societies userType={userType} /> }/>
             

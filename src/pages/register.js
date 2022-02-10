@@ -333,7 +333,7 @@ if (step === "step1") {
                     </div>
                     <RStyle.InputWrapper style={{ marginTop: '2em' }} id="signup_verify_email_textfield">
                         <RStyle.FormGroup>
-                            <RStyle.Detailsform type="number"  id="otp" name="verif-code" onChange={inputChange} onKeyUp={checkIfNumber} required maxLength={6} />
+                            <RStyle.Detailsform type="text" id="otp" name="verif-code" onChange={inputChange} onKeyUp={checkIfNumber} required maxLength={6} />
                             <RStyle.FocusHtml data-placeholder='OTP' />
                         </RStyle.FormGroup>
                         <RStyle.TextSpan1 id="resend_otp_verify">Resend OTP</RStyle.TextSpan1>

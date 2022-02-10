@@ -37,14 +37,17 @@ const Login = () => {
         const password = document.getElementById("password").value;
         let count=0;
 
+        document.getElementById("errorLogin").style.display = "none";
+        document.getElementById("errorPassword").style.display = "none"
         if(!emailReg.test(email)){
             console.log("email not valid.");
-            document.getElementById("errorDiv").innerHTML+=`<div>Please Enter a valid email!</div>`;
+            document.getElementById("errorLogin").style.display = "block"
             count+=1;
         }
         if(!passwordReg.test(password)){
             console.log("password not valid.")
-            document.getElementById("errorDiv").innerHTML+=`<div>Please Enter a valid password!</div>`;
+            document.getElementById("errorPassword").style.display = "block"
+            
             count+=1;
         }
         if(count==0){
@@ -75,7 +78,8 @@ const Login = () => {
 
     const errStyle={
         width:'100%',
-        marginTop:"-0.5em",
+        marginTop:"0.5em",
+        marginBottom: "2em",
         color:"red",
         alignText:"center",
     }
@@ -93,6 +97,7 @@ const Login = () => {
                             <LStyle.DetailsForm type="text" id="email" name="username" onChange={inputChange} tabIndex="1" />
                             <LStyle.FocusText data-placeholder="Email" />
                         </LStyle.FormGroup>
+                        <div style={errStyle} id="errorLogin">Invalid Email</div>
                         <LStyle.FormGroup>
                             <AiFillLock className="login-field-icons" style={iconStyle} />
                             <LStyle.DetailsForm type={isPasswordVisible ? "text" : "password"} id="password" name="password" onChange={inputChange} tabIndex="2" />
@@ -102,8 +107,7 @@ const Login = () => {
                             <AiFillEye className="login-field-eye-on" onFocus={changePass} onClick={changePass} /> */}
                             
                         </LStyle.FormGroup>
-                        <div style={errStyle} id="errorDiv">
-                        </div>
+                        <div style={errStyle} id="errorPassword">Invalid Password</div>
                         <LStyle.FormGroupButton>
                             <LStyle.Button id="submit" name="submit" tabIndex="4" >Login</LStyle.Button>
                         </LStyle.FormGroupButton>

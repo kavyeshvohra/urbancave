@@ -7,7 +7,7 @@ export const LoginForm = styled.div`
   background-color: #fff;
   border-radius: 15px;
   width: 34em;
-  height: 35em;
+  height: 37em;
   display: flex;
   margin-left: 4.98em;
   flex-direction: column;
@@ -48,7 +48,7 @@ export const Form = styled.form`
   }
 `
 export const FormGroup = styled.div`
-  margin-bottom: 2.5em;
+  /* margin-bottom: 2.5em; */
   border-bottom: 2px solid #000;
   width: 100%;
   display:flex;

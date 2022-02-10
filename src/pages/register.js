@@ -363,8 +363,8 @@ else {
                             <RStyle.FocusHtml data-placeholder="Date Of Birth" />
                         </RStyle.FormGroup>
                         <RStyle.FormGroup>
-                            <RStyle.Detailsform type="email" id="emailNext" name="email" disabled onChange={inputChange} required value={email} />
-                            <RStyle.FocusHtml data-placeholder="Email" />
+                            <RStyle.Detailsform type="email" id="emailNext" name="email" disabled  required value={email} />
+                            <RStyle.FocusHtml data-placeholder="Email" style={{transform: 'translate(-0.4em, -2.2rem) scale(1)'}}/>
                         </RStyle.FormGroup>
                         <RStyle.FormGroup>
                             <RStyle.Detailsform type="phone" name="phonenum" id="phone1" maxLength="10" onChange={inputChange} required />

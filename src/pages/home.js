@@ -58,6 +58,8 @@ const Home = () => {
         { value: 'Others', label: 'Others' },
     ]
 
+    const [role,setRole] = useState();
+
     function inputChange(e) {
         if (e.target.value !== "") {
             e.target.classList.add('text');
@@ -96,29 +98,34 @@ const Home = () => {
         const isNumber = /\d/;
         let count = 0
 
+        if(role == null){
+            document.getElementById('errorRole').style.display = 'block';
+            count+=1;
+        }
+
         if(isNumber.test(name) || name.length <= 2)
         {
-            document.getElementById('errorName').style.display = 'block'
-            count+=1
+            document.getElementById('errorName').style.display = 'block';
+            count+=1;
         }
         if(emailReg.test(email) || email.length == 0)
         {
-            document.getElementById('errorName').style.display = 'block'
-            count+=1
+            document.getElementById('errorEmail').style.display = 'block';
+            count+=1;
         }
-        if(!isNumber.test(phone) || phone.length !=10)
+        if(!isNumber.test(phone) && phone.length !=10)
         {
-            document.getElementById('errorName').style.display = 'block'
-            count+=1
+            document.getElementById('errorPhone').style.display = 'block';
+            count+=1;
         }
         if(area.length == 0)
         {
-            document.getElementById('errorName').style.display = 'block'
-            count+=1
+            document.getElementById('errorArea').style.display = 'block';
+            count+=1;
         }
         if(count == 0)
         {
-            document.getElementById('successDiv').style.display = 'block'
+            document.getElementById('successDiv').style.display = 'block';
         }
     }
 
@@ -233,8 +240,17 @@ const Home = () => {
                     </HomeStyle.ContactFormGroup>
                     <div id="errorName" style={{position: 'absolute',display: 'none',color: 'red',left:'23px',transform: 'translateY(230%)'}}> Invalid Name! </div>
                     <SelectGroup style={{width: "47%"}} onChange={inputChange}id="field_2">
+                        
                         <TextSpan style={{color: "#3e444e"}}>Your Role</TextSpan>
-                        <Select options={roleoptions} aria-errormessage = "Please select one of the option" required></Select>
+                        <Select 
+                            options={roleoptions} 
+                            aria-errormessage = "Please select one of the option"
+                            onChange={setRole} 
+                            required
+                        >
+                        </Select>
+                        <div id="errorRole" style={{position: 'absolute',display: 'none',color: 'red',left:'23px',transform: 'translateY(230%)'}}> Please select a role! </div>
+                        
                     </SelectGroup>
                     <HomeStyle.ContactFormGroup id="field_3">
                         <HomeStyle.InputField required id="email" type="email" onChange={inputChange}/>

@@ -98,6 +98,14 @@ const Home = () => {
         const isNumber = /\d/;
         let count = 0
 
+        document.getElementById('errorRole').style.display = 'none';
+        document.getElementById('errorName').style.display = 'none';
+        document.getElementById('errorPhone').style.display = 'none';
+        document.getElementById('errorArea').style.display = 'none';
+        document.getElementById('errorEmail').style.display = 'none';
+        document.getElementById('successDiv').style.display = 'none';
+            
+
         if(role == null){
             document.getElementById('errorRole').style.display = 'block';
             count+=1;

@@ -32,7 +32,7 @@ const Register = () => {
     //     lname: "",
     //     dob: ""
     // })
-    const [step, changeStep] = useState("step2");
+    const [step, changeStep] = useState("step1");
     const societyRegisterStep = () => {
         changeStep("step2");
     }
@@ -92,6 +92,20 @@ const Register = () => {
     //states for select components
     const [houseType, setHouseType] = useState({});
     const [userType, setUserType] = useState({});
+
+    //check of key pressed on otp input is number or not
+    const checkIfNumber=(e)=>{
+        let text=e.target.value;
+        const isNumber = /\d/;
+        console.log(text);
+
+        if( !isNumber.test(text[text.length-1])){
+            text=text.substring(0,text.length-1);
+        }
+        if(text[text.length-1] == null){
+            e.target.value="";
+        }
+    }
 
     //validation function
     const validateEmailOpt = () => {
@@ -286,7 +300,7 @@ const Register = () => {
     useEffect(() => { if (errordiv == 1) { confirmPassChange() } })
 
 
-if (step === "step2") {
+if (step === "step1") {
     return (
         <>
             <RStyle.RegisterCont1>
@@ -303,7 +317,7 @@ if (step === "step2") {
                     </div>
                     <RStyle.InputWrapper style={{ marginTop: '2em' }} id="signup_verify_email_textfield">
                         <RStyle.FormGroup>
-                            <RStyle.Detailsform type="text" pattern="\d*" id="otp" name="verif-code" onChange={inputChange} required maxLength={6} />
+                            <RStyle.Detailsform type="number"  id="otp" name="verif-code" onChange={inputChange} onKeyUp={checkIfNumber} required maxLength={6} />
                             <RStyle.FocusHtml data-placeholder='OTP' />
                         </RStyle.FormGroup>
                         <RStyle.TextSpan1 id="resend_otp_verify">Resend OTP</RStyle.TextSpan1>

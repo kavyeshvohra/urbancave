@@ -90,7 +90,9 @@ const Home = () => {
         position: 'absolute',
     }
     const validateForm = () => {
+        
         const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
         const email = document.getElementById("email").value;
         const name = document.getElementById("name").value;
         const phone = document.getElementById("phone").value
@@ -116,7 +118,11 @@ const Home = () => {
             document.getElementById('errorName').style.display = 'block';
             count+=1;
         }
-        if(emailReg.test(email) || email.length == 0)
+        if(email.length < 5){
+            document.getElementById('errorEmail').style.display = 'block';
+            count+=1;
+        }
+        if( !emailReg.test(email))
         {
             document.getElementById('errorEmail').style.display = 'block';
             count+=1;

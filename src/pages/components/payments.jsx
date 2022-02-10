@@ -263,7 +263,7 @@ const Row=(props)=>{
                             onMouseLeave={()=>setHover(0)}
                             onClick={()=>{props.changeAction("show");props.changeType(props.type);props.changePaymentData(data);props.modal(1) }}
                         />
-                        {
+                        {/* {
                             props.userType=="SocietyAdmin"?(<><MdModeEditOutline size="2em" color={hover=="edit"?"#FEB6B6":"#707A8A"}
                                 onMouseOver={()=>setHover("edit")}
                                 onMouseLeave={()=>setHover(0)}
@@ -272,7 +272,7 @@ const Row=(props)=>{
                                 onMouseOver={()=>setHover("bin")}
                                 onMouseLeave={()=>setHover(0)}
                             /></>):(<></>)
-                        }
+                        } */}
                     </div>
                 </td>
             </tr>

@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { AiFillLock, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
 
+    const navigate = useNavigate();
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     const iconStyle = {
@@ -30,6 +32,8 @@ const Login = () => {
 
     const validateCreds = async ()=>{
         
+        document.getElementById("errorLogin").innerText="Invalid Email";
+        document.getElementById("errorPassword").innerText="Invalid Password";
         document.getElementById("errorLogin").style.display = "none";
         document.getElementById("errorPassword").style.display = "none";
         const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
@@ -62,6 +66,17 @@ const Login = () => {
             }
             const response = await fetch(url,options);
             const res = await response.text();
+            if(res=="User is authenticated"){
+                navigate("/dashboard");
+            }
+            else if(res=="Password is incorrect"){
+                document.getElementById("errorPassword").innerText="Password is incorrect";
+                document.getElementById("errorPassword").style.display = "block";
+            }
+            else if(res=="User not found"){
+                document.getElementById("errorLogin").innerText="User not found";
+                document.getElementById("errorLogin").style.display = "block";
+            }
             console.log(response);
             console.log(response.headers);
             console.log(res);

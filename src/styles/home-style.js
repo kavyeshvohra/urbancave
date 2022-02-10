@@ -275,7 +275,7 @@ export const ContactForm = styled.section`
 `
 export const ContactHeading = styled.h3`
     position: absolute;
-    top: 20%;
+    top: 25%;
     left: 50%;
     transform: translate(-20%, -80%);
     text-align: center;
@@ -347,6 +347,7 @@ export const Wrapper = styled.div`
     justify-content: center;
     max-width: 85%;
     flex-wrap: wrap;
+    row-gap: 1em;
     transform: translate(10%, 25%);
 `
 export const InputField = styled.input`

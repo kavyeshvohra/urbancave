@@ -111,7 +111,7 @@ const Home = () => {
             count+=1;
         }
 
-        if(isNumber.test(name) || name.length <= 2)
+        if(isNumber.test(name) || name.length < 2)
         {
             document.getElementById('errorName').style.display = 'block';
             count+=1;
@@ -257,24 +257,24 @@ const Home = () => {
                             required
                         >
                         </Select>
-                        <div id="errorRole" style={{position: 'absolute',display: 'none',color: 'red',left:'23px',transform: 'translateY(230%)'}}> Please select a role! </div>
+                        <div id="errorRole" style={{position: 'absolute',display: 'none',color: 'red',left:'23px',transform: 'translateX(-15%)'}}> Please select a role! </div>
                         
                     </SelectGroup>
                     <HomeStyle.ContactFormGroup id="field_3">
                         <HomeStyle.InputField required id="email" type="email" onChange={inputChange}/>
                         <HomeStyle.FocusText data-placeholder='Email'/>
                     </HomeStyle.ContactFormGroup>
-                    <div id="errorEmail" style={{position: 'absolute',display: 'none',color: 'red',top:'85px',left:'23px',transform: 'translateY(60px)'}}> Invalid Email! </div>
+                    <div id="errorEmail" style={{position: 'absolute',display: 'none',color: 'red',top:'85px',left:'23px',transform: 'translateY(75px)'}}> Invalid Email! </div>
                     <HomeStyle.ContactFormGroup id="field_4">
                         <HomeStyle.InputField required id="phone" type="tel" onChange={inputChange}/>
                         <HomeStyle.FocusText data-placeholder='Phone Number (+91)'/>
                     </HomeStyle.ContactFormGroup>
-                    <div id="errorPhone" style={{position: 'absolute',display: 'none',color: 'red',left:'402px',transform: 'translateY(143px)'}}> Invalid Phone! </div>
+                    <div id="errorPhone" style={{position: 'absolute',display: 'none',color: 'red',left:'402px',transform: 'translateY(163px)'}}> Invalid Phone! </div>
                     <HomeStyle.ContactFormGroup id="field_5">
                         <HomeStyle.InputField id="area" type="text" onChange={inputChange}/>
                         <HomeStyle.FocusText data-placeholder='Locality / Area'/>
                     </HomeStyle.ContactFormGroup>
-                    <div id="errorArea" style={{position: 'absolute',display: 'none',color: 'red',top:'232px',transform: 'translateX(-145%)'}}> Invalid Area! </div>
+                    <div id="errorArea" style={{position: 'absolute',display: 'none',color: 'red',top:'263px',transform: 'translateX(-145%)'}}> Invalid Area! </div>
                     <HomeStyle.ContactFormSubmit>
                         <HomeStyle.ContactButton onClick={validateForm}>Submit</HomeStyle.ContactButton>
                     </HomeStyle.ContactFormSubmit>

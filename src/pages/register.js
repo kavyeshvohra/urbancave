@@ -80,9 +80,10 @@ const Register = () => {
     //error style
     const errStyle = {
         width: '100%',
-        marginTop: "-0.5em",
+        marginTop: "0.5em",
         color: "red",
         alignText: "center",
+        display: "none",
     }
 
     const sStyle = {
@@ -92,7 +93,7 @@ const Register = () => {
     //states for select components
     const [houseType, setHouseType] = useState({});
     const [userType, setUserType] = useState({});
-
+    const [buttonText, setButtonText] = useState(0);
     const [readOnly,setReadOnly] = useState(false);
 
     //check of key pressed on otp input is number or not
@@ -115,15 +116,17 @@ const Register = () => {
         const email = document.getElementById("email").value;
         const otp = document.getElementById("otp").value;
 
-        document.getElementById("errorDiv").innerHTML = "";
+        document.getElementById("errorEmail").style.display = "none";
+        document.getElementById("errorOtp").style.display = "none";
         let count = 0;
 
         if (!email.match(emailReg)) {
-            document.getElementById("errorDiv").innerHTML += `<div>Please Enter a valid email! </div>`;
+            document.getElementById("errorEmail").style.display = "block";
             count += 1;
         }
         if (otp.length != 6) {
-            document.getElementById("errorDiv").innerHTML += `<div>Length of OTP is not valid! </div>`;
+            document.getElementById("errorOtp").style.display = "block";
+            changeClick(0)
             count += 1;
         }
 
@@ -137,13 +140,14 @@ const Register = () => {
     const validateEmail=()=>{
         const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
         const email = document.getElementById("email").value;
-        document.getElementById("errorDiv").innerHTML = "";
+        document.getElementById("errorEmail").style.display = "none";
         if(!email.match(emailReg)){
-            document.getElementById("errorDiv").innerHTML += `<div>Please Enter a valid email! </div>`;
+            document.getElementById("errorEmail").style.display = 'block'
         }
         else{
             changeClick(1);
             setReadOnly(true);
+            setButtonText(1)
         }
         
     }
@@ -328,6 +332,7 @@ if (step === "step1") {
                             <RStyle.FocusHtml data-placeholder='Email' />
                         </RStyle.FormGroup1>
                     </RStyle.InputWrapper1>
+                    <div style={errStyle} id="errorEmail">Enter a valid email</div>
                     <div id="descMessageContainer" >
                         <p style={{ fontSize: "11.5px", marginTop: "0.53em" }}>(Please enter the email to complete your registration. <b>Note</b>: The email must be verified by the Society Admin.)</p>
                     </div>
@@ -341,11 +346,10 @@ if (step === "step1") {
                     <div>
                         {otpClick == 1 ? "OTP sent" : ""}
                     </div>
-                    <div style={errStyle} id="errorDiv">
-                    </div>
+                    <div style={errStyle} id="errorOtp">Please Enter Otp</div>
                     <RStyle.ButtonWrapper1>
                         <RStyle.ButtonSubmit name="submit" id="checkOTP" onClick={otpClick == 0 ? () => validateEmail() : () => validateEmailOtp()}>
-                            {otpClick == 0 ? "Request OTP" : "Submit"}
+                            {buttonText == 0 ? "Request OTP" : "Submit"}
                         </RStyle.ButtonSubmit>
                     </RStyle.ButtonWrapper1>
                     <RStyle.ExistAccount>

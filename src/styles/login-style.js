@@ -48,7 +48,7 @@ export const Form = styled.form`
   }
 `
 export const FormGroup = styled.div`
-  /* margin-bottom: 2.5em; */
+  margin-bottom: 2.5em;
   border-bottom: 2px solid #000;
   width: 100%;
   display:flex;

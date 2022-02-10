@@ -3,7 +3,7 @@ import * as LStyle from '../styles/login-style'
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { AiFillLock, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 
 
 const Login = () => {
@@ -29,6 +29,9 @@ const Login = () => {
     }
 
     const validateCreds = async ()=>{
+        
+        document.getElementById("errorLogin").style.display = "none";
+        document.getElementById("errorPassword").style.display = "none";
         const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
         
         const passwordReg = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
@@ -37,17 +40,14 @@ const Login = () => {
         const password = document.getElementById("password").value;
         let count=0;
 
-        document.getElementById("errorLogin").style.display = "none";
-        document.getElementById("errorPassword").style.display = "none"
         if(!emailReg.test(email)){
             console.log("email not valid.");
-            document.getElementById("errorLogin").style.display = "block"
+            document.getElementById("errorLogin").style.display = "block";
             count+=1;
         }
         if(!passwordReg.test(password)){
             console.log("password not valid.")
-            document.getElementById("errorPassword").style.display = "block"
-            
+            document.getElementById("errorPassword").style.display = "block";
             count+=1;
         }
         if(count==0){
@@ -68,20 +68,21 @@ const Login = () => {
         }
     }
 
-    useLayoutEffect(()=>{
+    useEffect(()=>{
         document.getElementById("submit").addEventListener("click",(e)=>{
             e.preventDefault();
-            document.getElementById("errorDiv").innerHTML="";
+            // document.getElementById("errorDiv").innerHTML="";
             validateCreds();
         });        
     });
 
     const errStyle={
         width:'100%',
-        marginTop:"0.5em",
-        marginBottom: "2em",
+        marginTop:"-1.5em",
+        marginBottom: "1.5em",
         color:"red",
         alignText:"center",
+        display: 'none',
     }
 
     return (

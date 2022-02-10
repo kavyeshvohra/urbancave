@@ -93,6 +93,8 @@ const Register = () => {
     const [houseType, setHouseType] = useState({});
     const [userType, setUserType] = useState({});
 
+    const [readOnly,setReadOnly] = useState(false);
+
     //check of key pressed on otp input is number or not
     const checkIfNumber=(e)=>{
         let text=e.target.value;
@@ -141,6 +143,7 @@ const Register = () => {
         }
         else{
             changeClick(1);
+            setReadOnly(true);
         }
         
     }
@@ -321,7 +324,7 @@ if (step === "step1") {
                     <RStyle.Heading1>Sign Up</RStyle.Heading1>
                     <RStyle.InputWrapper1>
                         <RStyle.FormGroup1>
-                            <RStyle.Detailsform type="email" id="email" name="regEmail" onChange={inputChange} required />
+                            <RStyle.Detailsform type="email" id="email" name="regEmail" onChange={inputChange} readOnly={readOnly} required />
                             <RStyle.FocusHtml data-placeholder='Email' />
                         </RStyle.FormGroup1>
                     </RStyle.InputWrapper1>

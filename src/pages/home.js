@@ -1,9 +1,9 @@
 //import '../styles/home.css';
 import Images from '../images';
 import * as HomeStyle from '../styles/home-style'
-import { useState } from 'react';
+import React,{ useState } from 'react';
 import Slider from 'react-slick'
-import Select from 'react-select'
+import Select  from 'react-select'
 import { SelectGroup, TextSpan } from '../styles/register-styles';
 const settings = {
     dots: false,
@@ -14,9 +14,18 @@ const settings = {
     speed: 10000,
     autoplaySpeed: 0,
     cssEase: "linear"
-};
+};    
+const successStyle = {
+    display: 'none',
+    width: '100%',
+    marginTop: "-0.5em",
+    color: "green",
+    alignText: "center",
+}
+
 
 const Home = () => {
+
     const customStyles = {
         option: (provided, state) => ({
           ...provided,
@@ -75,6 +84,43 @@ const Home = () => {
             // });
         }
     });
+    const errorField = {
+        position: 'absolute',
+    }
+    const validateForm = () => {
+        const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+        const email = document.getElementById("email").value;
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value
+        const area = document.getElementById("area").value;
+        const isNumber = /\d/;
+        let count = 0
+
+        if(isNumber.test(name) || name.length <= 2)
+        {
+            document.getElementById('errorName').style.display = 'block'
+            count+=1
+        }
+        if(emailReg.test(email) || email.length == 0)
+        {
+            document.getElementById('errorName').style.display = 'block'
+            count+=1
+        }
+        if(!isNumber.test(phone) || phone.length !=10)
+        {
+            document.getElementById('errorName').style.display = 'block'
+            count+=1
+        }
+        if(area.length == 0)
+        {
+            document.getElementById('errorName').style.display = 'block'
+            count+=1
+        }
+        if(count == 0)
+        {
+            document.getElementById('successDiv').style.display = 'block'
+        }
+    }
 
     return (
         <>
@@ -83,10 +129,9 @@ const Home = () => {
                 <HomeStyle.LandingPageIntroSlogan>
                     <h1>Easy way to manage your society. </h1>
                     <span>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Dolor quo, veritatis sequi quam in esse sapiente
-                        nam sed ipsam vero, ut eos. Temporibus corporis esse,
-                        unde vitae laboriosam modi
+                    Welcome to Urbancave an online society managemant system.
+                    It is an unique platform which can be used by different societies to manage their work. 
+                    This platform expands transparency and aims to strengthen the bond among member and managing committee.  
                     </span>
                 </HomeStyle.LandingPageIntroSlogan>
                 <div>
@@ -99,7 +144,7 @@ const Home = () => {
                         <h1>Features</h1>
                     </HomeStyle.FeatureHeading>
                     <HomeStyle.FeatureDesc>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p>Our Urbancave portal can accommodate all kinds of maintenance bill settings as may be required by different societies. It’s an automated accounting & billing portal which promotes digitization of complete books of account. It have visitor management system which have contain all records of visitor visiting the society. It also have a feature to generate reports.</p>
                     </HomeStyle.FeatureDesc>
                 </HomeStyle.HeadingContainer>
                 <HomeStyle.Container>
@@ -141,11 +186,10 @@ const Home = () => {
                         Switch To A Digital Environment
                     </h1>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Saepe voluptas, harum distinctio omnis placeat illo
-                        sapiente. Distinctio illo delectus ab dolor? Expedita
-                        quos explicabo maxime, doloribus magni sapiente officia
-                        porro?
+                    Is your society still using old method maintaing books and having difficulties to maintain visitor and calculating maintainence? 
+                    Here is the solution of all your problems Urbancave which is a online society managing system which will store all the data online 
+                    so no need of maintaing books and it also have visitor management system so headache of visitors and it calculates maintainence and 
+                    people can pay it from here only so not going door to door to collect it.
                     </p>
                     <HomeStyle.LandingPageRegisterButtonContainer>
                     <HomeStyle.ButtonLink href='/register'><HomeStyle.LandingPageRegisterButton>Register Society</HomeStyle.LandingPageRegisterButton></HomeStyle.ButtonLink>
@@ -163,17 +207,17 @@ const Home = () => {
                         </div>
                         <div>
                         {/* <Carousel.Item interval={3000} className='item1'> */}
-                            <Testimonial name="Megha Thakkar" text="Urbancave best of class must for any society! Awesome Tools" society="Rhea Appartments" image={Images.Testimonial_Image2}></Testimonial>
+                            <Testimonial name="Megha Thakkar" text="Urbancave is the best website for managing any society!" society="Rhea Appartments" image={Images.Testimonial_Image2}></Testimonial>
                         {/* </Carousel.Item> */}
                         </div>
                         <div>
                         {/* <Carousel.Item interval={3000} className='item1'> */}
-                            <Testimonial name="Nadini Seth" text="Urbancave best of class must for any society! Awesome Tools" society="Swati Appartments" image={Images.Testimonial_Image3}></Testimonial>
+                            <Testimonial name="Nadini Seth" text="Urbancave is easy to use and looks so simple and stylish" society="Swati Appartments" image={Images.Testimonial_Image3}></Testimonial>
                         {/* </Carousel.Item> */}
                         </div>
                         <div>
                         {/* <Carousel.Item interval={3000} className='item1'> */}
-                            <Testimonial name="Vetika Thakor" text="Urbancave best of class must for any society! Awesome Tools" society="Goyal Appartments" image={Images.Testimonial_Image2}></Testimonial>
+                            <Testimonial name="Vetika Thakor" text="Urbancave reminds me to pay my maintaince bill on time it is the best!!" society="Goyal Appartments" image={Images.Testimonial_Image2}></Testimonial>
                         {/* </Carousel.Item> */}
                         </div>
                     </Slider>
@@ -183,29 +227,34 @@ const Home = () => {
                 <HomeStyle.FormContainer>
                 <HomeStyle.ContactHeading>Get In Touch With Us!</HomeStyle.ContactHeading>
                 <HomeStyle.Wrapper>
-                    <HomeStyle.ContactFormGroup>
-                        <HomeStyle.InputField type="text" onChange={inputChange}/>
+                    <HomeStyle.ContactFormGroup id="field_1">
+                        <HomeStyle.InputField required id="name" type="text" onChange={inputChange}/>
                         <HomeStyle.FocusText data-placeholder="Name"/>
                     </HomeStyle.ContactFormGroup>
-                    <SelectGroup style={{width: "47%"}} onChange={inputChange}>
+                    <div id="errorName" style={{position: 'absolute',display: 'none',color: 'red',left:'23px',transform: 'translateY(230%)'}}> Invalid Name! </div>
+                    <SelectGroup style={{width: "47%"}} onChange={inputChange}id="field_2">
                         <TextSpan style={{color: "#3e444e"}}>Your Role</TextSpan>
-                        <Select options={roleoptions}></Select>
+                        <Select options={roleoptions} aria-errormessage = "Please select one of the option" required></Select>
                     </SelectGroup>
-                    <HomeStyle.ContactFormGroup>
-                        <HomeStyle.InputField type="email" onChange={inputChange}/>
+                    <HomeStyle.ContactFormGroup id="field_3">
+                        <HomeStyle.InputField required id="email" type="email" onChange={inputChange}/>
                         <HomeStyle.FocusText data-placeholder='Email'/>
                     </HomeStyle.ContactFormGroup>
-                    <HomeStyle.ContactFormGroup>
-                        <HomeStyle.InputField type="tel" onChange={inputChange}/>
+                    <div id="errorEmail" style={{position: 'absolute',display: 'none',color: 'red',top:'85px',left:'23px',transform: 'translateY(60px)'}}> Invalid Email! </div>
+                    <HomeStyle.ContactFormGroup id="field_4">
+                        <HomeStyle.InputField required id="phone" type="tel" onChange={inputChange}/>
                         <HomeStyle.FocusText data-placeholder='Phone Number (+91)'/>
                     </HomeStyle.ContactFormGroup>
-                    <HomeStyle.ContactFormGroup>
-                        <HomeStyle.InputField type="text" onChange={inputChange}/>
+                    <div id="errorPhone" style={{position: 'absolute',display: 'none',color: 'red',left:'402px',transform: 'translateY(143px)'}}> Invalid Phone! </div>
+                    <HomeStyle.ContactFormGroup id="field_5">
+                        <HomeStyle.InputField id="area" type="text" onChange={inputChange}/>
                         <HomeStyle.FocusText data-placeholder='Locality / Area'/>
                     </HomeStyle.ContactFormGroup>
+                    <div id="errorArea" style={{position: 'absolute',display: 'none',color: 'red',top:'232px',transform: 'translateX(-145%)'}}> Invalid Area! </div>
                     <HomeStyle.ContactFormSubmit>
-                        <HomeStyle.ContactButton>Submit</HomeStyle.ContactButton>
+                        <HomeStyle.ContactButton onClick={validateForm}>Submit</HomeStyle.ContactButton>
                     </HomeStyle.ContactFormSubmit>
+                    <div style={successStyle} id="successDiv">Thanks! We will get back to you shortly.</div>
                 </HomeStyle.Wrapper>
                 </HomeStyle.FormContainer>
             </HomeStyle.ContactForm>

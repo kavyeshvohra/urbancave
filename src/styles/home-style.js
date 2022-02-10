@@ -291,6 +291,7 @@ export const ContactFormGroup = styled.div`
   transition: 0.3s all ease;
   padding-bottom: 0.125em;
   margin-right: 15px;
+
 `
 export const FocusText = styled.span`
   position: absolute;

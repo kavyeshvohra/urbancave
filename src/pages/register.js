@@ -132,6 +132,19 @@ const Register = () => {
 
     }
 
+    const validateEmail=()=>{
+        const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+        const email = document.getElementById("email").value;
+        document.getElementById("errorDiv").innerHTML = "";
+        if(!email.match(emailReg)){
+            document.getElementById("errorDiv").innerHTML += `<div>Please Enter a valid email! </div>`;
+        }
+        else{
+            changeClick(1);
+        }
+        
+    }
+
 
 
     //validation for 2nd step:    
@@ -328,7 +341,7 @@ if (step === "step1") {
                     <div style={errStyle} id="errorDiv">
                     </div>
                     <RStyle.ButtonWrapper1>
-                        <RStyle.ButtonSubmit name="submit" id="checkOTP" onClick={otpClick == 0 ? () => changeClick(1) : () => validateEmailOpt()}>
+                        <RStyle.ButtonSubmit name="submit" id="checkOTP" onClick={otpClick == 0 ? () => validateEmail() : () => validateEmailOpt()}>
                             {otpClick == 0 ? "Request OTP" : "Submit"}
                         </RStyle.ButtonSubmit>
                     </RStyle.ButtonWrapper1>

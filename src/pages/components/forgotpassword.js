@@ -55,7 +55,7 @@ function inputChange(e) {
                 </InputWrapper1>
                 <InputWrapper style={{marginTop: '1em'}}>
                 <FormGroup1>
-                        <MdOutlinePassword className='login-field-icons' style={iconStyle}/>
+                        <MdOutlinePassword style={iconStyle}/>
                         <Detailsform1 type="text" pattern="\d*" id="otp" name="verif-code" onChange={inputChange} required maxLength={6} />
                         <FocusText data-placeholder='OTP' />
                 </FormGroup1>

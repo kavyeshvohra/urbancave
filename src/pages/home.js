@@ -18,8 +18,9 @@ const settings = {
 const successStyle = {
     display: 'none',
     width: '100%',
-    marginTop: "-0.5em",
+    marginTop: "-9.5em",
     color: "green",
+    marginLeft: "15em",
     alignText: "center",
 }
 

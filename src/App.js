@@ -25,7 +25,7 @@ import FamilyMembers from './pages/components/familyMembers';
 import ForgotPass from './pages/components/forgotpassword'
 function App() {
 
-  const [userType,setUserType] = useState("SocietyAdmin");
+  const [userType,setUserType] = useState("Admin");
 
   return (
     <>
@@ -39,7 +39,7 @@ function App() {
           <Route path="/register" element={ <Register userType={userType} /> }/>
           <Route path="/forgotpassword" element={<ForgotPass/>}/>
           <Route path="/contactus" element={<Contact userType={userType} />} />
-          <Route path="/main" element={<Main userType={userType} />} >
+          <Route path="/dashboard" element={<Main userType={userType} />} >
             
             <Route path="" element={ 
                 userType=="Admin"?( <Dashboard userType={userType} /> ):

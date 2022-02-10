@@ -61,7 +61,7 @@ const SideBar = (props) =>{
             
             <div>
                 <sidebar.MenuItems id="menuItems">
-                    <Link to="/main">
+                    <Link to="/dashboard">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("dashboard")} 
                             onMouseLeave={()=>iconStateChange(false)} 
@@ -71,7 +71,7 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link>
 
-                    {/* <Link to="/main/societies">
+                    {/* <Link to="/dashboard/societies">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("societies")} 
                             onMouseLeave={()=>iconStateChange(false)} 
@@ -81,7 +81,7 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link> */}
 
-                    <Link to="/main/members">
+                    <Link to="/dashboard/members">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("societies")} 
                             onMouseLeave={()=>iconStateChange(false)} 
@@ -91,7 +91,7 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link>
                 
-                    <Link to="/main/familymembers">
+                    <Link to="/dashboard/familymembers">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("members")} 
                             onMouseLeave={()=>iconStateChange(false)} 
@@ -101,7 +101,7 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link>
 
-                    <Link to="/main/payments">
+                    <Link to="/dashboard/payments">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("payment")} 
                             onMouseLeave={()=>iconStateChange(false)}
@@ -110,7 +110,7 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link>
 
-                    <Link to="/main/complaints">
+                    <Link to="/dashboard/complaints">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("complaintsfeedbacks")} 
                             onMouseLeave={()=>iconStateChange(false)} 
@@ -119,7 +119,7 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link>
 
-                    <Link to="/main/notice">
+                    <Link to="/dashboard/notice">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("notices")} 
                             onMouseLeave={()=>iconStateChange(false)} 
@@ -128,7 +128,7 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link>
 
-                    <Link to="/main/gallery">
+                    <Link to="/dashboard/gallery">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("gallery")} 
                             onMouseLeave={()=>iconStateChange(false)} 
@@ -137,7 +137,7 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link>
 
-                    <Link to="/main/visitors">
+                    <Link to="/dashboard/visitors">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("visitors")} 
                             onMouseLeave={()=>iconStateChange(false)} 
@@ -147,7 +147,7 @@ const SideBar = (props) =>{
                     </Link>
 
 
-                    {/* <Link to="/main/Tenants">
+                    {/* <Link to="/dashboard/Tenants">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("Tenants")} 
                             onMouseLeave={()=>iconStateChange(false)} 
@@ -156,7 +156,7 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link> */}
 
-                    <Link to="/main/Tenants">
+                    <Link to="/dashboard/Tenants">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("profile")} 
                             onMouseLeave={()=>iconStateChange(false)} 
@@ -166,7 +166,7 @@ const SideBar = (props) =>{
                     </Link>
 
                     {
-                        props.userType=="Admin"?(<Link to="/main/reports">    
+                        props.userType=="Admin"?(<Link to="/dashboard/reports">    
                             <sidebar.MenuListItem 
                                 onMouseOver={()=>iconStateChange("reports")} 
                                 onMouseLeave={()=>iconStateChange(false)} 

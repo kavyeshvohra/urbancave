@@ -6,6 +6,20 @@ import {RegisterCont1, InputWrapper,RegisterForm1, Heading1,TextSpan1,ButtonWrap
 import {DetailsForm, FocusText, FormGroup} from '../../styles/login-style'
 
 const ForgotPass = () => {
+    
+    const checkIfNumber=(e)=>{
+        let text=e.target.value;
+        const isNumber = /\d/;
+        console.log(text);
+
+        if( !isNumber.test(text[text.length-1])){
+            text=text.substring(0,text.length-1);
+        }
+        if(text[text.length-1] == null){
+            e.target.value="";
+        }
+    }
+
     const validateEmailOpt = () => {
         const emailReg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
         const email = document.getElementById("email").value;
@@ -24,23 +38,31 @@ const ForgotPass = () => {
         }
 
     }
-const iconStyle = {
-    width: "1.5em",
-    height: "1.5em",
-};
 
-const [otpClick, changeClick] = useState(0);
-const Wrapper = {
-    marginTop: "2.5em",
-}
-function inputChange(e) {
-    if (e.target.value !== "") {
-        e.target.classList.add('text');
+    const errStyle={
+        width:'100%',
+        marginTop:"-0.5em",
+        color:"red",
+        alignText:"center",
     }
-    else {
-        e.target.classList.remove('text');
+
+    const iconStyle = {
+        width: "1.5em",
+        height: "1.5em",
+    };
+
+    const [otpClick, changeClick] = useState(0);
+    const Wrapper = {
+        marginTop: "2.5em",
     }
-}
+    function inputChange(e) {
+        if (e.target.value !== "") {
+            e.target.classList.add('text');
+        }
+        else {
+            e.target.classList.remove('text');
+        }
+    }
     return(
         <>
     <RegisterCont1>
@@ -55,8 +77,8 @@ function inputChange(e) {
                 </InputWrapper1>
                 <InputWrapper style={{marginTop: '1em'}}>
                 <FormGroup1>
-                        <MdOutlinePassword style={iconStyle}/>
-                        <Detailsform1 type="text" pattern="\d*" id="otp" name="verif-code" onChange={inputChange} required maxLength={6} />
+                        <MdOutlinePassword className='login-field-icons' style={iconStyle}/>
+                        <Detailsform1 type="number"  id="otp" name="verif-code" onChange={inputChange} required onKeyUp={checkIfNumber} maxLength={6} />
                         <FocusText data-placeholder='OTP' />
                 </FormGroup1>
                 <TextSpan1 id="resend_otp_verify">Resend OTP</TextSpan1>
@@ -69,6 +91,7 @@ function inputChange(e) {
                     <ExistAccount>
                         Already a Member? &nbsp;<Link to="/login"><Span>Sign In</Span></Link>
                     </ExistAccount>
+                    <div style={errStyle} id="errorDiv"></div>
             </RegisterForm1>
     </RegisterCont1>
     </>

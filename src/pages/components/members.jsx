@@ -16,6 +16,11 @@ const Members = (props)=>{
     // {
     //     navigate(`${pathname}/${soc}`)
     // }
+
+    const gotoMembers = ()=>{
+        navigate(`/main/members/${props.folderName}`);
+    }
+
     const societies = ["Siddhachal Flats","Ankur Appartments","Goyal Intercity-C", "Mahasagar Appartments",,"Suryasagar Appartments","Swati Appartments"];
     const Area = ['Drive In Road', 'Gurukul', 'Mansi Charrasta', 'Bopal', 'Makarba', 'Isckon Cross Roads', 'Kalupur']
     const Image = [soc1_img,soc2_img,soc3_img,soc4_img,soc1_img,soc3_img]
@@ -29,7 +34,7 @@ const Members = (props)=>{
     <SStyle.Society>
         {societies.map((soc)=>{
             return(
-            <SStyle.SocietyCont>
+            <SStyle.SocietyCont onClick={gotoMembers}>
             <SStyle.Image src={Image[image++]}/>
             <SStyle.Content>
                 <h3>{soc}</h3>

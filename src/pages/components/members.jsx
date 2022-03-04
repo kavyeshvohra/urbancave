@@ -17,8 +17,8 @@ const Members = (props)=>{
     //     navigate(`${pathname}/${soc}`)
     // }
 
-    const gotoMembers = ()=>{
-        navigate(`/main/members/${props.folderName}`);
+    const gotoMembers = (id)=>{
+        navigate(`/main/members/${id}`);
     }
 
     const societies = ["Siddhachal Flats","Ankur Appartments","Goyal Intercity-C", "Mahasagar Appartments",,"Suryasagar Appartments","Swati Appartments"];
@@ -34,7 +34,7 @@ const Members = (props)=>{
     <SStyle.Society>
         {societies.map((soc)=>{
             return(
-            <SStyle.SocietyCont onClick={gotoMembers}>
+            <SStyle.SocietyCont onClick={()=>gotoMembers(0)}>
             <SStyle.Image src={Image[image++]}/>
             <SStyle.Content>
                 <h3>{soc}</h3>

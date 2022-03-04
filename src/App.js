@@ -25,7 +25,7 @@ import FamilyMembers from './pages/components/familyMembers';
 import ForgotPass from './pages/components/forgotpassword'
 function App() {
 
-  const [userType,setUserType] = useState("");
+  const [userType,setUserType] = useState("Admin");
 
   return (
     <>

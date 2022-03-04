@@ -17,7 +17,7 @@ const Societies = () =>{
     return(
         <>
             {/* <SStyle.HeadingCont>
-                <SStyle.Heading>Manage Societies</SStyle.Heading>
+                <SStyle.Heading>Gallery</SStyle.Heading>
             </SStyle.HeadingCont>
             <SStyle.Society>
                 {societies.map(society => {
@@ -32,16 +32,18 @@ const Societies = () =>{
                     )
                 })}
             </SStyle.Society> */}
-             <div className="galleryHeader">
+             {/* <div className="galleryHeader">
                 <div className="galleryCaption">Societies</div>
-            </div>
-            <div className="fileFolderContainer">
-            {
-                societies.map((soc)=>{
-                        return( <Folder folderName={soc} type="society"  />)
+            </div> */}
+            <SStyle.HeadingCont>
+                <SStyle.Heading>Gallery</SStyle.Heading>
+            </SStyle.HeadingCont>
+            <SStyle.Society>
+                {societies.map((soc)=>{
+                        return( <Folder folderName={soc} area={Area[area++]} image={Image[image++]} type="society"  />)
                     })
-            }
-            </div>
+                }
+            </SStyle.Society>
         </>
     );
 }

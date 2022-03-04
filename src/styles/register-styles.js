@@ -70,18 +70,25 @@ export const CheckGroup = styled.div`
   padding-bottom: 0.125em;
   margin-bottom: 2.5em;
   margin-top: 1.2em;
-  display: flex;
 `;
 export const ButtonWrapper = styled.div`
   margin-top: -1.5%;
   margin-bottom: -15px;
   text-align: center;
+  width: inherit;
 `;
 export const ButtonWrapper1 = styled.div`
-  margin-top: -4.5%;
+  /* margin-top: -4.5%;
   margin-bottom: -15px;
-  text-align: center;
+  text-align: center; */
+  display: flex;
+  margin-top: 0.5em;
 `;
+export const ValidationMessage = styled.span`
+  margin-top: 0.2em;
+  color: red;
+  display: block;
+`
 export const ButtonSubmit = styled.button`
   width: 30%;
   margin: 0 auto;
@@ -111,18 +118,27 @@ export const ButtonSubmit = styled.button`
 `;
 export const FormGroup = styled.div`
   margin-bottom: 2.5em;
-  border-bottom: 2px solid #000;
   width: 30%;
   position: relative;
   transition: 0.3s all ease;
   padding-bottom: 0.125em;
-  display: flex;
   align-items: center;
 `;
-export const InputWrapper = styled.form`
+export const FormPassGroup = styled.div`
+  margin-bottom: 2.5em;
+  width: 30%;
+  height: 45px;
+  transition: 0.3s all ease;
+  padding-bottom: 0.125em;
+  /* display: flex; */
+  align-items: center;
+  position: relative
+`
+export const Form = styled.form`
     display: flex;
     flex-direction: row;
     width: 100%;
+    align-items: center;
     justify-content: flex-start;
     column-gap: 2.5em;
     flex-wrap: wrap;
@@ -165,12 +181,14 @@ export const RegisterForm1 = styled.div`
 `;
 export const Detailsform = styled.input`
   padding: 8px;
-  display: flex;
   height: 45px;
   width: 100%;
   margin: unset;
+  border-bottom: 2px solid #000;
+  border-top: initial;
+  border-left: initial;
+  border-right: initial;
   outline: none;
-  border: none;
   &:focus + span,
   &.text + span {
   transform: translate(0em,-2.4rem) scale(1);
@@ -193,13 +211,15 @@ export const Detailsform1 = styled.input`
 `
 export const Detailsformdate = styled.input`
   padding: 8px;
-  display: flex;
   margin: unset;
   height: 45px;
   width: 100%;
   cursor: pointer;
   outline: none;
-  border: none;
+  border-bottom: 2px solid #000;
+  border-top: initial;
+  border-left: initial;
+  border-right: initial;
   &:in-range::-webkit-datetime-edit-year-field, 
   &:in-range::-webkit-datetime-edit-month-field, 
   &:in-range::-webkit-datetime-edit-day-field, 
@@ -227,7 +247,6 @@ export const TextSpan = styled.span`
 `;
 export const TextSpan1 = styled.span`
   display:inline-block;
-  margin-top: 1.2em;
   cursor: pointer;
   font-weight: 600;
 
@@ -282,36 +301,36 @@ export const FocusHtml = styled.span`
   }
 `;
 export const ErrorMessage = styled.div`
-  margin-top: -2.5em;
   display: block;
-  width: 30%;
+  width: 100%;
   background: #eee;
   padding: 10px;
   border-radius: 2%;
   margin-bottom: 1.2em;
   position: absolute;
-  z-index: 9999999999;
+  z-index: 1;
 `
-export const ErrorMessageCont = styled.div`
-  position: relative;
-  width: inherit;
+/* export const ErrorMessageCont = styled.div`
+  position: absolute;
+  width: 100%;
+  transform: translateY(4.2em);
   height: inherit;
+  z-index: 9999999999;
 `
 export const ErrorMessageCont1 = styled.div`
   position: relative; 
-`
+` */
 export const ErrorMessage1 = styled.div`
   display: block;
-  width: 30%;
+  width: 100%;
   background: #eee;
   padding: 10px;
   border-radius: 2%;
   height: 10%;
   position: absolute;
-  top: -2.5em;
+  margin-bottom: 1.2em;
   padding-bottom: 2.2em;
   z-index: 999999999999;
-  transform: translateX(115%);
 `;
 export const ExistAccount = styled.div`
   font-size: 16px;
@@ -320,3 +339,11 @@ export const ExistAccount = styled.div`
   margin-top: 2.5rem;
   justify-content: center;
 `;
+export const SuccessOtp = styled.div`
+  color: green;
+  font-weight: 600;
+`
+export const ResendOtp = styled.div`
+  color: #3e444e;
+  font-weight: 600;
+`

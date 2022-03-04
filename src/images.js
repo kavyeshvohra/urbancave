@@ -1,6 +1,5 @@
 import house1 from './Images/house1.png';
 import house2 from './Images/house2.png';
-import camera from './Images/camera.png'
 import payment from './Images/payment.png';
 import security from './Images/security.png';
 import register from './Images/register.jpg';
@@ -20,7 +19,6 @@ import overviewIcon from './Images/overviewIcon.png';
 import paymentIcon from './Images/paymentIcon.png';
 import complaintIcon from './Images/complaintIcon.png';
 import settingIcon from './Images/settingsIcon.png';
-import accountIcon from './Images/accountIcon.png';
 import searchIcon from './Images/searchIcon.png';
 import locationIcon from './Images/locationIcon.png';
 
@@ -55,7 +53,6 @@ import societyIcon from './Images/societyIcon.svg';
 const Images = {
     house1,
     house2,
-    camera,
     payment,
     security,
     register,
@@ -73,7 +70,6 @@ const Images = {
     complaintIcon,
     searchIcon,
     settingIcon,
-    accountIcon,
     locationIcon,
     overviewIconWhite,
     paymentIconWhite,

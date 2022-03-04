@@ -47,12 +47,12 @@ const Main = (props)=> {
               onMouseOver={()=>setHover("profile")}
               onMouseLeave={()=>setHover(0)}
             /></Link>
-            <Link to="/main/profile">
+            {/* <Link to="/main/profile"> */}
               <VscAccount size="2em" color={hover=="logout"?"#FEB6B6":"707A8A"}
                 onMouseOver={()=>setHover("logout")}
                 onMouseLeave={()=>setHover(0)}
               />
-            </Link>
+            {/* </Link> */}
           </div>
         </div>
 

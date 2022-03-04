@@ -1,5 +1,6 @@
 import '../../styles/fileAndFolder.css';
 import '../../styles/gallery';
+import {Heading} from '../../styles/societies'
 import File from '../components/file';
 import { useParams,useLocation } from 'react-router-dom';
 import { useEffect,useState } from 'react';
@@ -48,7 +49,7 @@ const Event = (props)=>{
     return(
         <>
             <div className="galleryHeader">
-                <div className="galleryCaption">{event}</div>
+                <Heading style={{marginTop: "1em"}}>{event}</Heading>
                 <div className="galleryButtons">
                     {
                         props.userType!="Admin"?(<>

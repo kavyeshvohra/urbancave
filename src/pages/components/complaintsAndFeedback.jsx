@@ -1,5 +1,5 @@
 import Complaint from "./complaint";
-import '../../styles/complaints.css';
+// import '../../styles/complaints.css';
 import CreateComplaintModal from "./createComplaintModal";
 import { useState } from "react";
 import ComplaintInfoModal from "./complaintInfoModal";

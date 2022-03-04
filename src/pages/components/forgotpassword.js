@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { FaUserCircle } from 'react-icons/fa';
 import {MdOutlinePassword} from 'react-icons/md'
-import {RegisterCont1, InputWrapper,RegisterForm1, Heading1,TextSpan1,ButtonWrapper1 ,Span,ExistAccount,ButtonSubmit,InputWrapper1, Detailsform, FocusHtml, FormGroup as FormGroup1, Detailsform1} from '../../styles/register-styles'
+import {RegisterCont1, Form,RegisterForm1, Heading1,TextSpan1,ButtonWrapper1 ,Span,ExistAccount,ButtonSubmit,InputWrapper1, Detailsform, FocusHtml, FormGroup as FormGroup1, Detailsform1} from '../../styles/register-styles'
 import {DetailsForm, FocusText, FormGroup} from '../../styles/login-style'
 
 const ForgotPass = () => {
@@ -68,26 +68,24 @@ const ForgotPass = () => {
     <RegisterCont1>
             <RegisterForm1>
                 <Heading1>Forgot Your Password?</Heading1>
-                <InputWrapper1 style={Wrapper}>
+                <Form style={Wrapper}>
                 <FormGroup>
                         <FaUserCircle className='login-field-icons' style={iconStyle} />
                         <DetailsForm type="text" id="email" name="username" onChange={inputChange} tabIndex="1" />
                         <FocusText data-placeholder="Email" />
                 </FormGroup>
-                </InputWrapper1>
-                <InputWrapper style={{marginTop: '1em'}}>
                 <FormGroup1>
                         <MdOutlinePassword className='login-field-icons' style={iconStyle}/>
                         <Detailsform1 type="number"  id="otp" name="verif-code" onChange={inputChange} required onKeyUp={checkIfNumber} maxLength={6} />
                         <FocusText data-placeholder='OTP' />
                 </FormGroup1>
                 <TextSpan1 id="resend_otp_verify">Resend OTP</TextSpan1>
-                </InputWrapper>
                 <ButtonWrapper1>
                         <ButtonSubmit name="submit" id="checkOTP" onClick={otpClick == 0 ? () => changeClick(1) : () => validateEmailOpt()}>
                             {otpClick == 0 ? "Request OTP" : "Submit"}
                         </ButtonSubmit>
                     </ButtonWrapper1>
+                    </Form>
                     <ExistAccount>
                         Already a Member? &nbsp;<Link to="/login"><Span>Sign In</Span></Link>
                     </ExistAccount>

@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 
 export const SideBarContainer = styled.div`
-    display: flex;
-    flex-direction: column;
+    position: fixed;
     width: 370px;
     overflow-y:auto;
     max-width: 18.279em;
-    height:86vh;
+    height:100vh;
     padding-top:2em;
-    overflow-y:scroll;
+    margin-top: 80px;
+    box-shadow:inset -1px -1px 8px 0px rgb(250 240 240);
 `
 export const MenuListItem = styled.li`
     display:flex;

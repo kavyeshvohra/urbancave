@@ -91,7 +91,7 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link>
                 
-                    <Link to="/dashboard/familymembers">
+                    {/* <Link to="/dashboard/familymembers">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("members")} 
                             onMouseLeave={()=>iconStateChange(false)} 
@@ -99,7 +99,7 @@ const SideBar = (props) =>{
                             {   clickedIcon==="members" || changeicon==="members"?(<img src={MembersF} alt="" class="custommenuicon"/>):(<img src={MembersUF} alt="" class="custommenuicon"/>)}
                             Family Members
                         </sidebar.MenuListItem>
-                    </Link>
+                    </Link> */}
 
                     <Link to="/dashboard/payments">
                         <sidebar.MenuListItem 

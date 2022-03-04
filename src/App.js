@@ -54,6 +54,7 @@ function App() {
             <Route path="societies" element={<Societies userType={userType}/>}/>
 
             <Route path="members" element={<Members userType={userType}/>}/>
+            <Route path="members/:id" element={ <Members userType={userType} />} />
           
             <Route path="payments" element={ <Payments userType={userType} /> }/>
           

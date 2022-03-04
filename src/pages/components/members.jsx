@@ -18,7 +18,7 @@ const Members = (props)=>{
     // }
 
     const gotoMembers = (id)=>{
-        navigate(`/main/members/${id}`);
+        navigate(`/dashboard/members/${id}`);
     }
 
     const societies = ["Siddhachal Flats","Ankur Appartments","Goyal Intercity-C", "Mahasagar Appartments",,"Suryasagar Appartments","Swati Appartments"];

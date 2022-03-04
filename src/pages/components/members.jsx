@@ -10,7 +10,7 @@ import soc3_img from '../../Images/soc3.jpg'
 import soc4_img from '../../Images/soc4.jpg'
 
 const Members = (props)=>{
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     // const {pathname} = useLocation();
     // const OpenView = () =>
     // {

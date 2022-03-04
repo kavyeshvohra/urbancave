@@ -8,7 +8,7 @@ import Main from './pages/main';
 import Dashboard from './pages/components/dashboard';
 import SocietyDashboard from './pages/components/societyDashboard';
 import MemberDashboard from './pages/components/memberDashboard';
-
+import SocMembers from './pages/components/socMembers';
 import Gallery from './pages/components/gallery';
 import Event from './pages/components/events';
 import Notice from './pages/components/notice';
@@ -54,7 +54,7 @@ function App() {
               <Route path="societies" element={<Societies userType={userType} />} />
 
               <Route path="members" element={<Members userType={userType} />} />
-              <Route path="members/:id" element={<Members userType={userType} />} />
+              <Route path="members/:id" element={<SocMembers userType={userType} />} />
 
               <Route path="payments" element={<Payments userType={userType} />} />
 

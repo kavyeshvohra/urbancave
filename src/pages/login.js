@@ -5,9 +5,56 @@ import { FaUserCircle } from 'react-icons/fa';
 import { AiFillLock, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import Images from '../images';
+import image from '../Images/woman2.jpg';
 
 
 const Login = () => {
+
+    useEffect( async ()=>{
+        console.log(0);
+        const fname = "sidhraj";
+        const lname = "mori";
+        const dob = "2001-09-01";
+        const email = "sid@gmail.com";
+        const phone = 9876543210;
+        const phoneA = 9876543210;
+        const pass = "sid@12345";
+        const confPass = "sid@12345";
+        const houseName = "B7";
+
+        //const houseType=document.getElementById("houseType");
+        //const userType=document.getElementById("userType");
+        
+        // const file = Images.camera;
+        const file = image;
+
+        const data={
+            fname,
+            lname,
+            dob,
+            email,
+            phone,
+            phoneA,
+            pass,
+            confPass,
+            houseName,
+            file
+        };
+
+        const url="http://localhost:8080/register";
+        const options={
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify(data)
+        }
+        const response = await fetch(url,options);
+        const res = await response.json();
+        console.log(res);
+
+    });
 
     const navigate = useNavigate();
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -66,6 +113,15 @@ const Login = () => {
             }
             const response = await fetch(url,options);
             const res = await response.text();
+            /*
+                const res = await response.json();
+                if(res.error){
+                    //error didplay;
+                }
+                else{
+                    
+                }
+             */
             if(res=="User is authenticated"){
                 navigate("/dashboard");
             }
@@ -110,14 +166,14 @@ const Login = () => {
                     <LStyle.Form>
                         <LStyle.FormGroup>
                             <FaUserCircle className='login-field-icons' style={iconStyle} />
-                            <LStyle.DetailsForm type="text" id="email" name="username" onChange={inputChange} tabIndex="1" />
-                            <LStyle.FocusText data-placeholder="Email" />
+                            <LStyle.DetailsForm type="text" id="email" name="username" defaultValue="sid@gmail.com" onChange={inputChange} tabIndex="1" />
+                            {/* <LStyle.FocusText data-placeholder="Email" /> */}
                         </LStyle.FormGroup>
                         <div style={errStyle} id="errorLogin">Invalid Email</div>
                         <LStyle.FormGroup>
                             <AiFillLock className="login-field-icons" style={iconStyle} />
-                            <LStyle.DetailsForm type={isPasswordVisible ? "text" : "password"} id="password" name="password" onChange={inputChange} tabIndex="2" />
-                            <LStyle.FocusText data-placeholder="Password" />
+                            <LStyle.DetailsForm type={isPasswordVisible ? "text" : "password"} defaultValue="Aa!01234" id="password" name="password" onChange={inputChange} tabIndex="2" />
+                            {/* <LStyle.FocusText data-placeholder="Password" /> */}
                             {isPasswordVisible ? (<AiFillEye onClick={changePass} className='login-eye' style={iconStyle}/>) : <AiFillEyeInvisible onClick={changePass} className='login-eye' style={iconStyle}/>}
                             {/* <AiFillEyeInvisible tabIndex="3" />
                             <AiFillEye className="login-field-eye-on" onFocus={changePass} onClick={changePass} /> */}

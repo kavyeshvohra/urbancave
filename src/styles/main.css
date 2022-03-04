@@ -6,20 +6,22 @@
     flex-direction: column;
 }
 
-.mainContent{
+/* .mainContent{
     display: flex;
     flex-direction: row;
     overflow: hidden;
-}
+} */
 
 
 .contentContainer{
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
+    float: right;
     width:80.7vw;
-    height:85vh;
+    /* height:85vh; */
     overflow-y:scroll;
     margin-bottom: 1em;
+    margin-top: 80px;
     scrollbar-width:initial;
 }
 

@@ -279,7 +279,7 @@ export const Div = styled.div`
     column-gap:1.5em;
 `
 export const SrNo = styled.div`
-    font-size: 1em;0
+    font-size: 1em;
 `
 export const Cont1 = styled.div`
     display: flex;

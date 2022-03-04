@@ -26,6 +26,7 @@ import ForgotPass from './pages/components/forgotpassword'
 function App() {
 
   const [userType,setUserType] = useState("SocietyMember");
+  const [userType,setUserType] = useState("Admin");
 
   return (
     <>

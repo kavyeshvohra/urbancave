@@ -5,6 +5,7 @@ export const Society = styled.div`
     /* justify-content: center; */
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 `
 export const HeadingCont = styled.div`
     margin: 2em;
@@ -55,5 +56,5 @@ export const Content = styled.div`
 export const Image = styled.img`
 width: 100%;
 height: 10em;
-    border-radius: 15px 15px 0px 0px;
+border-radius: 15px 15px 0px 0px;
 `

@@ -1,6 +1,6 @@
 /* folders */
 
-.folder{
+/* .folder{
     width:auto;
     height:3em;
     background-color: #FFFEFE;
@@ -13,25 +13,25 @@
     align-items: center;
     transition-duration: 250ms;
     animation-timing-function: ease-in-out;
-}
+} */
 
-.folder:hover{
+/* .folder:hover{
     border-color: #FAB6B6;
     background-color: #FAF0F0;
-}
+} */
 
-.folderIcon{
+/* .folderIcon{
     width:2em;
     height:2em;
     object-fit: contain;
-}
-
+} */
+/* 
 .folderName{
     font-size: 1em;
     width:9em;
     overflow-x: hidden;
     color:#707A8A;
-}
+} */
 
 /* files */
 

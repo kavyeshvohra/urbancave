@@ -1,7 +1,7 @@
 import ContentHeader from "./contentheader";
 import '../../styles/useraccount.css';
 import Images from "../../images";
-import '../../styles/gallery.css';
+
 
 import * as HomeStyle from '../../styles/home-style' ;
 import * as RegisterStyle from '../../styles/register-styles' ;

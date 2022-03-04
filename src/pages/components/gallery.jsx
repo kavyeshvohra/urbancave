@@ -1,5 +1,5 @@
-import '../../styles/fileAndFolder.css';
-import '../../styles/gallery.css';
+import * as FStyle from '../../styles/file-folder-style'
+import { Heading } from '../../styles/societies';
 import Folder from './folder';
 import { useState } from 'react';
 import { useParams } from 'react-router';
@@ -10,13 +10,13 @@ const Gallery=(props)=>{
     //const lastName=pathname.split("/")[ pathname.split("/").length-1 ];
     const params = useParams();
     console.log(params);
-    const [folders,setFolders] = useState(["Diwali","Holi","Christmas","utryan","Navratri","Halloween"]);
+    const [folders,setFolders] = useState(["Diwali","Holi","Christmas","Uttrayan","Navratri","Halloween"]);
     const [ galleryModal , setGalleryModal ] =  useState(0);
     return(
         <>
             { galleryModal ? ( <CreateGalleryModal changeGallery={ setGalleryModal } folders={folders} changeFolders={setFolders} /> ) : (<></>) }
             <div className="galleryHeader">
-                <div className="galleryCaption">{params.society}</div>
+                <Heading style={{marginTop : "1em"}}>{params.society}</Heading>
                 <div className="galleryButtons">
                     {
                         props.userType!="Admin"?
@@ -25,7 +25,7 @@ const Gallery=(props)=>{
                     }
                 </div>
             </div>
-            <div className="fileFolderContainer">
+            <FStyle.FolderCont>
                 {/* <Folder folderName="Diwali" type="folder" />
                 <Folder folderName="Holi" type="folder"/>
                 <Folder folderName="Christmas" type="folder"/>
@@ -37,7 +37,7 @@ const Gallery=(props)=>{
                         return( <Folder folderName={folder} type="folder"  />)
                     })
                 }
-            </div>
+            </FStyle.FolderCont>
         </>
     );
 }

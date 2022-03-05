@@ -1,8 +1,8 @@
 import '../../styles/notice.css';
 import { useState } from 'react';
-import CreateNoticeModal from './createNoticeModal';
+import CreateNoticeModal from './Modals/createNoticeModal';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
-import NoticeInfoModal from './noticeInfoModal';
+import NoticeInfoModal from './Modals/noticeInfoModal';
 
 const Notice = (props)=>{
     const [ createNotice , setCreateNotice ] = useState(0);

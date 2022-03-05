@@ -1,8 +1,8 @@
 import '../../styles/tenants.css';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import MemberInfoModal from './memberInfoModal';
+import MemberInfoModal from './Modals/memberInfoModal';
 import * as SStyle from '../../styles/societies'
 import soc1_img from '../../Images/soc1.jpg'
 import soc2_img from '../../Images/soc2.jpg'
@@ -10,6 +10,10 @@ import soc3_img from '../../Images/soc3.jpg'
 import soc4_img from '../../Images/soc4.jpg'
 
 const Members = (props)=>{
+
+    useEffect(()=>{
+        window.scroll(0,0)
+    })
     const navigate = useNavigate();
     // const {pathname} = useLocation();
     // const OpenView = () =>

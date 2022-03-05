@@ -1,9 +1,9 @@
 import Images from '../../images.js';
 import '../../styles/tenants.css';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
-import TenantInfoModal from './tenantInfoModal.jsx';
+import TenantInfoModal from './Modals/tenantInfoModal.jsx';
 import { useState } from 'react';
-import CreateTenantModal from './createTenantModal.jsx';
+import CreateTenantModal from './Modals/createTenantModal.jsx';
 
 const Tenants = (props)=>{
     const [ tenantModal , setTenantModal ] = useState(0);

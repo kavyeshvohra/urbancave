@@ -1,7 +1,7 @@
 import CreateVisitorCode from '../components/createVisitorCode';
 import { useState } from 'react';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
-import VisitorInfoModal from './visitorInfoModal';
+import VisitorInfoModal from './Modals/visitorInfoModal';
 
 const Visitors = (props) => {
 

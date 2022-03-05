@@ -1,5 +1,5 @@
-import Images from "../../images";
-import '../../styles/visitorModal.css';
+import Images from "../../../images";
+import '../../../styles/visitorModal.css';
 
 const RegisterSocietyModal=(props)=>{
 

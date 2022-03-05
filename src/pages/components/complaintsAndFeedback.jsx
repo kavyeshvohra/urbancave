@@ -1,8 +1,8 @@
 import Complaint from "./complaint";
 // import '../../styles/complaints.css';
-import CreateComplaintModal from "./createComplaintModal";
+import CreateComplaintModal from "./Modals/createComplaintModal";
 import { useState } from "react";
-import ComplaintInfoModal from "./complaintInfoModal";
+import ComplaintInfoModal from "./Modals/complaintInfoModal";
 
 const ComplaintsAndFeedback=(props)=>{
     const [ compRegister , setCompRegister ] = useState(0);

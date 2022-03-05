@@ -1,11 +1,14 @@
 import * as FStyle from '../../styles/file-folder-style'
 import { Heading } from '../../styles/societies';
 import Folder from './folder';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import CreateGalleryModal from './createGalleryModal';
+import CreateGalleryModal from './Modals/createGalleryModal';
 
 const Gallery=(props)=>{
+    useEffect(()=>{
+        window.scroll(0,0)
+    })
     //const {pathname} = useLocation();
     //const lastName=pathname.split("/")[ pathname.split("/").length-1 ];
     const params = useParams();

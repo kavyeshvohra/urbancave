@@ -1,6 +1,4 @@
-import Images from "../../images";
-import '../../styles/createNoticeModal.css';
-import '../../styles/createGalleryModal.css';
+import Images from "../../../images";
 import {AiOutlineFile,AiOutlineCloseCircle} from 'react-icons/all';
 
 const CreateNoticeModal=(props)=>{

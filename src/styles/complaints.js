@@ -7,7 +7,107 @@ import styled from 'styled-components'
 //     fon-eight: 400;
 //     color:#3e444e;
 // `
+export const Wrapper = styled.div`
+    display: flex;
+`
+export const ButtonContainer = styled.div`
+    margin: 2em 4em;
 
+    & > button
+    {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background: none;
+        outline: none;
+        border-radius: 10px;
+        border: 0;
+        padding: 8px 15px;
+        transition: 0.2s ease-in all;
+        background-color: #3e444e;
+        color: #fab6b6;
+        font-weight: 600;
+        &:hover
+        {
+            background-image: linear-gradient(240deg,#fcd2d2,#dddddd);
+            color: #000;
+        }
+        & > svg
+        {
+            margin-right: 5px;
+        }
+    }
+`
+export const SocietyContainer = styled.div`
+    //padding: 30px 50px 0 0;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    background-color: #eee;
+    height: 100vh;
+    padding-top: 2.5em;
+`
+export const SocietyContent = styled.div`
+    padding-bottom: 20px;
+`
+export const SocList = styled.ul`
+    list-style: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    color: rgb(112,122,138);
+    & > li
+    {
+        padding: 15px 0 15px 20px;
+        margin-bottom: 10px;
+    }
+    & > li:hover
+    {
+        color:rgba(250,182,182);   
+    }
+    & > li.active
+    {
+        background-color: rgba(250,182,182);
+        color: rgb(112,122,138);
+    }
+    & > li.active:hover
+    {
+        color:rgb(112,122,138);   
+    }
+
+`
+export const SocietyHead = styled.div`
+    margin-bottom: 2.5em;
+    text-align: center;
+    color: #000;
+    letter-spacing: 1px;
+`
+export const FilterContainer = styled.div`
+    flex: 2;
+    margin-top: 2.5em;
+`
+export const MenuItems = styled.ul`
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+    color: #000;
+    & > li
+    {
+        border-bottom: 2px solid transparent;
+    }
+    &>li:hover
+    {
+        color: rgba(112, 122, 138, 0.8);
+        border-bottom: 2px solid #fab0b0;
+    }
+    & > li.active
+    {
+        color:#fab0b0;
+    }
+`
 export const ComplaintSubject = styled.select`
     width: 25.3rem;
     height: fit-content;
@@ -24,9 +124,9 @@ export const ComplaintInfo = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25rem;
-    border: #FAB6B6 solid 0.14rem;
-    background-color: #FFFEFE;
+    width: inherit;
+    /* border: #FAB6B6 solid 0.14rem; */
+    background-color: rgba(112,122,138,0.2);
     height: 15rem;
     border-radius: 0.5rem;
 `
@@ -81,10 +181,11 @@ export const ComplaintRegisterButton = styled.button`
 `
 
 export const ComplaintHistoryContainer = styled.div`
-    display: flex;
+    margin: 2em 4em;
+    /* display: flex;
     flex-direction: column;
     margin-left: 0.2em;
-    width: 95%;
+    width: 95%; */
 `
 
 export const ComplaintHistoryHeaderContainer = styled.div`
@@ -98,12 +199,16 @@ export const ComplaintHistoryHeaderContainer = styled.div`
 `
 
 export const ComplaintHistoryHeader = styled.div`
-    margin: 0.5rem 0rem 1rem 0rem;
     font-size: 2rem;
+    margin: 0.5em 0em;
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
     text-align: left;
     margin-left: 1.5rem;
     font-weight: 400;
     color:#3e444e;
+    width: 50%;
 `
 
 export const ComplaintHistoryCategory = styled.select`

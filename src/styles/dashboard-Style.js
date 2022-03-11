@@ -41,16 +41,16 @@ export const Item2 = styled.div`
         //left: 280px;
     } */
 `
-export const HeadingContainer = styled.div`
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-`
-// export const Cont = styled.div`
-
+// export const HeadingContainer = styled.div`
+//     display:flex;
+//     flex-direction: row;
+//     align-items: center;
+//     flex-wrap: nowrap;
+//     justify-content: space-between;
 // `
+export const SocietyCont = styled.div`
+    display: flex;
+`
 
 export const HeadName = styled.h5`
 margin: 0;

@@ -159,7 +159,7 @@ const Card = (props) => {
                 </Cstyle.ComplaintHistoryHeader>
                 <Cstyle.ComplaintInfoDetails>
                     <h2>How to change my password?</h2>
-                    <p>I want to change my password? Where is the option?</p>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,</p>
                 </Cstyle.ComplaintInfoDetails>
                 <Cstyle.ComplaintFooterInfo>
                     <FaUserAlt/>

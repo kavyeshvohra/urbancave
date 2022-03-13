@@ -144,7 +144,7 @@ export const SocietyContainer = styled.div`
     //padding: 30px 50px 0 0;
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 20%;
     background-color: #eee;
     height: 100vh;
     padding-top: 2.5em;
@@ -221,7 +221,7 @@ export const ComplaintContainer = styled.div`
     flex: 2;
     margin-top: 2.5em;
     position: relative;
-    margin-left: 24em;
+    margin-left: 19em;
 `
 export const MenuWrapper = styled.div`
     margin-left: 20px;
@@ -261,12 +261,12 @@ export const ComplaintInfo = styled.div`
     display: flex;
     flex-direction: column;
     justify-content:space-between;
-    max-height: 15rem;
+    max-height: 18rem;
     /* align-items: center; */
     /* width: inherit; */
     /* border: #FAB6B6 solid 0.14rem; */
     background-color: rgba(112,122,138,0.2);
-    height: 15rem;
+    height: auto;
     border-radius: 0.5rem;
     padding-top: 8px;
     padding-left: 30px;

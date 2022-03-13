@@ -2,7 +2,7 @@ import '../../styles/fileAndFolder.css';
 import '../../styles/gallery.css';
 import Folder from './folder';
 import { useState } from 'react';
-import CreateGalleryModal from './createGalleryModal';
+import CreateGalleryModal from './Modals/createGalleryModal';
 
 const Gallery=(props)=>{
     const [ galleryModal , setGalleryModal ] =  useState(0); 

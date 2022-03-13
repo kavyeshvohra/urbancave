@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
-import PaymentInfoModal from './paymentInfoModal';
+import PaymentInfoModal from './Modals/paymentInfoModal';
 
 const Payments = (props) => {
 

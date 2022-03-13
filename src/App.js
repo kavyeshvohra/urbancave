@@ -4,7 +4,7 @@ import { useState } from 'react';
 import ComplaintsAndFeedback from './pages/components/complaintsAndFeedback';
 import Home from './pages/home';
 import Main from './pages/main';
-
+import NotFound from './pages/NotFound';
 import Dashboard from './pages/components/dashboard';
 import SocietyDashboard from './pages/components/societyDashboard';
 import MemberDashboard from './pages/components/memberDashboard';
@@ -90,6 +90,7 @@ function App() {
               <Route path="reports" element={<h1>Reports</h1>} />
 
             </Route>
+            <Route path="*" element={<NotFound/>}/>
           </Routes>
         </div>
       </Router>

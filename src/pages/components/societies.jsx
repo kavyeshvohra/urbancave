@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import * as SStyle from '../../styles/societies'
 import soc1_img from '../../Images/soc1.jpg'
 import soc2_img from '../../Images/soc2.jpg'
@@ -9,6 +10,9 @@ import Folder from './folder';
 
 
 const Societies = () =>{
+    useEffect(()=>{
+        window.scroll(0,0)
+    })
     const societies = ["Siddhachal Flats","Ankur Appartments","Goyal Intercity-C", "Mahasagar Appartments",,"Suryasagar Appartments","Swati Appartments"];
     const Area = ['Drive In Road', 'Gurukul', 'Mansi Charrasta', 'Bopal', 'Makarba', 'Isckon Cross Roads', 'Kalupur']
     const Image = [soc1_img,soc2_img,soc3_img,soc4_img,soc1_img,soc3_img]

@@ -1,9 +1,8 @@
-
 import '../../styles/tenants.css';
 import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
 import { useState } from 'react';
-import MemberInfoModal from './familyMemberInfoModal';
-import CreateFamilyMemberModal from './createFamilyMemberModal';
+import MemberInfoModal from './Modals/familyMemberInfoModal';
+import CreateFamilyMemberModal from './Modals/createFamilyMemberModal';
 
 const FamilyMembers = (props)=>{
     const [registerFamily,setRegisterFamily] = useState();

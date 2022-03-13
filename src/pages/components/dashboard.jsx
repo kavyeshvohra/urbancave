@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import '../../styles/dashboard.css'
 import * as DashStyles from '../../styles/dashboard-Style';
 import { FaRupeeSign} from 'react-icons/fa'
@@ -8,6 +8,10 @@ import ChartPie, {ChartBar, ChartDoughnut} from './chart'
 import {AiFillEye} from 'react-icons/ai'
 
 const Dashboard = () => {
+    useEffect(()=>{
+        window.scroll(0,0)
+    })
+    const user = "Member"
     const sStyle={
         display:"flex",
         flexDirection:"column",
@@ -19,8 +23,19 @@ const Dashboard = () => {
         columnGap:"5em",
         marginTop: "2em",
     }
+    const contStyle = {
+        display: "flex",
+        alignItems: "baseline",
+        justifyContent: "space-between",
+    }
         return(
             <>
+                <div style={contStyle}>
+                    <h2 style={{margin:"1em 0 0 2em"}}>
+                        Welcome, Kavyesh
+                    </h2>
+                    {user=='Member'?<h5 style={{marginRight: "3em"}}>Society: <span style={{fontWeight: "400"}}>Siddhachal Flats</span></h5>:null}
+                </div>
                 <DashStyles.Feature1Container>
                     <Feature1 heading = "ALL SOCIETIES" metrics="29,500"></Feature1>
                     <Feature1 heading = "ALL SOCIETIES" metrics="2,500"></Feature1>
@@ -182,7 +197,7 @@ const Dashboard = () => {
         textDecoration: "underline", 
         marginBottom: "1em"         
     }
-    const Feature1 = (props) => {
+    export const Feature1 = (props) => {
         return (
             <DashStyles.DashItemContainer>
                 <DashStyles.Item>
@@ -285,7 +300,7 @@ const Dashboard = () => {
             </>
         )
     }
-    const Feature5 =  (props) =>{
+    export const Feature5 =  (props) =>{
 
         const SocietyName = ['Siddhachal Flats', 'Shivrangi Appartments', 'Ankur Highrise', 'Suryasagar Appartments', 'Mahasagar Appartments'];
         const Date = ['Drive In Road', 'Shivranjani', 'Navrangpura', 'Gurukul', 'Ranip', 'Mansi Char Rasta', 'Bopal']

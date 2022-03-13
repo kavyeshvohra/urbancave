@@ -42,7 +42,7 @@ export const MoreItemsContainer = styled.div`
     background-color: #fff;
     border-radius: 5px;
     position: absolute;
-    width: 150px;
+    width: 185px;
     top: 34px;
     left: 32em;
     box-shadow: 2px 1px 6px 0px;

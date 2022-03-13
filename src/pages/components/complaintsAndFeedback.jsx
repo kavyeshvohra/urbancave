@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import * as Cstyle from '../../styles/complaints'
 import {BiPencil,BiHelpCircle} from 'react-icons/bi'
-import {AiOutlineSearch} from 'react-icons/ai'
+import {AiOutlineSearch,AiOutlineInfoCircle} from 'react-icons/ai'
 import {BsThreeDots} from 'react-icons/bs'
 import {Modal, Button, Col, Row} from 'react-bootstrap'
 import {FaUserAlt} from 'react-icons/fa'
@@ -176,11 +176,13 @@ const Card = (props) => {
 const MoreItems = () => {
     const [DeleteModal, setDeleteModal] = useState(false);
     const [ViewModal, setViewModal] = useState(false);
+    const [ResolvedModal, setResolvedModal] = useState(false);
     return(
         <>
             <Cstyle.MoreItemsContainer>
                 <ul>
                     <li onClick={()=>{setViewModal(true)}}>View</li>
+                    <li onClick={()=>{setResolvedModal(true)}}>Mark As Resolved</li>
                     <li onClick={()=>{setDeleteModal(true)}}>Delete</li>
                 </ul>
             </Cstyle.MoreItemsContainer>
@@ -235,6 +237,19 @@ const MoreItems = () => {
                         <h2>Are you sure?</h2>
                         <p>Do you really want to delete this record? This process cannot be undone.</p>
                         <Button variant='outline-danger'>Delete</Button>
+                    </Cstyle.DeleteCont>
+                </Modal.Body>
+            </Modal>
+            <Modal show={ResolvedModal} onHide={()=>{setResolvedModal(false)}} centered>
+                <Modal.Header closeButton style={{borderBottom: "none"}}>
+                    {/* <Modal.Title>Delete Complaint</Modal.Title> */}
+                </Modal.Header>
+                <Modal.Body closeButton style={{paddingTop: "unset"}}>
+                    <Cstyle.DeleteCont>
+                        <AiOutlineInfoCircle style={{fontSize: "8em", color: "green"}}/>
+                        <h2>Are you sure?</h2>
+                        <p>Do you really want to mark this record as resolved? This process cannot be undone.</p>
+                        <Button variant='outline-success'>Continue</Button>
                     </Cstyle.DeleteCont>
                 </Modal.Body>
             </Modal>

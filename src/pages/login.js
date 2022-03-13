@@ -46,7 +46,7 @@ const Login = () => {
         const options={
             method:"POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "multipart/form-data",
             },
             body:JSON.stringify(data)
         }

@@ -22,7 +22,8 @@ import Visitor from './pages/components/visitors';
 import Payments from './pages/components/payments';
 import Members from './pages/components/members';
 import FamilyMembers from './pages/components/familyMembers';
-import ForgotPass from './pages/components/forgotpassword'
+import ForgotPass from './pages/components/forgotpassword';
+import Test from './pages/test';
 function App() {
 
   //const [userType,setUserType] = useState("SocietyMember");
@@ -39,6 +40,7 @@ function App() {
 
             <Route path="/register" element={<Register userType={userType} />} />
             <Route path="/forgotpassword" element={<ForgotPass />} />
+            <Route path="test" element={<Test/>}/>
             <Route path="/contactus" element={<Contact userType={userType} />} />
             <Route path="/dashboard" element={<Main userType={userType} />} >
 
@@ -52,6 +54,8 @@ function App() {
               <Route path="familymembers" element={<FamilyMembers userType={userType} />} />
 
               <Route path="societies" element={<Societies userType={userType} />} />
+
+              
 
               <Route path="members" element={<Members userType={userType} />} />
               <Route path="members/:id" element={<SocMembers userType={userType} />} />

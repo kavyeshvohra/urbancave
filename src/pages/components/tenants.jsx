@@ -1,6 +1,9 @@
 import Images from '../../images.js';
 import '../../styles/tenants.css';
-import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
+// import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
+import {AiFillEye} from 'react-icons/ai'
+import {FaTrash} from 'react-icons/fa'
+import {MdModeEditOutline} from 'react-icons/md'
 import TenantInfoModal from './Modals/tenantInfoModal.jsx';
 import { useState } from 'react';
 import CreateTenantModal from './Modals/createTenantModal.jsx';

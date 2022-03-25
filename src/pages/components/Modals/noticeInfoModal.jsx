@@ -1,5 +1,5 @@
 import '../../../styles/displayInfoModal.css';
-import {AiOutlineCloseCircle} from 'react-icons/all';
+import {AiOutlineCloseCircle} from 'react-icons/ai';
 import { useState,useEffect } from 'react';
 
 const NoticeInfoModal=(props)=>{

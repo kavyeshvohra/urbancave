@@ -1,6 +1,8 @@
 import '../../styles/fileAndFolder.css';
 import Images from '../../images';
-import  {FaTrash,AiFillEye} from "react-icons/all";
+// import  {FaTrash,AiFillEye} from "react-icons/all";
+import {AiFillEye} from 'react-icons/ai'
+import {FaTrash} from 'react-icons/fa'
 import {useState} from 'react';
 
 const File = (props)=>{

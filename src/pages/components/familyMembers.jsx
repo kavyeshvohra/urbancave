@@ -1,5 +1,8 @@
 import '../../styles/tenants.css';
-import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
+// import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
+import {AiFillEye} from 'react-icons/ai'
+import {FaTrash} from 'react-icons/fa'
+import {MdModeEditOutline} from 'react-icons/md'
 import { useState } from 'react';
 import MemberInfoModal from './Modals/familyMemberInfoModal';
 import CreateFamilyMemberModal from './Modals/createFamilyMemberModal';

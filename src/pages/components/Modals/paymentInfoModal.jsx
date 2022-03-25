@@ -1,5 +1,5 @@
 import '../../../styles/displayInfoModal.css';
-import {AiOutlineCloseCircle} from 'react-icons/all';
+import {AiOutlineCloseCircle} from 'react-icons/ai';
 
 const PaymentInfoModal=(props)=>{
     console.log(props.data);

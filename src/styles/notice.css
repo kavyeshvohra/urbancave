@@ -1,4 +1,5 @@
-.noticeContainer{
+
+/* .noticeContainer{
     margin:2rem;
     width:85%;
     border:0.1em solid #FAB6B6;
@@ -22,7 +23,7 @@ th,td{
     color:#FAB6B6;
     font-weight: 600;
 } */
-.noticeTable{
+/* .noticeTable{
     table-layout: auto;
     border-collapse: collapse;
     width:100%;
@@ -75,4 +76,4 @@ th,td{
     display: flex;
     flex-direction: row;
     column-gap: 0.5rem;
-}
+} */

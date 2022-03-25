@@ -1,14 +1,16 @@
 import Images from "../images";
 import SideBar from "./components/sidebar";
-import {AiOutlineLogin,VscAccount} from 'react-icons/all';
-
+import { VscAccount } from 'react-icons/vsc'
+import { BiSupport } from 'react-icons/bi'
+import { AiOutlineLogout } from 'react-icons/ai'
+import { IoSettings } from 'react-icons/io5'
 import { Outlet } from 'react-router';
-import '../styles/main.css';
-import '../styles/navbar.css';
-import { useState } from "react";
+import { useState, useRef, useEffect} from "react";
 import { Link } from "react-router-dom";
+import * as Mstyle from '../styles/main-style'
 
-const Main = (props)=> {
+const Main = (props) => {
+  const accRef = useRef()
 
   // handleGetTest = async () => {
   //   const url = "http://localhost:8080/UrbanCave/index";
@@ -33,40 +35,66 @@ const Main = (props)=> {
   //   console.log(await response.text());
   //   console.log(0);
   // };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (!accRef.current.contains(event.target)) {
+  //       setAccDetails(0);
+  //     }
+  //   };
+  //   document.addEventListener("mousedown", handleClickOutside);
+  // }, [accRef]);
 
-    const [hover,setHover] = useState(0);
+  const [hover, setHover] = useState(0);
+  const [AccDetails, setAccDetails] = useState(0)
+  return (
+    <Mstyle.MainContainer>
+      <Mstyle.NavContainer>
 
-    return (
-      <div className="mainContainer">
-        <div className="navContainer">
-          
-          <img src={Images.urbancaveLogo} className="logo"/>
-          
-          <div className="navItems">
-            <Link to="/login"><AiOutlineLogin size="2.1em" color={hover=="profile"?"#FEB6B6":"707A8A"}
-              onMouseOver={()=>setHover("profile")}
-              onMouseLeave={()=>setHover(0)}
-            /></Link>
-            {/* <Link to="/main/profile"> */}
-              <VscAccount size="2em" color={hover=="logout"?"#FEB6B6":"707A8A"}
-                onMouseOver={()=>setHover("logout")}
-                onMouseLeave={()=>setHover(0)}
-              />
-            {/* </Link> */}
-          </div>
-        </div>
+        <img src={Images.urbancaveLogo} className="logo" />
 
-        <div className="mainContent">
-          
-          <SideBar userType={props.userType}/>
+        <Mstyle.NavItems>
+          {/* <Link to="/login"><AiOutlineLogin size="2.1em" color={hover == "profile" ? "#FEB6B6" : "707A8A"}
+            onMouseOver={() => setHover("profile")}
+            onMouseLeave={() => setHover(0)}
+          /></Link> */}
+          <span>
+            <VscAccount size="2em" color={hover == "logout" ? "#FEB6B6" : "707A8A"}
+              onMouseOver={() => setHover("logout")}
+              onMouseLeave={() => setHover(0)} onClick={() => setAccDetails(!AccDetails)} onBlur={() => setAccDetails(!AccDetails)}
+              style={{cursor: "pointer"}}
+            />
+          </span>
+        </Mstyle.NavItems>
+        {AccDetails ?
+            <Mstyle.Profile ref={accRef}>
+              <li className="header">
+                <h5>Name: <span style={{ fontStyle: "italic" }}>Kavyesh Vohra</span></h5>
+                <p>Siddhachal Flats - (Society Admin)</p>
+              </li>
+              <li>
+                <IoSettings/> Account Settings
+              </li>
+              <li>
+                <BiSupport/> Support
+              </li>
+              <li>
+                <AiOutlineLogout/> Logout
+              </li>
+            </Mstyle.Profile>
+          : <></>}
+      </Mstyle.NavContainer>
 
-          <div className="contentContainer">
-            <Outlet/>
-          </div>
+      <div className="mainContent" >
 
-        </div>
+        <SideBar userType={props.userType} />
+
+        <Mstyle.ContentContainer >
+          <Outlet />
+        </Mstyle.ContentContainer>
+
       </div>
-    );
+    </Mstyle.MainContainer>
+  );
 
 }
 

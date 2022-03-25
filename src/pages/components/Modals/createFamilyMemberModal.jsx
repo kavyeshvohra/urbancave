@@ -1,6 +1,6 @@
 import Images from "../../../images";
 
-import {AiOutlineFile,AiOutlineCloseCircle} from 'react-icons/all';
+import {AiOutlineFile,AiOutlineCloseCircle} from 'react-icons/ai';
 import { useState } from "react";
 import Select from "react-select";
 

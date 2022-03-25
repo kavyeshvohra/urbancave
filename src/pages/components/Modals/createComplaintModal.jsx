@@ -1,6 +1,6 @@
 import Images from '../../../images';
 // import '../../styles/complaints.css';
-import {AiOutlineCloseCircle} from 'react-icons/all';
+import {AiOutlineCloseCircle} from 'react-icons/ai';
 import Select from 'react-select';
 import {useState}  from 'react';
 

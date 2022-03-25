@@ -124,7 +124,7 @@ const SideBar = (props) =>{
                             onMouseOver={()=>iconStateChange("notices")} 
                             onMouseLeave={()=>iconStateChange(false)} 
                             onClick={(e)=>replaceIcon(e,"notices")}>
-                            {   clickedIcon==="notices" || changeicon==="notices"?(<img src={NoticeEventsF} alt="" class="custommenuicon"/>):(<img src={NoticeEventsUF} alt="" class="custommenuicon"/>) }Notices & Events
+                            {   clickedIcon==="notices" || changeicon==="notices"?(<img src={NoticeEventsF} alt="" class="custommenuicon"/>):(<img src={NoticeEventsUF} alt="" class="custommenuicon"/>) }Notices
                         </sidebar.MenuListItem>
                     </Link>
 

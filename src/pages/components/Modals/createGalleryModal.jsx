@@ -1,5 +1,5 @@
 import * as CGModal from '../../../styles/gallery-modal'
-import {AiOutlineCloseCircle} from 'react-icons/all';
+import {AiOutlineCloseCircle} from 'react-icons/ai';
 
 const CreateGalleryModal = (props)=>{
 

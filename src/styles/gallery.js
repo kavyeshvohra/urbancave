@@ -14,13 +14,8 @@ export const GalleryCaption = styled.div`
 `
 
 export const GalleryButtons = styled.div`
-    display:flex;
-    flex-direction: row;
-    margin-top:2em;
-    margin-left:2em;
-    column-gap: 1em;
-    justify-content: space-between;
-    margin-right:9.5em;
+    position: relative;
+    float: right;
 `
 
 export const GalleryButtonControls = styled.button`

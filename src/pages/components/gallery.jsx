@@ -1,9 +1,15 @@
 import * as FStyle from '../../styles/file-folder-style'
-import { Heading } from '../../styles/societies';
+import { Heading, HeadingCont } from '../../styles/societies';
 import Folder from './folder';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import {MdOutlineCreateNewFolder} from 'react-icons/md'
 import CreateGalleryModal from './Modals/createGalleryModal';
+import { Modal } from 'react-bootstrap';
+import { ButtonContainer } from '../../styles/complaints';
+import { GalleryButtons } from '../../styles/gallery';
+import { Container, Heading1 } from '../../styles/soc-members';
+import { FormGroup } from '../../styles/register-styles';
 
 const Gallery=(props)=>{
     useEffect(()=>{
@@ -12,29 +18,40 @@ const Gallery=(props)=>{
     //const {pathname} = useLocation();
     //const lastName=pathname.split("/")[ pathname.split("/").length-1 ];
     const params = useParams();
-    console.log(params);
+    console.log(params)
     const [folders,setFolders] = useState(["Diwali","Holi","Christmas","Uttrayan","Navratri","Halloween"]);
     const [ galleryModal , setGalleryModal ] =  useState(0);
     return(
         <>
-            { galleryModal ? ( <CreateGalleryModal changeGallery={ setGalleryModal } folders={folders} changeFolders={setFolders} /> ) : (<></>) }
             <div className="galleryHeader">
-                <Heading style={{marginTop : "1em"}}>{params.society}</Heading>
-                <div className="galleryButtons">
+                <Container>
+                    <Heading1>{params.society}</Heading1>
                     {
-                        props.userType!="Admin"?
-                        (<button onClick={()=>setGalleryModal(1)} className="galleryButtonControls">Create New Gallery</button>):
+                        props.userType=="Admin"?
+                        (   
+                            <ButtonContainer style={{marginBottom: "1em", marginTop: "1em"}}>
+                                <button className="newGallery" onClick={()=>setGalleryModal(1)}><MdOutlineCreateNewFolder style={{fontSize: "1.5em"}}/>New Gallery</button>
+                            </ButtonContainer>
+                        ):
                         (<></>)
-                    }
-                </div>
+                    }</Container>
             </div>
+            <Modal show={galleryModal} onHide={()=>{setGalleryModal(false)}} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Create New Gallery</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <div style={{textAlign: "right"}}>
+                    <span>User Name: <span style={{fontStyle: "italic", color: "#3e444e", fontWeight: "500"}}>Patel Manikbhai</span></span>
+                </div>
+                <form>
+                    <FormGroup>
+                        
+                    </FormGroup>
+                </form>
+                </Modal.Body>
+            </Modal>
             <FStyle.FolderCont>
-                {/* <Folder folderName="Diwali" type="folder" />
-                <Folder folderName="Holi" type="folder"/>
-                <Folder folderName="Christmas" type="folder"/>
-                <Folder folderName="Utryan" type="folder"/>
-                <Folder folderName="Navratri" type="folder"/>
-                <Folder folderName="Halloween" type="folder"/> */}
                 {
                     folders.map((folder)=>{
                         return( <Folder folderName={folder} type="folder"  />)

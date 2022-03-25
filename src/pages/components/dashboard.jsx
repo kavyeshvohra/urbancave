@@ -28,7 +28,8 @@ const Dashboard = () => {
         alignItems: "baseline",
         justifyContent: "space-between",
     }
-        return(
+    document.title = "Urbancave - Dashboard "
+    return(
             <>
                 <div style={contStyle}>
                     <h2 style={{margin:"1em 0 0 2em"}}>
@@ -198,16 +199,30 @@ const Dashboard = () => {
         marginBottom: "1em"         
     }
     export const Feature1 = (props) => {
-        return (
-            <DashStyles.DashItemContainer>
-                <DashStyles.Item>
-                    <DashStyles.Title>{props.heading}</DashStyles.Title>
-                    <DashStyles.Metrics>{props.metrics}</DashStyles.Metrics>
-                    <DashStyles.Desc>Analytics for last week</DashStyles.Desc>
+        if(props.name) {
+            return(
+                <DashStyles.DashItemContainer>
+                <DashStyles.Item style={{padding: '1em 1.6em 2em 2em'}}>
+                <DashStyles.Title>{props.heading}</DashStyles.Title>
+                <DashStyles.Metrics>{props.metrics}</DashStyles.Metrics>
+                <DashStyles.Desc>Analytics for last week</DashStyles.Desc>
                 </DashStyles.Item>
-            </DashStyles.DashItemContainer>
-        );
-    };
+                </DashStyles.DashItemContainer>
+            );
+        }
+        else
+        {
+            return(
+                <DashStyles.DashItemContainer>
+                <DashStyles.Item>
+                <DashStyles.Title>{props.heading}</DashStyles.Title>
+                <DashStyles.Metrics>{props.metrics}</DashStyles.Metrics>
+                <DashStyles.Desc>Analytics for last week</DashStyles.Desc>
+                </DashStyles.Item>
+                </DashStyles.DashItemContainer>
+            );
+        }
+    }
     const Feature2 = (props) => {
         return (
             <>

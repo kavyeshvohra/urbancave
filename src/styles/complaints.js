@@ -139,6 +139,30 @@ export const ButtonContainer = styled.div`
             margin-right: 5px;
         }
     }
+    .newGallery
+    {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background: none;
+        outline: none;
+        border-radius: 10px;
+        border: 0;
+        padding: 12px 30px;
+        transition: 0.2s ease-in all;
+        background-color: #3e444e;
+        color: #fab6b6;
+        font-weight: 600;
+        &:hover
+        {
+            background-image: linear-gradient(240deg,#fcd2d2,#dddddd);
+            color: #000;
+        }
+        & > svg
+        {
+            margin-right: 5px;
+        }
+    }
 `
 export const SocietyContainer = styled.div`
     //padding: 30px 50px 0 0;

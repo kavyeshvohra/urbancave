@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { useState } from 'react';
 
 import ComplaintsAndFeedback from './pages/components/complaintsAndFeedback';
@@ -18,16 +18,18 @@ import Contact from './pages/contact';
 import Login from './pages/login.js'
 import Register from './pages/register.js';
 import UserAccount from './pages/components/useraccount';
-import Visitor from './pages/components/visitors';
+import Visitors from './pages/components/Visitor';
+import PaymentLanding from './pages/components/payment-land';
 import Payments from './pages/components/payments';
 import Members from './pages/components/members';
 import FamilyMembers from './pages/components/familyMembers';
 import ForgotPass from './pages/components/forgotpassword'
+import SocVisitors from './pages/components/socVisitors';
 function App() {
 
   //const [userType,setUserType] = useState("SocietyMember");
   const [userType, setUserType] = useState("Admin");
-
+  // const Location = useLocation()
   return (
     <>
       <Router>
@@ -40,7 +42,7 @@ function App() {
             <Route path="/register" element={<Register userType={userType} />} />
             <Route path="/forgotpassword" element={<ForgotPass />} />
             <Route path="/contactus" element={<Contact userType={userType} />} />
-            <Route path="/dashboard" element={<Main userType={userType} />} >
+            <Route path="/dashboard" element={<Main userType={userType} />} title="Dashboard">
 
               <Route path="" element={
                 userType == "Admin" ? (<Dashboard userType={userType} />) :
@@ -55,8 +57,8 @@ function App() {
 
               <Route path="members" element={<Members userType={userType} />} />
               <Route path="members/:id" element={<SocMembers userType={userType} />} />
-
-              <Route path="payments" element={<Payments userType={userType} />} />
+              <Route path="payments" element={<PaymentLanding userType={userType}/>}/>
+              <Route path="payments/:id" element={<Payments userType={userType} />} />
 
               <Route path="complaints" element={<ComplaintsAndFeedback userType={userType} />} />
 
@@ -79,7 +81,8 @@ function App() {
 
               <Route path="profile" element={<UserAccount userType={userType} />} />
 
-              <Route path="visitors" element={<Visitor userType={userType} />} />
+              <Route path="visitors" element={<Visitors userType={userType} />} />
+              <Route path="visitors/:id" element={<SocVisitors userType={userType} />} />
 
               <Route path="tenants" element={<Tenants userType={userType} />} />
 

@@ -191,8 +191,11 @@ export const Detailsform = styled.input`
   outline: none;
   &:focus + span,
   &.text + span {
-  transform: translate(0em,-2.4rem) scale(1);
-
+  transform: translate(0em,-2.4rem) scale(1);  
+}
+&:focus + span,
+  &.text1 + span {
+  transform: translate(0em,-1.7rem) scale(1);  
 }
 `;
 export const Detailsform1 = styled.input`

@@ -1,5 +1,4 @@
 import '../../styles/tenants.css';
-import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import MemberInfoModal from './Modals/memberInfoModal';
@@ -25,7 +24,7 @@ const Members = (props)=>{
         navigate(`/dashboard/members/${id}`);
     }
 
-    const societies = ["Siddhachal Flats","Ankur Appartments","Goyal Intercity-C", "Mahasagar Appartments",,"Suryasagar Appartments","Swati Appartments"];
+    const societies = ["Siddhachal Flats","Ankur Appartments","Goyal Intercity-C", "Mahasagar Appartments","Suryasagar Appartments","Swati Appartments"];
     const Area = ['Drive In Road', 'Gurukul', 'Mansi Charrasta', 'Bopal', 'Makarba', 'Isckon Cross Roads', 'Kalupur']
     const Image = [soc1_img,soc2_img,soc3_img,soc4_img,soc1_img,soc3_img]
     let area = 0;

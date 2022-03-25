@@ -144,7 +144,7 @@ function inputChange(e) {
     }
 }
 
-const Card = (props) => {
+export const Card = (props) => {
     const [MoreView, setMoreView] = useState(false);
     return(
         <>
@@ -158,7 +158,7 @@ const Card = (props) => {
                     {MoreView ? <MoreItems/> : null}
                 </Cstyle.ComplaintHistoryHeader>
                 <Cstyle.ComplaintInfoDetails>
-                    <h2>How to change my password?</h2>
+                    <h2>Maintenance - 03/2022</h2>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,</p>
                 </Cstyle.ComplaintInfoDetails>
                 <Cstyle.ComplaintFooterInfo>

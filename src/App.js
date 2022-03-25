@@ -41,6 +41,7 @@ function App() {
 
             <Route path="/register" element={<Register userType={userType} />} />
             <Route path="/forgotpassword" element={<ForgotPass />} />
+            <Route path="test" element={<Test/>}/>
             <Route path="/contactus" element={<Contact userType={userType} />} />
             <Route path="/dashboard" element={<Main userType={userType} />} title="Dashboard">
 
@@ -54,6 +55,8 @@ function App() {
               <Route path="familymembers" element={<FamilyMembers userType={userType} />} />
 
               <Route path="societies" element={<Societies userType={userType} />} />
+
+              
 
               <Route path="members" element={<Members userType={userType} />} />
               <Route path="members/:id" element={<SocMembers userType={userType} />} />

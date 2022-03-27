@@ -24,7 +24,7 @@ const PaymentLanding = () => {
         return(
         <>
                 <SStyle.HeadingCont>
-                        <SStyle.Heading>Societies</SStyle.Heading>
+                        <SStyle.Heading>Payments</SStyle.Heading>
                 </SStyle.HeadingCont>
                 <SStyle.Society>
                 {societies.map((soc)=>{

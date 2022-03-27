@@ -25,6 +25,7 @@ import Members from './pages/components/members';
 import FamilyMembers from './pages/components/familyMembers';
 import ForgotPass from './pages/components/forgotpassword'
 import SocVisitors from './pages/components/socVisitors';
+import Test from './pages/test';
 function App() {
 
   //const [userType,setUserType] = useState("SocietyMember");

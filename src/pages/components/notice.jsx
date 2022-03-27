@@ -6,7 +6,7 @@ import { FormGroup, Detailsform, FocusHtml, TextSpan, ButtonSubmit, ButtonWrappe
 import Select from 'react-select';
 import {BiPencil} from 'react-icons/bi'
 import {AiOutlineSearch} from 'react-icons/ai'
-import {FileWrapper, DownloadButtonContainer} from '../../styles/notice-modal'
+import {FileWrapper, DownloadButtonContainer,ContentCard, DateCard} from '../../styles/notice-modal'
 import {useDropzone} from 'react-dropzone'
 import {BsThreeDots,BsDownload } from 'react-icons/bs'
 import {MdOutlineCancel} from 'react-icons/md'
@@ -200,13 +200,19 @@ const NoticeCard = (props) => {
             <ComplaintInfo>
                 <ComplaintHistoryHeader>
                     <h5>Notice #2022-1222</h5>
-                    <span style={{fontWeight: "300", fontSize: "18px"}}>11:30PM</span>
                     <button onClick={()=>{setMoreView(!MoreView)}}><BsThreeDots/></button>
                     { MoreView==true? <MoreItems/> : null }
                 </ComplaintHistoryHeader>
-                <ComplaintInfoDetails>
-                    <h2>Maintenance - 03/2022</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,</p>
+                <ComplaintInfoDetails className='NoticeCard'>
+                    <DateCard>
+                        <h6>August</h6>
+                        <h5>23</h5>
+                        <h6>2022</h6>
+                    </DateCard>
+                    <ContentCard>
+                        <h2>Maintenance For February</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,</p>
+                    </ContentCard>
                 </ComplaintInfoDetails>
                 <ComplaintFooterInfo>
                     <FaUserAlt/>

@@ -9,7 +9,7 @@ import { Modal } from 'react-bootstrap';
 import { ButtonContainer } from '../../styles/complaints';
 import { GalleryButtons } from '../../styles/gallery';
 import { Container, Heading1 } from '../../styles/soc-members';
-import { FormGroup } from '../../styles/register-styles';
+import { ButtonSubmit, Detailsform, FocusHtml, FormGroup, TextSpan } from '../../styles/register-styles';
 
 const Gallery=(props)=>{
     useEffect(()=>{
@@ -45,9 +45,13 @@ const Gallery=(props)=>{
                     <span>User Name: <span style={{fontStyle: "italic", color: "#3e444e", fontWeight: "500"}}>Patel Manikbhai</span></span>
                 </div>
                 <form>
-                    <FormGroup>
-                        
+                    <FormGroup style={{width: "100%", marginTop: "1em"}}>
+                        <Detailsform type="text"/>
+                        <FocusHtml data-placeholder="Gallery Name"/>
                     </FormGroup>
+                    <ButtonContainer>
+                        <ButtonSubmit type="submit">Create</ButtonSubmit>
+                    </ButtonContainer>
                 </form>
                 </Modal.Body>
             </Modal>

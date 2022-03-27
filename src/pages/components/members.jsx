@@ -32,7 +32,7 @@ const Members = (props)=>{
     return(
     <>
     <SStyle.HeadingCont>
-            <SStyle.Heading>Societies</SStyle.Heading>
+            <SStyle.Heading>Members</SStyle.Heading>
     </SStyle.HeadingCont>
     <SStyle.Society>
         {societies.map((soc)=>{

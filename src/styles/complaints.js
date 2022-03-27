@@ -311,6 +311,11 @@ export const ComplaintInfoHeading = styled.div`
 `
 
 export const ComplaintInfoDetails = styled.div`
+    &.NoticeCard
+    {
+        display: flex;
+        column-gap: 1em;
+    }
     & > h2
     {
         text-align: left;

@@ -50,7 +50,26 @@ export const DownloadButtonContainer = styled.div`
         }
     }
 `
-
+export const DateCard = styled.div`
+        display: inline-block;
+        width: 120px;
+        height: 125px;
+        text-align:center;
+        line-height: 100px;
+        border: 2px dashed #fab6b6;
+        padding: 10px 0;
+        vertical-align: middle;
+        & > h5
+        {
+            font-size: 41px;
+            background-color: #3e444e;
+            letter-spacing: 0.125em;
+            color :#fff;
+        }
+`
+export const ContentCard = styled.div`
+    flex: 1;
+`
 
 // export const NoticeContainer = styled.div`
 //     flex: 2;

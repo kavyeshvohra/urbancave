@@ -8,7 +8,10 @@ export const Society = styled.div`
     justify-content: center;
 `
 export const HeadingCont = styled.div`
-    margin: 2em;
+    margin-top: 2em;
+    justify-content:center;
+    display:flex;
+    align-items: center;
 
 `
 export const Row = styled.div`
@@ -16,6 +19,7 @@ export const Row = styled.div`
 export const Heading = styled.h1`
     text-align: center;
     text-decoration: underline;
+    flex:1%;
 `
 export const SocietyCont = styled.div`
     margin: 2em;

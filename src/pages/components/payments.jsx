@@ -1,24 +1,30 @@
 import { useState } from 'react';
 // import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
-import {AiFillEye} from 'react-icons/ai'
+import {AiFillEye, AiOutlinePlus} from 'react-icons/ai'
 import {FaTrash} from 'react-icons/fa'
 import {MdModeEditOutline} from 'react-icons/md'
 import PaymentInfoModal from './Modals/paymentInfoModal';
-import {MenuWrapper,MenuItems} from '../../styles/complaints'
+import {MenuWrapper,MenuItems, ButtonContainer} from '../../styles/complaints'
 import * as Pstyle from '../../styles/payment-style'
 import {AiOutlineUser} from 'react-icons/ai'
 import {RiEyeFill} from 'react-icons/ri'
 import { Row, Col, Modal } from 'react-bootstrap';
 import { DetailWrapper, ComplaintDesc } from '../../styles/complaints';
-import { Detailsform, Detailsformdate} from '../../styles/register-styles';
+import { ButtonSubmit, ButtonWrapper, Detailsform, Detailsformdate, FocusHtml, FormGroup, TextSpan} from '../../styles/register-styles';
 import {Feature1} from '../components/dashboard'
 import { Feature1Container } from '../../styles/dashboard-Style';
 import { Heading, HeadingCont } from '../../styles/societies';
+import toast, { Toaster } from 'react-hot-toast';
+import Select from 'react-select';
 const Payments = (props) => {
     const [itemColor, setItemColor] = useState("All Tickets")
     const MenuItem = (e) =>{
         setItemColor(e.target.textContent)
     }
+    const options=[
+        { value: "Maintenance", label: "Maintenance" },
+        { value: "Donations", label: "Donations" }
+    ]
     const [ModalState, viewModal] = useState(false)
     const [ModalState1, viewModal1] = useState(false)
     const Srno = [0,1,2,3,4];
@@ -28,11 +34,44 @@ const Payments = (props) => {
     const Phone = ['+91-9979507228','+91-9888019708','+91-9745213165', '+91-8200032502', '+91-9879224642']
     const Type = ['Maintenance', 'Bill Payment', 'Donation', 'Maintenance', 'Maintenance']
     const Status = ['Success', 'Success','Failed','Success', 'Failed']
-
+    const [CreatePayment, showPayment] = useState(false)
+    const [count, setCount ] = useState(0)
+    const CreatePayStatus = "Fail"
+    const FormStyle = {
+        width: "100%"
+    }
+    const FormStyle1 = {
+        width: "100%",
+    }
+    const FormStyle2 = {
+        width: "100%",
+        marginTop: "0.5em",
+    }
+    function inputChange(e) {
+        if (e.target.value !== "") {
+            e.target.classList.add('text');
+        }
+        else {
+            e.target.classList.remove('text');
+        }
+    }
+    const handleKeyPress = (e) => {
+        const count = e.target.value;
+        
+        const countWords = (count) => {
+          if (count.length === 0) {
+            return 0;
+          }
+        }
+        
+        setCount({});
+    }
     return(
         <>
+        <Toaster/>
         <HeadingCont>
             <Heading>Siddhachal Flats</Heading>
+            <ButtonContainer><button className="newGallery" onClick={()=>showPayment(true)}><AiOutlinePlus style={{fontSize: "1.5em"}}/>New Payment</button></ButtonContainer>
         </HeadingCont>
         <Feature1Container>
             <Feature1 heading="Total Payments" metrics="150"/>
@@ -57,14 +96,16 @@ const Payments = (props) => {
         <Pstyle.Content>
             <table className='table'>
                 <thead className='payment-heading'>
-                    <th>Sr. No</th>
-                    <th style={{paddingRight: '1em'}}>Date</th>
-                    <th>Recipient</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <tr>
+                        <th>Sr. No</th>
+                        <th style={{paddingRight: '1em'}}>Date</th>
+                        <th>Recipient</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {Srno.map((Sr)=>{
@@ -94,6 +135,34 @@ const Payments = (props) => {
                 </tbody>
             </table>
         </Pstyle.Content>
+        <Modal show={CreatePayment} onHide={()=>{showPayment(false)}} centered>
+        <Modal.Header closeButton>
+            <Modal.Title>Raise A New Ticket</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <div style={{textAlign: "right"}}>
+                <span>User Name: <span style={{fontStyle: "italic", color: "#3e444e", fontWeight: "500"}}>Patel Manikbhai</span></span>
+            </div>
+            <form>
+            <FormGroup style={FormStyle2}>
+                <Detailsform type="text" id="title" name="complaint_title" onChange={inputChange}/>
+                <FocusHtml data-placeholder="Title"/>
+            </FormGroup>
+            <FormGroup style={FormStyle1}>
+                <Select options={options}/>
+                <TextSpan style={{height: "auto"}}>Category</TextSpan>
+            </FormGroup>
+            <FormGroup style={FormStyle}>
+                <ComplaintDesc id="description" name="complaint_desc" maxLength="255" rows="6" onInput={handleKeyPress} />
+                <TextSpan style={{height: "auto"}}>Description</TextSpan>
+                <span style={{float: "right"}}>{count}/180</span>
+            </FormGroup>
+            <ButtonWrapper style={{marginBottom: "1em"}}>
+                <ButtonSubmit name="submit" type="submit" onClick={CreationStatus(CreatePayStatus)}>Submit</ButtonSubmit>
+            </ButtonWrapper>
+            </form>
+        </Modal.Body>
+        </Modal>
         <Modal show={ModalState1} onHide={()=>{viewModal1(false)}} centered size="lg">
                 <Modal.Header closeButton>
                     <Modal.Title>Payment Details</Modal.Title>
@@ -195,7 +264,22 @@ const Payments = (props) => {
 export default Payments;
 
 
+const CreationStatus = (props) =>
+{
+    console.log(props)
 
+    // if(e.CreatePayStatus == "Fail")
+    // {
+    //     toast.error("Failure! Try again!")
+    // }
+    // else
+    // {
+    //     toast.success("Success! Request Created",{
+    //         duration: 3000,
+    //         icon: '👏',
+    //     })
+    // }
+}
 //     const [ displayInfo , setDisplayInfo ] = useState(0);
 //     const [ noticeData,setPaymentData] = useState();
 //     const [ action,setAction ] = useState();

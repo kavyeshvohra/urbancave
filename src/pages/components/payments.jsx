@@ -266,19 +266,10 @@ export default Payments;
 
 const CreationStatus = (props) =>
 {
-    console.log(props)
-
-    // if(e.CreatePayStatus == "Fail")
-    // {
-    //     toast.error("Failure! Try again!")
-    // }
-    // else
-    // {
-    //     toast.success("Success! Request Created",{
-    //         duration: 3000,
-    //         icon: '👏',
-    //     })
-    // }
+    toast.success("Success! Request Created",{
+        duration: 3000,
+        icon: '👏',
+    })
 }
 //     const [ displayInfo , setDisplayInfo ] = useState(0);
 //     const [ noticeData,setPaymentData] = useState();

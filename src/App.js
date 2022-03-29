@@ -26,6 +26,7 @@ import FamilyMembers from './pages/components/familyMembers';
 import ForgotPass from './pages/components/forgotpassword'
 import SocVisitors from './pages/components/socVisitors';
 import Test from './pages/test';
+import SocTenants from './pages/components/socTenants';
 function App() {
 
   //const [userType,setUserType] = useState("SocietyMember");
@@ -88,7 +89,10 @@ function App() {
               <Route path="visitors" element={<Visitors userType={userType} />} />
               <Route path="visitors/:id" element={<SocVisitors userType={userType} />} />
 
+              <Route path="account" element={<UserAccount userType={userType}/>}/>
+
               <Route path="tenants" element={<Tenants userType={userType} />} />
+              <Route path="tenants/:id" element={<SocTenants userType={userType}/>}/>
 
               <Route path="reports" element={<h1>Reports</h1>} />
 

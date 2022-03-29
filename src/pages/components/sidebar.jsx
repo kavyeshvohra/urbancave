@@ -156,7 +156,7 @@ const SideBar = (props) =>{
                         </sidebar.MenuListItem>
                     </Link> */}
 
-                    <Link to="/dashboard/Tenants">
+                    <Link to="/dashboard/tenants">
                         <sidebar.MenuListItem 
                             onMouseOver={()=>iconStateChange("profile")} 
                             onMouseLeave={()=>iconStateChange(false)} 

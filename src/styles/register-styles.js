@@ -58,18 +58,20 @@ export const Span = styled.span`
 export const SelectGroup = styled.div`
   width: 30%;
   position: relative;
+  display: flex;
+  flex-direction: column;
   transition: 0.3s all ease;
   padding-bottom: 0.125em;
   margin-bottom: 1.5em;
-  margin-top: 1.2em;
 `;
 export const CheckGroup = styled.div`
   width: 30%;
   position: relative;
+  display: flex;
+  flex-direction:column;
   transition: 0.3s all ease;
   padding-bottom: 0.125em;
   margin-bottom: 2.5em;
-  margin-top: 1.2em;
 `;
 export const ButtonWrapper = styled.div`
   margin-top: -1.5%;
@@ -114,6 +116,16 @@ export const ButtonSubmit = styled.button`
     color: #595757;
     font-weight: bold;
     background-image: linear-gradient(240deg, #fcd2d2, #dddddd);
+  }
+  &:disabled
+  {
+    background-color: #ccc;
+    color: #000;
+    cursor: auto;
+    &:hover
+    {
+      background-image: none;
+    }
   }
 `;
 export const FormGroup = styled.div`
@@ -241,10 +253,10 @@ export const Checkbox = styled.input`
   align-items:left;
 `;
 export const TextSpan = styled.span`
-  position: absolute;
+  /* position: absolute; */
   display: block;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   top: -1.7em;
   color: #999999;
 `;

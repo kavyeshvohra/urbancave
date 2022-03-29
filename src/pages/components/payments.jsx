@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
 import {AiFillEye, AiOutlinePlus} from 'react-icons/ai'
 import {FaTrash} from 'react-icons/fa'
@@ -16,6 +16,7 @@ import { Feature1Container } from '../../styles/dashboard-Style';
 import { Heading, HeadingCont } from '../../styles/societies';
 import toast, { Toaster } from 'react-hot-toast';
 import Select from 'react-select';
+
 const Payments = (props) => {
     const [itemColor, setItemColor] = useState("All Tickets")
     const MenuItem = (e) =>{
@@ -42,10 +43,11 @@ const Payments = (props) => {
     }
     const FormStyle1 = {
         width: "100%",
+        marginBottom: "1.5em",
     }
     const FormStyle2 = {
         width: "100%",
-        marginTop: "0.5em",
+        marginTop: "1.5em",
     }
     function inputChange(e) {
         if (e.target.value !== "") {
@@ -65,6 +67,51 @@ const Payments = (props) => {
         }
         
         setCount({});
+    }
+    function CreationStatus(e)
+    {
+        e.preventDefault()
+        setLoading(1)
+    }
+    const paymentDate = new window.Date();
+    const currentYear = paymentDate.getFullYear();
+    const today = paymentDate.getDate()
+    const currentMonth = paymentDate.getMonth() + 1;
+    const [Isloading, setLoading] = useState(0)
+    useEffect(()=>{
+        if(Isloading)
+        {
+            setTimeout(()=>{setLoading(0);
+                toast.success("Success! Request Completed!",{
+                        duration: 3000,
+                        icon: '👏',
+                        style:
+                        {
+                            backgroundColor: '#3e444e',
+                            color: '#fff',
+                        }
+                    })
+                },2000)
+        }
+    },[Isloading])
+
+    function SetDate()
+    {
+        var today = new window.Date()
+        var dd = today.getDate()
+        var mm = today.getMonth()+ 1
+        var year = today.getFullYear()
+        if (dd < 10)
+        {
+            dd='0'+dd
+        }
+        if(mm < 10)
+        {
+            mm='0'+mm
+        }
+        today = year+'-'+mm+'-'+dd;
+        document.getElementById('last-date').setAttribute('min', today)
+        document.getElementById('last-date').setAttribute('max', '2025-12-31')
     }
     return(
         <>
@@ -113,7 +160,7 @@ const Payments = (props) => {
                             <tr className='custom-layout'>
                             <td style={{width: '4em'}}>{Sr}</td>
                             <td>{Date[Sr]}</td>
-                            <td><span style={{background: '#fab6b6' ,borderRadius: '50%',paddingBottom: '6px',paddingLeft:'7px',paddingRight:'7px',paddingTop:'5px',marginRight:'5px',width: '13em'}}><AiOutlineUser/></span>{Recipient[Sr]}</td>
+                            <td><span style={{background: '#ccc' ,borderRadius: '50%',paddingBottom: '6px',paddingLeft:'7px',paddingRight:'7px',paddingTop:'5px',marginRight:'5px',width: '13em'}}><AiOutlineUser/></span>{Recipient[Sr]}</td>
                             <td>{Email[Sr]}</td>
                             <td>{Phone[Sr]}</td>
                             <td>{Type[Sr]}</td>
@@ -137,10 +184,11 @@ const Payments = (props) => {
         </Pstyle.Content>
         <Modal show={CreatePayment} onHide={()=>{showPayment(false)}} centered>
         <Modal.Header closeButton>
-            <Modal.Title>Raise A New Ticket</Modal.Title>
+            <Modal.Title>Create Payment Request</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <div style={{textAlign: "right"}}>
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                <span>Date: <span style={{fontStyle: 'italic', fontWeight: '500'}}>{today}/{currentMonth}/{currentYear}</span></span>
                 <span>User Name: <span style={{fontStyle: "italic", color: "#3e444e", fontWeight: "500"}}>Patel Manikbhai</span></span>
             </div>
             <form>
@@ -153,12 +201,20 @@ const Payments = (props) => {
                 <TextSpan style={{height: "auto"}}>Category</TextSpan>
             </FormGroup>
             <FormGroup style={FormStyle}>
-                <ComplaintDesc id="description" name="complaint_desc" maxLength="255" rows="6" onInput={handleKeyPress} />
-                <TextSpan style={{height: "auto"}}>Description</TextSpan>
-                <span style={{float: "right"}}>{count}/180</span>
+                <Detailsform type="text" id="amount"/>
+                <FocusHtml data-placeholder='Amount Payable'/>    
+            </FormGroup>
+            <FormGroup style={FormStyle}>
+                <TextSpan style={{height: "auto"}}>Last Date</TextSpan>
+                {/* <DatePicker minDate={new window.Date()}/> */}
+                <Detailsform type="date" id="last-date" onFocus={SetDate} onClick={SetDate}/>
+            </FormGroup>
+            <FormGroup style={FormStyle2}>
+                <Detailsform type="text" id="title" name="late_fees" onChange={inputChange}/>
+                <FocusHtml data-placeholder="Late Fees (₹)"/>
             </FormGroup>
             <ButtonWrapper style={{marginBottom: "1em"}}>
-                <ButtonSubmit name="submit" type="submit" onClick={CreationStatus(CreatePayStatus)}>Submit</ButtonSubmit>
+                <ButtonSubmit name="submit" type="submit" onClick={CreationStatus} disabled={Isloading}>{!Isloading ? "Submit" : "Submitting"}</ButtonSubmit>
             </ButtonWrapper>
             </form>
         </Modal.Body>
@@ -264,13 +320,22 @@ const Payments = (props) => {
 export default Payments;
 
 
-const CreationStatus = (props) =>
-{
-    toast.success("Success! Request Created",{
-        duration: 3000,
-        icon: '👏',
-    })
-}
+// const CreationStatus = (e) =>
+// {
+//     e.preventDefault()
+
+
+
+//     toast.success("Success! Request Completed!",{
+//         duration: 3000,
+//         icon: '👏',
+//         style:
+//         {
+//             backgroundColor: '#3e444e',
+//             color: '#fff',
+//         }
+//     })
+// }
 //     const [ displayInfo , setDisplayInfo ] = useState(0);
 //     const [ noticeData,setPaymentData] = useState();
 //     const [ action,setAction ] = useState();
@@ -287,7 +352,7 @@ const CreationStatus = (props) =>
 //             </div>
 //             <div className="noticeContainer">
 //             <table className="noticeTable">
-//                 <tr>
+//                <tr>
 //                     <td>SrNo</td>
 //                     {props.userType!="SocietyMember"?(<td>User</td>):(<></>)}
 //                     {props.userType=="Admin"?(<td>Society</td>):(<></>)}

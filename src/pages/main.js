@@ -72,7 +72,7 @@ const Main = (props) => {
                 <p>Siddhachal Flats - (Society Admin)</p>
               </li>
               <li>
-                <IoSettings/> Account Settings
+                <Link to='/dashboard/account'><IoSettings/> Account Settings</Link>
               </li>
               <li>
                 <BiSupport/> Support

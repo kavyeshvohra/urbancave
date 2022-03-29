@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react'
-import {Container, Heading1, Heading5} from '../../styles/soc-members'
-import * as Vstyle from '../../styles/visitor-style'
-import {AiOutlineSearch, AiOutlineUserAdd} from 'react-icons/ai'
-import Images from '../../images' 
-import { Table, Modal, Row, Col } from 'react-bootstrap'
-import { ButtonContainer } from '../../styles/complaints'
-import { ButtonSubmit, ButtonWrapper, Detailsform, FocusHtml, FormGroup, TextSpan } from '../../styles/register-styles'
+import React, { useState, useEffect } from 'react'
 import toast,{ Toaster } from 'react-hot-toast'
-const SocVisitors = () => {
-  const [createVisitor, setCreateVisitor] = useState(false);
+import { ButtonContainer } from '../../styles/complaints'
+import { Container as TenantCont } from '../../styles/visitor-style'
+import { Container, Heading1, Heading5 } from '../../styles/soc-members'
+import {AiOutlineUserAdd, AiOutlineSearch} from 'react-icons/ai'
+import { Table, Modal, Row, Col } from 'react-bootstrap'
+import { ButtonSubmit, ButtonWrapper, Detailsform, FocusHtml, FormGroup, TextSpan, Detailsform1 } from '../../styles/register-styles'
+
+const SocTenants = () => {
+  const [AddTenant, setAddTenant] = useState(false)
   const [houseInfo, setHouseInfo] = useState(0)
   const [Isloading, setLoading] = useState(false)
   useEffect(()=>{
@@ -29,10 +29,18 @@ const SocVisitors = () => {
       }
   },[Isloading])
   const houseStyle={
-    textDecoration: 'underline',
-    textDecorationColor: '#fab6b6',
-    cursor: 'pointer'
-  }
+        textDecoration: 'underline',
+        textDecorationColor: '#fab6b6',
+        cursor: 'pointer'
+      }
+      function inputChange(e) {
+        if (e.target.value !== "") {
+            e.target.classList.add('text1');
+        }
+        else {
+            e.target.classList.remove('text1');
+        }
+    }
   return (
     <>
       <Toaster/>
@@ -41,13 +49,13 @@ const SocVisitors = () => {
         <Heading5>Society Admin: <span style={{fontStyle: "italic", fontWeight: "400", textDecoration: "underline", textDecorationColor: "#FAB6B6"}}>Patel Manikbhai</span></Heading5>
       </Container>
       <ButtonContainer>
-          <button className='newTicket' onClick={()=>{setCreateVisitor(true)}}><AiOutlineUserAdd/> GENERATE LINK</button>
+          <button className='newTicket' onClick={()=>{setAddTenant(true)}}><AiOutlineUserAdd/> ADD TENANT</button>
           <div>
             <input type="search" placeholder='Search'/>
             <button className='search-icon' type="submit"><AiOutlineSearch/></button>
           </div>
       </ButtonContainer>
-      <Vstyle.Container>
+      <TenantCont>
         <Table id="visitor-info" responsive="sm" bordered hover striped >
           <thead>
             <tr>
@@ -164,27 +172,51 @@ const SocVisitors = () => {
             </tr>
           </tbody>
         </Table>
-      </Vstyle.Container>
-      <Modal show={createVisitor} onHide={()=>{setCreateVisitor(false)}} centered>
+      </TenantCont>
+      <Modal show={AddTenant} onHide={()=>{setAddTenant(false)}} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Generate Visitor Link</Modal.Title>
+                    <Modal.Title>Add New Tenant</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                 {/* <div style={{textAlign: "right"}}>
                     <span>User Name: <span style={{fontStyle: "italic", color: "#3e444e", fontWeight: "500"}}>Patel Manikbhai</span></span>
                 </div> */}
                 <form>
-                    <FormGroup style={{width: "100%", marginTop: "1em"}}>
-                      <TextSpan>Visitor Code</TextSpan>
-                      <Detailsform type="text" id="unq_code" name="unique_code" disabled/>
-                    </FormGroup>
-                    <ButtonWrapper style={{marginBottom: "1em"}}>
-                        <ButtonSubmit type="submit" id="submit" onClick={makeid} disabled={Isloading}>{Isloading ? "Generating" : "Generate"}</ButtonSubmit>
-                </ButtonWrapper>
+                   <Row>
+                        <Col xs={12} md={6}>
+                        <FormGroup style={{width: "100%",marginTop: "1em"}}>
+                            <Detailsform1 type="text" id="unq_code" name="unique_code"/>
+                            <FocusHtml data-placeholder='First Name'/>
+                        </FormGroup>
+                        </Col>
+                        <Col xs={12} md={6}>
+                        <FormGroup style={{width: "100%", marginTop: "1em"}}>
+                            <Detailsform type="text" id="unq_code" name="unique_code"/>
+                            <FocusHtml data-placeholder='Last Name'/>
+                        </FormGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12} md={6}>
+                        <FormGroup style={{width: "100%", marginTop: "1em"}}>
+                            <Detailsform type="text" id="unq_code" name="unique_code"/>
+                            <FocusHtml data-placeholder='Phone Number'/>
+                        </FormGroup>        
+                        </Col>
+                        <Col xs={12} md={6}>
+                        <FormGroup style={{width: "100%", marginTop: "1em"}}>
+                            <FocusHtml data-placeholder="Email"/>
+                            <Detailsform1 type="text" id="unq_code" name="unique_code"/>
+                        </FormGroup>
+                        </Col>
+                    </Row>
                 </form>
+                <ButtonWrapper style={{marginBottom: "1em"}}>
+                        <ButtonSubmit type="submit" id="submit" onClick={()=>{setAddTenant(true)}} disabled={Isloading}>{Isloading ? "Generating" : "Generate"}</ButtonSubmit>
+                    </ButtonWrapper>
                 </Modal.Body>
             </Modal>
-            <Modal show={houseInfo} onHide={()=>{setHouseInfo(false)}} centered size="lg">
+      <Modal show={houseInfo} onHide={()=>{setHouseInfo(false)}} centered size="lg">
                 <Modal.Header closeButton>
                     <Modal.Title>House Info</Modal.Title>
                 </Modal.Header>
@@ -231,22 +263,6 @@ const SocVisitors = () => {
             </Modal>
     </>
   )
-  function makeid(e) {
-    setLoading(1)
-    e.preventDefault()
-    var result = ''
-    var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    for ( var i = 0; i < 6; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    let uniquecode = document.getElementById('unq_code')
-    uniquecode.setAttribute("value", result)
-    uniquecode.select();
-    uniquecode.setSelectionRange(0, 99999); /* For mobile devices */
-
-   /* Copy the text inside the text field */
-    navigator.clipboard.writeText('http://localhost:3000/dashboard/visitor/'+ uniquecode.value);
-    }
 }
 
-export default SocVisitors
+export default SocTenants

@@ -538,6 +538,7 @@ const Register = () => {
                                     <span style={errRegStyle} id="conf_pass_error">Password Not Match</span>
                                 </RStyle.FormPassGroup>
                                 <RStyle.CheckGroup>
+                                <RStyle.TextSpan>Gender</RStyle.TextSpan>
                                     <div style={{ display: "flex" }}>
                                         <RStyle.Checkbox type="radio" id="genMale" name="genderState" value="Male" />
                                         <RStyle.RadioLabel htmlFor="ansMale">Male</RStyle.RadioLabel>
@@ -546,7 +547,6 @@ const Register = () => {
                                         <RStyle.Checkbox type="radio" id="genOther" name="genderState" value="other" />
                                         <RStyle.RadioLabel htmlFor="ansOther">Other</RStyle.RadioLabel>
                                     </div>
-                                    <RStyle.TextSpan>Gender</RStyle.TextSpan>
                                     <span style={errRegStyle} id="gender_error">Please Select Your Gender</span>
                                 </RStyle.CheckGroup>
                                 <RStyle.FormGroup>
@@ -555,28 +555,28 @@ const Register = () => {
                                     <span style={errRegStyle} id="house_name_error">Invalid House Name</span>
                                 </RStyle.FormGroup>
                                 <RStyle.SelectGroup>
+                                <RStyle.TextSpan>House Type</RStyle.TextSpan>
                                     <Select options={houseoptions} onChange={setHouseType} />
-                                    <RStyle.TextSpan>House Type</RStyle.TextSpan>
                                     <span style={errRegStyle} id="house_type_error">Please select House Type!</span>
                                 </RStyle.SelectGroup>
                                 <RStyle.SelectGroup>
+                                <RStyle.TextSpan>User Type</RStyle.TextSpan>
                                     <Select options={options} onChange={setUserType} />
-                                    <RStyle.TextSpan>User Type</RStyle.TextSpan>
                                     <span style={errRegStyle} id="user_type_error">Please Select User Type</span>
                                 </RStyle.SelectGroup>
                                 <RStyle.CheckGroup>
+                                    <RStyle.TextSpan>Rented Appartment?</RStyle.TextSpan>
                                     <div style={{ display: "flex" }}>
                                         <RStyle.Checkbox type="radio" id="rented" name="rentState" value="yes" />
                                         <RStyle.RadioLabel htmlFor="ansYes">Yes</RStyle.RadioLabel>
                                         <RStyle.Checkbox type="radio" id="notRented" name="rentState" value="no" />
                                         <RStyle.RadioLabel htmlFor="ansYes">No</RStyle.RadioLabel>
                                     </div>
-                                    <RStyle.TextSpan>Rented Appartment?</RStyle.TextSpan>
                                     <span style={errRegStyle} id="errorRent">Please select an option!</span>
                                 </RStyle.CheckGroup>
                                 <RStyle.SelectGroup>
+                                <RStyle.TextSpan>Upload Profile Image</RStyle.TextSpan>
                                     <RStyle.Detailsform style={{ borderBottom: "initial" }} type="file" id="profileImage" name="file" accept="image/*" />
-                                    <RStyle.TextSpan>Upload Profile Image</RStyle.TextSpan>
                                     <span style={errRegStyle} id="errorFile">Please Upload Valid File!</span>
                                 </RStyle.SelectGroup>
                             </div>

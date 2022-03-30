@@ -27,6 +27,7 @@ import ForgotPass from './pages/components/forgotpassword'
 import SocVisitors from './pages/components/socVisitors';
 import Test from './pages/test';
 import SocTenants from './pages/components/socTenants';
+import VisitorForm from './pages/Visitor-form';
 function App() {
 
   //const [userType,setUserType] = useState("SocietyMember");
@@ -45,6 +46,7 @@ function App() {
             <Route path="/forgotpassword" element={<ForgotPass />} />
             <Route path="test" element={<Test/>}/>
             <Route path="/contactus" element={<Contact userType={userType} />} />
+            <Route path="/visitor/:id" element={<VisitorForm userType={userType}/>}/>
             <Route path="/dashboard" element={<Main userType={userType} />} title="Dashboard">
 
               <Route path="" element={

@@ -33,7 +33,7 @@ body {
 a{
   text-decoration: none;
 }
-
+/* 
 .dimScreen{
   position:fixed;
   top:0px;
@@ -52,5 +52,16 @@ a{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    margin: 0; 
+    margin: 0;  */
+  /* } */
+  .dropzone
+  {
+    border: 2px dotted #fab6b6;
+    padding: 50px;
+    text-align: center;
+  }
+  #uploadFileTypeMsg
+  {
+    font-style: italic;
+    font-weight: 300;
   }

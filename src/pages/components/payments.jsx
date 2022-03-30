@@ -197,8 +197,8 @@ const Payments = (props) => {
                 <FocusHtml data-placeholder="Title"/>
             </FormGroup>
             <FormGroup style={FormStyle1}>
-                <Select options={options}/>
                 <TextSpan style={{height: "auto"}}>Category</TextSpan>
+                <Select options={options}/>
             </FormGroup>
             <FormGroup style={FormStyle}>
                 <Detailsform type="text" id="amount"/>

@@ -209,7 +209,7 @@ export const Detailsform = styled.input`
   &.text1 + span {
   transform: translate(0em,-1.7rem) scale(1);  
 }
-`;
+`
 export const Detailsform1 = styled.input`
   padding: 8px;
   display: flex;
@@ -217,11 +217,14 @@ export const Detailsform1 = styled.input`
   width: 100%;
   margin: unset;
   outline: none;
-  border: none;
+  border-bottom: 2px solid #000;
+  border-top: initial;
+  border-left: initial;
+  border-right: initial;
   &:focus + span,
   &.text + span
   {
-    transform: translate(-1.65em, -2.2rem) scale(1);
+    transform: translate(0em, -2.2rem) scale(1);
   }
 `
 export const Detailsformdate = styled.input`

@@ -71,15 +71,21 @@ const Main = (props) => {
                 <h5>Name: <span style={{ fontStyle: "italic" }}>Kavyesh Vohra</span></h5>
                 <p>Siddhachal Flats - (Society Admin)</p>
               </li>
+              <Link to='/dashboard/account'>
               <li>
-                <Link to='/dashboard/account'><IoSettings/> Account Settings</Link>
+                <IoSettings/> Account Settings
               </li>
+              </Link>
+              <Link to=''>
               <li>
                 <BiSupport/> Support
               </li>
+              </Link>
+              <Link to='/login'>
               <li>
                 <AiOutlineLogout/> Logout
               </li>
+              </Link>
             </Mstyle.Profile>
           : <></>}
       </Mstyle.NavContainer>

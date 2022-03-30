@@ -118,8 +118,8 @@ const ComplaintsAndFeedback = () => {
             <FocusHtml data-placeholder="Title"/>
         </FormGroup>
         <FormGroup style={FormStyle1}>
+        <TextSpan style={{height: "auto"}}>Category</TextSpan>
             <Select options={options}/>
-            <TextSpan style={{height: "auto"}}>Category</TextSpan>
         </FormGroup>
         <FormGroup style={FormStyle}>
             <Cstyle.ComplaintDesc id="description" name="complaint_desc" maxLength="255" rows="6" onInput={handleKeyPress} />

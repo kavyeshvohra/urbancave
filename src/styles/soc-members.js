@@ -56,3 +56,20 @@ export const Container1 = styled.div`
         padding: 5px 10px;
     }
 `
+export const ActionButton = styled.button`
+        margin-right: 0.2em;
+        outline: none;
+        text-decoration: none;
+        border: 1px solid #fab6b6;
+        border-radius: 2px;
+        transition: 0.1s ease-in-out;
+        &:hover
+        {
+            background-color: #fab0b0;
+        }
+        padding: 5px 10px;
+    .actionStyle
+    {
+        font-size: 1.2em;
+    }
+`

@@ -245,7 +245,7 @@ const SocVisitors = () => {
     uniquecode.setSelectionRange(0, 99999); /* For mobile devices */
 
    /* Copy the text inside the text field */
-    navigator.clipboard.writeText('http://localhost:3000/dashboard/visitor/'+ uniquecode.value);
+    navigator.clipboard.writeText('http://localhost:3000/visitor/'+ uniquecode.value);
     }
 }
 

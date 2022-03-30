@@ -74,11 +74,11 @@ margin:0;
     left: 315px;
 }
 
-& > li
+& > a
 {
     cursor: pointer;
     padding: 10px 20px;
-
+    color: #3e444e;
     &:hover
     {
         color: #fab6b6;
@@ -104,6 +104,7 @@ margin:0;
     border-radius: 15px 15px 0px 0px;
     box-shadow: 0px 2px 20px 0px;
     padding-top: 20px;
+    padding-left: 20px;
     &:hover
     {
         color: #fab0b0;

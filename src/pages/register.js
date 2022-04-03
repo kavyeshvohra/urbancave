@@ -504,12 +504,12 @@ const Register = () => {
                                 {/* <div style={{ position: "absolute" }} id="email_error">Invalid Email</div> */}
                                 <RStyle.FormGroup>
                                     <RStyle.Detailsform type="phone" name="phonenum" id="phone1" maxLength="10" onChange={validateRegistration} />
-                                    <RStyle.FocusHtml data-placeholder="Phone Number" />
+                                    <RStyle.FocusHtml data-placeholder="Phone Number (+91)" />
                                     <span style={errRegStyle} id="phone_number_error">Invalid Phone Number</span>
                                 </RStyle.FormGroup>
                                 <RStyle.FormGroup>
                                     <RStyle.Detailsform type="phone" name="altphonenum" id="phone2" maxLength="10" onChange={validateRegistration} />
-                                    <RStyle.FocusHtml data-placeholder="Alternate Phone Number" />
+                                    <RStyle.FocusHtml data-placeholder="Alternate Phone Number (+91)" />
                                     <span style={errRegStyle} id="alternate_error">Invalid Alternate Phone Number</span>
                                 </RStyle.FormGroup>
                                 <RStyle.FormPassGroup>

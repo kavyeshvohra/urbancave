@@ -65,7 +65,7 @@ function App() {
               <Route path="members" element={<Members userType={userType} />} />
               <Route path="members/:id" element={<SocMembers userType={userType} />} />
               <Route path="payments" element={<PaymentLanding userType={userType}/>}/>
-              <Route path="payments/:id" element={<Payments userType={userType} />} />
+              <Route path="payments/:id" element={<Payments userType={userType} />}  />
 
               <Route path="complaints" element={<ComplaintsAndFeedback userType={userType} />} />
 

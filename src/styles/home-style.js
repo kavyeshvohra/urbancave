@@ -374,6 +374,11 @@ export const TestimonialImageContainer = styled.div`
     width: 100px;
     position: absolute;
     height: 100px;
+
+    &.profile-image
+    {
+        position: relative;
+    }
 `
 // export const TestimonialImage = styled.img`
 //     width:auto;

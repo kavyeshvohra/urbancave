@@ -1,12 +1,6 @@
-import Images from '../../images.js';
 import '../../styles/tenants.css';
 // import {AiFillEye,FaTrash,MdModeEditOutline} from 'react-icons/all';
-import {AiFillEye} from 'react-icons/ai'
-import {FaTrash} from 'react-icons/fa'
-import {MdModeEditOutline} from 'react-icons/md'
-import TenantInfoModal from './Modals/tenantInfoModal.jsx';
 import React, { useState, useEffect } from 'react';
-import CreateTenantModal from './Modals/createTenantModal.jsx';
 import { useNavigate } from 'react-router-dom';
 import soc1_img from '../../Images/soc1.jpg'
 import soc2_img from '../../Images/soc2.jpg'
@@ -15,6 +9,29 @@ import soc4_img from '../../Images/soc4.jpg'
 import * as Sstyle from '../../styles/societies'
 
 const Tenants = (props)=>{
+
+
+    const [socs,setSocieties] = useState();
+
+    useEffect(async ()=>{
+        if(socs == null){
+        console.log(props.cookies);
+        const data={"jwtToken":props.cookies.user,"id":null};
+        const url="http://192.168.1.67:8080/getSocieties";
+        const options={
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify(data)
+        }
+        const response = await fetch(url,options);
+        const res = await response.json();
+        console.log(res);
+        setSocieties(res);
+        }
+    },[socs]);
+
     useEffect(()=>{
         window.scroll(0,0)
     })
@@ -28,24 +45,23 @@ const Tenants = (props)=>{
     const gotoVisitors = (id)=>{
         navigate(`/dashboard/tenants/${id}`);
     }
-    const societies = ["Siddhachal Flats","Ankur Appartments","Goyal Intercity-C", "Mahasagar Appartments","Suryasagar Appartments","Swati Appartments"];
-    const Area = ['Drive In Road', 'Gurukul', 'Mansi Charrasta', 'Bopal', 'Makarba', 'Isckon Cross Roads', 'Kalupur']
     const Image = [soc1_img,soc2_img,soc3_img,soc4_img,soc1_img,soc3_img]
-    let area = 0;
     let image = 0 ;
-    return (
+    
+    if(socs != null ){
+        return (
         <>
             <Sstyle.HeadingCont>
                     <Sstyle.Heading>Tenants</Sstyle.Heading>
             </Sstyle.HeadingCont>
             <Sstyle.Society>
-                {societies.map((soc)=>{
+                {socs.map((soc)=>{
                     return(
                     <Sstyle.SocietyCont onClick={()=>gotoVisitors(1)}>
                     <Sstyle.Image src={Image[image++]}/>
                     <Sstyle.Content>
-                        <h3>{soc}</h3>
-                        <p>{Area[area++]}</p>
+                        <h3>{soc.society_name}</h3>
+                        <p>{soc.address}</p>
                     </Sstyle.Content>
                     </Sstyle.SocietyCont>
                     );
@@ -53,7 +69,16 @@ const Tenants = (props)=>{
                 }
             </Sstyle.Society>
         </>
-    )
+    )}
+    else{
+        return(
+            <><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <center>
+                <h1>Loading...</h1>
+            </center>
+            </>
+        );
+    }
 }
 export default Tenants;
 

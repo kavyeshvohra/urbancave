@@ -1,5 +1,5 @@
 import '../../styles/notice.css';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import { SocietyContainer, SocietyContent, SocietyHead, SocList, Wrapper, ComplaintContainer, MenuWrapper, MenuItems, ButtonContainer, ComplaintDesc, DetailWrapper, ComplaintInfo, ComplaintHistoryHeader, ComplaintInfoDetails, ComplaintFooterInfo, MoreItemsContainer, DeleteCont, ComplaintHistoryContainer } from '../../styles/complaints';
 import { Modal, Row, Col, Button } from 'react-bootstrap';
 import { FormGroup, Detailsform, FocusHtml, TextSpan, ButtonSubmit, ButtonWrapper, Detailsformdate } from '../../styles/register-styles';
@@ -39,7 +39,47 @@ function inputChange(e) {
         e.target.classList.remove('text1');
     }
 }
+
 const Notice = (props)=>{
+
+    const [socs,setSocieties] = useState();
+
+    const [notices,setNotices] = useState();
+
+    useEffect(async ()=>{
+        if(socs == null){
+            const data={"jwtToken":props.cookies.user};
+            const url="http://192.168.1.67:8080/getSocieties";
+            const options={
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body:JSON.stringify(data)
+            }
+            const response = await fetch(url,options);
+            const res = await response.json();
+            console.log(res);
+            setSocieties(res);
+            setSocietyName(res[0].society_name);
+            
+            //get notices
+            const noticeReqData = {"jwtToken":props.cookies.user,"noticeID":null};
+            const noticeURL="http://192.168.1.67:8080/notices";
+            const noticeOptions={
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body:JSON.stringify(noticeReqData)
+            }
+            const noticeResponse = await fetch(noticeURL,noticeOptions);
+            const noticeRes = await noticeResponse.json();
+            console.log(noticeRes);
+            setNotices(noticeRes);
+        }
+    },[socs]);
+
     const[files, setFiles] = useState([])
     const {getRootProps, getInputProps} = useDropzone({
         accept: "file/pdf",
@@ -52,7 +92,7 @@ const Notice = (props)=>{
         }
     })
 
-    const [society, setSocietyName] = useState("Siddhachal Flats")
+    const [society, setSocietyName] = useState()
     const [itemColor, setItemColor] = useState("All Tickets")
     const [CreateNotice, setCreateNotice] = useState(false);
     const [counter, setCount] = useState(0)
@@ -62,7 +102,7 @@ const Notice = (props)=>{
     }
 
     function SocietySelect(e){
-        setSocietyName(e.target.textContent)
+        setSocietyName(e.target.textContent);
     }
     const handleKeyPress = (e) => {
         const count = e.target.value;
@@ -80,7 +120,7 @@ const Notice = (props)=>{
     const today = date.getDate()
     const currentMonth = date.getMonth() + 1;
 
-
+    if(socs != null){
     return(
     <>
     <Wrapper>
@@ -90,9 +130,12 @@ const Notice = (props)=>{
             </SocietyHead>
             <SocietyContent>
             <SocList>
-                <li onClick={SocietySelect} className={society=="Siddhachal Flats" && "active"}>Siddhachal Flats</li>
-                <li onClick={SocietySelect} className={society=="Ankur Appartments" && "active"}>Ankur Appartments</li>
-                <li onClick={SocietySelect} className={society=="Richmond Grand" && "active"}>Richmond Grand</li>
+            {socs.map((soc)=>{
+                    return(
+                        <li onClick={SocietySelect} className={ society==soc.society_name? "active":""}>{soc.society_name}</li>
+                    );
+                })
+            }
             </SocList>
             </SocietyContent>
         </SocietyContainer>
@@ -117,14 +160,25 @@ const Notice = (props)=>{
                     <button className='search-icon' type="submit"><AiOutlineSearch/></button>
                 </div>
         </ButtonContainer>
+        
+        {
+            notices != null ?
+            notices.map( (notice)=>{
+                return(
+                    <NoticeCard
+                        notice={notice}
+                    />
+                );
+            }):(<h1>Loading</h1>)
+        }
+        {/* <NoticeCard/>
         <NoticeCard/>
         <NoticeCard/>
         <NoticeCard/>
         <NoticeCard/>
         <NoticeCard/>
         <NoticeCard/>
-        <NoticeCard/>
-        <NoticeCard/>
+        <NoticeCard/> */}
         </ComplaintContainer>
     </Wrapper>
 
@@ -187,12 +241,24 @@ const Notice = (props)=>{
         </Modal>
         </>
     )
+    }
+    else{
+        return(
+            <><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <center>
+                <h1>Loading...</h1>
+            </center>
+            </>
+        );
+    }
 }
 
 const NoticeCard = (props) => {
     const [ViewNotice, setViewNotice] = useState(false)
     const [MoreView, setMoreView] = useState(false);
-
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
 
     return(
         <>
@@ -201,17 +267,20 @@ const NoticeCard = (props) => {
                 <ComplaintHistoryHeader>
                     <h5>Notice #2022-1222</h5>
                     <button onClick={()=>{setMoreView(!MoreView)}}><BsThreeDots/></button>
-                    { MoreView==true? <MoreItems/> : null }
+                    { MoreView==true? <MoreItems notice={props.notice} /> : null }
                 </ComplaintHistoryHeader>
                 <ComplaintInfoDetails className='NoticeCard'>
                     <DateCard>
-                        <h6>August</h6>
-                        <h5>23</h5>
-                        <h6>2022</h6>
+                        <h6>{monthNames[parseInt(props.notice.creation_date.split("-")[1])]}</h6>
+                        <h5>{props.notice.creation_date.split("-")[2]}</h5>
+                        <h6>{props.notice.creation_date.split("-")[0]}</h6>
                     </DateCard>
                     <ContentCard>
-                        <h2>Maintenance For February</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,</p>
+                        <h2>{props.notice.topic}</h2>
+                        <p>
+                            {props.notice.description}
+                        </p>
+
                     </ContentCard>
                 </ComplaintInfoDetails>
                 <ComplaintFooterInfo>
@@ -228,9 +297,10 @@ const NoticeCard = (props) => {
 }
 
 
-const MoreItems = () => {
+const MoreItems = (props) => {
     const [DeleteNoticeModal, setDeleteNoticeModal] = useState(false);
     const [ViewNoticeModal, setViewNoticeModal] = useState(false);
+    console.log(props.notice)
     return(
         <>
             <MoreItemsContainer>
@@ -249,7 +319,7 @@ const MoreItems = () => {
                     <Row>
                     <Col xs={12} md={8}>
                         <span>Title</span>
-                        <Detailsform type="text" value="How to change my password?" disabled/>
+                        <Detailsform type="text" value={props.notice.topic} disabled/>
                     </Col>
                     <Col xs={12} md={4}>
                         <span>Category</span>
@@ -258,14 +328,14 @@ const MoreItems = () => {
                     <Row>
                         <Col xs={12} md={12}>
                         <span>Description</span>
-                        <ComplaintDesc disabled rows="6" maxLength="255" value="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,"/>
+                        <ComplaintDesc disabled rows="6" maxLength="255" value={props.notice.description}/>
                         </Col>
                     </Row>
                     </Row>
                     <Row>
                     <Col xs={12} md={3}>
                         <span>Date</span>
-                        <Detailsformdate type="date" disabled value="2022-01-22"/>
+                        <Detailsformdate type="date" disabled value={props.notice.creation_date}/>
                     </Col>
                     <Col xs={12} md={5}>
                         <span>User (<span style={{fontStyle: "italic"}}>Society Admin</span>)</span>

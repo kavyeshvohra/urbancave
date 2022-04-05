@@ -10,9 +10,26 @@ import soc4_img from '../../Images/soc4.jpg'
 
 const Members = (props)=>{
 
-    useEffect(()=>{
-        window.scroll(0,0)
-    })
+    const [socs,setSocieties] = useState();
+
+    useEffect(async ()=>{
+        if(socs == null){
+        const data={"jwtToken":props.cookies.user,"id":null};
+        const url="http://192.168.1.67:8080/getSocieties";
+        const options={
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify(data)
+        }
+        const response = await fetch(url,options);
+        const res = await response.json();
+        console.log(res);
+        setSocieties(res);
+        }
+    },[socs]);
+
     const navigate = useNavigate();
     // const {pathname} = useLocation();
     // const OpenView = () =>
@@ -24,35 +41,43 @@ const Members = (props)=>{
         navigate(`/dashboard/members/${id}`);
     }
 
-    const societies = ["Siddhachal Flats","Ankur Appartments","Goyal Intercity-C", "Mahasagar Appartments","Suryasagar Appartments","Swati Appartments"];
-    const Area = ['Drive In Road', 'Gurukul', 'Mansi Charrasta', 'Bopal', 'Makarba', 'Isckon Cross Roads', 'Kalupur']
     const Image = [soc1_img,soc2_img,soc3_img,soc4_img,soc1_img,soc3_img]
-    let area = 0;
     let image = 0 ;
-    return(
-    <>
-    <SStyle.HeadingCont>
-            <SStyle.Heading>Members</SStyle.Heading>
-    </SStyle.HeadingCont>
-    <SStyle.Society>
-        {societies.map((soc)=>{
-            return(
-            <SStyle.SocietyCont onClick={()=>gotoMembers(0)}>
-            <SStyle.Image src={Image[image++]}/>
-            <SStyle.Content>
-                <h3>{soc}</h3>
-                <p>{Area[area++]}</p>
-            </SStyle.Content>
-            </SStyle.SocietyCont>
-            );
-        })
-        }
-    </SStyle.Society>
-        {/* <SStyle.SocietyCont>
-        </SStyle.SocietyCont>
-    </SStyle.Society> */}
-    </>
-    );
+    if(socs != null){
+        return(
+            <>
+            <SStyle.HeadingCont>
+                    <SStyle.Heading>Members</SStyle.Heading>
+            </SStyle.HeadingCont>
+            <SStyle.Society>
+                {socs.map((soc)=>{
+                    return(
+                    <SStyle.SocietyCont onClick={()=>gotoMembers(soc.society_id)}>
+                    <SStyle.Image src={Image[image++]}/>
+                    <SStyle.Content>
+                        <h3>{soc.society_name}</h3>
+                        <p>{soc.address}</p>
+                    </SStyle.Content>
+                    </SStyle.SocietyCont>
+                    );
+                })
+                }
+            </SStyle.Society>
+                {/* <SStyle.SocietyCont>
+                </SStyle.SocietyCont>
+            </SStyle.Society> */}
+        </>
+        );
+    }
+    else{
+        return(
+            <><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <center>
+                <h1>Loading...</h1>
+            </center>
+            </>
+        );
+    }
 }
 export default Members;
 

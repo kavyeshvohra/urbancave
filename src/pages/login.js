@@ -7,54 +7,62 @@ import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Images from '../images';
 import image from '../Images/woman2.jpg';
+import { Cookies } from 'react-cookie';
 
 
-const Login = () => {
+const Login = (props) => {
 
-    useEffect( async ()=>{
-        console.log(0);
-        const fname = "sidhraj";
-        const lname = "mori";
-        const dob = "2001-09-01";
-        const email = "sid@gmail.com";
-        const phone = 9876543210;
-        const phoneA = 9876543210;
-        const pass = "sid@12345";
-        const confPass = "sid@12345";
-        const houseName = "B7";
-
-        //const houseType=document.getElementById("houseType");
-        //const userType=document.getElementById("userType");
-        
-        // const file = Images.camera;
-        const file = image;
-
-        const data={
-            fname,
-            lname,
-            dob,
-            email,
-            phone,
-            phoneA,
-            pass,
-            confPass,
-            houseName,
-            file
-        };
-
-        const url="http://localhost:8080/register";
-        const options={
-            method:"POST",
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-            body:JSON.stringify(data)
+    
+    useEffect(()=>{
+        if (props.userCookies != null){
+            navigate("dashboard");
         }
-        const response = await fetch(url,options);
-        const res = await response.json();
-        console.log(res);
+    },[props.userCookies]);
 
-    });
+    // useEffect( async ()=>{
+    //     console.log(0);
+    //     const fname = "sidhraj";
+    //     const lname = "mori";
+    //     const dob = "2001-09-01";
+    //     const email = "sid@gmail.com";
+    //     const phone = 9876543210;
+    //     const phoneA = 9876543210;
+    //     const pass = "sid@12345";
+    //     const confPass = "sid@12345";
+    //     const houseName = "B7";
+
+    //     //const houseType=document.getElementById("houseType");
+    //     //const userType=document.getElementById("userType");
+        
+    //     // const file = Images.camera;
+    //     const file = image;
+
+    //     const data={
+    //         fname,
+    //         lname,
+    //         dob,
+    //         email,
+    //         phone,
+    //         phoneA,
+    //         pass,
+    //         confPass,
+    //         houseName,
+    //         file
+    //     };
+
+    //     const url="http://localhost:8080/register";
+    //     const options={
+    //         method:"POST",
+    //         headers: {
+    //             "Content-Type": "multipart/form-data",
+    //         },
+    //         body:JSON.stringify(data)
+    //     }
+    //     const response = await fetch(url,options);
+    //     const res = await response.json();
+    //     console.log(res);
+
+    // });
 
     const navigate = useNavigate();
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -112,7 +120,7 @@ const Login = () => {
                 body:JSON.stringify(data)
             }
             const response = await fetch(url,options);
-            const res = await response.text();
+            const res = await response.json();
             /*
                 const res = await response.json();
                 if(res.error){
@@ -122,20 +130,29 @@ const Login = () => {
                     
                 }
              */
-            if(res=="User is authenticated"){
+            if(res.jwtToken){
+
+                props.changeCookies('user',res.jwtToken);
+                props.changeCookies('userName',res.userName);
+                props.changeCookies('userType',res.userType);
+                props.changeCookies('society',res.society);
                 navigate("/dashboard");
             }
-            else if(res=="Password is incorrect"){
-                document.getElementById("errorPassword").innerText="Password is incorrect";
-                document.getElementById("errorPassword").style.display = "block";
-            }
-            else if(res=="User not found"){
-                document.getElementById("errorLogin").innerText="User not found";
-                document.getElementById("errorLogin").style.display = "block";
-            }
-            console.log(response);
-            console.log(response.headers);
-            console.log(res);
+            // if(res=="User is authenticated"){
+            //     props.changeCookies('user',)
+            //     navigate("/dashboard");
+            // }
+            // else if(res=="Password is incorrect"){
+            //     document.getElementById("errorPassword").innerText="Password is incorrect";
+            //     document.getElementById("errorPassword").style.display = "block";
+            // }
+            // else if(res=="User not found"){
+            //     document.getElementById("errorLogin").innerText="User not found";
+            //     document.getElementById("errorLogin").style.display = "block";
+            // }
+            // console.log(response);
+            // console.log(response.headers);
+            // console.log(res);
         }
     }
 
@@ -172,7 +189,7 @@ const Login = () => {
                         <div style={errStyle} id="errorLogin">Invalid Email</div>
                         <LStyle.FormGroup>
                             <AiFillLock className="login-field-icons" style={iconStyle} />
-                            <LStyle.DetailsForm type={isPasswordVisible ? "text" : "password"} defaultValue="Aa!01234" id="password" name="password" onChange={inputChange} tabIndex="2" />
+                            <LStyle.DetailsForm type={isPasswordVisible ? "text" : "password"} defaultValue="Aa@01234" id="password" name="password" onChange={inputChange} tabIndex="2" />
                             {/* <LStyle.FocusText data-placeholder="Password" /> */}
                             {isPasswordVisible ? (<AiFillEye onClick={changePass} className='login-eye' style={iconStyle}/>) : <AiFillEyeInvisible onClick={changePass} className='login-eye' style={iconStyle}/>}
                             {/* <AiFillEyeInvisible tabIndex="3" />

@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react'
 import * as SStyle from '../../styles/societies'
 import soc1_img from '../../Images/soc1.jpg'
 import soc2_img from '../../Images/soc2.jpg'
@@ -10,15 +9,38 @@ import '../../styles/gallery';
 import Folder from './folder';
 
 
-const Societies = () =>{
+const Societies = (props) =>{
+    const [socs,setSocieties] = useState();
+
+    useEffect(async ()=>{
+        if(socs == null){
+        const data={"jwtToken":props.cookies.user,"id":null};
+        const url="http://192.168.1.67:8080/getSocieties";
+        const options={
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify(data)
+        }
+        const response = await fetch(url,options);
+        if(response.text()){
+            console.log(response.text());
+        }
+        else{
+            const res = await response.json();
+            console.log(res);
+            setSocieties(res);
+        }
+        }
+    },[socs]);
+
     useEffect(()=>{
         window.scroll(0,0)
     })
-    const societies = ["Siddhachal Flats","Ankur Appartments","Goyal Intercity-C", "Mahasagar Appartments",,"Suryasagar Appartments","Swati Appartments"];
-    const Area = ['Drive In Road', 'Gurukul', 'Mansi Charrasta', 'Bopal', 'Makarba', 'Isckon Cross Roads', 'Kalupur']
     const Image = [soc1_img,soc2_img,soc3_img,soc4_img,soc1_img,soc3_img]
-    let area = 0;
     let image = 0 ;
+    if(socs != null){
     return(
         <>
             {/* <SStyle.HeadingCont>
@@ -44,13 +66,22 @@ const Societies = () =>{
                 <SStyle.Heading>Gallery</SStyle.Heading>
             </SStyle.HeadingCont>
             <SStyle.Society>
-                {societies.map((soc)=>{
-                        return( <Folder folderName={soc} area={Area[area++]} image={Image[image++]} type="society"  />)
+                {socs.map((soc)=>{
+                        return( <Folder folderName={soc.society_name} area={soc.address} image={Image[image++]} type="society"  />)
                     })
                 }
             </SStyle.Society>
         </>
     );
+    }else{
+        return(
+            <><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <center>
+                <h1>Loading...</h1>
+            </center>
+            </>
+        );
+    }
 }
 
 

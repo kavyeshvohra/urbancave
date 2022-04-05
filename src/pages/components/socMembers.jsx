@@ -4,7 +4,6 @@ import * as SMStyle from '../../styles/soc-members.js'
 import { Feature1Container, DashItemContainer1, Item ,Feature2Container, Title } from '../../styles/dashboard-Style'
 import {ButtonSubmit, Detailsform, FormGroup, TextSpan, ButtonWrapper, FormPassGroup, SelectGroup } from '../../styles/register-styles'
 import {RiPencilFill,RiEyeFill, RiDeleteBinFill } from 'react-icons/ri'
-import InfoModal from './Modals/memberInfoModal'
 import {Col, Modal, Row, Button, Table} from 'react-bootstrap'
 import { DeleteCont } from '../../styles/complaints'
 import {MdOutlineCancel} from 'react-icons/md'
@@ -13,13 +12,132 @@ import  Select from 'react-select'
 import { TestimonialImageContainer } from '../../styles/home-style'
 import Profile from '../../Images/Photo.jpg'
 import toast,{Toaster} from 'react-hot-toast'
-const SocMembers = (props) => {
-  useEffect(() => {
-    window.scroll(0,0)
-  })
+import { Cookies, useCookies } from 'react-cookie';
+import { useParams } from "react-router-dom";
 
-  function handleSubmit(e){
+const SocMembers = (props) => {
+  
+  const [society,setSociety] = useState();
+  const [userCookies,setUserCookies] = useCookies();
+  const [members,setMembers] = useState();
+  const [memberID,setMemberID] = useState();
+
+  const [membertype,setMemberType] = useState();
+  const [houseType,setHouseType] = useState();
+  const params = useParams();
+
+  useEffect( async ()=>{
+    
+    if(society == null ){
+
+      const data={"jwtToken":userCookies.user,"id":params.id};
+      const url="http://192.168.1.67:8080/getSociety";
+      const options={
+          method:"POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body:JSON.stringify(data)
+      }
+      const response = await fetch(url,options);
+      const res = await response.json();
+      setSociety(res);
+      // setMembers(memberRes);
+    }
+  },[])
+
+
+  const getSocietyMembers = async ()=>{
+    const memberData = {"jwtToken":userCookies.user,"socID":params.id};
+      console.log(userCookies.user);
+
+      const memberURL="http://192.168.1.67:8080/getSocietyMembers";
+      const memberOptions={
+          method:"POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body:JSON.stringify(memberData)
+      }
+
+      const memberResponse = await fetch(memberURL,memberOptions);
+      const memberRes = await memberResponse.json();
+      setMembers(memberRes);
+      console.log(society);
+      console.log(memberRes);
+  }
+
+  const getFamilyMember = async ()=>{
+    const memberData = {"jwtToken":userCookies.user,"socID":params.id};
+      console.log(userCookies.user);
+
+      const memberURL="http://192.168.1.67:8080/getSocietyMembers";
+      const memberOptions={
+          method:"POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body:JSON.stringify(memberData)
+      }
+
+      const memberResponse = await fetch(memberURL,memberOptions);
+      const memberRes = await memberResponse.json();
+      setMembers(memberRes);
+      console.log(society);
+      console.log(memberRes);
+  }
+
+  useEffect( async ()=>{
+    if(society != null && members==null){
+      getSocietyMembers();
+    }
+  });
+
+
+  const handleUserDelete = async ()=>{
+    const data = members[memberID];
+    data.jwtToken=userCookies.user;
+    const url="http://192.168.1.67:8080/deleteSocietyMember";
+    const options={
+        method:"POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body:JSON.stringify(data)
+    }
+    const response = await fetch(url,options);
+    const res = await response.json();
+    console.log(res);
+    setDeleteMemberModal(false);
+    setMemberID(null);
+    getSocietyMembers();
+  }
+
+  async function handleSubmit(e){
     e.preventDefault()
+
+    const data=members[memberID];
+    data.first_name=document.getElementById("editFname").value;
+    data.last_name=document.getElementById("editlname").value;
+    data.dob = document.getElementById("editDob").value;
+    data.phone_number=document.getElementById("editPhone").value;
+    data.email= document.getElementById("editEmail").value;
+    data.alternate_phone_number = document.getElementById("editAltPhone").value;
+    data.house_name = document.getElementById("editHouseName").value;
+    data.jwtToken=userCookies.user;
+    
+    const url="http://192.168.1.67:8080/editSocietyMember";
+    const options={
+        method:"POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body:JSON.stringify(data)
+    }
+    const response = await fetch(url,options);
+    const res = await response.json();
+    console.log(res);
+
     setLoading(1)
   }
 
@@ -114,6 +232,8 @@ const genderOptions=[
   const Sr = [1,2,3,4,5,6,7,8,9,10]
   const [passwordState, setPasswordState] = useState("password");
   let i=0
+
+  if(society != null){
   return (
   <>
     <Toaster/>
@@ -139,16 +259,24 @@ const genderOptions=[
                   <td>Last Name</td>
                   <td>Actions</td>
                 </tr>
-                {Sr.map(no =>{
-                  return(
-                  <tr className='rowDesign'>
-                    <td>{no}</td>
-                    <td>{MemberFName[no]}</td>
-                    <td>{MemberLName[no]}</td>
-                    <td><button className='buttonStyle'><RiPencilFill className='actionStyle' onClick={()=>setMemberDetails(true)}/></button><button className='buttonStyle'onClick={()=>{setVisible(!isPopupVisible)}}><RiEyeFill className='actionStyle'/></button></td>
-                  </tr>
+                {
+                  members != null?(
+                  members.map((member,index=0)=>{
+                    return(
+                      <tr className='rowDesign'>
+                        <td>{++index}</td>
+                        <td>{member.first_name}</td>
+                        <td>{member.last_name}</td>
+                        <td>
+                          <button className='buttonStyle'><RiPencilFill className='actionStyle' onClick={()=>{setMemberID(index-1);setMemberDetails(true)}}/></button>
+                          <button className='buttonStyle'onClick={()=>{setMemberID(index-1);setVisible(!isPopupVisible)}}><RiEyeFill className='actionStyle'/></button>
+                        </td>
+                      </tr>
+                    )
+                  })):(
+                    <h1>Loading</h1>
                   )
-                })}
+                }
               </tbody>
               </table>
             </SMStyle.Container1>
@@ -202,7 +330,10 @@ const genderOptions=[
       <Feature1 heading="Complaints By Society Admin"  metrics="0"/>
       <Feature1 heading="Resolved Complaints"  metrics="4"/>
     </Feature1Container>
+ 
+  {
 
+  (memberID!=null && members!=null) ? (
   <Modal show={isPopupVisible} onHide={()=>{setVisible(false)}} centered size="lg">
     <Modal.Header closeButton>
       <Modal.Title>Member Details</Modal.Title>
@@ -212,42 +343,33 @@ const genderOptions=[
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>First Name</TextSpan>
-                <Detailsform type="text" name="tenant_fname"  value="Kunal" disabled/>
+                <Detailsform type="text" name="tenant_fname"  value={members[memberID].first_name} disabled/>
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Last Name</TextSpan>
-                <Detailsform type="text" name="tenant_lname"  value="Dhakan" disabled/>
+                <Detailsform type="text" name="tenant_lname"  value={members[memberID].last_name} disabled/>
               </FormGroup>
-            </Col>
-            <Col xs={12} md={4}>
-              <FormGroup style={FormStyle}>
-              <TextSpan>Password</TextSpan>
-                  <div style={{ display: "flex", alignItems: "center", borderBottom: '2px solid #000'}}>
-                      <Detailsform style={{ borderBottom: "initial" }} id="member-password" type={passwordState} name="member_password" minLength="8" value="Kavyesh@2203"  disabled/>
-                      {passwordState == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" className="icons-eye-off" style={iconStyle} onClick={() => setPasswordState('text')} />) : (<AiFillEye id="" style={iconStyle} onClick={() => setPasswordState('password')} />)}
-                </div>
-                </FormGroup>
             </Col>
           </Row>
           <Row>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Date Of Birth</TextSpan>
-                <Detailsform type="date" name="member_dob"  value="2002-03-22"disabled />
+                <Detailsform type="date" name="member_dob"  value={members[memberID].dob} disabled />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Phone Number</TextSpan>
-                <Detailsform type="tel" name="tenant_phone"  value="+91-9668010104" disabled/>
+                <Detailsform type="tel" name="tenant_phone"  value={members[memberID].phone_number} disabled/>
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Email</TextSpan>
-                <Detailsform type="email" name="tenant_email"  value="kd1029@gmail.com" disabled/>
+                <Detailsform type="email" name="tenant_email"  value={members[memberID].email} disabled/>
               </FormGroup>
               </Col>
           </Row>
@@ -255,31 +377,31 @@ const genderOptions=[
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Alternate Phone Number</TextSpan>
-                <Detailsform type="tel" name="member_alt_phone"  value="+91-9979507228"disabled />
+                <Detailsform type="tel" name="member_alt_phone"  value={members[memberID].alternate_phone_number} disabled />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Member Type</TextSpan>
-                <Detailsform type="text" name="member_type"  value="Society Member" disabled />
+                <Detailsform type="text" name="member_type"  value={members[memberID].type} disabled />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>House Type</TextSpan>
-                <Detailsform type="text" name="member_house_type"  value="2 BHK" disabled />
+                <Detailsform type="text" name="member_house_type"  value={members[memberID].house_type} disabled />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
             <FormGroup style={FormStyle}>
                 <TextSpan>House Name</TextSpan>
-                <Detailsform type="text" id="hname" name="house_name" value="B-203" disabled />
+                <Detailsform type="text" id="hname" name="house_name" value={members[memberID].house_name} disabled />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <SelectGroup style={FormStyle}>
                 <TextSpan>Rented</TextSpan>
-                <Detailsform type="text" name="member_rented_status"  value="Yes" disabled />
+                <Detailsform type="text" name="member_rented_status"  value={members[memberID].is_deleted ? "YES" : "No"} disabled />
               </SelectGroup>
             </Col>
             <Col xs={12} md={4}>
@@ -287,7 +409,7 @@ const genderOptions=[
                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                 <TextSpan style={{flex:'1'}}>Profile Photo</TextSpan>
                 <TestimonialImageContainer style={{backgroundImage: `url(${Profile})`, backgroundSize: 'cover', position: 'relative'}}>
-                {/* <HomeStyle.TestimonialImage src={props.image}/> */}
+                
                 </TestimonialImageContainer>
                 </div>
               </FormGroup>
@@ -321,7 +443,11 @@ const genderOptions=[
             </Col>
             </Row>
     </Modal.Body>
-  </Modal>
+  </Modal>) : (<h1>Loading...</h1>)
+  }
+
+{
+  (memberID!=null && members!=null) ? (
   <Modal show={editMember} onHide={() => { setMemberDetails(false) }} centered size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Edit Member Details</Modal.Title>
@@ -331,42 +457,34 @@ const genderOptions=[
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>First Name</TextSpan>
-                <Detailsform type="text" name="tenant_fname"  value="Kunal" />
+                <Detailsform type="text" name="tenant_fname" id="editFname"  defaultValue={members[memberID].first_name} />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Last Name</TextSpan>
-                <Detailsform type="text" name="tenant_lname"  value="Dhakan" />
+                <Detailsform type="text" name="tenant_lname" id="editLname" defaultValue={members[memberID].last_name} />
               </FormGroup>
             </Col>
-            <Col xs={12} md={4}>
-              <FormGroup style={FormStyle}>
-              <TextSpan>Password</TextSpan>
-                  <div style={{ display: "flex", alignItems: "center", borderBottom: '2px solid #000'}}>
-                      <Detailsform style={{ borderBottom: "initial" }} id="member-password" type={passwordState} name="member_password" minLength="8" value="Kavyesh@2203" />
-                      {passwordState == 'password' ? (<AiFillEyeInvisible id="pwd-off-eye" className="icons-eye-off" style={iconStyle} onClick={() => setPasswordState('text')} />) : (<AiFillEye id="" style={iconStyle} onClick={() => setPasswordState('password')} />)}
-                </div>
-                </FormGroup>
-            </Col>
+            
           </Row>
           <Row>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Date Of Birth</TextSpan>
-                <Detailsform type="date" name="member_dob"  value="2002-03-22" />
+                <Detailsform type="date" name="member_dob"  id="editDob" defaultValue={members[memberID].dob} />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Phone Number</TextSpan>
-                <Detailsform type="tel" name="tenant_phone"  value="+91-9668010104" />
+                <Detailsform type="tel" name="tenant_phone" id="editPhone" defaultValue={members[memberID].phone_number} />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Email</TextSpan>
-                <Detailsform type="email" name="tenant_email"  value="kd1029@gmail.com" />
+                <Detailsform type="email" name="tenant_email" id="editEmail" defaultValue={members[memberID].email} />
               </FormGroup>
               </Col>
           </Row>
@@ -374,31 +492,31 @@ const genderOptions=[
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Alternate Phone Number</TextSpan>
-                <Detailsform type="tel" name="member_alt_phone"  value="+91-9979507228" />
+                <Detailsform type="tel" name="member_alt_phone" id="editAltPhone" defaultValue={members[memberID].alternate_phone_number} />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <SelectGroup style={FormStyle}>
                 <TextSpan style={SelectStyle}>Member Type</TextSpan>
-                <Select options={options} defaultValue={{label:"Society Member", value: "Society Member"}}/>
+                <Select options={options} onChange={setMemberType} defaultValue={{label:members[memberID].type, value:members[memberID].type }}/>
               </SelectGroup>
             </Col>
             <Col xs={12} md={4}>
               <SelectGroup style={FormStyle}>
                 <TextSpan style={SelectStyle}>House Type</TextSpan>
-                <Select options={houseoptions} defaultValue={{label:"2BHK", value: "2BHK"}}/>
+                <Select options={houseoptions} onChange={setHouseType} defaultValue={{label:"2BHK", value:members[memberID].house_type}}/>
               </SelectGroup>
             </Col>
             <Col xs={12} md={4}>
             <FormGroup style={FormStyle}>
                 <TextSpan>House Name</TextSpan>
-                <Detailsform type="text" id="hname" name="house_name" value="B-203"  />
+                <Detailsform type="text" name="house_name" id="editHouseName" defaultValue={members[memberID].house_name}  />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <SelectGroup style={FormStyle}>
                 <TextSpan style={SelectStyle}>Rented</TextSpan>
-                <Select options={rentOption} defaultValue={{label: "Yes", value:"yes"}}/>
+                <Select options={rentOption} defaultValue={{label: "Yes", value:members[memberID].is_deleted ? "YES" : "No"}}/>
               </SelectGroup>
             </Col>
             <Col xs={12} md={4}>
@@ -455,7 +573,9 @@ const genderOptions=[
             </Col>
           </Row>
         </Modal.Body>
-      </Modal>
+      </Modal>):(<h1>Loading...</h1>)
+  }
+  {
       <Modal show={DeleteMemberModal} onHide={()=>{setDeleteMemberModal(false)}} centered>
                 <Modal.Header closeButton style={{borderBottom: "none"}}>
                     {/* <Modal.Title>Delete Complaint</Modal.Title> */}
@@ -465,10 +585,12 @@ const genderOptions=[
                         <MdOutlineCancel style={{fontSize: "8em", color: "red"}}/>
                         <h2>Are you sure?</h2>
                         <p>Do you really want to delete this record? This process cannot be undone.</p>
-                        <Button variant='outline-danger'>Delete</Button>
+                        <Button variant='outline-danger'onClick={handleUserDelete} >Delete</Button>
                     </DeleteCont>
                 </Modal.Body>
             </Modal>
+  }
+  {
             <Modal show={FamilyDetails} onHide={()=>{setFamilyDetails(false)}} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Edit Family Member</Modal.Title>
@@ -515,8 +637,19 @@ const genderOptions=[
                   </Row>
                 </Modal.Body>
             </Modal>
+  }
   </>
   )
+  }
+  else{
+    return(
+      <><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <center>
+          <h1>Loading...</h1>
+      </center>
+      </>
+  );
+  }
 }
 
 export default SocMembers

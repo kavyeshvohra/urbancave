@@ -5,12 +5,15 @@ import { BiSupport } from 'react-icons/bi'
 import { AiOutlineLogout } from 'react-icons/ai'
 import { IoSettings } from 'react-icons/io5'
 import { Outlet } from 'react-router';
-import { useState, useRef, useEffect} from "react";
+import { useState, useRef, } from "react";
 import { Link } from "react-router-dom";
 import * as Mstyle from '../styles/main-style'
 
 const Main = (props) => {
   const accRef = useRef()
+
+
+  
 
   // handleGetTest = async () => {
   //   const url = "http://localhost:8080/UrbanCave/index";

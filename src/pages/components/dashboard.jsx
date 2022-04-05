@@ -7,9 +7,14 @@ import Carousel from "react-bootstrap/Carousel"
 import ChartPie, {ChartBar, ChartDoughnut} from './chart'
 import {AiFillEye} from 'react-icons/ai'
 
+import { useCookies } from 'react-cookie';
+
 const Dashboard = () => {
+    const [userCookie,setUserCookie] = useCookies('user');
+
     useEffect(()=>{
         window.scroll(0,0)
+        console.log(userCookie);
     })
     const user = "Member"
     const sStyle={
@@ -33,9 +38,9 @@ const Dashboard = () => {
             <>
                 <div style={contStyle}>
                     <h2 style={{margin:"1em 0 0 2em"}}>
-                        Welcome, Kavyesh
+                        Welcome,{userCookie.userName}
                     </h2>
-                    {user=='Member'?<h5 style={{marginRight: "3em"}}>Society: <span style={{fontWeight: "400"}}>Siddhachal Flats</span></h5>:null}
+                    {user=='Member'?<h5 style={{marginRight: "3em"}}>Society: <span style={{fontWeight: "400"}}>{userCookie.society}</span></h5>:null}
                 </div>
                 <DashStyles.Feature1Container>
                     <Feature1 heading = "ALL SOCIETIES" metrics="29,500"></Feature1>

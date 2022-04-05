@@ -5,8 +5,19 @@ import {MdOutlinePassword} from 'react-icons/md'
 import {RegisterCont1, Form,RegisterForm1, Heading1,TextSpan1,ButtonWrapper1 ,Span,ExistAccount,ButtonSubmit,InputWrapper1, Detailsform, FocusHtml, FormGroup as FormGroup1, Detailsform1} from '../../styles/register-styles'
 import {DetailsForm, FocusText, FormGroup} from '../../styles/login-style'
 
-const ForgotPass = () => {
+import { useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+
+const ForgotPass = (props) => {
+
+    const navigate = useNavigate();
     
+    useEffect(()=>{
+        if (props.userCookies != null){
+            navigate("dashboard");
+        }
+    },[props.userCookies]);
+
     const checkIfNumber=(e)=>{
         let text=e.target.value;
         const isNumber = /\d/;

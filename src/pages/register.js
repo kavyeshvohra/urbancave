@@ -9,7 +9,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
 import * as RStyle from '../styles/register-styles';
 
-const Register = () => {
+const Register = (props) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [errordiv, changeViewDiv] = useState(0);
@@ -19,6 +19,7 @@ const Register = () => {
     const [count, setCount] = useState(0);
     const [passwordValid, setPasswordValid] = useState(false)
 
+
     let navigate = useNavigate();
     // const url = ""
     // const[data,setData] = useState({
@@ -26,6 +27,13 @@ const Register = () => {
     //     lname: "",
     //     dob: ""
     // })
+
+    useEffect(()=>{
+        if (props.userCookies != null){
+            navigate("dashboard");
+        }
+    },[props.userCookies]);
+
     const [step, changeStep] = useState("step1");
     const societyRegisterStep = () => {
         changeStep("step2");

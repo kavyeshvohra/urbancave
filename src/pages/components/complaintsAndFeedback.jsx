@@ -8,7 +8,7 @@ import {FaUserAlt} from 'react-icons/fa'
 import {MdOutlineCancel} from 'react-icons/md'
 import Select from 'react-select'
 import { Detailsform,FocusHtml, FormGroup, TextSpan, ButtonWrapper,ButtonSubmit, Detailsformdate } from '../../styles/register-styles'
-
+import { useCookies } from 'react-cookie'
 
 const FormStyle = {
     width: "100%"
@@ -28,11 +28,48 @@ const options = [
     { value: "Violation Issues", label: "Abusive / Improper Content"}
 ]
 
-const ComplaintsAndFeedback = () => {
+const ComplaintsAndFeedback = (props) => {
     const [itemColor, setItemColor] = useState("All Tickets")
     const [society, setSocietyName] = useState("Siddhachal Flats")
-    const [subColor, setSocietyColor] = useState(0)
     const [Popup, setPopup] = useState(false);
+
+    const [socs,setSocieties] = useState();
+    const [complaint,setComplaints] = useState();
+    const [userCookie,setUserCookies] = useCookies();
+
+    useEffect(async ()=>{
+        if(socs == null){
+            const data={"jwtToken":props.cookies.user,"id":null};
+            const url="http://192.168.1.67:8080/getSocieties";
+            const options={
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body:JSON.stringify(data)
+            }
+            const response = await fetch(url,options);
+            const res = await response.json();
+            console.log(res);
+            setSocieties(res);
+            setSocietyName(res[0].society_name);
+            
+            //get complaints
+            const complaintReqData = {"jwtToken":props.cookies.user,"cf_id":null};
+            const noticeURL="http://192.168.1.67:8080/complaints";
+            const noticeOptions={
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body:JSON.stringify(complaintReqData)
+            }
+            const complaintResponse = await fetch(noticeURL,noticeOptions);
+            const complaintRes = await complaintResponse.json();
+            console.log(complaintRes);
+            setComplaints(complaintRes);
+        }
+    },[socs]);
 
     const [counter, setCount] = useState(0)
 
@@ -55,85 +92,109 @@ const ComplaintsAndFeedback = () => {
         setCount({});
     }
 
-    return (
-     <>
-     <Cstyle.Wrapper>        
-        <Cstyle.SocietyContainer>
-            <Cstyle.SocietyHead>
-                <h3>Societies</h3>
-            </Cstyle.SocietyHead>
-            <Cstyle.SocietyContent>
-                <Cstyle.SocList>
-                    <li onClick={SocietySelect} className={society=="Siddhachal Flats" && "active"}>Siddhachal Flats</li>
-                    <li onClick={SocietySelect} className={society=="Ankur Appartments" && "active"}>Ankur Appartments</li>
-                    <li onClick={SocietySelect} className={society=="Richmond Grand" && "active"}>Richmond Grand</li>
-                </Cstyle.SocList>
-            </Cstyle.SocietyContent>
-        </Cstyle.SocietyContainer>
-        <Cstyle.ComplaintContainer>
-            <Cstyle.MenuWrapper>
-                <Cstyle.MenuItems>
-                    <li onClick={MenuItem}>
-                        All Tickets
-                    </li>
-                    <li onClick={MenuItem}>
-                        In Progress
-                    </li>
-                    <li onClick={MenuItem}>
-                        Resolved
-                    </li>
-                    <li onClick={MenuItem}>
-                        Feedbacks
-                    </li>
-                </Cstyle.MenuItems>
-            </Cstyle.MenuWrapper>
-            <Cstyle.ButtonContainer>
-                <button className='newTicket' onClick={()=>{setPopup(true)}}><BiPencil/> NEW TICKET</button>
-                <div>
-                    <input type="search" placeholder='Search'/>
-                    <button className='search-icon' type="submit"><AiOutlineSearch/></button>
-                </div>
-            </Cstyle.ButtonContainer>
-                <div>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                </div>
-        </Cstyle.ComplaintContainer>
+    if(socs != null){
+        return (
+        <>
+        <Cstyle.Wrapper>        
+            <Cstyle.SocietyContainer>
+                <Cstyle.SocietyHead>
+                    <h3>Societies</h3>
+                </Cstyle.SocietyHead>
+                <Cstyle.SocietyContent>
+                    <Cstyle.SocList>
+                    {socs.map((soc)=>{
+                            return(
+                                <li onClick={SocietySelect} className={ society==soc.society_name? "active":""}>{soc.society_name}</li>
+                            );
+                        })
+                    }
+                    </Cstyle.SocList>
+                </Cstyle.SocietyContent>
+            </Cstyle.SocietyContainer>
+            <Cstyle.ComplaintContainer>
+                <Cstyle.MenuWrapper>
+                    <Cstyle.MenuItems>
+                        <li onClick={MenuItem}>
+                            All Tickets
+                        </li>
+                        <li onClick={MenuItem}>
+                            In Progress
+                        </li>
+                        <li onClick={MenuItem}>
+                            Resolved
+                        </li>
+                        <li onClick={MenuItem}>
+                            Feedbacks
+                        </li>
+                    </Cstyle.MenuItems>
+                </Cstyle.MenuWrapper>
+                <Cstyle.ButtonContainer>
+                    <button className='newTicket' onClick={()=>{setPopup(true)}}><BiPencil/> NEW TICKET</button>
+                    <div>
+                        <input type="search" placeholder='Search'/>
+                        <button className='search-icon' type="submit"><AiOutlineSearch/></button>
+                    </div>
+                </Cstyle.ButtonContainer>
+                    <div>
+                    {
+                        complaint != null?
+                        (
+                        complaint.map( (comp)=>{
+                            return(
+                                <Card complaint={comp}/>
+                            );
+                        })):
+                        (<h1>Loading...</h1>)
+                    }
+                    {/* <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/>
+                    <Card/> */}
+                    </div>
+            </Cstyle.ComplaintContainer>
 
-    </Cstyle.Wrapper>
-    <Modal show={Popup} onHide={()=>{setPopup(false)}} centered>
-    <Modal.Header closeButton>
-        <Modal.Title>Raise A New Ticket</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-        <div style={{textAlign: "right"}}>
-            <span>User Name: <span style={{fontStyle: "italic", color: "#3e444e", fontWeight: "500"}}>Patel Manikbhai</span></span>
-        </div>
-        <form>
-        <FormGroup style={FormStyle2}>
-            <Detailsform type="text" id="title" name="complaint_title" onChange={inputChange}/>
-            <FocusHtml data-placeholder="Title"/>
-        </FormGroup>
-        <FormGroup style={FormStyle1}>
-        <TextSpan style={{height: "auto"}}>Category</TextSpan>
-            <Select options={options}/>
-        </FormGroup>
-        <FormGroup style={FormStyle}>
-            <Cstyle.ComplaintDesc id="description" name="complaint_desc" maxLength="255" rows="6" onInput={handleKeyPress} />
-            <TextSpan style={{height: "auto"}}>Description</TextSpan>
-            <span style={{float: "right"}}>{counter}/180</span>
-        </FormGroup>
-        <ButtonWrapper style={{marginBottom: "1em"}}>
-            <ButtonSubmit name="submit" type="submit">Submit</ButtonSubmit>
-        </ButtonWrapper>
-        </form>
-    </Modal.Body>
-    </Modal>
-    </>
-  )
+        </Cstyle.Wrapper>
+        <Modal show={Popup} onHide={()=>{setPopup(false)}} centered>
+        <Modal.Header closeButton>
+            <Modal.Title>Raise A New Ticket</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <div style={{textAlign: "right"}}>
+                <span>User Name: <span style={{fontStyle: "italic", color: "#3e444e", fontWeight: "500"}}>Patel Manikbhai</span></span>
+            </div>
+            <form>
+            <FormGroup style={FormStyle2}>
+                <Detailsform type="text" id="title" name="complaint_title" onChange={inputChange}/>
+                <FocusHtml data-placeholder="Title"/>
+            </FormGroup>
+            <FormGroup style={FormStyle1}>
+            <TextSpan style={{height: "auto"}}>Category</TextSpan>
+                <Select options={options}/>
+            </FormGroup>
+            <FormGroup style={FormStyle}>
+                <Cstyle.ComplaintDesc id="description" name="complaint_desc" maxLength="255" rows="6" onInput={handleKeyPress} />
+                <TextSpan style={{height: "auto"}}>Description</TextSpan>
+                <span style={{float: "right"}}>{counter}/180</span>
+            </FormGroup>
+            <ButtonWrapper style={{marginBottom: "1em"}}>
+                <ButtonSubmit name="submit" type="submit">Submit</ButtonSubmit>
+            </ButtonWrapper>
+            </form>
+        </Modal.Body>
+        </Modal>
+        </>
+    )
+    }
+    else{
+        return(
+            <><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <center>
+                <h1>Loading...</h1>
+            </center>
+            </>
+        );
+    }
 }
 function inputChange(e) {
     if (e.target.value !== "") {
@@ -153,18 +214,20 @@ export const Card = (props) => {
                 <Cstyle.ComplaintHistoryHeader>
                     <BiHelpCircle/>
                     <h5>Ticket #2022-0111</h5>
-                    <span style={{fontWeight: "300", fontSize: "18px"}}>11:30PM</span>
+                    <span style={{fontWeight: "300", fontSize: "18px"}}>
+                        {props.complaint.date_of_creation}
+                        </span>
                     <button onClick={()=>{setMoreView(!MoreView)}}><BsThreeDots/></button>
-                    {MoreView ? <MoreItems/> : null}
+                    {MoreView ? <MoreItems complaint={props.complaint}/> : null}
                 </Cstyle.ComplaintHistoryHeader>
                 <Cstyle.ComplaintInfoDetails>
-                    <h2>Maintenance - 03/2022</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,</p>
+                    <h2>{props.complaint.topic}</h2>
+                    <p>{props.complaint.description}</p>
                 </Cstyle.ComplaintInfoDetails>
                 <Cstyle.ComplaintFooterInfo>
                     <FaUserAlt/>
                     <h6 style={{flex: "1"}}>Kavyesh Vohra</h6>
-                    <h6>Category: <span style={{fontStyle: "italic", color: '#707a8a', textDecoration: "underline", textDecorationColor: "#fab0b0", cursor: "pointer"}}>Technical Support</span></h6>
+                    <h6>Category: <span style={{fontStyle: "italic", color: '#707a8a', textDecoration: "underline", textDecorationColor: "#fab0b0", cursor: "pointer"}}>{props.complaint.category}</span></h6>
                 </Cstyle.ComplaintFooterInfo>
             </Cstyle.ComplaintInfo>
             </Cstyle.ComplaintHistoryContainer>
@@ -173,7 +236,7 @@ export const Card = (props) => {
 }
 
 
-const MoreItems = () => {
+const MoreItems = (props) => {
     const [DeleteModal, setDeleteModal] = useState(false);
     const [ViewModal, setViewModal] = useState(false);
     const [ResolvedModal, setResolvedModal] = useState(false);
@@ -196,21 +259,21 @@ const MoreItems = () => {
                     <Row>
                     <Col xs={12} md={4}>
                         <span>ID</span>
-                        <Detailsform type="text" value="cf10001fg" disabled/>
+                        <Detailsform type="text" value={props.complaint.cf_id} disabled/>
                     </Col>
                     <Col xs={12} md={8}>
                         <span>Title</span>
-                        <Detailsform type="text" value="How to change my password?" disabled/>
+                        <Detailsform type="text" value={props.complaint.topic} disabled/>
                     </Col>
                     </Row>
                     <Row>
                     <Col xs={12} md={4}>
                         <span>Category</span>
-                        <Detailsform type="text" value="Technical Support" disabled/>
+                        <Detailsform type="text" value={props.complaint.category} disabled/>
                     </Col>
                     <Col xs={12} md={3}>
                         <span>Date</span>
-                        <Detailsformdate type="date" disabled value="2022-01-22"/>
+                        <Detailsformdate type="date" disabled value={props.complaint.date_of_creation}/>
                     </Col>
                     <Col xs={12} md={5}>
                         <span>User (<span style={{fontStyle: "italic"}}>Society Member</span>)</span>
@@ -220,7 +283,7 @@ const MoreItems = () => {
                     <Row>
                         <Col xs={12} md={12}>
                         <span>Description</span>
-                        <Cstyle.ComplaintDesc disabled rows="6" maxLength="255" value="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,"/>
+                        <Cstyle.ComplaintDesc disabled rows="6" maxLength="255" value={props.complaint.description}/>
                         </Col>
                     </Row>
                     </Cstyle.DetailWrapper>

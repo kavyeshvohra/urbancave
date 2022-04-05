@@ -68,7 +68,7 @@ const SocMembers = (props) => {
   }
 
   const getFamilyMember = async ()=>{
-    const memberData = {"jwtToken":userCookies.user,"socID":params.id};
+    const memberData = {"jwtToken":userCookies.user,};
       console.log(userCookies.user);
 
       const memberURL="http://192.168.1.67:8080/getSocietyMembers";

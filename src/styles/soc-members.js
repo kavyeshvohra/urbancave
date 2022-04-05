@@ -13,6 +13,15 @@ export const Heading1 = styled.h2`
 `
 export const Heading5 = styled.h5`
     margin-right: 1em;
+    &.passwordheading
+    {
+        text-decoration: underline;
+        font-size: 1em;
+        & + div
+        {
+            background-color: #d3d3d3;
+        }
+    }
 `
 export const Heading4 = styled.h4`
     margin-bottom: 1.1em;

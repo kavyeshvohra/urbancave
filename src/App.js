@@ -90,6 +90,7 @@ function App() {
 
               
 
+<<<<<<< HEAD
               <Route path="members" element={
                 cookies.user == null ?
                 <Navigate to="/login" replace />
@@ -100,6 +101,12 @@ function App() {
               <Route path="payments/:id" element={<Payments userType={userType} cookies={cookies}/>} />
 
               <Route path="complaints" element={<ComplaintsAndFeedback userType={userType} cookies={cookies}/>} />
+=======
+              <Route path="members" element={<Members userType={userType} />} />
+              <Route path="members/:id" element={<SocMembers userType={userType} />} />
+              <Route path="payments" element={<PaymentLanding userType={userType}/>}/>
+              <Route path="payments/:id" element={<Payments userType={userType} />}  />
+>>>>>>> fe43344527dbfb170afdcc3d9c42bb3148f535f8
 
               <Route path="notice" element={
 

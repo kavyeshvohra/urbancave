@@ -135,6 +135,10 @@ export const FormGroup = styled.div`
   transition: 0.3s all ease;
   padding-bottom: 0.125em;
   align-items: center;
+  &.custom_design_2
+  {
+    width: 48%;
+  }
 `;
 export const FormPassGroup = styled.div`
   margin-bottom: 2.5em;
@@ -205,6 +209,14 @@ export const Detailsform = styled.input`
   &.text + span {
   transform: translate(0em,-2.4rem) scale(1);  
 }
+  &.design_2
+  {
+    background-color: transparent;
+  }
+  &.design_2:disabled
+  {
+    background-color: #d3d3d3;
+  }
 &:focus + span,
   &.text1 + span {
   transform: translate(0em,-1.7rem) scale(1);  
@@ -246,6 +258,10 @@ export const Detailsformdate = styled.input`
   &.text + span {
   transform: translate(0em,-2.4rem) scale(1);
 }
+  &.design_2
+  {
+    background-color: transparent;
+  }
 `;
 export const Checkbox = styled.input`
   width: 15%;

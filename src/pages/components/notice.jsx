@@ -11,6 +11,7 @@ import {useDropzone} from 'react-dropzone'
 import {BsThreeDots,BsDownload } from 'react-icons/bs'
 import {MdOutlineCancel} from 'react-icons/md'
 import {FaUserAlt} from 'react-icons/fa'
+import { useCookies } from 'react-cookie';
 const FormStyle = {
     width: "100%"
 }
@@ -45,6 +46,33 @@ const Notice = (props)=>{
     const [socs,setSocieties] = useState();
 
     const [notices,setNotices] = useState();
+    const [userCookie,setUserCookie] = useCookies();
+
+    const addNotice = async () => {
+        const notice = {
+            "creation_date":new Date().toJSON().slice(0,10),
+            "description":document.getElementById("description").value,
+            "is_active":true,
+            "is_deleted":false,
+            "topic":document.getElementById("description").value,
+            "societyID":null,
+            "notice_id":null,
+            "jwtToken":props.cookies.user
+        }
+        console.log(notice);
+
+        const noticeURL="http://192.168.1.67:8080/addNotice";
+        const noticeOptions={
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify(notice)
+        }
+        const noticeResponse = await fetch(noticeURL,noticeOptions);
+        const noticeRes = await noticeResponse.json();
+        console.log(noticeRes);
+    }
 
     useEffect(async ()=>{
         if(socs == null){
@@ -188,8 +216,8 @@ const Notice = (props)=>{
         </Modal.Header>
         <Modal.Body className='show-grid'>
             <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <span>Date: <span style={{fontStyle: 'italic', fontWeight: '500'}}>{today}/{currentMonth}/{currentYear}</span></span>
-                <span>User Name: <span style={{fontStyle: "italic", color: "#3e444e", fontWeight: "500"}}>Patel Manikbhai</span></span>
+                <span>Date: <span style={{fontStyle: 'italic', fontWeight: '500'}} id="date">{today}/{currentMonth}/{currentYear}</span></span>
+                <span>User Name: <span style={{fontStyle: "italic", color: "#3e444e", fontWeight: "500"}}>{userCookie.userName}</span></span>
             </div>
             <form>
                 <Row>
@@ -203,7 +231,7 @@ const Notice = (props)=>{
                 <Row>
                     <Col xs={12} md={8}>
                         <FormGroup style={FormStyle}>
-                            <ComplaintDesc id="description" name="complaint_desc" maxLength="255" rows="6" onInput={handleKeyPress} />
+                            <ComplaintDesc id="description" name="complaint_desc" maxLength="255" rows="6"  />
                             <TextSpan style={{height: "auto"}}>Description</TextSpan>
                             <span style={{float: "right"}}>{counter}/180</span>
                         </FormGroup>
@@ -234,7 +262,7 @@ const Notice = (props)=>{
                 </div>
             </FileWrapper>
             <ButtonWrapper style={{marginBottom: "1em"}}>
-                <ButtonSubmit name="submit" type="submit">Submit</ButtonSubmit>
+                <ButtonSubmit name="submit" type="submit" onClick={(e)=>{ e.preventDefault();addNotice(); }}>Submit</ButtonSubmit>
             </ButtonWrapper>
             </form>
         </Modal.Body>
@@ -297,10 +325,29 @@ const NoticeCard = (props) => {
 }
 
 
-const MoreItems = (props) => {
+const MoreItems =  (props) => {
     const [DeleteNoticeModal, setDeleteNoticeModal] = useState(false);
     const [ViewNoticeModal, setViewNoticeModal] = useState(false);
-    console.log(props.notice)
+    
+    const [userCookie,setUserCookies] = useCookies();
+    console.log(props.notice);
+
+    const deleteNotice = async (notice) =>{
+        const data = {"jwtToken":userCookie.user,"noticeID":notice.notice_id};
+        const url="http://192.168.1.67:8080/deleteNotice";
+        const options={
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify(data)
+        }
+
+        const response = await fetch(url,options);
+        const res = await response.json();
+        console.log(res);
+    }
+
     return(
         <>
             <MoreItemsContainer>
@@ -360,7 +407,7 @@ const MoreItems = (props) => {
                         <MdOutlineCancel style={{fontSize: "8em", color: "red"}}/>
                         <h2>Are you sure?</h2>
                         <p>Do you really want to delete this record? This process cannot be undone.</p>
-                        <Button variant='outline-danger'>Delete</Button>
+                        <Button variant='outline-danger' onClick={()=>{deleteNotice(props.notice)}}>Delete</Button>
                     </DeleteCont>
                 </Modal.Body>
             </Modal>

@@ -20,7 +20,8 @@ const SocMembers = (props) => {
   const [society,setSociety] = useState();
   const [userCookies,setUserCookies] = useCookies();
   const [members,setMembers] = useState();
-  const [memberID,setMemberID] = useState();
+  const [memberID,setMemberID] = useState(null);
+  const [familyMembers,setFamilyMembers] = useState(null);
 
   const [membertype,setMemberType] = useState();
   const [houseType,setHouseType] = useState();
@@ -46,8 +47,10 @@ const SocMembers = (props) => {
     }
   },[])
 
+  
 
-  const getSocietyMembers = async ()=>{
+
+  const getSocietyMembers = async (user_id)=>{
     const memberData = {"jwtToken":userCookies.user,"socID":params.id};
       console.log(userCookies.user);
 
@@ -67,11 +70,11 @@ const SocMembers = (props) => {
       console.log(memberRes);
   }
 
-  const getFamilyMember = async ()=>{
-    const memberData = {"jwtToken":userCookies.user,};
-      console.log(userCookies.user);
+  const getFamilyMember = async (index)=>{
+    const memberData = {"jwtToken":userCookies.user,"user_ID":members[index].user_id};
+    console.log(memberData);
 
-      const memberURL="http://192.168.1.67:8080/getSocietyMembers";
+      const memberURL="http://192.168.1.67:8080/getFamilyMembers";
       const memberOptions={
           method:"POST",
           headers: {
@@ -82,9 +85,9 @@ const SocMembers = (props) => {
 
       const memberResponse = await fetch(memberURL,memberOptions);
       const memberRes = await memberResponse.json();
-      setMembers(memberRes);
-      console.log(society);
+      setFamilyMembers(memberRes);
       console.log(memberRes);
+      console.log(familyMembers);
   }
 
   useEffect( async ()=>{
@@ -118,7 +121,7 @@ const SocMembers = (props) => {
 
     const data=members[memberID];
     data.first_name=document.getElementById("editFname").value;
-    data.last_name=document.getElementById("editlname").value;
+    data.last_name=document.getElementById("editLname").value;
     data.dob = document.getElementById("editDob").value;
     data.phone_number=document.getElementById("editPhone").value;
     data.email= document.getElementById("editEmail").value;
@@ -137,8 +140,8 @@ const SocMembers = (props) => {
     const response = await fetch(url,options);
     const res = await response.json();
     console.log(res);
-
-    setLoading(1)
+    setLoading(1);
+    setMemberID(null);
   }
 
   function handleFamilySubmit(e)
@@ -268,8 +271,8 @@ const genderOptions=[
                         <td>{member.first_name}</td>
                         <td>{member.last_name}</td>
                         <td>
-                          <button className='buttonStyle'><RiPencilFill className='actionStyle' onClick={()=>{setMemberID(index-1);setMemberDetails(true)}}/></button>
-                          <button className='buttonStyle'onClick={()=>{setMemberID(index-1);setVisible(!isPopupVisible)}}><RiEyeFill className='actionStyle'/></button>
+                          <button className='buttonStyle'><RiPencilFill className='actionStyle' onClick={()=>{setMemberID(index-1);setMemberDetails(true);getFamilyMember(index-1);}}/></button>
+                          <button className='buttonStyle'onClick={()=>{setMemberID(index-1);setVisible(!isPopupVisible);getFamilyMember(index-1);}}><RiEyeFill className='actionStyle'/></button>
                         </td>
                       </tr>
                     )
@@ -340,13 +343,13 @@ const genderOptions=[
     </Modal.Header>
     <Modal.Body>
     <Row>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={6}>
               <FormGroup style={FormStyle}>
                 <TextSpan>First Name</TextSpan>
                 <Detailsform type="text" name="tenant_fname"  value={members[memberID].first_name} disabled/>
               </FormGroup>
             </Col>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={6}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Last Name</TextSpan>
                 <Detailsform type="text" name="tenant_lname"  value={members[memberID].last_name} disabled/>
@@ -430,14 +433,23 @@ const genderOptions=[
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Swati</td>
-                  <td>Vohra</td>
-                  <td>F</td>
-                  <td>28</td>
-                  <td>Sister</td>
-                </tr>
+              {
+                  familyMembers != null ?(
+                    familyMembers.map((fam,index=0)=>{
+                      return(
+                        <tr>
+                          <td>{++index}</td>
+                          <td>{fam.first_name}</td>
+                          <td>{fam.last_name}</td>
+                          <td>{fam.gender}</td>
+                          <td>{fam.age}</td>
+                          <td>{fam.relation}</td>
+                        </tr>
+                      )
+                    })  
+                      
+                  ):(<center><h1>Loading...</h1></center>)
+              }
               </tbody>
               </Table>
             </Col>
@@ -454,13 +466,13 @@ const genderOptions=[
         </Modal.Header>
         <Modal.Body>
           <Row>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={6}>
               <FormGroup style={FormStyle}>
                 <TextSpan>First Name</TextSpan>
                 <Detailsform type="text" name="tenant_fname" id="editFname"  defaultValue={members[memberID].first_name} />
               </FormGroup>
             </Col>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={6}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Last Name</TextSpan>
                 <Detailsform type="text" name="tenant_lname" id="editLname" defaultValue={members[memberID].last_name} />
@@ -530,6 +542,7 @@ const genderOptions=[
               </FormGroup>
             </Col>
           </Row>
+          
           <Row>
             <Col xs={12} md={12}>
               <SMStyle.Heading5 style={{textAlign: 'center', textDecoration: 'underline'}}>Family Members</SMStyle.Heading5>
@@ -546,15 +559,23 @@ const genderOptions=[
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Swati</td>
-                  <td>Vohra</td>
-                  <td>F</td>
-                  <td>28</td>
-                  <td>Sister</td>
-                  <td><SMStyle.ActionButton className='buttonStyle' onClick={()=>{setFamilyDetails(true)}}><RiPencilFill className='actionStyle'/></SMStyle.ActionButton><SMStyle.ActionButton onClick={()=>setDeleteMemberModal(true)}><RiDeleteBinFill className='actionStyle'/></SMStyle.ActionButton></td>
-                </tr>
+                {
+                  familyMembers != null ?
+                  
+                  familyMembers.map((fam)=>{
+                    return(
+                    <tr>
+                      <td>1</td>
+                      <td>{fam.first_name}</td>
+                      <td>{fam.last_name}</td>
+                      <td>{fam.gender}</td>
+                      <td>{fam.age}</td>
+                      <td>{fam.relation}</td>
+                      <td><SMStyle.ActionButton className='buttonStyle' onClick={()=>{setFamilyDetails(true)}}><RiPencilFill className='actionStyle'/></SMStyle.ActionButton><SMStyle.ActionButton onClick={()=>setDeleteMemberModal(true)}><RiDeleteBinFill className='actionStyle'/></SMStyle.ActionButton></td>
+                    </tr>)
+                  })
+                  :(<center><h1>Loading...</h1></center>)
+                }
               </tbody>
               </Table>
             </Col>

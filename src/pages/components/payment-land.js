@@ -47,7 +47,7 @@ const PaymentLanding = (props) => {
                 <SStyle.Society>
                 {socs.map((soc)=>{
                 return(
-                    <SStyle.SocietyCont onClick={()=>{gotoMembers(0)}}>
+                    <SStyle.SocietyCont onClick={()=>{gotoMembers(soc.society_id)}}>
                         <SStyle.Image src={Image[image++]}/>
                         <SStyle.Content>
                                 <h3>{soc.society_name}</h3>

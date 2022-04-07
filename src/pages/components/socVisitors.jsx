@@ -7,10 +7,67 @@ import { Table, Modal, Row, Col } from 'react-bootstrap'
 import { ButtonContainer } from '../../styles/complaints'
 import { ButtonSubmit, ButtonWrapper, Detailsform, FocusHtml, FormGroup, TextSpan } from '../../styles/register-styles'
 import toast,{ Toaster } from 'react-hot-toast'
-const SocVisitors = () => {
+
+import { Cookies, useCookies } from 'react-cookie';
+import { useParams } from "react-router-dom";
+
+const SocVisitors = (props) => {
   const [createVisitor, setCreateVisitor] = useState(false);
   const [houseInfo, setHouseInfo] = useState(0)
   const [Isloading, setLoading] = useState(false)
+  const [visitors,setVisitors] = useState(null);
+
+  const [society,setSociety] = useState();
+  const [userCookies,setUserCookies] = useCookies();
+  const params = useParams();
+
+  useEffect( async ()=>{
+    
+    if(society == null ){
+
+      const data={"jwtToken":userCookies.user,"id":params.id};
+      const url="http://192.168.1.67:8080/getSociety";
+      const options={
+          method:"POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body:JSON.stringify(data)
+      }
+      const response = await fetch(url,options);
+      const res = await response.json();
+      setSociety(res);
+      // setMembers(memberRes);
+    }
+  },[])
+
+  const getVisitors = async () => {
+      const memberData = {"jwtToken":userCookies.user,"society_id":society.society_id};
+      
+
+      const memberURL="http://192.168.1.67:8080/visitors";
+      const memberOptions={
+          method:"POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body:JSON.stringify(memberData)
+      }
+
+      const memberResponse = await fetch(memberURL,memberOptions);
+      const memberRes = await memberResponse.json();
+      
+      console.log(memberRes);
+      setVisitors(memberRes);
+      
+  }
+
+  useEffect( async ()=>{
+    if( society != null && visitors==null){
+      getVisitors();
+    }
+  })
+
   useEffect(()=>{
       if(Isloading)
       {
@@ -33,11 +90,12 @@ const SocVisitors = () => {
     textDecorationColor: '#fab6b6',
     cursor: 'pointer'
   }
+  if(society != null){
   return (
     <>
       <Toaster/>
       <Container>
-        <Heading1>Siddhachal Flats</Heading1>
+        <Heading1>{society.society_name}</Heading1>
         <Heading5>Society Admin: <span style={{fontStyle: "italic", fontWeight: "400", textDecoration: "underline", textDecorationColor: "#FAB6B6"}}>Patel Manikbhai</span></Heading5>
       </Container>
       <ButtonContainer>
@@ -55,113 +113,28 @@ const SocVisitors = () => {
               <th>First Name</th>
               <th>Last Name</th>
               <th>House</th>
-              <th>Date</th>
               <th>Entry Time</th>
-              <th>Exit Time</th>
               <th>Phone Number</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle} onClick={()=>{setHouseInfo(true)}}>B-203</td>
-              <td>23/02/2022</td>
-              <td>20:00</td>
-              <td>21:00</td>
-              <td>+91-9427521316</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>C-1001</td>
-              <td>23/02/2022</td>
-              <td>20:00</td>
-              <td>22:00</td>
-              <td>+91-9990012125</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-203</td>
-              <td>23/02/2022</td>
-              <td>8:00</td>
-              <td>12:00</td>
-              <td>+91-9888019708</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-502</td>
-              <td>23/02/2022</td>
-              <td>20:00</td>
-              <td>24:00</td>
-              <td>+91-9879224264</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-205</td>
-              <td>23/02/2022</td>
-              <td>20:00</td>
-              <td>9:00</td>
-              <td>+91-7874193434</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-105</td>
-              <td>23/02/2022</td>
-              <td>20:00</td>
-              <td>11:00</td>
-              <td>+91-6369850125</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-203</td>
-              <td>23/02/2022</td>
-              <td>20:00</td>
-              <td>18:00</td>
-              <td>+91-8200032501</td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-203</td>
-              <td>23/02/2022</td>
-              <td>20:00</td>
-              <td>22:30</td>
-              <td>+91-9010654205</td>
-            </tr>
-            <tr>
-              <td>9</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-203</td>
-              <td>23/02/2022</td>
-              <td>20:00</td>
-              <td>1:00</td>
-              <td>+91-7900258015</td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-203</td>
-              <td>23/02/2022</td>
-              <td>20:00</td>
-              <td>3:00</td>
-              <td>+91-8657979780</td>
-            </tr>
+
+            {
+              visitors != null ?(
+                visitors.map((visitor,index=0)=>{
+                  return(
+                      <tr>
+                        <td>{++index}</td>
+                        <td>{visitor.first_name}</td>
+                        <td>{visitor.last_name}</td>
+                        <td style={houseStyle} onClick={()=>{setHouseInfo(true)}}>{visitor.house_name}</td>
+                        <td>{visitor.entry_time}</td>
+                        <td>+91 {visitor.phone_number}</td>
+                      </tr>
+                  )
+                })
+              ):(<center><h1>Loading...</h1></center>)
+            }
           </tbody>
         </Table>
       </Vstyle.Container>
@@ -230,7 +203,16 @@ const SocVisitors = () => {
                 </Modal.Body>
             </Modal>
     </>
-  )
+  )}
+  else{
+    return(
+    <><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <center>
+          <h1>Loading...</h1>
+      </center>
+    </>
+    );
+  }
   function makeid(e) {
     setLoading(1)
     e.preventDefault()
@@ -245,8 +227,12 @@ const SocVisitors = () => {
     uniquecode.setSelectionRange(0, 99999); /* For mobile devices */
 
    /* Copy the text inside the text field */
-    navigator.clipboard.writeText('https://main.d3lcpjsjj0bss.amplifyapp.com/visitor/'+ uniquecode.value);
-    }
+    navigator.clipboard.writeText('https://localhost:3000/'+ uniquecode.value);
+    // setUserCookies("visitorLink",uniquecode.value);
+    props.changeVisitor("visitorLink",uniquecode.value);
+    console.log(userCookies);
+
+  }
 }
 
 export default SocVisitors

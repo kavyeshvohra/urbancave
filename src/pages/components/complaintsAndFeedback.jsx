@@ -8,7 +8,8 @@ import {FaUserAlt} from 'react-icons/fa'
 import {MdOutlineCancel} from 'react-icons/md'
 import Select from 'react-select'
 import { Detailsform,FocusHtml, FormGroup, TextSpan, ButtonWrapper,ButtonSubmit, Detailsformdate } from '../../styles/register-styles'
-import { useCookies } from 'react-cookie'
+import { useCookies } from 'react-cookie';
+import { useParams } from 'react-router';
 
 const FormStyle = {
     width: "100%"
@@ -36,6 +37,7 @@ const ComplaintsAndFeedback = (props) => {
     const [socs,setSocieties] = useState();
     const [complaint,setComplaints] = useState();
     const [userCookie,setUserCookies] = useCookies();
+    const params = useParams();
 
     useEffect(async ()=>{
         if(socs == null){
@@ -55,21 +57,53 @@ const ComplaintsAndFeedback = (props) => {
             setSocietyName(res[0].society_name);
             
             //get complaints
-            const complaintReqData = {"jwtToken":props.cookies.user,"cf_id":null};
-            const noticeURL="http://192.168.1.67:8080/complaints";
-            const noticeOptions={
-                method:"POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body:JSON.stringify(complaintReqData)
-            }
-            const complaintResponse = await fetch(noticeURL,noticeOptions);
-            const complaintRes = await complaintResponse.json();
-            console.log(complaintRes);
-            setComplaints(complaintRes);
+            getComp();
         }
     },[socs]);
+
+    const getComp = async ()=>{
+        const complaintReqData = {"jwtToken":props.cookies.user,"cf_id":null};
+        const noticeURL="http://192.168.1.67:8080/complaints";
+        const noticeOptions={
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify(complaintReqData)
+        }
+        const complaintResponse = await fetch(noticeURL,noticeOptions);
+        const complaintRes = await complaintResponse.json();
+        console.log(complaintRes);
+        setComplaints(complaintRes);
+    }
+
+    const addComp = async ()=>{
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const complaint = {"jwtToken":props.cookies.user};
+        complaint.topic=title;
+        complaint.description = description;
+        complaint.userID = null;
+        complaint.date_of_creation = new Date().toJSON().slice(0,10);
+        complaint.is_deleted = false;
+        complaint.societyID=null;
+        complaint.category="complaint";
+        complaint.status="processing";
+
+        const url="http://192.168.1.67:8080/addComplaints1";
+        const options = {
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify(complaint)
+        }
+
+        const response = await fetch(url,options);
+        const res = await response.json();
+        console.log(res);
+        getComp();
+    }
 
     const [counter, setCount] = useState(0)
 
@@ -161,24 +195,24 @@ const ComplaintsAndFeedback = (props) => {
         </Modal.Header>
         <Modal.Body>
             <div style={{textAlign: "right"}}>
-                <span>User Name: <span style={{fontStyle: "italic", color: "#3e444e", fontWeight: "500"}}>Patel Manikbhai</span></span>
+                <span>User Name: <span style={{fontStyle: "italic", color: "#3e444e", fontWeight: "500"}}>{userCookie.userName}</span></span>
             </div>
             <form>
             <FormGroup style={FormStyle2}>
                 <Detailsform type="text" id="title" name="complaint_title" onChange={inputChange}/>
                 <FocusHtml data-placeholder="Title"/>
             </FormGroup>
-            <FormGroup style={FormStyle1}>
+            {/* <FormGroup style={FormStyle1}>
             <TextSpan style={{height: "auto"}}>Category</TextSpan>
                 <Select options={options}/>
-            </FormGroup>
+            </FormGroup> */}
             <FormGroup style={FormStyle}>
-                <Cstyle.ComplaintDesc id="description" name="complaint_desc" maxLength="255" rows="6" onInput={handleKeyPress} />
+                <Cstyle.ComplaintDesc id="description" name="complaint_desc" maxLength="255" rows="6" />
                 <TextSpan style={{height: "auto"}}>Description</TextSpan>
                 <span style={{float: "right"}}>{counter}/180</span>
             </FormGroup>
             <ButtonWrapper style={{marginBottom: "1em"}}>
-                <ButtonSubmit name="submit" type="submit">Submit</ButtonSubmit>
+                <ButtonSubmit name="submit" type="submit" onClick={(e)=>{e.preventDefault();addComp()}}>Submit</ButtonSubmit>
             </ButtonWrapper>
             </form>
         </Modal.Body>
@@ -240,6 +274,44 @@ const MoreItems = (props) => {
     const [DeleteModal, setDeleteModal] = useState(false);
     const [ViewModal, setViewModal] = useState(false);
     const [ResolvedModal, setResolvedModal] = useState(false);
+    
+    const [userCookie,setUserCookies] = useCookies();
+
+    const modifyComp = async (complaint)=>{
+        complaint.status="resolved";
+        complaint.jwtToken=userCookie.user;
+
+        const url="http://192.168.1.67:8080/editComplaint1";
+        const options = {
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify(complaint)
+        }
+
+        const response = await fetch(url,options);
+        const res = await response.json();
+        console.log(res);
+    }
+
+    const deleteComp = async (complaint)=>{
+        complaint.jwtToken=userCookie.user;
+
+        const url = "http://192.168.1.67:8080/deleteComplaint1";
+        const options = {
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify(complaint)
+        }
+
+        const response = await fetch(url,options);
+        const res = await response.json();
+        console.log(res);
+    }
+
     return(
         <>
             <Cstyle.MoreItemsContainer>
@@ -299,7 +371,7 @@ const MoreItems = (props) => {
                         <MdOutlineCancel style={{fontSize: "8em", color: "red"}}/>
                         <h2>Are you sure?</h2>
                         <p>Do you really want to delete this record? This process cannot be undone.</p>
-                        <Button variant='outline-danger'>Delete</Button>
+                        <Button variant='outline-danger' onClick={()=>{deleteComp(props.complaint)}}>Delete</Button>
                     </Cstyle.DeleteCont>
                 </Modal.Body>
             </Modal>
@@ -312,7 +384,7 @@ const MoreItems = (props) => {
                         <AiOutlineInfoCircle style={{fontSize: "8em", color: "green"}}/>
                         <h2>Are you sure?</h2>
                         <p>Do you really want to mark this record as resolved? This process cannot be undone.</p>
-                        <Button variant='outline-success'>Continue</Button>
+                        <Button variant='outline-success' onClick={ ()=> { modifyComp(props.complaint) } } >Continue</Button>
                     </Cstyle.DeleteCont>
                 </Modal.Body>
             </Modal>

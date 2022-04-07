@@ -136,6 +136,7 @@ const Login = (props) => {
                 props.changeCookies('userName',res.userName);
                 props.changeCookies('userType',res.userType);
                 props.changeCookies('society',res.society);
+                // props.changeUserType(res.userType);
                 navigate("/dashboard");
             }
             // if(res=="User is authenticated"){

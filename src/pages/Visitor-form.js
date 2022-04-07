@@ -2,6 +2,11 @@ import React from 'react'
 import { LoginForm } from '../styles/login-style'
 import Select from 'react-select'
 import { Detailsform1,TextSpan ,Form, Heading1, Heading4, RegisterCont, FormGroup, FocusHtml, ButtonWrapper, ButtonSubmit, SelectGroup } from '../styles/register-styles'
+import { useParams } from "react-router";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+
 function inputChange(e) {
   if (e.target.value !== "") {
       e.target.classList.add('text');
@@ -42,7 +47,23 @@ const FormStyle={
 const ButtonStyle={
   width: "50%",
 }
-const VisitorForm = () => {
+const VisitorForm = (props) => {
+
+  const param = useParams();
+  const navigate = useNavigate();
+  
+  const [userCookies,setUserCookies] = useCookies();
+  
+  console.log(param.id);
+  console.log(userCookies);
+
+
+  useEffect(()=>{
+    // if(param.id != props.visitorLink){
+    //   navigate("*");
+    // }
+  })
+
   return (
     <RegisterCont>
             <LoginForm style={{height: "max-content"}}>

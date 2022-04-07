@@ -57,7 +57,7 @@ const Tenants = (props)=>{
             <Sstyle.Society>
                 {socs.map((soc)=>{
                     return(
-                    <Sstyle.SocietyCont onClick={()=>gotoVisitors(1)}>
+                    <Sstyle.SocietyCont onClick={()=>gotoVisitors(soc.society_id)}>
                     <Sstyle.Image src={Image[image++]}/>
                     <Sstyle.Content>
                         <h3>{soc.society_name}</h3>

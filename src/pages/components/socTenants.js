@@ -12,6 +12,11 @@ import Dropzone, { useDropzone } from 'react-dropzone'
 import { RiPencilFill, RiEyeFill } from 'react-icons/ri'
 import { BsDownload } from 'react-icons/bs'
 import {MdOutlineCancel} from 'react-icons/md'
+
+
+import { Cookies, useCookies } from 'react-cookie';
+import { useParams } from "react-router-dom";
+
 const FileContainer = styled.div`
   flex: 1;
   display: flex;
@@ -55,9 +60,126 @@ const getColor = (props) => {
 }
 
 const SocTenants = (props) => {
+
+  
+  const [society,setSociety] = useState(null);
+  const [userCookies,setUserCookies] = useCookies();
+  const [tenants,setTenants] = useState(null);
+  const [tenantIndex,setTenantIndex] = useState(null);
+  const params = useParams();
+
   const [AddTenant, setAddTenant] = useState(false)
   const [houseInfo, setHouseInfo] = useState(0)
   const [Isloading, setLoading] = useState(false)
+
+  useEffect( async ()=>{
+    
+    if(society == null ){
+
+      const data={"jwtToken":userCookies.user,"id":params.id};
+      const url="http://192.168.1.67:8080/getSociety";
+      const options={
+          method:"POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body:JSON.stringify(data)
+      }
+      const response = await fetch(url,options);
+      const res = await response.json();
+      setSociety(res);
+      // setMembers(memberRes);
+    }
+  },[])
+
+  const getTenants = async () => {
+    const memberData = {"jwtToken":userCookies.user,"society_id":society.society_id};
+      
+
+      const memberURL="http://192.168.1.67:8080/tenants";
+      const memberOptions={
+          method:"POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body:JSON.stringify(memberData)
+      }
+
+      const memberResponse = await fetch(memberURL,memberOptions);
+      const memberRes = await memberResponse.json();
+      
+      console.log(memberRes);
+      setTenants(memberRes);
+  }
+
+  const deleteTenant = async (index)=>{
+    const tenant = tenants[index];
+    tenant.jwtToken = userCookies.user;
+
+    const memberData = tenant;
+
+    const memberURL="http://192.168.1.67:8080/deleteTenant";
+    const memberOptions={
+        method:"POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body:JSON.stringify(memberData)
+    }
+
+    const memberResponse = await fetch(memberURL,memberOptions);
+    const memberRes = await memberResponse.json();
+    
+    console.log(memberRes);
+    getTenants();
+    setDeleteTenantModal(false);
+    setTenantIndex(null);
+  }
+
+  const modifyTenant = async (index)=>{
+    const tenant = tenants[index];
+    const fname = document.getElementById("fname").value;
+    const lname = document.getElementById("lname").value;
+    const phone = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
+    const rent = document.getElementById("rent").value;
+
+    tenant.first_name = fname;
+    tenant.last_name = lname;
+    tenant.phone_number = phone;
+    tenant.email = email;
+    tenant.rent_fixed_amount = rent;
+    tenant.jwtToken = userCookies.user;
+    // console.log(tenant);
+
+    const memberData = tenant;
+      
+
+      const memberURL="http://192.168.1.67:8080/editTenant";
+      const memberOptions={
+          method:"POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body:JSON.stringify(memberData)
+      }
+
+      const memberResponse = await fetch(memberURL,memberOptions);
+      const memberRes = await memberResponse.json();
+      
+      console.log(memberRes);
+      getTenants();
+      setTenantIndex(null);
+
+  }
+
+  useEffect( async ()=>{
+    if( society != null && tenants==null){
+      getTenants();
+    }
+  })
+
+
   useEffect(() => {
     if (Isloading) {
       setTimeout(() => {
@@ -124,12 +246,12 @@ const SocTenants = (props) => {
     URL.revokeObjectURL(rentDoc.preview);
     URL.revokeObjectURL(proofDoc.preview);
   }, [rentDoc, proofDoc]);
-  console.log(rentDoc)
+  if(society != null){
   return (
     <>
       <Toaster />
       <Container>
-        <Heading1>Siddhachal Flats</Heading1>
+        <Heading1>{society.society_name}</Heading1>
         <Heading5>Society Admin: <span style={{ fontStyle: "italic", fontWeight: "400", textDecoration: "underline", textDecorationColor: "#FAB6B6" }}>Patel Manikbhai</span></Heading5>
       </Container>
       <ButtonContainer>
@@ -151,76 +273,22 @@ const SocTenants = (props) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Kunal</td>
-              <td>Dhakan</td>
-              <td style={houseStyle} onClick={() => { setHouseInfo(true) }}>B-203</td>
-              <td><button className='buttonStyle'><RiPencilFill className='actionStyle' onClick={() => { setTenantDetails(!editTenant) }} /></button><button className='buttonStyle' onClick={() => { setMoreTenants(!moreTenantsPopup) }}><RiEyeFill className='actionStyle' /></button></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Riya</td>
-              <td>Patel</td>
-              <td style={houseStyle}>C-1001</td>
-              <td><button className='buttonStyle'><RiPencilFill className='actionStyle' /></button><button className='buttonStyle' onClick={() => { setMoreTenants(!moreTenantsPopup) }}><RiEyeFill className='actionStyle' /></button></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Shyam</td>
-              <td>Pareek</td>
-              <td style={houseStyle}>A-203</td>
-              <td><button className='buttonStyle'><RiPencilFill className='actionStyle' /></button><button className='buttonStyle' onClick={() => { setMoreTenants(!moreTenantsPopup) }}><RiEyeFill className='actionStyle' /></button></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-502</td>
-              <td><button className='buttonStyle'><RiPencilFill className='actionStyle' /></button><button className='buttonStyle' onClick={() => { setMoreTenants(!moreTenantsPopup) }}><RiEyeFill className='actionStyle' /></button></td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-205</td>
-              <td><button className='buttonStyle'><RiPencilFill className='actionStyle' /></button><button className='buttonStyle' onClick={() => { setMoreTenants(!moreTenantsPopup) }}><RiEyeFill className='actionStyle' /></button></td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-105</td>
-              <td><button className='buttonStyle'><RiPencilFill className='actionStyle' /></button><button className='buttonStyle' onClick={() => { setMoreTenants(!moreTenantsPopup) }}><RiEyeFill className='actionStyle' /></button></td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-203</td>
-              <td><button className='buttonStyle'><RiPencilFill className='actionStyle' /></button><button className='buttonStyle' onClick={() => { setMoreTenants(!moreTenantsPopup) }}><RiEyeFill className='actionStyle' /></button></td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-203</td>
-              <td><button className='buttonStyle'><RiPencilFill className='actionStyle' /></button><button className='buttonStyle' onClick={() => { setMoreTenants(!moreTenantsPopup) }}><RiEyeFill className='actionStyle' /></button></td>
-            </tr>
-            <tr>
-              <td>9</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-203</td>
-              <td><button className='buttonStyle'><RiPencilFill className='actionStyle' /></button><button className='buttonStyle' onClick={() => { setMoreTenants(!moreTenantsPopup) }}><RiEyeFill className='actionStyle' /></button></td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>Chirag</td>
-              <td>Shah</td>
-              <td style={houseStyle}>A-203</td>
-              <td><button className='buttonStyle'><RiPencilFill className='actionStyle' /></button><button className='buttonStyle' onClick={() => { setMoreTenants(!moreTenantsPopup) }}><RiEyeFill className='actionStyle' /></button></td>
-            </tr>
+          {
+              (tenants != null )?
+              (
+                tenants.map( (t,index=0)=>{
+                  return(
+                    <tr>
+                      <td>{++index}</td>
+                      <td>{t.first_name}</td>
+                      <td>{t.last_name}</td>
+                      <td style={houseStyle} onClick={() => { setHouseInfo(true) }}>{ t.house_name}</td>
+                      <td><button className='buttonStyle'><RiPencilFill className='actionStyle' onClick={() => { setTenantIndex(index-1);setTenantDetails(!editTenant) }} /></button><button className='buttonStyle' onClick={() => { setTenantIndex(index-1);setMoreTenants(!moreTenantsPopup) }}><RiEyeFill className='actionStyle' /></button></td>
+                    </tr>
+                  );
+                })
+              ):(<center><h1>Loading..</h1></center>)
+            }
           </tbody>
         </Table>
       </TenantCont>
@@ -348,7 +416,9 @@ const SocTenants = (props) => {
           </Row>
         </Modal.Body>
       </Modal>
-      <Modal show={moreTenantsPopup} onHide={() => { setMoreTenants(false) }} centered size="lg">
+      {
+        (tenantIndex != null)?
+      (<Modal show={moreTenantsPopup} onHide={() => { setMoreTenants(false) }} centered size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Tenant Details</Modal.Title>
         </Modal.Header>
@@ -357,19 +427,19 @@ const SocTenants = (props) => {
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>First Name</TextSpan>
-                <Detailsform type="text" name="tenant_fname" disabled value="Kunal" />
+                <Detailsform type="text" name="tenant_fname" disabled value={tenants[tenantIndex].first_name} />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Last Name</TextSpan>
-                <Detailsform type="text" name="tenant_lname" disabled value="Dhakan" />
+                <Detailsform type="text" name="tenant_lname" disabled value={tenants[tenantIndex].last_name} />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>House Name</TextSpan>
-                <Detailsform type="text" name="tenant_hname" disabled value="B-203" />
+                <Detailsform type="text" name="tenant_hname" disabled value={tenants[tenantIndex].house_name} />
               </FormGroup>
             </Col>
           </Row>
@@ -377,19 +447,19 @@ const SocTenants = (props) => {
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Phone Number</TextSpan>
-                <Detailsform type="tel" name="tenant_phone" disabled value="+91-9668010104" />
+                <Detailsform type="tel" name="tenant_phone" disabled value={"+91 "+tenants[tenantIndex].phone_number} />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Email</TextSpan>
-                <Detailsform type="email" name="tenant_email" disabled value="kd1029@gmail.com" />
+                <Detailsform type="email" name="tenant_email" disabled value={tenants[tenantIndex].email} />
               </FormGroup>
             </Col>
             <Col xs={12} md={4}>
               <FormGroup style={FormStyle}>
                 <TextSpan>Rent Amount (₹)</TextSpan>
-                <Detailsform type="text" name="tenant_rent_amt" disabled value="7000" />
+                <Detailsform type="text" name="tenant_rent_amt" disabled value={tenants[tenantIndex].rent_fixed_amount} />
               </FormGroup>
             </Col>
             <Col xs={12} md={12} >
@@ -401,66 +471,72 @@ const SocTenants = (props) => {
           </Row>
         </Modal.Body>
       </Modal>
-      <Modal show={editTenant} onHide={() => { setTenantDetails(false) }} centered size="lg">
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Tenant Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Row>
-            <Col xs={12} md={4}>
-              <FormGroup style={FormStyle}>
-                <TextSpan>First Name</TextSpan>
-                <Detailsform type="text" name="tenant_fname"  value="Kunal" />
-              </FormGroup>
-            </Col>
-            <Col xs={12} md={4}>
-              <FormGroup style={FormStyle}>
-                <TextSpan>Last Name</TextSpan>
-                <Detailsform type="text" name="tenant_lname"  value="Dhakan" />
-              </FormGroup>
-            </Col>
-            <Col xs={12} md={4}>
-              <FormGroup style={FormStyle}>
-                <TextSpan>House Name</TextSpan>
-                <Detailsform type="text" name="tenant_hname"  value="B-203" />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12} md={4}>
-              <FormGroup style={FormStyle}>
-                <TextSpan>Phone Number</TextSpan>
-                <Detailsform type="tel" name="tenant_phone"  value="+91-9668010104" />
-              </FormGroup>
-            </Col>
-            <Col xs={12} md={4}>
-              <FormGroup style={FormStyle}>
-                <TextSpan>Email</TextSpan>
-                <Detailsform type="email" name="tenant_email"  value="kd1029@gmail.com" />
-              </FormGroup>
-            </Col>
-            <Col xs={12} md={4}>
-              <FormGroup style={FormStyle}>
-                <TextSpan>Rent Amount (₹)</TextSpan>
-                <Detailsform type="text" name="tenant_rent_amt"  value="7000" />
-              </FormGroup>
-            </Col>
-            <Col xs={12} md={6}>
-              <FormGroup style={FormStyle1}>
-                <TextSpan>Delete Account?</TextSpan>
-                <Button variant='danger' style={EditTenantStyle} onClick={()=>setDeleteTenantModal(!DeleteTenantModal)}>Delete</Button>
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-            <ButtonWrapper style={{marginBottom: "1em"}}>
-                <ButtonSubmit name="submit" type="submit">Submit</ButtonSubmit>
-            </ButtonWrapper>
-            </Col>
-          </Row>
-        </Modal.Body>
-      </Modal>
+      )
+      :(<></>)
+      }
+      {
+        (tenantIndex != null)?
+        (<Modal show={editTenant} onHide={() => { setTenantDetails(false) }} centered size="lg">
+          <Modal.Header closeButton>
+            <Modal.Title>Edit Tenant Details</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Row>
+              <Col xs={12} md={4}>
+                <FormGroup style={FormStyle}>
+                  <TextSpan>First Name</TextSpan>
+                  <Detailsform type="text" name="tenant_fname" id="fname"  defaultValue={tenants[tenantIndex].first_name} />
+                </FormGroup>
+              </Col>
+              <Col xs={12} md={4}>
+                <FormGroup style={FormStyle}>
+                  <TextSpan>Last Name</TextSpan>
+                  <Detailsform type="text" name="tenant_lname" id="lname" defaultValue={tenants[tenantIndex].last_name} />
+                </FormGroup>
+              </Col>
+              <Col xs={12} md={4}>
+                <FormGroup style={FormStyle}>
+                  <TextSpan>House Name</TextSpan>
+                  <Detailsform type="text" name="tenant_hname" id="house" value={tenants[tenantIndex].house_name} />
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} md={4}>
+                <FormGroup style={FormStyle}>
+                  <TextSpan>Phone Number</TextSpan>
+                  <Detailsform type="tel" name="tenant_phone" id="phone" defaultValue={ tenants[tenantIndex].phone_number} />
+                </FormGroup>
+              </Col>
+              <Col xs={12} md={4}>
+                <FormGroup style={FormStyle}>
+                  <TextSpan>Email</TextSpan>
+                  <Detailsform type="email" name="tenant_email" id="email" defaultValue={tenants[tenantIndex].email} />
+                </FormGroup>
+              </Col>
+              <Col xs={12} md={4}>
+                <FormGroup style={FormStyle}>
+                  <TextSpan>Rent Amount (₹)</TextSpan>
+                  <Detailsform type="text" name="tenant_rent_amt" id="rent" defaultValue={tenants[tenantIndex].rent_fixed_amount} />
+                </FormGroup>
+              </Col>
+              <Col xs={12} md={6}>
+                <FormGroup style={FormStyle1}>
+                  <TextSpan>Delete Account?</TextSpan>
+                  <Button variant='danger' style={EditTenantStyle} onClick={()=>setDeleteTenantModal(!DeleteTenantModal)}>Delete</Button>
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+              <ButtonWrapper style={{marginBottom: "1em"}}>
+                  <ButtonSubmit name="submit" type="submit" onClick={()=>modifyTenant(tenantIndex)}>Submit</ButtonSubmit>
+              </ButtonWrapper>
+              </Col>
+            </Row>
+          </Modal.Body>
+        </Modal>):(<></>)
+      }
       <Modal show={DeleteTenantModal} onHide={()=>{setDeleteTenantModal(false)}} centered>
                 <Modal.Header closeButton style={{borderBottom: "none"}}>
                     {/* <Modal.Title>Delete Complaint</Modal.Title> */}
@@ -470,12 +546,21 @@ const SocTenants = (props) => {
                         <MdOutlineCancel style={{fontSize: "8em", color: "red"}}/>
                         <h2>Are you sure?</h2>
                         <p>Do you really want to delete this record? This process cannot be undone.</p>
-                        <Button variant='outline-danger'>Delete</Button>
+                        <Button variant='outline-danger' onClick={()=>deleteTenant(tenantIndex)}>Delete</Button>
                     </DeleteCont>
                 </Modal.Body>
             </Modal>
     </>
-  )
+  )}
+  else{
+    return(
+      <><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <center>
+            <h1>Loading...</h1>
+        </center>
+      </>
+      );
+  }
 }
 
 export default SocTenants

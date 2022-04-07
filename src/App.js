@@ -30,14 +30,17 @@ import SocVisitors from './pages/components/socVisitors';
 import Test from './pages/test';
 import SocTenants from './pages/components/socTenants';
 import VisitorForm from './pages/Visitor-form';
+import Report from './pages/components/Report';
+import { useEffect } from 'react';
 function App() {
 
   //const [userType,setUserType] = useState("SocietyMember");
   const [userType, setUserType] = useState("Admin");
   
   const [cookies, setCookie] = useCookies(['user']);
+
+  const [visitorLink,setVisitorLink] = useState(null);
   // const Location = useLocation()
-  console.log(cookies);
   return (
     <>
       <Router>
@@ -55,16 +58,25 @@ function App() {
               } />
 
             
-            <Route path="/register" element={
-              <Register userType={userType} userCookies={cookies.user}/>
-            } />
+            
+              
+              <Route path="/register" element={
+                (cookies.user ==null)?
+                (<Register userType={userType} userCookies={cookies.user}/>)
+                :(<Navigate to="/login" replace />)
+              }/>
+            
             <Route path="/forgotpassword" element={
               <ForgotPass userCookies={cookies.user} />
               } />
             <Route path="test" element={<Test/>}/>
             <Route path="/contactus" element={<Contact userType={userType} />} />
             <Route path="/visitor/:id" element={
-              <VisitorForm userType={userType} userCookies={cookies.user} />
+              <VisitorForm 
+                userType={userType} 
+                userCookies={cookies.user} 
+                visitorlink={visitorLink}
+              />
               }/>
 
             <Route path="/dashboard" element={
@@ -126,7 +138,16 @@ function App() {
               <Route path="profile" element={<UserAccount userType={userType} cookies={cookies}/>} />
 
               <Route path="visitors" element={<Visitors userType={userType} cookies={cookies}/>} />
-              <Route path="visitors/:id" element={<SocVisitors userType={userType} cookies={cookies}/>} />
+              <Route path="visitors/:id" element={
+
+                <SocVisitors 
+                  userType={userType}  
+                  cookies={cookies}
+                  visitorLink={visitorLink}
+                  changeVisitor={setCookie}
+                />}
+
+              />
 
               <Route path="account" element={<UserAccount userType={userType} cookies={cookies}/>}/>
 
@@ -137,7 +158,7 @@ function App() {
               } />
               <Route path="tenants/:id" element={<SocTenants userType={userType} cookies={cookies}/>}/>
 
-              <Route path="reports" element={<h1>Reports</h1>} />
+              <Route path="reports" element={<Report/>} />
 
             </Route>
             <Route path="*" element={<NotFound/>}/>

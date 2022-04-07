@@ -50,7 +50,7 @@ const gotoVisitors = (id)=>{
           <SStyle.Society>
           {socs.map((soc)=>{
               return(
-              <SStyle.SocietyCont onClick={()=>gotoVisitors(1)}>
+              <SStyle.SocietyCont onClick={()=>gotoVisitors(soc.society_id)}>
               <SStyle.Image src={Image[image++]}/>
               <SStyle.Content>
                   <h3>{soc.society_name}</h3>

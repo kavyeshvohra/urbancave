@@ -8,30 +8,30 @@ import '../../styles/fileAndFolder.css';
 import '../../styles/gallery';
 import Folder from './folder';
 
+import { Cookies, useCookies } from 'react-cookie';
+import { useParams } from "react-router-dom";
+
 
 const Societies = (props) =>{
     const [socs,setSocieties] = useState();
+    const [userCookies,setUserCookies] = useCookies();
+    const params = useParams();
 
     useEffect(async ()=>{
         if(socs == null){
-        const data={"jwtToken":props.cookies.user,"id":null};
-        const url="http://192.168.1.67:8080/getSocieties";
-        const options={
-            method:"POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body:JSON.stringify(data)
-        }
-        const response = await fetch(url,options);
-        if(response.text()){
-            console.log(response.text());
-        }
-        else{
+            const data={"jwtToken":props.cookies.user,"id":null};
+            const url="http://192.168.1.67:8080/getSocieties";
+            const options={
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body:JSON.stringify(data)
+            }
+            const response = await fetch(url,options);
             const res = await response.json();
             console.log(res);
             setSocieties(res);
-        }
         }
     },[socs]);
 
